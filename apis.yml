@@ -1,0 +1,99 @@
+name: JFrog
+description: JFrog provides universal DevOps solutions for software supply chain automation and security
+image: https://jfrog.com/brand/jfrog-logo.png
+url: https://jfrog.com
+tags:
+- DevOps
+- Artifactory
+- Package Management
+- CI/CD
+- Container Registry
+- Security
+created: '2024'
+modified: '2024'
+apis:
+- name: JFrog Artifactory REST API
+  description: REST API for managing artifacts, repositories, security, and system configuration in JFrog Artifactory
+  image: https://jfrog.com/brand/artifactory-logo.png
+  baseURL: https://myserver.jfrog.io/artifactory/api
+  humanURL: https://jfrog.com/artifactory/
+  tags:
+  - Artifacts
+  - Repository Management
+  - Binary Management
+  properties:
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API
+  - type: OpenAPI
+    url: https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API
+  - type: Authentication
+    url: https://www.jfrog.com/confluence/display/JFROG/Access+Tokens
+- name: JFrog Xray REST API
+  description: API for vulnerability scanning, license compliance, and impact analysis
+  image: https://jfrog.com/brand/xray-logo.png
+  baseURL: https://myserver.jfrog.io/xray/api
+  humanURL: https://jfrog.com/xray/
+  tags:
+  - Security
+  - Vulnerability Scanning
+  - License Compliance
+  - DevSecOps
+  properties:
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API
+  - type: OpenAPI
+    url: https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API
+- name: JFrog Distribution REST API
+  description: API for distributing release binaries to multiple remote locations
+  baseURL: https://myserver.jfrog.io/distribution/api
+  humanURL: https://jfrog.com/distribution/
+  tags:
+  - Distribution
+  - Release Management
+  - Edge Nodes
+  properties:
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Distribution+REST+API
+- name: JFrog Pipelines REST API
+  description: API for managing CI/CD pipelines and automation workflows
+  baseURL: https://myserver.jfrog.io/pipelines/api
+  humanURL: https://jfrog.com/pipelines/
+  tags:
+  - CI/CD
+  - Pipelines
+  - Automation
+  properties:
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Pipelines+REST+API
+- name: JFrog Platform REST API
+  description: Unified API for JFrog Platform services and administration
+  baseURL: https://myserver.jfrog.io/
+  humanURL: https://jfrog.com/platform/
+  tags:
+  - Platform
+  - Administration
+  - Access Management
+  properties:
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/JFrog+Platform+REST+API
+  - type: Authentication
+    url: https://www.jfrog.com/confluence/display/JFROG/Access+Tokens
+common:
+- type: Developer Portal
+  url: https://jfrog.com/developers/
+- type: Blog
+  url: https://jfrog.com/blog/
+- type: Support
+  url: https://jfrog.com/support/
+- type: Status Page
+  url: https://status.jfrog.com/
+- type: GitHub
+  url: https://github.com/jfrog
+- type: Terms of Service
+  url: https://jfrog.com/terms-of-service/
+- type: Privacy Policy
+  url: https://jfrog.com/privacy-policy/
+maintainers:
+- name: JFrog
+  email: support@jfrog.com
+  url: https://jfrog.com
