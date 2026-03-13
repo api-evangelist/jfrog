@@ -1,0 +1,649 @@
+openapi: 3.1.0
+info:
+  title: JFrog Catalog REST API
+  description: >-
+    API for querying and managing package metadata, searching for packages and
+    CVEs, and managing custom labels for software components. JFrog Catalog
+    provides a unified view of all packages across the JFrog Platform with
+    enriched security and metadata information, primarily accessed through a
+    GraphQL-based interface.
+  version: 1.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Catalog Documentation
+  url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
+servers:
+  - url: https://{server}.jfrog.io/catalog/api/v1
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/catalog/api/v1
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: GraphQL
+    description: GraphQL query interface for package and CVE data
+  - name: Packages
+    description: Package metadata search and retrieval
+  - name: Labels
+    description: Custom label management for packages
+paths:
+  /custom/graphql:
+    post:
+      operationId: executeGraphQLQuery
+      summary: Execute GraphQL Query
+      description: >-
+        Executes a GraphQL query against the JFrog Catalog. Supports querying
+        packages, package versions, CVE information, license data, and custom
+        labels. This is the primary interface for interacting with the Catalog
+        service.
+      tags:
+        - GraphQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+      responses:
+        '200':
+          description: GraphQL query executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '400':
+          description: Invalid GraphQL query syntax
+        '401':
+          description: Unauthorized
+  /packages/search:
+    post:
+      operationId: searchPackages
+      summary: Search Packages
+      description: >-
+        Searches for packages across the catalog using various filter criteria
+        including name, type, version, and labels.
+      tags:
+        - Packages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PackageSearchRequest'
+      responses:
+        '200':
+          description: Search results retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageSearchResponse'
+        '400':
+          description: Invalid search criteria
+  /packages/{packageType}/{packageName}:
+    get:
+      operationId: getPackage
+      summary: Get Package Details
+      description: >-
+        Returns detailed metadata for a specific package, including versions,
+        licenses, vulnerabilities, and custom labels.
+      tags:
+        - Packages
+      parameters:
+        - name: packageType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [npm, maven, pypi, docker, go, nuget, gems, cargo, conda, composer, helm, cocoapods, pub, swift, rpm, debian, conan]
+          description: Package ecosystem type
+        - name: packageName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Package name (URL-encoded if contains special characters)
+      responses:
+        '200':
+          description: Package details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageDetail'
+        '404':
+          description: Package not found
+  /packages/{packageType}/{packageName}/versions:
+    get:
+      operationId: getPackageVersions
+      summary: Get Package Versions
+      description: >-
+        Returns all known versions of a specific package with their associated
+        metadata, vulnerability counts, and license information.
+      tags:
+        - Packages
+      parameters:
+        - name: packageType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Package ecosystem type
+        - name: packageName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Package name
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+          description: Maximum number of results
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: Pagination offset
+      responses:
+        '200':
+          description: Package versions retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PackageVersion'
+                  total_count:
+                    type: integer
+  /packages/{packageType}/{packageName}/versions/{version}/vulnerabilities:
+    get:
+      operationId: getVersionVulnerabilities
+      summary: Get Version Vulnerabilities
+      description: >-
+        Returns all known CVEs affecting a specific package version, including
+        both direct (non-transitive) and transitive vulnerabilities.
+      tags:
+        - Packages
+      parameters:
+        - name: packageType
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Package ecosystem type
+        - name: packageName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Package name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Package version
+        - name: severity
+          in: query
+          schema:
+            type: string
+            enum: [Low, Medium, High, Critical]
+          description: Filter by minimum severity
+      responses:
+        '200':
+          description: Vulnerabilities retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  vulnerabilities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CatalogVulnerability'
+                  total_count:
+                    type: integer
+  /labels:
+    get:
+      operationId: listLabels
+      summary: List Labels
+      description: >-
+        Returns a list of all custom labels configured in the Catalog.
+        Labels can be attached to packages for organizational and policy purposes.
+      tags:
+        - Labels
+      responses:
+        '200':
+          description: Labels list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Label'
+    post:
+      operationId: createLabel
+      summary: Create Label
+      description: >-
+        Creates a new custom label that can be applied to packages in the Catalog.
+        Requires administrator permissions.
+      tags:
+        - Labels
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelRequest'
+      responses:
+        '201':
+          description: Label created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+        '400':
+          description: Invalid label configuration
+        '409':
+          description: Label name already exists
+  /labels/{labelName}:
+    get:
+      operationId: getLabel
+      summary: Get Label
+      description: Returns details for a specific label.
+      tags:
+        - Labels
+      parameters:
+        - name: labelName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Label name
+      responses:
+        '200':
+          description: Label details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+        '404':
+          description: Label not found
+    put:
+      operationId: updateLabel
+      summary: Update Label
+      description: Updates an existing label configuration.
+      tags:
+        - Labels
+      parameters:
+        - name: labelName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Label name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelRequest'
+      responses:
+        '200':
+          description: Label updated
+        '404':
+          description: Label not found
+    delete:
+      operationId: deleteLabel
+      summary: Delete Label
+      description: Removes a label from the Catalog and detaches it from all packages.
+      tags:
+        - Labels
+      parameters:
+        - name: labelName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Label name
+      responses:
+        '204':
+          description: Label deleted
+        '404':
+          description: Label not found
+  /labels/{labelName}/packages:
+    post:
+      operationId: applyLabelToPackages
+      summary: Apply Label to Packages
+      description: Applies a label to one or more packages.
+      tags:
+        - Labels
+      parameters:
+        - name: labelName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Label name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                packages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      package_type:
+                        type: string
+                      package_name:
+                        type: string
+                      package_version:
+                        type: string
+                    required:
+                      - package_type
+                      - package_name
+              required:
+                - packages
+      responses:
+        '200':
+          description: Label applied to packages
+    delete:
+      operationId: removeLabelFromPackages
+      summary: Remove Label from Packages
+      description: Removes a label from one or more packages.
+      tags:
+        - Labels
+      parameters:
+        - name: labelName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Label name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                packages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      package_type:
+                        type: string
+                      package_name:
+                        type: string
+                    required:
+                      - package_type
+                      - package_name
+              required:
+                - packages
+      responses:
+        '200':
+          description: Label removed from packages
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    GraphQLRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: GraphQL query string
+        variables:
+          type: object
+          additionalProperties: true
+          description: GraphQL query variables
+        operationName:
+          type: string
+          description: Named operation to execute when query contains multiple operations
+      required:
+        - query
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: Query result data
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              locations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line:
+                      type: integer
+                    column:
+                      type: integer
+              path:
+                type: array
+                items:
+                  type: string
+    PackageSearchRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: Text search query for package name
+        package_type:
+          type: string
+          description: Filter by package type
+        labels:
+          type: array
+          items:
+            type: string
+          description: Filter by applied labels
+        has_vulnerabilities:
+          type: boolean
+          description: Filter packages with known vulnerabilities
+        min_severity:
+          type: string
+          enum: [Low, Medium, High, Critical]
+          description: Minimum vulnerability severity filter
+        limit:
+          type: integer
+          default: 25
+        offset:
+          type: integer
+    PackageSearchResponse:
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+        total_count:
+          type: integer
+    PackageSummary:
+      type: object
+      properties:
+        package_type:
+          type: string
+        package_name:
+          type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        vulnerabilities_count:
+          type: integer
+        labels:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
+    PackageDetail:
+      type: object
+      properties:
+        package_type:
+          type: string
+        package_name:
+          type: string
+        description:
+          type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        licenses:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              full_name:
+                type: string
+              url:
+                type: string
+                format: uri
+        vulnerabilities_summary:
+          type: object
+          properties:
+            critical:
+              type: integer
+            high:
+              type: integer
+            medium:
+              type: integer
+            low:
+              type: integer
+            total:
+              type: integer
+        labels:
+          type: array
+          items:
+            type: string
+        repository_url:
+          type: string
+          format: uri
+        homepage:
+          type: string
+          format: uri
+    PackageVersion:
+      type: object
+      properties:
+        version:
+          type: string
+        published:
+          type: string
+          format: date-time
+        licenses:
+          type: array
+          items:
+            type: string
+        vulnerabilities_count:
+          type: integer
+        direct_vulnerabilities_count:
+          type: integer
+          description: Non-transitive vulnerabilities affecting this version
+        transitive_vulnerabilities_count:
+          type: integer
+          description: Transitive vulnerabilities from dependencies
+        labels:
+          type: array
+          items:
+            type: string
+    CatalogVulnerability:
+      type: object
+      properties:
+        cve:
+          type: string
+          description: CVE identifier
+        severity:
+          type: string
+          enum: [Low, Medium, High, Critical]
+        cvss_v3_score:
+          type: number
+        summary:
+          type: string
+        is_transitive:
+          type: boolean
+          description: Whether this is a transitive vulnerability from a dependency
+        fixed_versions:
+          type: array
+          items:
+            type: string
+        published:
+          type: string
+          format: date-time
+        jfrog_research_severity:
+          type: string
+          description: JFrog Security Research team severity assessment
+        jfrog_research_summary:
+          type: string
+          description: JFrog Security Research enrichment summary
+    Label:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique label name
+        description:
+          type: string
+        color:
+          type: string
+          description: Label display color (hex)
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        packages_count:
+          type: integer
+          description: Number of packages with this label applied
+    LabelRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+      required:
+        - name

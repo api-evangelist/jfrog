@@ -1,0 +1,425 @@
+openapi: 3.1.0
+info:
+  title: JFrog Mission Control REST API
+  description: >-
+    API for centralized management and monitoring of multiple JFrog Platform
+    instances, including Artifactory servers, configurations, and cross-instance
+    operations. Mission Control provides a single pane of glass for managing
+    geographically distributed JFrog deployments.
+  version: 4.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Mission Control REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/mission-control-rest-apis
+servers:
+  - url: https://{server}.jfrog.io/mc/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/mc/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: System
+    description: System health and version information
+  - name: JPDs
+    description: JFrog Platform Deployment management
+  - name: Licenses
+    description: License management across instances
+  - name: Scripts
+    description: Remote execution scripts
+paths:
+  /v1/system/ping:
+    get:
+      operationId: systemPing
+      summary: System Ping
+      description: Returns a health check status for Mission Control.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Mission Control is accessible
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /v1/system/version:
+    get:
+      operationId: getSystemVersion
+      summary: Get System Version
+      description: Returns Mission Control version information.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Version info retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  revision:
+                    type: string
+  /v3/jpds:
+    get:
+      operationId: listJPDs
+      summary: List JPDs
+      description: Returns a list of all managed JFrog Platform Deployments.
+      tags:
+        - JPDs
+      responses:
+        '200':
+          description: JPDs list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JPD'
+    post:
+      operationId: addJPD
+      summary: Add JPD
+      description: Adds a new JFrog Platform Deployment to Mission Control.
+      tags:
+        - JPDs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JPDRequest'
+      responses:
+        '201':
+          description: JPD added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JPD'
+  /v3/jpds/{jpdId}:
+    get:
+      operationId: getJPD
+      summary: Get JPD
+      description: Returns details for a specific JPD.
+      tags:
+        - JPDs
+      parameters:
+        - name: jpdId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: JPD ID
+      responses:
+        '200':
+          description: JPD details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JPD'
+    put:
+      operationId: updateJPD
+      summary: Update JPD
+      description: Updates JPD configuration.
+      tags:
+        - JPDs
+      parameters:
+        - name: jpdId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: JPD ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JPDRequest'
+      responses:
+        '200':
+          description: JPD updated
+    delete:
+      operationId: removeJPD
+      summary: Remove JPD
+      description: Removes a JPD from Mission Control management.
+      tags:
+        - JPDs
+      parameters:
+        - name: jpdId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: JPD ID
+      responses:
+        '204':
+          description: JPD removed
+  /v3/attach_lic/buckets:
+    get:
+      operationId: listLicenseBuckets
+      summary: List License Buckets
+      description: Returns a list of all license buckets.
+      tags:
+        - Licenses
+      responses:
+        '200':
+          description: License buckets retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LicenseBucket'
+    post:
+      operationId: addLicenseBucket
+      summary: Add License Bucket
+      description: Adds a new license bucket.
+      tags:
+        - Licenses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+                  format: uri
+                key:
+                  type: string
+              required:
+                - name
+                - url
+                - key
+      responses:
+        '201':
+          description: License bucket added
+  /v3/attach_lic/buckets/{bucketId}:
+    delete:
+      operationId: deleteLicenseBucket
+      summary: Delete License Bucket
+      description: Removes a license bucket.
+      tags:
+        - Licenses
+      parameters:
+        - name: bucketId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: License bucket ID
+      responses:
+        '204':
+          description: License bucket deleted
+  /v1/scripts:
+    get:
+      operationId: listScripts
+      summary: List Scripts
+      description: Returns a list of all available execution scripts.
+      tags:
+        - Scripts
+      responses:
+        '200':
+          description: Scripts list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Script'
+    post:
+      operationId: createScript
+      summary: Create Script
+      description: Creates a new execution script.
+      tags:
+        - Scripts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptRequest'
+      responses:
+        '201':
+          description: Script created
+  /v1/scripts/{scriptName}/execute:
+    post:
+      operationId: executeScript
+      summary: Execute Script
+      description: Executes a script on specified JPDs.
+      tags:
+        - Scripts
+      parameters:
+        - name: scriptName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Script name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jpd_ids:
+                  type: array
+                  items:
+                    type: string
+                parameters:
+                  type: object
+                  additionalProperties:
+                    type: string
+              required:
+                - jpd_ids
+      responses:
+        '200':
+          description: Script execution initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  execution_id:
+                    type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    JPD:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        location:
+          type: object
+          properties:
+            city_name:
+              type: string
+            country_code:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+        status:
+          type: string
+          enum: [online, offline, unavailable]
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              service_type:
+                type: string
+              version:
+                type: string
+              status:
+                type: string
+        created:
+          type: string
+          format: date-time
+    JPDRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        token:
+          type: string
+          description: Admin access token for the JPD
+        location:
+          type: object
+          properties:
+            city_name:
+              type: string
+            country_code:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+      required:
+        - name
+        - url
+        - token
+    LicenseBucket:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        total_licenses:
+          type: integer
+        used_licenses:
+          type: integer
+        available_licenses:
+          type: integer
+    Script:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+    ScriptRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+      required:
+        - name
+        - content

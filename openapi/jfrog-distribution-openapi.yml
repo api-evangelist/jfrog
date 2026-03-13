@@ -1,0 +1,455 @@
+openapi: 3.1.0
+info:
+  title: JFrog Distribution REST API
+  description: >-
+    API for distributing release binaries to multiple remote locations.
+    JFrog Distribution enables the creation of release bundles that are signed
+    and distributed to Edge nodes, ensuring reliable and traceable software
+    delivery across geographically distributed locations.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Distribution REST API Documentation
+  url: https://www.jfrog.com/confluence/display/JFROG/Distribution+REST+API
+servers:
+  - url: https://{server}.jfrog.io/distribution/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/distribution/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: System
+    description: Distribution system health and information
+  - name: Release Bundles v1
+    description: Create and manage release bundles (v1)
+  - name: Distribution
+    description: Distribute release bundles to edge nodes
+paths:
+  /v1/system/ping:
+    get:
+      operationId: systemPing
+      summary: System Ping
+      description: Returns a simple health check response.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Distribution is accessible
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /v1/release_bundle:
+    get:
+      operationId: listReleaseBundles
+      summary: List Release Bundles
+      description: Returns a list of all release bundles.
+      tags:
+        - Release Bundles v1
+      responses:
+        '200':
+          description: Release bundles list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    version:
+                      type: string
+                    state:
+                      type: string
+                    created:
+                      type: string
+                      format: date-time
+    post:
+      operationId: createReleaseBundle
+      summary: Create Release Bundle
+      description: Creates a new release bundle with specified artifacts.
+      tags:
+        - Release Bundles v1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseBundleRequest'
+      responses:
+        '201':
+          description: Release bundle created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseBundle'
+        '400':
+          description: Invalid request
+  /v1/release_bundle/{name}/{version}:
+    get:
+      operationId: getReleaseBundle
+      summary: Get Release Bundle
+      description: Returns details for a specific release bundle version.
+      tags:
+        - Release Bundles v1
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Release bundle details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseBundle'
+        '404':
+          description: Release bundle not found
+    put:
+      operationId: updateReleaseBundle
+      summary: Update Release Bundle
+      description: Updates an existing release bundle.
+      tags:
+        - Release Bundles v1
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseBundleRequest'
+      responses:
+        '200':
+          description: Release bundle updated
+    delete:
+      operationId: deleteReleaseBundle
+      summary: Delete Release Bundle
+      description: Deletes a release bundle version.
+      tags:
+        - Release Bundles v1
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Release bundle deleted
+  /v1/release_bundle/{name}/{version}/sign:
+    post:
+      operationId: signReleaseBundle
+      summary: Sign Release Bundle
+      description: Signs a release bundle, making it immutable and ready for distribution.
+      tags:
+        - Release Bundles v1
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Release bundle signed
+  /v1/distribution/{name}/{version}:
+    post:
+      operationId: distributeReleaseBundle
+      summary: Distribute Release Bundle
+      description: Distributes a signed release bundle to target edge nodes.
+      tags:
+        - Distribution
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistributionRequest'
+      responses:
+        '200':
+          description: Distribution initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Tracker ID for monitoring distribution status
+  /v1/distribution/{name}/{version}/status:
+    get:
+      operationId: getDistributionStatus
+      summary: Get Distribution Status
+      description: Returns the distribution status for a release bundle version.
+      tags:
+        - Distribution
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Distribution status retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [Not distributed, In progress, Completed, Failed]
+                  distribution_rules:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        site_name:
+                          type: string
+                        status:
+                          type: string
+  /v1/distribution/{name}/{version}/delete:
+    post:
+      operationId: deleteDistributedReleaseBundle
+      summary: Delete Distributed Release Bundle
+      description: Deletes a distributed release bundle from target edge nodes.
+      tags:
+        - Distribution
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistributionRequest'
+      responses:
+        '200':
+          description: Delete distribution initiated
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    ReleaseBundleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        dry_run:
+          type: boolean
+          default: false
+        sign_immediately:
+          type: boolean
+          default: false
+        description:
+          type: string
+        release_notes:
+          type: object
+          properties:
+            syntax:
+              type: string
+              enum: [plain_text, markdown, asciidoc]
+            content:
+              type: string
+        spec:
+          type: object
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                properties:
+                  aql:
+                    type: string
+                  query_name:
+                    type: string
+                  mappings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input:
+                          type: string
+                        output:
+                          type: string
+                  added_props:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        values:
+                          type: array
+                          items:
+                            type: string
+      required:
+        - name
+        - version
+        - spec
+    ReleaseBundle:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        state:
+          type: string
+          enum: [OPEN, SIGNED, STORED, READY_FOR_DISTRIBUTION]
+        description:
+          type: string
+        release_notes:
+          type: object
+          properties:
+            syntax:
+              type: string
+            content:
+              type: string
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              source_repo_path:
+                type: string
+              target_repo_path:
+                type: string
+              checksum:
+                type: string
+              props:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                    values:
+                      type: array
+                      items:
+                        type: string
+    DistributionRequest:
+      type: object
+      properties:
+        dry_run:
+          type: boolean
+          default: false
+        auto_create_missing_repositories:
+          type: boolean
+          default: false
+        distribution_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              site_name:
+                type: string
+              city_name:
+                type: string
+              country_codes:
+                type: array
+                items:
+                  type: string
+      required:
+        - distribution_rules

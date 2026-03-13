@@ -1,0 +1,705 @@
+openapi: 3.1.0
+info:
+  title: JFrog Connect REST API
+  description: >-
+    API for managing IoT and edge devices, deploying over-the-air software
+    updates, and monitoring device fleets at scale. JFrog Connect (formerly
+    Upswift) provides a comprehensive platform for managing Linux-based
+    IoT and edge devices.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Connect API Documentation
+  url: https://docs.connect.jfrog.io/rest-api-v2/connect-api-reference
+servers:
+  - url: https://api.connect.jfrog.io/v2
+    description: JFrog Connect Cloud
+security:
+  - apiKeyAuth: []
+tags:
+  - name: Projects
+    description: Project management
+  - name: Devices
+    description: Device management and monitoring
+  - name: Updates
+    description: OTA software update deployments
+  - name: Device Groups
+    description: Logical grouping of devices
+  - name: Commands
+    description: Remote command execution on devices
+paths:
+  /projects:
+    get:
+      operationId: listProjects
+      summary: List Projects
+      description: Returns a list of all projects in the account.
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: Projects list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project'
+    post:
+      operationId: createProject
+      summary: Create Project
+      description: Creates a new project for organizing devices.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get Project
+      description: Returns details for a specific project.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    delete:
+      operationId: deleteProject
+      summary: Delete Project
+      description: Deletes a project.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+      responses:
+        '204':
+          description: Project deleted
+  /projects/{projectId}/devices:
+    get:
+      operationId: listDevices
+      summary: List Devices
+      description: Returns a list of all devices in a project.
+      tags:
+        - Devices
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [online, offline, updating]
+          description: Filter by device status
+        - name: group_id
+          in: query
+          schema:
+            type: string
+          description: Filter by device group
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+          description: Maximum results
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: Pagination offset
+      responses:
+        '200':
+          description: Devices list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Device'
+                  total_count:
+                    type: integer
+  /projects/{projectId}/devices/{deviceId}:
+    get:
+      operationId: getDevice
+      summary: Get Device
+      description: Returns details for a specific device.
+      tags:
+        - Devices
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Device ID
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+    delete:
+      operationId: removeDevice
+      summary: Remove Device
+      description: Removes a device from the project.
+      tags:
+        - Devices
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: deviceId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Device ID
+      responses:
+        '204':
+          description: Device removed
+  /projects/{projectId}/device-groups:
+    get:
+      operationId: listDeviceGroups
+      summary: List Device Groups
+      description: Returns all device groups in a project.
+      tags:
+        - Device Groups
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+      responses:
+        '200':
+          description: Device groups list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DeviceGroup'
+    post:
+      operationId: createDeviceGroup
+      summary: Create Device Group
+      description: Creates a new device group.
+      tags:
+        - Device Groups
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceGroupRequest'
+      responses:
+        '201':
+          description: Device group created
+  /projects/{projectId}/device-groups/{groupId}:
+    get:
+      operationId: getDeviceGroup
+      summary: Get Device Group
+      description: Returns details for a specific device group.
+      tags:
+        - Device Groups
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group ID
+      responses:
+        '200':
+          description: Device group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceGroup'
+    delete:
+      operationId: deleteDeviceGroup
+      summary: Delete Device Group
+      description: Deletes a device group.
+      tags:
+        - Device Groups
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group ID
+      responses:
+        '204':
+          description: Device group deleted
+  /projects/{projectId}/updates:
+    get:
+      operationId: listUpdates
+      summary: List Updates
+      description: Returns a list of all OTA update deployments.
+      tags:
+        - Updates
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [pending, in_progress, completed, failed, cancelled]
+          description: Filter by update status
+      responses:
+        '200':
+          description: Updates list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  updates:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Update'
+    post:
+      operationId: createUpdate
+      summary: Create Update
+      description: Creates a new OTA software update deployment.
+      tags:
+        - Updates
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRequest'
+      responses:
+        '201':
+          description: Update created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Update'
+  /projects/{projectId}/updates/{updateId}:
+    get:
+      operationId: getUpdate
+      summary: Get Update
+      description: Returns details and status for a specific update.
+      tags:
+        - Updates
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: updateId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Update ID
+      responses:
+        '200':
+          description: Update details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Update'
+  /projects/{projectId}/updates/{updateId}/cancel:
+    post:
+      operationId: cancelUpdate
+      summary: Cancel Update
+      description: Cancels a pending or in-progress update.
+      tags:
+        - Updates
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: updateId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Update ID
+      responses:
+        '200':
+          description: Update cancelled
+  /projects/{projectId}/commands:
+    post:
+      operationId: executeCommand
+      summary: Execute Remote Command
+      description: Executes a command on specified devices.
+      tags:
+        - Commands
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandRequest'
+      responses:
+        '200':
+          description: Command execution initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  command_id:
+                    type: string
+                  status:
+                    type: string
+  /projects/{projectId}/commands/{commandId}:
+    get:
+      operationId: getCommandStatus
+      summary: Get Command Status
+      description: Returns the status and results of a remote command execution.
+      tags:
+        - Commands
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project ID
+        - name: commandId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Command ID
+      responses:
+        '200':
+          description: Command status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  command_id:
+                    type: string
+                  status:
+                    type: string
+                    enum: [pending, running, completed, failed]
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        device_id:
+                          type: string
+                        status:
+                          type: string
+                        output:
+                          type: string
+                        exit_code:
+                          type: integer
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using Bearer token format
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        devices_count:
+          type: integer
+        online_devices_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    ProjectRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+        - name
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum: [online, offline, updating]
+        ip_address:
+          type: string
+        os:
+          type: string
+        os_version:
+          type: string
+        architecture:
+          type: string
+        agent_version:
+          type: string
+        group_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        last_seen:
+          type: string
+          format: date-time
+        registered_at:
+          type: string
+          format: date-time
+        system_info:
+          type: object
+          properties:
+            cpu_usage:
+              type: number
+            memory_total:
+              type: integer
+            memory_used:
+              type: integer
+            disk_total:
+              type: integer
+            disk_used:
+              type: integer
+            uptime_seconds:
+              type: integer
+    DeviceGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        devices_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    DeviceGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        device_ids:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+    Update:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [pending, in_progress, completed, failed, cancelled]
+        update_type:
+          type: string
+          enum: [file, script, package, docker_compose]
+        target_devices:
+          type: array
+          items:
+            type: string
+        target_groups:
+          type: array
+          items:
+            type: string
+        progress:
+          type: object
+          properties:
+            total_devices:
+              type: integer
+            completed:
+              type: integer
+            failed:
+              type: integer
+            pending:
+              type: integer
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+    UpdateRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        update_type:
+          type: string
+          enum: [file, script, package, docker_compose]
+        target_devices:
+          type: array
+          items:
+            type: string
+        target_groups:
+          type: array
+          items:
+            type: string
+        file_path:
+          type: string
+          description: Path to update file
+        destination_path:
+          type: string
+          description: Destination path on device
+        script_content:
+          type: string
+          description: Script content for script-type updates
+        pre_install_script:
+          type: string
+        post_install_script:
+          type: string
+        rollback_on_failure:
+          type: boolean
+          default: false
+        schedule:
+          type: object
+          properties:
+            start_at:
+              type: string
+              format: date-time
+            batch_size:
+              type: integer
+              description: Number of devices to update concurrently
+      required:
+        - name
+        - update_type
+    CommandRequest:
+      type: object
+      properties:
+        command:
+          type: string
+          description: The command to execute
+        device_ids:
+          type: array
+          items:
+            type: string
+        group_ids:
+          type: array
+          items:
+            type: string
+        timeout_seconds:
+          type: integer
+          default: 30
+      required:
+        - command

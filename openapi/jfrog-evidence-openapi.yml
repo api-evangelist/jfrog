@@ -1,0 +1,475 @@
+openapi: 3.1.0
+info:
+  title: JFrog Evidence REST API
+  description: >-
+    API for creating and attaching cryptographically signed evidence to artifacts,
+    builds, packages, and release bundles. Evidence files act as attestations
+    providing verified records of external processes such as test results,
+    vulnerability scans, and official approvals. Evidence is created as in-toto
+    statements wrapped in DSSE (Dead Simple Signing Envelope) format.
+  version: 1.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Evidence Documentation
+  url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+servers:
+  - url: https://{server}.jfrog.io/evidence/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/evidence/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+tags:
+  - name: Evidence
+    description: Create and manage evidence attestations
+  - name: Verification
+    description: Verify evidence and retrieve verification status
+paths:
+  /v1/evidence:
+    post:
+      operationId: createEvidence
+      summary: Create Evidence
+      description: >-
+        Creates a new evidence attestation and attaches it to a subject (artifact,
+        build, package, or release bundle). The evidence is signed as an in-toto
+        statement wrapped in a DSSE envelope, providing cryptographic verification
+        of the attestation. Requires an Enterprise+ subscription and Artifactory
+        7.104.2 or above.
+      tags:
+        - Evidence
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEvidenceRequest'
+      responses:
+        '201':
+          description: Evidence created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evidence'
+        '400':
+          description: Invalid evidence configuration or missing required fields
+        '401':
+          description: Unauthorized - access token required (basic auth not supported)
+        '404':
+          description: Subject not found
+  /v1/evidence/search:
+    post:
+      operationId: searchEvidence
+      summary: Search Evidence
+      description: >-
+        Searches for evidence records matching specified criteria. Supports
+        filtering by subject type, subject identifier, evidence type, and
+        time range.
+      tags:
+        - Evidence
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvidenceSearchRequest'
+      responses:
+        '200':
+          description: Evidence search results retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Evidence'
+                  total_count:
+                    type: integer
+        '400':
+          description: Invalid search criteria
+  /v1/evidence/{evidenceId}:
+    get:
+      operationId: getEvidence
+      summary: Get Evidence
+      description: Returns details for a specific evidence record, including its DSSE envelope and verification status.
+      tags:
+        - Evidence
+      parameters:
+        - name: evidenceId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Evidence record identifier
+      responses:
+        '200':
+          description: Evidence details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evidence'
+        '404':
+          description: Evidence not found
+    delete:
+      operationId: deleteEvidence
+      summary: Delete Evidence
+      description: Removes an evidence record from the platform.
+      tags:
+        - Evidence
+      parameters:
+        - name: evidenceId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Evidence record identifier
+      responses:
+        '204':
+          description: Evidence deleted
+        '404':
+          description: Evidence not found
+  /v1/evidence/subject/artifact:
+    get:
+      operationId: getArtifactEvidence
+      summary: Get Artifact Evidence
+      description: Returns all evidence records attached to a specific artifact identified by repository path and SHA-256.
+      tags:
+        - Evidence
+      parameters:
+        - name: repo_path
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Full artifact repository path
+        - name: sha256
+          in: query
+          schema:
+            type: string
+          description: SHA-256 checksum of the artifact
+      responses:
+        '200':
+          description: Artifact evidence retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Evidence'
+        '404':
+          description: Artifact not found
+  /v1/evidence/subject/build:
+    get:
+      operationId: getBuildEvidence
+      summary: Get Build Evidence
+      description: Returns all evidence records attached to a specific build.
+      tags:
+        - Evidence
+      parameters:
+        - name: build_name
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Build name
+        - name: build_number
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Build number
+        - name: project
+          in: query
+          schema:
+            type: string
+          description: Project key (if build is project-scoped)
+      responses:
+        '200':
+          description: Build evidence retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Evidence'
+        '404':
+          description: Build not found
+  /v1/evidence/subject/release-bundle:
+    get:
+      operationId: getReleaseBundleEvidence
+      summary: Get Release Bundle Evidence
+      description: Returns all evidence records attached to a specific release bundle version.
+      tags:
+        - Evidence
+      parameters:
+        - name: name
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+        - name: project
+          in: query
+          schema:
+            type: string
+          description: Project key
+      responses:
+        '200':
+          description: Release bundle evidence retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Evidence'
+        '404':
+          description: Release bundle not found
+  /v1/evidence/subject/package:
+    get:
+      operationId: getPackageEvidence
+      summary: Get Package Evidence
+      description: Returns all evidence records attached to a specific package.
+      tags:
+        - Evidence
+      parameters:
+        - name: package_name
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Package name
+        - name: package_version
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Package version
+        - name: repo_key
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Repository key containing the package
+      responses:
+        '200':
+          description: Package evidence retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Evidence'
+        '404':
+          description: Package not found
+  /v1/evidence/{evidenceId}/verify:
+    get:
+      operationId: verifyEvidence
+      summary: Verify Evidence
+      description: >-
+        Verifies the cryptographic signature of an evidence record against
+        registered public keys. Returns the verification status and details.
+      tags:
+        - Verification
+      parameters:
+        - name: evidenceId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Evidence record identifier
+      responses:
+        '200':
+          description: Verification result returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationResult'
+        '404':
+          description: Evidence not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: >-
+        Access token authentication. Note that basic authentication (username
+        and password) is not supported for the Evidence API.
+  schemas:
+    CreateEvidenceRequest:
+      type: object
+      properties:
+        subject_type:
+          type: string
+          description: Type of the subject to attach evidence to
+          enum:
+            - artifact
+            - build
+            - package
+            - release_bundle
+        subject:
+          type: object
+          description: Subject identifier (fields depend on subject_type)
+          properties:
+            repo_path:
+              type: string
+              description: Artifact repository path (for artifact subject)
+            sha256:
+              type: string
+              description: Artifact SHA-256 checksum (for artifact subject)
+            build_name:
+              type: string
+              description: Build name (for build subject)
+            build_number:
+              type: string
+              description: Build number (for build subject)
+            package_name:
+              type: string
+              description: Package name (for package subject)
+            package_version:
+              type: string
+              description: Package version (for package subject)
+            repo_key:
+              type: string
+              description: Repository key (for package subject)
+            release_bundle_name:
+              type: string
+              description: Release bundle name (for release_bundle subject)
+            release_bundle_version:
+              type: string
+              description: Release bundle version (for release_bundle subject)
+            project:
+              type: string
+              description: Project key for project-scoped subjects
+        predicate:
+          type: object
+          additionalProperties: true
+          description: The evidence predicate content (in-toto statement predicate)
+        predicate_type:
+          type: string
+          format: uri
+          description: URI identifying the predicate type (e.g., https://in-toto.io/attestation/vulns)
+        key_alias:
+          type: string
+          description: Alias of the public key registered for signature verification
+        dsse_envelope:
+          type: string
+          description: Pre-signed DSSE envelope (alternative to providing predicate and key)
+      required:
+        - subject_type
+        - subject
+    EvidenceSearchRequest:
+      type: object
+      properties:
+        subject_type:
+          type: string
+          enum: [artifact, build, package, release_bundle]
+        predicate_type:
+          type: string
+          format: uri
+        created_from:
+          type: string
+          format: date-time
+        created_to:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        limit:
+          type: integer
+          default: 25
+        offset:
+          type: integer
+    Evidence:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique evidence record identifier
+        subject_type:
+          type: string
+          enum: [artifact, build, package, release_bundle]
+        subject:
+          type: object
+          additionalProperties: true
+          description: Subject identification details
+        predicate_type:
+          type: string
+          format: uri
+          description: URI of the predicate type
+        predicate:
+          type: object
+          additionalProperties: true
+          description: Evidence predicate content
+        dsse_envelope_path:
+          type: string
+          description: Path to the DSSE envelope file in Artifactory
+        signature_algorithm:
+          type: string
+          description: Cryptographic algorithm used for signing
+          enum: [ECDSA, RSA, ED25519]
+        key_alias:
+          type: string
+          description: Alias of the signing key
+        verified:
+          type: boolean
+          description: Whether the evidence signature has been verified
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+    VerificationResult:
+      type: object
+      properties:
+        evidence_id:
+          type: string
+        verified:
+          type: boolean
+          description: Whether the signature is valid
+        verification_timestamp:
+          type: string
+          format: date-time
+        key_alias:
+          type: string
+          description: Alias of the public key used for verification
+        signature_algorithm:
+          type: string
+          enum: [ECDSA, RSA, ED25519]
+        errors:
+          type: array
+          items:
+            type: string
+          description: Verification errors, if any

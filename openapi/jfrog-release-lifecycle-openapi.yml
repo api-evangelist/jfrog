@@ -1,0 +1,549 @@
+openapi: 3.1.0
+info:
+  title: JFrog Release Lifecycle Management REST API
+  description: >-
+    API for managing release bundles, promotion workflows, and evidence
+    collection throughout the software release lifecycle from development to
+    production. Provides capabilities for creating immutable release bundles,
+    promoting them through environments, and collecting attestation evidence.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Release Lifecycle Management REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/release-lifecycle-management
+servers:
+  - url: https://{server}.jfrog.io/lifecycle/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/lifecycle/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: Release Bundles v2
+    description: Create and manage release bundles v2
+  - name: Promotion
+    description: Promote release bundles through environments
+  - name: Evidence
+    description: Collect and manage release evidence and attestations
+  - name: Distribution
+    description: Distribute release bundles to edge nodes
+paths:
+  /v2/release_bundle:
+    post:
+      operationId: createReleaseBundle
+      summary: Create Release Bundle v2
+      description: Creates a new release bundle version 2 from specified artifacts.
+      tags:
+        - Release Bundles v2
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseBundleV2Request'
+      responses:
+        '201':
+          description: Release bundle created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseBundleV2'
+        '400':
+          description: Invalid request
+  /v2/release_bundle/records:
+    get:
+      operationId: listReleaseBundles
+      summary: List Release Bundles v2
+      description: Returns a list of all release bundle v2 records.
+      tags:
+        - Release Bundles v2
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter by release bundle name
+        - name: after
+          in: query
+          schema:
+            type: string
+          description: Cursor for pagination
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+          description: Maximum number of results
+      responses:
+        '200':
+          description: Release bundles list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  release_bundles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ReleaseBundleV2Summary'
+  /v2/release_bundle/records/{name}/{version}:
+    get:
+      operationId: getReleaseBundle
+      summary: Get Release Bundle v2
+      description: Returns details for a specific release bundle version.
+      tags:
+        - Release Bundles v2
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Release bundle details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseBundleV2'
+    delete:
+      operationId: deleteReleaseBundle
+      summary: Delete Release Bundle v2
+      description: Deletes a release bundle version.
+      tags:
+        - Release Bundles v2
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '204':
+          description: Release bundle deleted
+  /v2/promotion/records/{name}/{version}:
+    get:
+      operationId: getPromotionStatus
+      summary: Get Promotion Status
+      description: Returns the promotion status and history for a release bundle version.
+      tags:
+        - Promotion
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Promotion status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromotionStatus'
+  /v2/promotion:
+    post:
+      operationId: promoteReleaseBundle
+      summary: Promote Release Bundle
+      description: Promotes a release bundle to a target environment.
+      tags:
+        - Promotion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromotionRequest'
+      responses:
+        '200':
+          description: Promotion initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  promotion_id:
+                    type: string
+  /v2/release_bundle/distribute/{name}/{version}:
+    post:
+      operationId: distributeReleaseBundle
+      summary: Distribute Release Bundle v2
+      description: Distributes a release bundle to specified edge nodes.
+      tags:
+        - Distribution
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DistributeRequest'
+      responses:
+        '200':
+          description: Distribution initiated
+  /v2/release_bundle/distribute/{name}/{version}/status:
+    get:
+      operationId: getDistributionStatus
+      summary: Get Distribution Status
+      description: Returns distribution status for a release bundle.
+      tags:
+        - Distribution
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Distribution status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  sites:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        status:
+                          type: string
+  /v2/evidence:
+    post:
+      operationId: createEvidence
+      summary: Create Evidence
+      description: Creates a new evidence record attached to a release bundle.
+      tags:
+        - Evidence
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvidenceRequest'
+      responses:
+        '201':
+          description: Evidence created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Evidence'
+  /v2/evidence/{name}/{version}:
+    get:
+      operationId: getEvidence
+      summary: Get Evidence
+      description: Returns all evidence records for a release bundle version.
+      tags:
+        - Evidence
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle name
+        - name: version
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Release bundle version
+      responses:
+        '200':
+          description: Evidence records retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Evidence'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    ReleaseBundleV2Request:
+      type: object
+      properties:
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        skip_docker_manifest_resolution:
+          type: boolean
+          default: false
+        source_type:
+          type: string
+          enum: [artifacts, builds, release_bundles, aql]
+        source:
+          type: object
+          properties:
+            artifacts:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  sha256:
+                    type: string
+            builds:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  number:
+                    type: string
+                  project:
+                    type: string
+            release_bundles:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  version:
+                    type: string
+                  project_key:
+                    type: string
+            aql:
+              type: string
+      required:
+        - release_bundle_name
+        - release_bundle_version
+        - source_type
+        - source
+    ReleaseBundleV2:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+          enum: [CREATED, SIGNED, PROMOTED, DISTRIBUTED]
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        source_type:
+          type: string
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+              sha256:
+                type: string
+              size:
+                type: integer
+        current_environment:
+          type: string
+        promotion_history:
+          type: array
+          items:
+            type: object
+            properties:
+              environment:
+                type: string
+              promoted_at:
+                type: string
+                format: date-time
+              promoted_by:
+                type: string
+    ReleaseBundleV2Summary:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        status:
+          type: string
+        created:
+          type: string
+          format: date-time
+        artifacts_count:
+          type: integer
+        current_environment:
+          type: string
+    PromotionRequest:
+      type: object
+      properties:
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+          description: Target environment name (e.g., DEV, STAGING, PROD)
+        included_repository_keys:
+          type: array
+          items:
+            type: string
+        overwrite_existing_artifacts:
+          type: boolean
+          default: false
+      required:
+        - release_bundle_name
+        - release_bundle_version
+        - environment
+    PromotionStatus:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        current_environment:
+          type: string
+        promotions:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                enum: [COMPLETED, IN_PROGRESS, FAILED]
+              environment:
+                type: string
+              created:
+                type: string
+                format: date-time
+              created_by:
+                type: string
+    DistributeRequest:
+      type: object
+      properties:
+        auto_create_missing_repositories:
+          type: boolean
+          default: false
+        distribution_rules:
+          type: array
+          items:
+            type: object
+            properties:
+              site_name:
+                type: string
+      required:
+        - distribution_rules
+    EvidenceRequest:
+      type: object
+      properties:
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+        evidence_type:
+          type: string
+          enum: [test_results, approval, scan_results, build_info, custom]
+        description:
+          type: string
+        dsse_file_path:
+          type: string
+          description: Path to a DSSE signed envelope file in Artifactory
+      required:
+        - release_bundle_name
+        - release_bundle_version
+    Evidence:
+      type: object
+      properties:
+        id:
+          type: string
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+        evidence_type:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        dsse_file_path:
+          type: string

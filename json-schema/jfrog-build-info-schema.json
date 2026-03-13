@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/build-info",
+  "title": "JFrog Build Info",
+  "description": "Represents build information stored in JFrog Artifactory, capturing the complete record of a CI/CD build including source modules, produced artifacts, dependencies, and environment details.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "Build info schema version"
+    },
+    "name": {
+      "type": "string",
+      "description": "Build name",
+      "examples": [
+        "my-app-build"
+      ]
+    },
+    "number": {
+      "type": "string",
+      "description": "Build number or run identifier",
+      "examples": [
+        "42",
+        "2025.01.15.1"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of build system",
+      "enum": [
+        "GENERIC",
+        "MAVEN",
+        "GRADLE",
+        "ANT",
+        "IVY",
+        "DOCKER",
+        "NPM",
+        "NUGET",
+        "GO",
+        "PIP"
+      ]
+    },
+    "started": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Build start timestamp"
+    },
+    "durationMillis": {
+      "type": "integer",
+      "description": "Build duration in milliseconds",
+      "minimum": 0
+    },
+    "buildAgent": {
+      "type": "object",
+      "description": "Build agent information",
+      "properties": {
+        "name": {
+          "type": "string",
+          "examples": [
+            "Jenkins",
+            "GitHub Actions",
+            "JFrog Pipelines"
+          ]
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "agent": {
+      "type": "object",
+      "description": "CI server agent information",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "principal": {
+      "type": "string",
+      "description": "User that triggered the build"
+    },
+    "artifactoryPrincipal": {
+      "type": "string",
+      "description": "Artifactory user for publishing build info"
+    },
+    "vcsRevision": {
+      "type": "string",
+      "description": "VCS revision (commit hash)"
+    },
+    "vcsUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "VCS repository URL"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "CI build URL"
+    },
+    "modules": {
+      "type": "array",
+      "description": "Build modules produced by this build",
+      "items": {
+        "$ref": "#/$defs/Module"
+      }
+    },
+    "statuses": {
+      "type": "array",
+      "description": "Build promotion statuses",
+      "items": {
+        "$ref": "#/$defs/PromotionStatus"
+      }
+    },
+    "properties": {
+      "type": "object",
+      "description": "Custom build properties",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "name",
+    "number",
+    "started"
+  ],
+  "$defs": {
+    "Module": {
+      "type": "object",
+      "description": "A build module representing a produced component",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Module identifier"
+        },
+        "artifacts": {
+          "type": "array",
+          "description": "Artifacts produced by this module",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "description": "Artifact type/extension"
+              },
+              "sha1": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "md5": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "description": "Dependencies consumed by this module",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "sha1": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              },
+              "md5": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "scopes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      },
+      "required": [
+        "id"
+      ]
+    },
+    "PromotionStatus": {
+      "type": "object",
+      "description": "Build promotion status record",
+      "properties": {
+        "status": {
+          "type": "string",
+          "description": "Promotion status name",
+          "examples": [
+            "staged",
+            "released"
+          ]
+        },
+        "comment": {
+          "type": "string"
+        },
+        "repository": {
+          "type": "string",
+          "description": "Target repository for promotion"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "user": {
+          "type": "string",
+          "description": "User who performed the promotion"
+        },
+        "ciUser": {
+          "type": "string",
+          "description": "CI user who triggered the promotion"
+        }
+      }
+    }
+  }
+}

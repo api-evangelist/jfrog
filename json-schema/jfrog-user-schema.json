@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/user",
+  "title": "JFrog Platform User",
+  "description": "Represents a user account in the JFrog Platform, managed by the Access service for authentication and authorization across all JFrog services.",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string",
+      "description": "Unique username identifying the user across the platform",
+      "examples": [
+        "admin",
+        "developer1"
+      ]
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "User email address"
+    },
+    "admin": {
+      "type": "boolean",
+      "description": "Whether the user has platform administrator privileges",
+      "default": false
+    },
+    "profile_updatable": {
+      "type": "boolean",
+      "description": "Whether the user can update their own profile information",
+      "default": true
+    },
+    "disable_ui_access": {
+      "type": "boolean",
+      "description": "Whether browser-based UI access is disabled for this user",
+      "default": false
+    },
+    "internal_password_disabled": {
+      "type": "boolean",
+      "description": "Whether internal password authentication is disabled (forces external auth)",
+      "default": false
+    },
+    "status": {
+      "type": "string",
+      "description": "User account status",
+      "enum": [
+        "enabled",
+        "disabled"
+      ]
+    },
+    "groups": {
+      "type": "array",
+      "description": "Groups the user belongs to",
+      "items": {
+        "type": "string"
+      }
+    },
+    "realm": {
+      "type": "string",
+      "description": "Authentication realm indicating the identity provider",
+      "enum": [
+        "internal",
+        "ldap",
+        "saml",
+        "oauth",
+        "crowd"
+      ]
+    },
+    "last_logged_in": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of the user's last login"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the user account was created"
+    }
+  },
+  "required": [
+    "username",
+    "email"
+  ]
+}

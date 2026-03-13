@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/worker",
+  "title": "JFrog Worker",
+  "description": "Represents a serverless worker in the JFrog Platform that extends platform functionality through synchronized hooks and automation. Workers are TypeScript-based functions that react to JFrog Platform events in a secure, isolated execution environment.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique worker key identifier",
+      "examples": [
+        "my-download-validator",
+        "artifact-scanner"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the worker's purpose"
+    },
+    "enabled": {
+      "type": "boolean",
+      "description": "Whether the worker is currently active",
+      "default": true
+    },
+    "source_code": {
+      "type": "string",
+      "description": "TypeScript source code for the worker"
+    },
+    "action": {
+      "type": "string",
+      "description": "The JFrog Platform event that triggers this worker",
+      "enum": [
+        "BEFORE_DOWNLOAD",
+        "AFTER_DOWNLOAD",
+        "BEFORE_UPLOAD",
+        "AFTER_CREATE",
+        "AFTER_BUILD_INFO_SAVE",
+        "AFTER_MOVE",
+        "AFTER_COPY",
+        "BEFORE_DELETE",
+        "BEFORE_CREATE_TOKEN",
+        "GENERIC_EVENT"
+      ]
+    },
+    "filter_criteria": {
+      "type": "object",
+      "description": "Criteria for filtering which events trigger the worker",
+      "properties": {
+        "artifact_filter_criteria": {
+          "type": "object",
+          "properties": {
+            "repo_keys": {
+              "type": "array",
+              "description": "Repository keys to scope the worker to",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "secrets": {
+      "type": "array",
+      "description": "Encrypted secrets accessible to the worker at runtime",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Secret key name"
+          },
+          "value": {
+            "type": "string",
+            "description": "Secret value (write-only, not returned in GET)"
+          }
+        },
+        "required": [
+          "key"
+        ]
+      }
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Worker creation timestamp"
+    },
+    "modified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last modification timestamp"
+    }
+  },
+  "required": [
+    "key",
+    "source_code",
+    "action"
+  ]
+}

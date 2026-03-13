@@ -1,0 +1,708 @@
+openapi: 3.1.0
+info:
+  title: JFrog Pipelines REST API
+  description: >-
+    API for managing CI/CD pipelines and automation workflows. JFrog Pipelines
+    provides continuous integration and delivery automation natively integrated
+    with the JFrog Platform for building, testing, and deploying software.
+  version: 1.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Pipelines REST API Documentation
+  url: https://www.jfrog.com/confluence/display/JFROG/Pipelines+REST+API
+servers:
+  - url: https://{server}.jfrog.io/pipelines/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/pipelines/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: System
+    description: Pipelines system information
+  - name: Pipeline Sources
+    description: Manage pipeline source configurations
+  - name: Pipelines
+    description: Pipeline definitions and management
+  - name: Runs
+    description: Pipeline run execution and monitoring
+  - name: Steps
+    description: Pipeline step execution details
+  - name: Integrations
+    description: External service integrations
+  - name: Node Pools
+    description: Build node pool management
+paths:
+  /v1/system/info:
+    get:
+      operationId: getSystemInfo
+      summary: Get System Info
+      description: Returns Pipelines system information and version.
+      tags:
+        - System
+      responses:
+        '200':
+          description: System info retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  serviceId:
+                    type: string
+  /v1/pipelineSources:
+    get:
+      operationId: listPipelineSources
+      summary: List Pipeline Sources
+      description: Returns a list of all pipeline source configurations.
+      tags:
+        - Pipeline Sources
+      responses:
+        '200':
+          description: Pipeline sources list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PipelineSource'
+    post:
+      operationId: createPipelineSource
+      summary: Create Pipeline Source
+      description: Creates a new pipeline source pointing to a repository with pipeline definitions.
+      tags:
+        - Pipeline Sources
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineSourceRequest'
+      responses:
+        '200':
+          description: Pipeline source created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineSource'
+  /v1/pipelineSources/{pipelineSourceId}:
+    get:
+      operationId: getPipelineSource
+      summary: Get Pipeline Source
+      description: Returns details for a specific pipeline source.
+      tags:
+        - Pipeline Sources
+      parameters:
+        - name: pipelineSourceId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Pipeline source ID
+      responses:
+        '200':
+          description: Pipeline source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineSource'
+    delete:
+      operationId: deletePipelineSource
+      summary: Delete Pipeline Source
+      description: Deletes a pipeline source configuration.
+      tags:
+        - Pipeline Sources
+      parameters:
+        - name: pipelineSourceId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Pipeline source ID
+      responses:
+        '200':
+          description: Pipeline source deleted
+  /v1/pipelines:
+    get:
+      operationId: listPipelines
+      summary: List Pipelines
+      description: Returns a list of all pipelines.
+      tags:
+        - Pipelines
+      parameters:
+        - name: pipelineSourceIds
+          in: query
+          schema:
+            type: string
+          description: Comma-separated list of pipeline source IDs to filter by
+        - name: names
+          in: query
+          schema:
+            type: string
+          description: Comma-separated pipeline names filter
+      responses:
+        '200':
+          description: Pipelines list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pipeline'
+  /v1/pipelines/{pipelineId}:
+    get:
+      operationId: getPipeline
+      summary: Get Pipeline
+      description: Returns details for a specific pipeline.
+      tags:
+        - Pipelines
+      parameters:
+        - name: pipelineId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Pipeline ID
+      responses:
+        '200':
+          description: Pipeline details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pipeline'
+  /v1/runs:
+    get:
+      operationId: listRuns
+      summary: List Pipeline Runs
+      description: Returns a list of pipeline runs.
+      tags:
+        - Runs
+      parameters:
+        - name: pipelineIds
+          in: query
+          schema:
+            type: string
+          description: Comma-separated pipeline IDs to filter by
+        - name: statusCodes
+          in: query
+          schema:
+            type: string
+          description: Comma-separated status codes to filter by
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Maximum number of results
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: Offset for pagination
+      responses:
+        '200':
+          description: Pipeline runs list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Run'
+  /v1/runs/{runId}:
+    get:
+      operationId: getRun
+      summary: Get Pipeline Run
+      description: Returns details for a specific pipeline run.
+      tags:
+        - Runs
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Run ID
+      responses:
+        '200':
+          description: Run details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+  /v1/runs/{runId}/cancel:
+    post:
+      operationId: cancelRun
+      summary: Cancel Pipeline Run
+      description: Cancels a running pipeline execution.
+      tags:
+        - Runs
+      parameters:
+        - name: runId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Run ID
+      responses:
+        '200':
+          description: Run cancelled
+  /v1/pipelines/{pipelineId}/trigger:
+    post:
+      operationId: triggerPipeline
+      summary: Trigger Pipeline
+      description: Triggers a new run of the specified pipeline.
+      tags:
+        - Runs
+      parameters:
+        - name: pipelineId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Pipeline ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                branchName:
+                  type: string
+                environmentVariables:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Pipeline triggered
+  /v1/steps/{stepId}:
+    get:
+      operationId: getStep
+      summary: Get Step Details
+      description: Returns details for a specific step execution.
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Step ID
+      responses:
+        '200':
+          description: Step details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Step'
+  /v1/steps/{stepId}/logs:
+    get:
+      operationId: getStepLogs
+      summary: Get Step Logs
+      description: Returns console logs for a specific step execution.
+      tags:
+        - Steps
+      parameters:
+        - name: stepId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Step ID
+      responses:
+        '200':
+          description: Step logs retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timestamp:
+                      type: string
+                      format: date-time
+                    message:
+                      type: string
+  /v1/integrations:
+    get:
+      operationId: listIntegrations
+      summary: List Integrations
+      description: Returns a list of all configured integrations.
+      tags:
+        - Integrations
+      responses:
+        '200':
+          description: Integrations list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Integration'
+    post:
+      operationId: createIntegration
+      summary: Create Integration
+      description: Creates a new external service integration.
+      tags:
+        - Integrations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationRequest'
+      responses:
+        '200':
+          description: Integration created
+  /v1/integrations/{integrationId}:
+    get:
+      operationId: getIntegration
+      summary: Get Integration
+      description: Returns details for a specific integration.
+      tags:
+        - Integrations
+      parameters:
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Integration ID
+      responses:
+        '200':
+          description: Integration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+    put:
+      operationId: updateIntegration
+      summary: Update Integration
+      description: Updates an existing integration.
+      tags:
+        - Integrations
+      parameters:
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Integration ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationRequest'
+      responses:
+        '200':
+          description: Integration updated
+    delete:
+      operationId: deleteIntegration
+      summary: Delete Integration
+      description: Deletes an integration.
+      tags:
+        - Integrations
+      parameters:
+        - name: integrationId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Integration ID
+      responses:
+        '200':
+          description: Integration deleted
+  /v1/nodePools:
+    get:
+      operationId: listNodePools
+      summary: List Node Pools
+      description: Returns a list of all build node pools.
+      tags:
+        - Node Pools
+      responses:
+        '200':
+          description: Node pools list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NodePool'
+    post:
+      operationId: createNodePool
+      summary: Create Node Pool
+      description: Creates a new build node pool.
+      tags:
+        - Node Pools
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NodePoolRequest'
+      responses:
+        '200':
+          description: Node pool created
+  /v1/nodePools/{nodePoolId}:
+    get:
+      operationId: getNodePool
+      summary: Get Node Pool
+      description: Returns details for a specific node pool.
+      tags:
+        - Node Pools
+      parameters:
+        - name: nodePoolId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Node pool ID
+      responses:
+        '200':
+          description: Node pool details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NodePool'
+    delete:
+      operationId: deleteNodePool
+      summary: Delete Node Pool
+      description: Deletes a node pool.
+      tags:
+        - Node Pools
+      parameters:
+        - name: nodePoolId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Node pool ID
+      responses:
+        '200':
+          description: Node pool deleted
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    PipelineSource:
+      type: object
+      properties:
+        id:
+          type: integer
+        projectId:
+          type: integer
+        name:
+          type: string
+        repositoryFullName:
+          type: string
+        branch:
+          type: string
+        fileFilter:
+          type: string
+        integrationId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    PipelineSourceRequest:
+      type: object
+      properties:
+        projectId:
+          type: integer
+        name:
+          type: string
+        repositoryFullName:
+          type: string
+        branch:
+          type: string
+        fileFilter:
+          type: string
+        integrationId:
+          type: integer
+      required:
+        - repositoryFullName
+        - branch
+        - integrationId
+    Pipeline:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        pipelineSourceId:
+          type: integer
+        projectId:
+          type: integer
+        latestRunId:
+          type: integer
+        latestCompletedRunId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    Run:
+      type: object
+      properties:
+        id:
+          type: integer
+        pipelineId:
+          type: integer
+        pipelineSourceId:
+          type: integer
+        statusCode:
+          type: integer
+          description: '4001=queued, 4002=processing, 4003=success, 4004=error, 4005=cancelled, 4006=timeout, 4007=skipped'
+        runNumber:
+          type: integer
+        branchName:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        durationSeconds:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+    Step:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        pipelineId:
+          type: integer
+        runId:
+          type: integer
+        typeCode:
+          type: integer
+        statusCode:
+          type: integer
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        durationSeconds:
+          type: integer
+    Integration:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        masterIntegrationId:
+          type: integer
+        masterIntegrationName:
+          type: string
+        projectId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    IntegrationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        masterIntegrationId:
+          type: integer
+        masterIntegrationName:
+          type: string
+        projectId:
+          type: integer
+        formJSONValues:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+      required:
+        - name
+        - masterIntegrationName
+    NodePool:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        projectId:
+          type: integer
+        numberOfNodes:
+          type: integer
+        isOnDemand:
+          type: boolean
+        architecture:
+          type: string
+        operatingSystem:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    NodePoolRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        projectId:
+          type: integer
+        numberOfNodes:
+          type: integer
+        isOnDemand:
+          type: boolean
+        architecture:
+          type: string
+        operatingSystem:
+          type: string
+      required:
+        - name

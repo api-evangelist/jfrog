@@ -1,0 +1,335 @@
+openapi: 3.1.0
+info:
+  title: JFrog Curation REST API
+  description: >-
+    API for managing package curation policies that automatically vet and block
+    malicious, vulnerable, or risky open-source packages before they enter the
+    development environment. JFrog Curation acts as a gateway between public
+    package registries and your organization's repositories.
+  version: 1.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Curation REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-curation-rest-apis
+servers:
+  - url: https://{server}.jfrog.io/curation/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/curation/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: Policies
+    description: Curation policy management
+  - name: Audit
+    description: Curation audit and activity logs
+paths:
+  /v1/policies:
+    get:
+      operationId: listPolicies
+      summary: List Curation Policies
+      description: Returns a list of all curation policies.
+      tags:
+        - Policies
+      responses:
+        '200':
+          description: Policies list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  policies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/CurationPolicy'
+    post:
+      operationId: createPolicy
+      summary: Create Curation Policy
+      description: Creates a new curation policy for blocking or allowing packages.
+      tags:
+        - Policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurationPolicyRequest'
+      responses:
+        '201':
+          description: Policy created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurationPolicy'
+        '400':
+          description: Invalid policy configuration
+  /v1/policies/{policyName}:
+    get:
+      operationId: getPolicy
+      summary: Get Curation Policy
+      description: Returns details for a specific curation policy.
+      tags:
+        - Policies
+      parameters:
+        - name: policyName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Policy name
+      responses:
+        '200':
+          description: Policy details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurationPolicy'
+        '404':
+          description: Policy not found
+    put:
+      operationId: updatePolicy
+      summary: Update Curation Policy
+      description: Updates an existing curation policy.
+      tags:
+        - Policies
+      parameters:
+        - name: policyName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Policy name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CurationPolicyRequest'
+      responses:
+        '200':
+          description: Policy updated
+    delete:
+      operationId: deletePolicy
+      summary: Delete Curation Policy
+      description: Deletes a curation policy.
+      tags:
+        - Policies
+      parameters:
+        - name: policyName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Policy name
+      responses:
+        '204':
+          description: Policy deleted
+  /v1/audit:
+    get:
+      operationId: getAuditLog
+      summary: Get Curation Audit Log
+      description: Returns the curation audit log showing blocked and allowed packages.
+      tags:
+        - Audit
+      parameters:
+        - name: from_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Start date for the audit log query
+        - name: to_date
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: End date for the audit log query
+        - name: package_type
+          in: query
+          schema:
+            type: string
+          description: Filter by package type (npm, maven, pypi, etc.)
+        - name: policy_name
+          in: query
+          schema:
+            type: string
+          description: Filter by policy name
+        - name: action_taken
+          in: query
+          schema:
+            type: string
+            enum: [blocked, allowed, warned]
+          description: Filter by action taken
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+          description: Maximum number of results
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: Offset for pagination
+      responses:
+        '200':
+          description: Audit log retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: integer
+                  audit_entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuditEntry'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    CurationPolicy:
+      type: object
+      properties:
+        policy_name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        policy_type:
+          type: string
+          enum:
+            - block_malicious_packages
+            - block_packages_with_vulnerabilities
+            - block_packages_without_license
+            - block_packages_by_name
+            - block_packages_by_age
+            - allow_only_approved_packages
+            - custom
+        repositories:
+          type: array
+          items:
+            type: string
+        package_types:
+          type: array
+          items:
+            type: string
+        conditions:
+          type: object
+          properties:
+            min_severity:
+              type: string
+              enum: [Low, Medium, High, Critical]
+            max_age_days:
+              type: integer
+            banned_package_names:
+              type: array
+              items:
+                type: string
+            banned_licenses:
+              type: array
+              items:
+                type: string
+            approved_packages:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  version:
+                    type: string
+        actions:
+          type: object
+          properties:
+            block:
+              type: boolean
+            notify:
+              type: boolean
+            notify_emails:
+              type: array
+              items:
+                type: string
+                format: email
+            custom_message:
+              type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+    CurationPolicyRequest:
+      type: object
+      properties:
+        policy_name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        policy_type:
+          type: string
+        repositories:
+          type: array
+          items:
+            type: string
+        package_types:
+          type: array
+          items:
+            type: string
+        conditions:
+          type: object
+        actions:
+          type: object
+      required:
+        - policy_name
+        - policy_type
+    AuditEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        package_name:
+          type: string
+        package_version:
+          type: string
+        package_type:
+          type: string
+        repository:
+          type: string
+        policy_name:
+          type: string
+        action_taken:
+          type: string
+          enum: [blocked, allowed, warned]
+        reason:
+          type: string
+        requesting_user:
+          type: string

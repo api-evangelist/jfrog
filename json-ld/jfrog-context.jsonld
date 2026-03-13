@@ -1,0 +1,209 @@
+{
+  "@context": {
+    "@vocab": "https://jfrog.com/schemas/",
+    "jfrog": "https://jfrog.com/schemas/",
+    "schema": "https://schema.org/",
+    "spdx": "https://spdx.org/rdf/terms#",
+    "ssvc": "https://www.cisa.gov/ssvc#",
+    "intoto": "https://in-toto.io/attestation/",
+    "slsa": "https://slsa.dev/provenance/",
+    "cvss": "https://www.first.org/cvss/",
+
+    "Artifact": {
+      "@id": "jfrog:Artifact",
+      "@context": {
+        "repo": "jfrog:repo",
+        "path": "schema:contentUrl",
+        "name": "schema:name",
+        "type": "schema:additionalType",
+        "created": "schema:dateCreated",
+        "createdBy": "schema:creator",
+        "lastModified": "schema:dateModified",
+        "modifiedBy": "schema:editor",
+        "downloadUri": "schema:contentUrl",
+        "mimeType": "schema:encodingFormat",
+        "size": "schema:contentSize",
+        "checksums": "jfrog:checksums",
+        "uri": "schema:url"
+      }
+    },
+
+    "Repository": {
+      "@id": "jfrog:Repository",
+      "@context": {
+        "key": "schema:identifier",
+        "rclass": "jfrog:repositoryClass",
+        "packageType": "jfrog:packageType",
+        "description": "schema:description",
+        "url": "schema:url",
+        "environments": "jfrog:environments",
+        "projectKey": "jfrog:projectKey"
+      }
+    },
+
+    "BuildInfo": {
+      "@id": "jfrog:BuildInfo",
+      "@context": {
+        "name": "schema:name",
+        "number": "schema:version",
+        "type": "schema:additionalType",
+        "started": "schema:startDate",
+        "durationMillis": "schema:duration",
+        "buildAgent": "jfrog:buildAgent",
+        "principal": "schema:creator",
+        "vcsRevision": "jfrog:vcsRevision",
+        "vcsUrl": "schema:codeRepository",
+        "url": "schema:url",
+        "modules": "jfrog:modules"
+      }
+    },
+
+    "ReleaseBundle": {
+      "@id": "jfrog:ReleaseBundle",
+      "@context": {
+        "name": "schema:name",
+        "version": "schema:version",
+        "status": "jfrog:status",
+        "description": "schema:description",
+        "created": "schema:dateCreated",
+        "created_by": "schema:creator",
+        "artifacts": "jfrog:artifacts",
+        "current_environment": "jfrog:environment",
+        "promotion_history": "jfrog:promotionHistory",
+        "distribution_status": "jfrog:distributionStatus",
+        "evidence": "jfrog:evidence"
+      }
+    },
+
+    "Vulnerability": {
+      "@id": "jfrog:Vulnerability",
+      "@context": {
+        "issue_id": "schema:identifier",
+        "cve": "jfrog:cve",
+        "severity": "jfrog:severity",
+        "cvss_v3_score": "cvss:score",
+        "cvss_v3_vector": "cvss:vectorString",
+        "summary": "schema:abstract",
+        "description": "schema:description",
+        "published": "schema:datePublished",
+        "updated": "schema:dateModified",
+        "references": "schema:citation",
+        "fixed_versions": "jfrog:fixedVersions",
+        "impacted_artifacts": "jfrog:impactedArtifacts",
+        "component": "jfrog:component"
+      }
+    },
+
+    "User": {
+      "@id": "jfrog:User",
+      "@context": {
+        "username": "schema:alternateName",
+        "email": "schema:email",
+        "admin": "jfrog:isAdmin",
+        "status": "jfrog:accountStatus",
+        "groups": "schema:memberOf",
+        "realm": "jfrog:authenticationRealm",
+        "last_logged_in": "jfrog:lastLoggedIn",
+        "created": "schema:dateCreated"
+      }
+    },
+
+    "Permission": {
+      "@id": "jfrog:Permission",
+      "@context": {
+        "name": "schema:name",
+        "resources": "jfrog:resources"
+      }
+    },
+
+    "Pipeline": {
+      "@id": "jfrog:Pipeline",
+      "@context": {
+        "id": "schema:identifier",
+        "name": "schema:name",
+        "pipelineSourceId": "jfrog:pipelineSourceId",
+        "projectId": "jfrog:projectId",
+        "createdAt": "schema:dateCreated",
+        "updatedAt": "schema:dateModified"
+      }
+    },
+
+    "Worker": {
+      "@id": "jfrog:Worker",
+      "@context": {
+        "key": "schema:identifier",
+        "description": "schema:description",
+        "enabled": "jfrog:enabled",
+        "source_code": "schema:text",
+        "action": "jfrog:triggerAction",
+        "created": "schema:dateCreated",
+        "modified": "schema:dateModified"
+      }
+    },
+
+    "CurationPolicy": {
+      "@id": "jfrog:CurationPolicy",
+      "@context": {
+        "policy_name": "schema:name",
+        "description": "schema:description",
+        "enabled": "jfrog:enabled",
+        "policy_type": "jfrog:policyType",
+        "repositories": "jfrog:repositories",
+        "package_types": "jfrog:packageTypes",
+        "conditions": "jfrog:conditions",
+        "actions": "jfrog:actions",
+        "created": "schema:dateCreated",
+        "modified": "schema:dateModified"
+      }
+    },
+
+    "Evidence": {
+      "@id": "jfrog:Evidence",
+      "@context": {
+        "id": "schema:identifier",
+        "subject_type": "jfrog:subjectType",
+        "subject": "jfrog:subject",
+        "predicate_type": "intoto:predicateType",
+        "predicate": "intoto:predicate",
+        "dsse_envelope_path": "jfrog:dsseEnvelopePath",
+        "signature_algorithm": "jfrog:signatureAlgorithm",
+        "key_alias": "jfrog:keyAlias",
+        "verified": "jfrog:verified",
+        "created": "schema:dateCreated",
+        "created_by": "schema:creator"
+      }
+    },
+
+    "Project": {
+      "@id": "jfrog:Project",
+      "@context": {
+        "project_key": "schema:identifier",
+        "display_name": "schema:name",
+        "description": "schema:description"
+      }
+    },
+
+    "Package": {
+      "@id": "jfrog:Package",
+      "@context": {
+        "package_type": "jfrog:packageType",
+        "package_name": "schema:name",
+        "latest_version": "schema:version",
+        "description": "schema:description",
+        "licenses": "spdx:licenseDeclared",
+        "repository_url": "schema:codeRepository",
+        "homepage": "schema:url"
+      }
+    },
+
+    "name": "schema:name",
+    "description": "schema:description",
+    "version": "schema:version",
+    "url": "schema:url",
+    "created": "schema:dateCreated",
+    "modified": "schema:dateModified",
+    "identifier": "schema:identifier",
+    "email": "schema:email",
+    "license": "spdx:licenseDeclared"
+  }
+}

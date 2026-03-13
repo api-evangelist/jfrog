@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/pipeline",
+  "title": "JFrog Pipeline",
+  "description": "Represents a CI/CD pipeline in JFrog Pipelines, defining automated build, test, and deployment workflows that are natively integrated with the JFrog Platform.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique pipeline identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Pipeline name as defined in the pipeline YAML",
+      "examples": [
+        "my_app_pipeline",
+        "release_pipeline"
+      ]
+    },
+    "pipelineSourceId": {
+      "type": "integer",
+      "description": "ID of the pipeline source containing this pipeline definition"
+    },
+    "projectId": {
+      "type": "integer",
+      "description": "Project ID this pipeline belongs to"
+    },
+    "latestRunId": {
+      "type": "integer",
+      "description": "ID of the most recent pipeline run"
+    },
+    "latestCompletedRunId": {
+      "type": "integer",
+      "description": "ID of the most recent completed run"
+    },
+    "latestRun": {
+      "$ref": "#/$defs/Run"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Pipeline creation timestamp"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "$defs": {
+    "Run": {
+      "type": "object",
+      "description": "A single execution of a pipeline",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "pipelineId": {
+          "type": "integer"
+        },
+        "statusCode": {
+          "type": "integer",
+          "description": "Run status code: 4001=queued, 4002=processing, 4003=success, 4004=error, 4005=cancelled, 4006=timeout, 4007=skipped"
+        },
+        "runNumber": {
+          "type": "integer"
+        },
+        "branchName": {
+          "type": "string"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "durationSeconds": {
+          "type": "integer"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "Step": {
+      "type": "object",
+      "description": "An individual step within a pipeline run",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "pipelineId": {
+          "type": "integer"
+        },
+        "runId": {
+          "type": "integer"
+        },
+        "typeCode": {
+          "type": "integer"
+        },
+        "statusCode": {
+          "type": "integer"
+        },
+        "startedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "durationSeconds": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

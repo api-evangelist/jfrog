@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/repository",
+  "title": "JFrog Repository",
+  "description": "Represents a repository configuration in JFrog Artifactory, defining how artifacts are stored, proxied, or aggregated from multiple sources.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Unique identifier for the repository",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9._-]*$",
+      "examples": [
+        "libs-release-local",
+        "npm-remote",
+        "maven-virtual"
+      ]
+    },
+    "rclass": {
+      "type": "string",
+      "description": "Repository class defining its behavior",
+      "enum": [
+        "local",
+        "remote",
+        "virtual",
+        "federated"
+      ]
+    },
+    "packageType": {
+      "type": "string",
+      "description": "Type of packages stored in this repository",
+      "enum": [
+        "maven",
+        "gradle",
+        "ivy",
+        "sbt",
+        "helm",
+        "cocoapods",
+        "opkg",
+        "rpm",
+        "nuget",
+        "cran",
+        "gems",
+        "npm",
+        "bower",
+        "debian",
+        "composer",
+        "pypi",
+        "docker",
+        "vagrant",
+        "gitlfs",
+        "go",
+        "yum",
+        "conan",
+        "chef",
+        "puppet",
+        "generic",
+        "conda",
+        "p2",
+        "swift",
+        "terraform",
+        "cargo",
+        "oci"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Free-text description of the repository"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Internal notes about the repository"
+    },
+    "includesPattern": {
+      "type": "string",
+      "description": "Artifact include pattern",
+      "default": "**/*"
+    },
+    "excludesPattern": {
+      "type": "string",
+      "description": "Artifact exclude pattern",
+      "default": ""
+    },
+    "repoLayoutRef": {
+      "type": "string",
+      "description": "Repository layout reference",
+      "examples": [
+        "maven-2-default",
+        "npm-default",
+        "simple-default"
+      ]
+    },
+    "handleReleases": {
+      "type": "boolean",
+      "description": "Whether to handle release artifacts"
+    },
+    "handleSnapshots": {
+      "type": "boolean",
+      "description": "Whether to handle snapshot artifacts"
+    },
+    "maxUniqueSnapshots": {
+      "type": "integer",
+      "description": "Maximum number of unique snapshots to retain",
+      "minimum": 0
+    },
+    "suppressPomConsistencyChecks": {
+      "type": "boolean",
+      "description": "Whether to suppress POM consistency checks"
+    },
+    "blackedOut": {
+      "type": "boolean",
+      "description": "Whether the repository is blacked out (disabled)"
+    },
+    "xrayIndex": {
+      "type": "boolean",
+      "description": "Whether the repository is indexed by Xray for scanning"
+    },
+    "propertySets": {
+      "type": "array",
+      "description": "Property sets associated with the repository",
+      "items": {
+        "type": "string"
+      }
+    },
+    "dockerApiVersion": {
+      "type": "string",
+      "description": "Docker API version (V1 or V2)",
+      "enum": [
+        "V1",
+        "V2"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL of the remote repository (remote repos only)"
+    },
+    "username": {
+      "type": "string",
+      "description": "Username for remote repository authentication"
+    },
+    "environments": {
+      "type": "array",
+      "description": "Environments this repository is associated with",
+      "items": {
+        "type": "string",
+        "examples": [
+          "DEV",
+          "PROD"
+        ]
+      }
+    },
+    "projectKey": {
+      "type": "string",
+      "description": "Project key if the repository belongs to a project"
+    }
+  },
+  "required": [
+    "key",
+    "rclass",
+    "packageType"
+  ]
+}

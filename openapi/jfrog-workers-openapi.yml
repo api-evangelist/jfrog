@@ -1,0 +1,380 @@
+openapi: 3.1.0
+info:
+  title: JFrog Workers REST API
+  description: >-
+    API for creating and managing custom serverless workers that extend JFrog
+    Platform functionality through synchronized hooks and automation in a secure,
+    isolated execution environment. Workers are TypeScript-based functions that
+    can react to JFrog Platform events.
+  version: 1.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Workers REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/workers-rest-apis
+servers:
+  - url: https://{server}.jfrog.io/worker/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/worker/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: Workers
+    description: Worker lifecycle management
+  - name: Execution
+    description: Worker testing and execution
+paths:
+  /v1/workers:
+    get:
+      operationId: listWorkers
+      summary: List Workers
+      description: Returns a list of all registered workers.
+      tags:
+        - Workers
+      responses:
+        '200':
+          description: Workers list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Worker'
+    post:
+      operationId: createWorker
+      summary: Create Worker
+      description: Creates a new serverless worker with TypeScript code.
+      tags:
+        - Workers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerRequest'
+      responses:
+        '201':
+          description: Worker created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Worker'
+        '400':
+          description: Invalid worker configuration
+  /v1/workers/{workerKey}:
+    get:
+      operationId: getWorker
+      summary: Get Worker
+      description: Returns details for a specific worker.
+      tags:
+        - Workers
+      parameters:
+        - name: workerKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Worker key identifier
+      responses:
+        '200':
+          description: Worker details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Worker'
+        '404':
+          description: Worker not found
+    put:
+      operationId: updateWorker
+      summary: Update Worker
+      description: Updates an existing worker's code or configuration.
+      tags:
+        - Workers
+      parameters:
+        - name: workerKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Worker key identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WorkerRequest'
+      responses:
+        '200':
+          description: Worker updated
+    delete:
+      operationId: deleteWorker
+      summary: Delete Worker
+      description: Deletes a worker.
+      tags:
+        - Workers
+      parameters:
+        - name: workerKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Worker key identifier
+      responses:
+        '204':
+          description: Worker deleted
+  /v1/workers/{workerKey}/enable:
+    put:
+      operationId: enableWorker
+      summary: Enable Worker
+      description: Enables a disabled worker.
+      tags:
+        - Workers
+      parameters:
+        - name: workerKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Worker key identifier
+      responses:
+        '200':
+          description: Worker enabled
+  /v1/workers/{workerKey}/disable:
+    put:
+      operationId: disableWorker
+      summary: Disable Worker
+      description: Disables an active worker.
+      tags:
+        - Workers
+      parameters:
+        - name: workerKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Worker key identifier
+      responses:
+        '200':
+          description: Worker disabled
+  /v1/workers/{workerKey}/test:
+    post:
+      operationId: testWorker
+      summary: Test Worker
+      description: Executes a worker with a test payload to validate its behavior.
+      tags:
+        - Execution
+      parameters:
+        - name: workerKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Worker key identifier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                action:
+                  type: string
+                  description: The event action to simulate
+                data:
+                  type: object
+                  additionalProperties: true
+                  description: Test payload data
+              required:
+                - action
+                - data
+      responses:
+        '200':
+          description: Test execution result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum: [STATUS_OK, STATUS_STOP, STATUS_ERROR]
+                  message:
+                    type: string
+                  execution_time_ms:
+                    type: integer
+  /v1/workers/{workerKey}/logs:
+    get:
+      operationId: getWorkerLogs
+      summary: Get Worker Logs
+      description: Returns execution logs for a worker.
+      tags:
+        - Execution
+      parameters:
+        - name: workerKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Worker key identifier
+        - name: from
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Start time for log retrieval
+        - name: to
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: End time for log retrieval
+      responses:
+        '200':
+          description: Worker logs retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                          format: date-time
+                        level:
+                          type: string
+                          enum: [DEBUG, INFO, WARN, ERROR]
+                        message:
+                          type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    Worker:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        source_code:
+          type: string
+          description: TypeScript source code for the worker
+        action:
+          type: string
+          enum:
+            - BEFORE_DOWNLOAD
+            - AFTER_DOWNLOAD
+            - BEFORE_UPLOAD
+            - AFTER_CREATE
+            - AFTER_BUILD_INFO_SAVE
+            - AFTER_MOVE
+            - AFTER_COPY
+            - BEFORE_DELETE
+            - BEFORE_CREATE_TOKEN
+            - GENERIC_EVENT
+          description: The JFrog Platform event that triggers this worker
+        filter_criteria:
+          type: object
+          properties:
+            artifact_filter_criteria:
+              type: object
+              properties:
+                repo_keys:
+                  type: array
+                  items:
+                    type: string
+        secrets:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+    WorkerRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+          default: true
+        source_code:
+          type: string
+          description: TypeScript source code for the worker
+        action:
+          type: string
+          enum:
+            - BEFORE_DOWNLOAD
+            - AFTER_DOWNLOAD
+            - BEFORE_UPLOAD
+            - AFTER_CREATE
+            - AFTER_BUILD_INFO_SAVE
+            - AFTER_MOVE
+            - AFTER_COPY
+            - BEFORE_DELETE
+            - BEFORE_CREATE_TOKEN
+            - GENERIC_EVENT
+        filter_criteria:
+          type: object
+          properties:
+            artifact_filter_criteria:
+              type: object
+              properties:
+                repo_keys:
+                  type: array
+                  items:
+                    type: string
+        secrets:
+          type: array
+          items:
+            type: object
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+      required:
+        - key
+        - source_code
+        - action

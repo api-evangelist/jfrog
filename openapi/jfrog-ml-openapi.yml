@@ -1,0 +1,615 @@
+openapi: 3.1.0
+info:
+  title: JFrog ML REST API
+  description: >-
+    API for managing machine learning models, experiments, and deployments
+    including model registry, versioning, and serving capabilities. JFrog ML
+    (formerly Qwak) provides end-to-end MLOps features integrated with the
+    JFrog Platform.
+  version: 1.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog ML REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-ml-documentation/jfrog-ml-rest-api
+servers:
+  - url: https://{server}.jfrog.io/ml/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: Models
+    description: ML model registry and management
+  - name: Model Versions
+    description: Model version management
+  - name: Experiments
+    description: ML experiment tracking
+  - name: Deployments
+    description: Model deployment and serving
+paths:
+  /v1/models:
+    get:
+      operationId: listModels
+      summary: List Models
+      description: Returns a list of all registered ML models.
+      tags:
+        - Models
+      parameters:
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 25
+          description: Maximum number of results
+        - name: offset
+          in: query
+          schema:
+            type: integer
+          description: Offset for pagination
+      responses:
+        '200':
+          description: Models list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Model'
+                  total_count:
+                    type: integer
+    post:
+      operationId: createModel
+      summary: Create Model
+      description: Registers a new ML model in the model registry.
+      tags:
+        - Models
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelRequest'
+      responses:
+        '201':
+          description: Model created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+  /v1/models/{modelId}:
+    get:
+      operationId: getModel
+      summary: Get Model
+      description: Returns details for a specific model.
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Model ID
+      responses:
+        '200':
+          description: Model details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+    put:
+      operationId: updateModel
+      summary: Update Model
+      description: Updates model metadata.
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Model ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelRequest'
+      responses:
+        '200':
+          description: Model updated
+    delete:
+      operationId: deleteModel
+      summary: Delete Model
+      description: Deletes a model and all its versions.
+      tags:
+        - Models
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Model ID
+      responses:
+        '204':
+          description: Model deleted
+  /v1/models/{modelId}/versions:
+    get:
+      operationId: listModelVersions
+      summary: List Model Versions
+      description: Returns all versions for a specific model.
+      tags:
+        - Model Versions
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Model ID
+      responses:
+        '200':
+          description: Model versions list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ModelVersion'
+    post:
+      operationId: createModelVersion
+      summary: Create Model Version
+      description: Creates a new version for a model.
+      tags:
+        - Model Versions
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Model ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelVersionRequest'
+      responses:
+        '201':
+          description: Model version created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelVersion'
+  /v1/models/{modelId}/versions/{versionId}:
+    get:
+      operationId: getModelVersion
+      summary: Get Model Version
+      description: Returns details for a specific model version.
+      tags:
+        - Model Versions
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Model ID
+        - name: versionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Version ID
+      responses:
+        '200':
+          description: Model version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelVersion'
+    delete:
+      operationId: deleteModelVersion
+      summary: Delete Model Version
+      description: Deletes a specific model version.
+      tags:
+        - Model Versions
+      parameters:
+        - name: modelId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Model ID
+        - name: versionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Version ID
+      responses:
+        '204':
+          description: Model version deleted
+  /v1/experiments:
+    get:
+      operationId: listExperiments
+      summary: List Experiments
+      description: Returns a list of all ML experiments.
+      tags:
+        - Experiments
+      parameters:
+        - name: model_id
+          in: query
+          schema:
+            type: string
+          description: Filter by model ID
+      responses:
+        '200':
+          description: Experiments list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  experiments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Experiment'
+    post:
+      operationId: createExperiment
+      summary: Create Experiment
+      description: Creates a new ML experiment.
+      tags:
+        - Experiments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExperimentRequest'
+      responses:
+        '201':
+          description: Experiment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+  /v1/experiments/{experimentId}:
+    get:
+      operationId: getExperiment
+      summary: Get Experiment
+      description: Returns details for a specific experiment.
+      tags:
+        - Experiments
+      parameters:
+        - name: experimentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Experiment ID
+      responses:
+        '200':
+          description: Experiment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+    delete:
+      operationId: deleteExperiment
+      summary: Delete Experiment
+      description: Deletes an experiment.
+      tags:
+        - Experiments
+      parameters:
+        - name: experimentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Experiment ID
+      responses:
+        '204':
+          description: Experiment deleted
+  /v1/deployments:
+    get:
+      operationId: listDeployments
+      summary: List Deployments
+      description: Returns a list of all model deployments.
+      tags:
+        - Deployments
+      responses:
+        '200':
+          description: Deployments list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deployments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Deployment'
+    post:
+      operationId: createDeployment
+      summary: Create Deployment
+      description: Deploys a model version for serving predictions.
+      tags:
+        - Deployments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentRequest'
+      responses:
+        '201':
+          description: Deployment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /v1/deployments/{deploymentId}:
+    get:
+      operationId: getDeployment
+      summary: Get Deployment
+      description: Returns details for a specific deployment.
+      tags:
+        - Deployments
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Deployment ID
+      responses:
+        '200':
+          description: Deployment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+    delete:
+      operationId: deleteDeployment
+      summary: Delete Deployment
+      description: Removes a model deployment.
+      tags:
+        - Deployments
+      parameters:
+        - name: deploymentId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Deployment ID
+      responses:
+        '204':
+          description: Deployment deleted
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    Model:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        framework:
+          type: string
+          description: ML framework (e.g., tensorflow, pytorch, sklearn)
+        task_type:
+          type: string
+          description: Type of ML task (e.g., classification, regression, nlp)
+        tags:
+          type: array
+          items:
+            type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+    ModelRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        framework:
+          type: string
+        task_type:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+    ModelVersion:
+      type: object
+      properties:
+        id:
+          type: string
+        model_id:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [draft, staging, production, archived]
+        artifact_path:
+          type: string
+          description: Path to the model artifact in Artifactory
+        metrics:
+          type: object
+          additionalProperties:
+            type: number
+          description: Key-value pairs of model metrics (accuracy, loss, etc.)
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Hyperparameters used for training
+        created_at:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+    ModelVersionRequest:
+      type: object
+      properties:
+        version:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum: [draft, staging, production, archived]
+        artifact_path:
+          type: string
+        metrics:
+          type: object
+          additionalProperties:
+            type: number
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - version
+    Experiment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        model_id:
+          type: string
+        status:
+          type: string
+          enum: [running, completed, failed, cancelled]
+        metrics:
+          type: object
+          additionalProperties:
+            type: number
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+    ExperimentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        model_id:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+        - name
+    Deployment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        model_id:
+          type: string
+        model_version_id:
+          type: string
+        status:
+          type: string
+          enum: [deploying, active, stopped, failed]
+        endpoint_url:
+          type: string
+          format: uri
+        replicas:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    DeploymentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        model_id:
+          type: string
+        model_version_id:
+          type: string
+        replicas:
+          type: integer
+          default: 1
+        resources:
+          type: object
+          properties:
+            cpu:
+              type: string
+            memory:
+              type: string
+            gpu:
+              type: integer
+      required:
+        - name
+        - model_id
+        - model_version_id

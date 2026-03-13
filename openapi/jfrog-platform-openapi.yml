@@ -1,0 +1,1033 @@
+openapi: 3.1.0
+info:
+  title: JFrog Platform REST API
+  description: >-
+    Unified API for JFrog Platform services and administration. Provides
+    centralized access management, project administration, and system
+    configuration across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Platform REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-jfrog-platform-rest-apis
+servers:
+  - url: https://{server}.jfrog.io
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: System
+    description: Platform system health and configuration
+  - name: Access Tokens
+    description: Token creation and management
+  - name: Users
+    description: Platform user management
+  - name: Groups
+    description: Group management
+  - name: Projects
+    description: Project management
+  - name: Permissions
+    description: Permission management
+  - name: Webhooks
+    description: Webhook configuration
+paths:
+  /router/api/v1/system/ping:
+    get:
+      operationId: routerPing
+      summary: Platform Router Ping
+      description: Returns a simple health check from the JFrog Platform router.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Platform is accessible
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+  /router/api/v1/system/health:
+    get:
+      operationId: getSystemHealth
+      summary: Get System Health
+      description: Returns health status of all JFrog services.
+      tags:
+        - System
+      responses:
+        '200':
+          description: System health retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemHealth'
+  /access/api/v2/tokens:
+    get:
+      operationId: listTokens
+      summary: List Access Tokens
+      description: Returns a list of all access tokens.
+      tags:
+        - Access Tokens
+      responses:
+        '200':
+          description: Tokens list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenInfo'
+    post:
+      operationId: createToken
+      summary: Create Access Token
+      description: Creates a new access token.
+      tags:
+        - Access Tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenRequest'
+      responses:
+        '200':
+          description: Token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+  /access/api/v2/tokens/{tokenId}:
+    get:
+      operationId: getToken
+      summary: Get Token Details
+      description: Returns details for a specific access token.
+      tags:
+        - Access Tokens
+      parameters:
+        - name: tokenId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Token ID
+      responses:
+        '200':
+          description: Token details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+    delete:
+      operationId: revokeToken
+      summary: Revoke Access Token
+      description: Revokes an access token.
+      tags:
+        - Access Tokens
+      parameters:
+        - name: tokenId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Token ID
+      responses:
+        '200':
+          description: Token revoked
+  /access/api/v2/users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Returns a list of all platform users.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Users list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlatformUser'
+    post:
+      operationId: createUser
+      summary: Create User
+      description: Creates a new platform user.
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformUser'
+  /access/api/v2/users/{username}:
+    get:
+      operationId: getUser
+      summary: Get User
+      description: Returns details for a specific user.
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformUser'
+    patch:
+      operationId: updateUser
+      summary: Update User
+      description: Updates user details.
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: Deletes a user.
+      tags:
+        - Users
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      responses:
+        '204':
+          description: User deleted
+  /access/api/v2/groups:
+    get:
+      operationId: listGroups
+      summary: List Groups
+      description: Returns a list of all platform groups.
+      tags:
+        - Groups
+      responses:
+        '200':
+          description: Groups list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlatformGroup'
+    post:
+      operationId: createGroup
+      summary: Create Group
+      description: Creates a new platform group.
+      tags:
+        - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlatformGroup'
+      responses:
+        '201':
+          description: Group created
+  /access/api/v2/groups/{groupName}:
+    get:
+      operationId: getGroup
+      summary: Get Group
+      description: Returns details for a specific group.
+      tags:
+        - Groups
+      parameters:
+        - name: groupName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group name
+      responses:
+        '200':
+          description: Group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformGroup'
+    patch:
+      operationId: updateGroup
+      summary: Update Group
+      description: Updates group details.
+      tags:
+        - Groups
+      parameters:
+        - name: groupName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlatformGroup'
+      responses:
+        '200':
+          description: Group updated
+    delete:
+      operationId: deleteGroup
+      summary: Delete Group
+      description: Deletes a group.
+      tags:
+        - Groups
+      parameters:
+        - name: groupName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group name
+      responses:
+        '204':
+          description: Group deleted
+  /access/api/v1/projects:
+    get:
+      operationId: listProjects
+      summary: List Projects
+      description: Returns a list of all projects.
+      tags:
+        - Projects
+      responses:
+        '200':
+          description: Projects list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      operationId: createProject
+      summary: Create Project
+      description: Creates a new project.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /access/api/v1/projects/{projectKey}:
+    get:
+      operationId: getProject
+      summary: Get Project
+      description: Returns details for a specific project.
+      tags:
+        - Projects
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project key
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    put:
+      operationId: updateProject
+      summary: Update Project
+      description: Updates project configuration.
+      tags:
+        - Projects
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '200':
+          description: Project updated
+    delete:
+      operationId: deleteProject
+      summary: Delete Project
+      description: Deletes a project.
+      tags:
+        - Projects
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project key
+      responses:
+        '204':
+          description: Project deleted
+  /access/api/v1/projects/{projectKey}/users/{username}:
+    put:
+      operationId: addUserToProject
+      summary: Add User to Project
+      description: Adds a user to a project with specified roles.
+      tags:
+        - Projects
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project key
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: User added to project
+    delete:
+      operationId: removeUserFromProject
+      summary: Remove User from Project
+      description: Removes a user from a project.
+      tags:
+        - Projects
+      parameters:
+        - name: projectKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Project key
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      responses:
+        '204':
+          description: User removed from project
+  /access/api/v2/permissions:
+    get:
+      operationId: listPermissions
+      summary: List Permissions
+      description: Returns a list of all permission configurations.
+      tags:
+        - Permissions
+      responses:
+        '200':
+          description: Permissions list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Permission'
+    post:
+      operationId: createPermission
+      summary: Create Permission
+      description: Creates a new permission configuration.
+      tags:
+        - Permissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission'
+      responses:
+        '201':
+          description: Permission created
+  /access/api/v2/permissions/{permissionName}:
+    get:
+      operationId: getPermission
+      summary: Get Permission
+      description: Returns details for a specific permission.
+      tags:
+        - Permissions
+      parameters:
+        - name: permissionName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Permission name
+      responses:
+        '200':
+          description: Permission details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission'
+    put:
+      operationId: updatePermission
+      summary: Update Permission
+      description: Updates a permission configuration.
+      tags:
+        - Permissions
+      parameters:
+        - name: permissionName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Permission name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission'
+      responses:
+        '200':
+          description: Permission updated
+    delete:
+      operationId: deletePermission
+      summary: Delete Permission
+      description: Deletes a permission configuration.
+      tags:
+        - Permissions
+      parameters:
+        - name: permissionName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Permission name
+      responses:
+        '204':
+          description: Permission deleted
+  /event/api/v1/subscriptions:
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: Returns a list of all configured webhooks.
+      tags:
+        - Webhooks
+      responses:
+        '200':
+          description: Webhooks list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      summary: Create Webhook
+      description: Creates a new webhook subscription.
+      tags:
+        - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '201':
+          description: Webhook created
+  /event/api/v1/subscriptions/{webhookKey}:
+    get:
+      operationId: getWebhook
+      summary: Get Webhook
+      description: Returns details for a specific webhook.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhookKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Webhook key
+      responses:
+        '200':
+          description: Webhook details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    put:
+      operationId: updateWebhook
+      summary: Update Webhook
+      description: Updates a webhook configuration.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhookKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Webhook key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook updated
+    delete:
+      operationId: deleteWebhook
+      summary: Delete Webhook
+      description: Deletes a webhook subscription.
+      tags:
+        - Webhooks
+      parameters:
+        - name: webhookKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Webhook key
+      responses:
+        '204':
+          description: Webhook deleted
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    SystemHealth:
+      type: object
+      properties:
+        router:
+          type: object
+          properties:
+            node_id:
+              type: string
+            state:
+              type: string
+            message:
+              type: string
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              service_id:
+                type: string
+              node_id:
+                type: string
+              state:
+                type: string
+                enum: [HEALTHY, DEGRADED, UNHEALTHY]
+              message:
+                type: string
+    TokenInfo:
+      type: object
+      properties:
+        token_id:
+          type: string
+        subject:
+          type: string
+        expiry:
+          type: integer
+        issued_at:
+          type: integer
+        issuer:
+          type: string
+        description:
+          type: string
+        refreshable:
+          type: boolean
+        scope:
+          type: string
+    CreateTokenRequest:
+      type: object
+      properties:
+        subject:
+          type: string
+        scope:
+          type: string
+        expires_in:
+          type: integer
+          description: Token expiry in seconds (0 for non-expiring)
+        refreshable:
+          type: boolean
+        description:
+          type: string
+        audience:
+          type: string
+        include_reference_token:
+          type: boolean
+      required:
+        - scope
+    TokenResponse:
+      type: object
+      properties:
+        token_id:
+          type: string
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          type: integer
+        scope:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        reference_token:
+          type: string
+    PlatformUser:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        disable_ui_access:
+          type: boolean
+        internal_password_disabled:
+          type: boolean
+        status:
+          type: string
+          enum: [enabled, disabled]
+        groups:
+          type: array
+          items:
+            type: string
+    CreateUserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+        - username
+        - email
+        - password
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+    PlatformGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        auto_join:
+          type: boolean
+        admin_privileges:
+          type: boolean
+        realm:
+          type: string
+        external_id:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+    Project:
+      type: object
+      properties:
+        project_key:
+          type: string
+        display_name:
+          type: string
+        description:
+          type: string
+        admin_privileges:
+          type: object
+          properties:
+            manage_members:
+              type: boolean
+            manage_resources:
+              type: boolean
+            manage_security_assets:
+              type: boolean
+            index_resources:
+              type: boolean
+            allow_ignore_rules:
+              type: boolean
+        max_storage_in_gibibytes:
+          type: integer
+        soft_limit:
+          type: boolean
+        storage_quota_bytes:
+          type: integer
+        storage_quota_email_notification:
+          type: boolean
+    ProjectRequest:
+      type: object
+      properties:
+        project_key:
+          type: string
+          maxLength: 32
+        display_name:
+          type: string
+        description:
+          type: string
+        admin_privileges:
+          type: object
+          properties:
+            manage_members:
+              type: boolean
+            manage_resources:
+              type: boolean
+            manage_security_assets:
+              type: boolean
+            index_resources:
+              type: boolean
+            allow_ignore_rules:
+              type: boolean
+        max_storage_in_gibibytes:
+          type: integer
+      required:
+        - project_key
+        - display_name
+    Permission:
+      type: object
+      properties:
+        name:
+          type: string
+        resources:
+          type: object
+          properties:
+            repository:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  include_patterns:
+                    type: array
+                    items:
+                      type: string
+                  exclude_patterns:
+                    type: array
+                    items:
+                      type: string
+                  actions:
+                    type: object
+                    properties:
+                      users:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+                      groups:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+            build:
+              type: object
+              additionalProperties:
+                type: object
+      required:
+        - name
+    Webhook:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        url:
+          type: string
+          format: uri
+        secret:
+          type: string
+        events:
+          type: array
+          items:
+            type: string
+        criteria:
+          type: object
+          additionalProperties: true
+    WebhookRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        url:
+          type: string
+          format: uri
+        secret:
+          type: string
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+              - deployed
+              - deleted
+              - moved
+              - copied
+              - cached
+              - property_added
+              - property_deleted
+              - docker_pushed
+              - docker_deleted
+              - build_published
+              - build_promotion
+              - build_deleted
+              - release_bundle_created
+              - release_bundle_signed
+              - release_bundle_deleted
+        criteria:
+          type: object
+          properties:
+            anyLocal:
+              type: boolean
+            anyRemote:
+              type: boolean
+            anyFederated:
+              type: boolean
+            repoKeys:
+              type: array
+              items:
+                type: string
+            includePatterns:
+              type: array
+              items:
+                type: string
+            excludePatterns:
+              type: array
+              items:
+                type: string
+      required:
+        - key
+        - url
+        - events

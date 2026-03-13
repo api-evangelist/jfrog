@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/permission",
+  "title": "JFrog Permission Target",
+  "description": "Represents a permission target in the JFrog Platform, defining access control rules for repositories, builds, and release bundles. Permissions control which users and groups can perform specific actions on specific resources.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique name identifying the permission target",
+      "examples": [
+        "release-deployers",
+        "dev-team-readers"
+      ]
+    },
+    "resources": {
+      "type": "object",
+      "description": "Resource-level access control definitions",
+      "properties": {
+        "repository": {
+          "type": "object",
+          "description": "Repository-level permissions keyed by repository name",
+          "additionalProperties": {
+            "$ref": "#/$defs/ResourcePermission"
+          }
+        },
+        "build": {
+          "type": "object",
+          "description": "Build-level permissions keyed by build pattern",
+          "additionalProperties": {
+            "$ref": "#/$defs/ResourcePermission"
+          }
+        },
+        "releaseBundle": {
+          "type": "object",
+          "description": "Release bundle-level permissions",
+          "additionalProperties": {
+            "$ref": "#/$defs/ResourcePermission"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "$defs": {
+    "ResourcePermission": {
+      "type": "object",
+      "description": "Permission rules for a specific resource",
+      "properties": {
+        "include_patterns": {
+          "type": "array",
+          "description": "Patterns for included paths (Ant-style)",
+          "items": {
+            "type": "string"
+          },
+          "default": ["**"]
+        },
+        "exclude_patterns": {
+          "type": "array",
+          "description": "Patterns for excluded paths",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "actions": {
+          "type": "object",
+          "description": "Action grants for users and groups",
+          "properties": {
+            "users": {
+              "type": "object",
+              "description": "User-specific action grants (username -> actions array)",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "read",
+                    "write",
+                    "annotate",
+                    "delete",
+                    "manage",
+                    "managedXrayMeta",
+                    "distribute"
+                  ]
+                }
+              }
+            },
+            "groups": {
+              "type": "object",
+              "description": "Group-specific action grants (group name -> actions array)",
+              "additionalProperties": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "read",
+                    "write",
+                    "annotate",
+                    "delete",
+                    "manage",
+                    "managedXrayMeta",
+                    "distribute"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

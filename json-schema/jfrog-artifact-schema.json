@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/artifact",
+  "title": "JFrog Artifact",
+  "description": "Represents an artifact stored in a JFrog Artifactory repository, including its metadata, checksums, and storage properties.",
+  "type": "object",
+  "properties": {
+    "repo": {
+      "type": "string",
+      "description": "Repository key where the artifact is stored",
+      "examples": [
+        "libs-release-local",
+        "npm-remote"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "description": "Path to the artifact within the repository",
+      "examples": [
+        "org/example/my-artifact/1.0.0/my-artifact-1.0.0.jar"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Name of the artifact file",
+      "examples": [
+        "my-artifact-1.0.0.jar"
+      ]
+    },
+    "type": {
+      "type": "string",
+      "description": "Type of item (file or folder)",
+      "enum": [
+        "file",
+        "folder"
+      ]
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the artifact was created"
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "Username that created the artifact"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last modification"
+    },
+    "modifiedBy": {
+      "type": "string",
+      "description": "Username that last modified the artifact"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp of last metadata update"
+    },
+    "downloadUri": {
+      "type": "string",
+      "format": "uri",
+      "description": "Direct download URI for the artifact"
+    },
+    "mimeType": {
+      "type": "string",
+      "description": "MIME type of the artifact",
+      "examples": [
+        "application/java-archive",
+        "application/gzip",
+        "application/json"
+      ]
+    },
+    "size": {
+      "type": "integer",
+      "description": "Size of the artifact in bytes"
+    },
+    "checksums": {
+      "$ref": "#/$defs/Checksums"
+    },
+    "originalChecksums": {
+      "$ref": "#/$defs/Checksums"
+    },
+    "properties": {
+      "type": "object",
+      "description": "Custom properties attached to the artifact",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri",
+      "description": "REST API URI for this artifact info"
+    }
+  },
+  "required": [
+    "repo",
+    "path",
+    "name"
+  ],
+  "$defs": {
+    "Checksums": {
+      "type": "object",
+      "description": "Cryptographic checksums for the artifact",
+      "properties": {
+        "sha1": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$",
+          "description": "SHA-1 checksum"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "description": "SHA-256 checksum"
+        },
+        "md5": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{32}$",
+          "description": "MD5 checksum"
+        }
+      }
+    }
+  }
+}

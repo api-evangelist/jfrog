@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/evidence",
+  "title": "JFrog Evidence",
+  "description": "Represents an evidence attestation in the JFrog Platform, providing a cryptographically signed record of an external process performed on a software artifact, build, package, or release bundle. Evidence is stored as in-toto statements wrapped in DSSE (Dead Simple Signing Envelope) format.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique evidence record identifier"
+    },
+    "subject_type": {
+      "type": "string",
+      "description": "Type of the subject the evidence is attached to",
+      "enum": [
+        "artifact",
+        "build",
+        "package",
+        "release_bundle"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "description": "Subject identification details",
+      "properties": {
+        "repo_path": {
+          "type": "string",
+          "description": "Artifact repository path"
+        },
+        "sha256": {
+          "type": "string",
+          "description": "SHA-256 digest of the subject artifact"
+        },
+        "build_name": {
+          "type": "string"
+        },
+        "build_number": {
+          "type": "string"
+        },
+        "package_name": {
+          "type": "string"
+        },
+        "package_version": {
+          "type": "string"
+        },
+        "repo_key": {
+          "type": "string"
+        },
+        "release_bundle_name": {
+          "type": "string"
+        },
+        "release_bundle_version": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        }
+      }
+    },
+    "predicate_type": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI identifying the predicate type (in-toto attestation type)",
+      "examples": [
+        "https://in-toto.io/attestation/vulns",
+        "https://slsa.dev/provenance/v1",
+        "https://in-toto.io/attestation/test-result/v0.1"
+      ]
+    },
+    "predicate": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The evidence predicate content conforming to the predicate_type schema"
+    },
+    "dsse_envelope_path": {
+      "type": "string",
+      "description": "Path to the DSSE signed envelope file stored in Artifactory"
+    },
+    "signature_algorithm": {
+      "type": "string",
+      "description": "Cryptographic algorithm used for signing the evidence",
+      "enum": [
+        "ECDSA",
+        "RSA",
+        "ED25519"
+      ]
+    },
+    "key_alias": {
+      "type": "string",
+      "description": "Alias of the public key registered for signature verification"
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the evidence signature has been successfully verified"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the evidence was created"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "User or service that created the evidence"
+    }
+  },
+  "required": [
+    "subject_type",
+    "subject",
+    "predicate_type"
+  ]
+}

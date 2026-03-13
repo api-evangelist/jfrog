@@ -1,0 +1,1797 @@
+openapi: 3.1.0
+info:
+  title: JFrog Artifactory REST API
+  description: >-
+    REST API for managing artifacts, repositories, security, and system
+    configuration in JFrog Artifactory. Artifactory is a universal binary
+    repository manager that integrates with all major CI/CD and DevOps tools
+    to provide an end-to-end automated solution for tracking artifacts from
+    development to production.
+  version: 7.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Artifactory REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis
+servers:
+  - url: https://{server}.jfrog.io/artifactory
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/artifactory
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - apiKeyAuth: []
+  - basicAuth: []
+tags:
+  - name: System & Configuration
+    description: System health, configuration, and version information
+  - name: Repositories
+    description: Create, read, update, and delete repositories
+  - name: Artifacts & Storage
+    description: Deploy, retrieve, copy, move, and delete artifacts
+  - name: Searches
+    description: Search for artifacts using various criteria
+  - name: Security
+    description: Users, groups, permissions, and access tokens
+  - name: Builds
+    description: Build information and promotion
+  - name: Replication
+    description: Push and pull replication configuration
+  - name: Properties
+    description: Set, update, and delete artifact properties
+paths:
+  /api/system/ping:
+    get:
+      operationId: systemPing
+      summary: System Health Ping
+      description: Returns a simple status response indicating whether Artifactory is accessible.
+      tags:
+        - System & Configuration
+      responses:
+        '200':
+          description: Artifactory is accessible
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+  /api/system/version:
+    get:
+      operationId: getSystemVersion
+      summary: Get Version Information
+      description: Returns version and build information for the Artifactory instance.
+      tags:
+        - System & Configuration
+      responses:
+        '200':
+          description: Version information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemVersion'
+  /api/system/configuration:
+    get:
+      operationId: getSystemConfiguration
+      summary: Get System Configuration
+      description: Returns the full system configuration as an XML descriptor.
+      tags:
+        - System & Configuration
+      responses:
+        '200':
+          description: System configuration retrieved
+          content:
+            application/xml:
+              schema:
+                type: string
+    patch:
+      operationId: updateSystemConfiguration
+      summary: Update System Configuration
+      description: Applies a partial update to the system configuration using a YAML payload.
+      tags:
+        - System & Configuration
+      requestBody:
+        required: true
+        content:
+          application/yaml:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Configuration updated successfully
+  /api/system/licenses:
+    get:
+      operationId: getSystemLicenses
+      summary: Get License Information
+      description: Returns the installed license details.
+      tags:
+        - System & Configuration
+      responses:
+        '200':
+          description: License information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseInfo'
+  /api/storage/{repoKey}/{itemPath}:
+    get:
+      operationId: getStorageInfo
+      summary: Get File or Folder Info
+      description: Returns storage information for a file or folder including size, checksums, and metadata.
+      tags:
+        - Artifacts & Storage
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+        - name: itemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Path to the item within the repository
+      responses:
+        '200':
+          description: Item info retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileInfo'
+        '404':
+          description: Item not found
+  /api/storage/{repoKey}:
+    get:
+      operationId: getRepositoryStorageInfo
+      summary: Get Repository Storage Summary
+      description: Returns storage summary for the specified repository.
+      tags:
+        - Artifacts & Storage
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      responses:
+        '200':
+          description: Repository storage info retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderInfo'
+  /api/storageinfo:
+    get:
+      operationId: getStorageSummaryInfo
+      summary: Get Storage Summary
+      description: Returns storage summary information about repositories, binaries, and file store.
+      tags:
+        - Artifacts & Storage
+      responses:
+        '200':
+          description: Storage summary retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageSummary'
+  /{repoKey}/{itemPath}:
+    get:
+      operationId: retrieveArtifact
+      summary: Retrieve Artifact
+      description: Downloads an artifact or returns folder info from the specified repository path.
+      tags:
+        - Artifacts & Storage
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+        - name: itemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Path to the artifact
+      responses:
+        '200':
+          description: Artifact retrieved
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Artifact not found
+    put:
+      operationId: deployArtifact
+      summary: Deploy Artifact
+      description: Deploys an artifact to the specified repository path.
+      tags:
+        - Artifacts & Storage
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+        - name: itemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Path for the artifact
+        - name: X-Checksum-Sha1
+          in: header
+          schema:
+            type: string
+          description: SHA1 checksum of the artifact
+        - name: X-Checksum-Sha256
+          in: header
+          schema:
+            type: string
+          description: SHA256 checksum of the artifact
+        - name: X-Checksum-Md5
+          in: header
+          schema:
+            type: string
+          description: MD5 checksum of the artifact
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: Artifact deployed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeployResponse'
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict - artifact already exists
+    delete:
+      operationId: deleteArtifact
+      summary: Delete Artifact
+      description: Deletes an artifact or folder from the specified repository path.
+      tags:
+        - Artifacts & Storage
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+        - name: itemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Path to the artifact
+      responses:
+        '204':
+          description: Artifact deleted successfully
+        '404':
+          description: Artifact not found
+  /api/copy/{srcRepoKey}/{srcItemPath}:
+    post:
+      operationId: copyArtifact
+      summary: Copy Artifact
+      description: Copies an artifact or folder to a new location.
+      tags:
+        - Artifacts & Storage
+      parameters:
+        - name: srcRepoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Source repository key
+        - name: srcItemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Source item path
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Target path in the format repoKey/path
+        - name: dry
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+          description: Dry run mode (1=dry run, 0=execute)
+        - name: suppressLayouts
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+          description: Suppress cross-layout translations
+        - name: failFast
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+          description: Fail on first error
+      responses:
+        '200':
+          description: Copy completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoveOrCopyResponse'
+  /api/move/{srcRepoKey}/{srcItemPath}:
+    post:
+      operationId: moveArtifact
+      summary: Move Artifact
+      description: Moves an artifact or folder to a new location.
+      tags:
+        - Artifacts & Storage
+      parameters:
+        - name: srcRepoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Source repository key
+        - name: srcItemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Source item path
+        - name: to
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Target path in the format repoKey/path
+        - name: dry
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+          description: Dry run mode
+        - name: suppressLayouts
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+          description: Suppress cross-layout translations
+        - name: failFast
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+          description: Fail on first error
+      responses:
+        '200':
+          description: Move completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoveOrCopyResponse'
+  /api/repositories:
+    get:
+      operationId: listRepositories
+      summary: List All Repositories
+      description: Returns a list of all repositories with minimal information.
+      tags:
+        - Repositories
+      parameters:
+        - name: type
+          in: query
+          schema:
+            type: string
+            enum: [local, remote, virtual, federated, distribution]
+          description: Filter by repository type
+        - name: packageType
+          in: query
+          schema:
+            type: string
+          description: Filter by package type (e.g., maven, npm, docker)
+      responses:
+        '200':
+          description: Repository list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RepositoryListItem'
+  /api/repositories/{repoKey}:
+    get:
+      operationId: getRepository
+      summary: Get Repository Configuration
+      description: Returns the full configuration for a specific repository.
+      tags:
+        - Repositories
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      responses:
+        '200':
+          description: Repository configuration retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryConfiguration'
+        '404':
+          description: Repository not found
+    put:
+      operationId: createRepository
+      summary: Create Repository
+      description: Creates a new repository with the specified configuration.
+      tags:
+        - Repositories
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryConfiguration'
+      responses:
+        '200':
+          description: Repository created successfully
+        '400':
+          description: Bad request
+        '409':
+          description: Repository already exists
+    post:
+      operationId: updateRepository
+      summary: Update Repository Configuration
+      description: Updates configuration of an existing repository.
+      tags:
+        - Repositories
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryConfiguration'
+      responses:
+        '200':
+          description: Repository updated successfully
+        '404':
+          description: Repository not found
+    delete:
+      operationId: deleteRepository
+      summary: Delete Repository
+      description: Removes a repository configuration and optionally deletes its content.
+      tags:
+        - Repositories
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      responses:
+        '200':
+          description: Repository deleted
+        '404':
+          description: Repository not found
+  /api/search/aql:
+    post:
+      operationId: executeAqlSearch
+      summary: Execute AQL Search
+      description: Executes an Artifactory Query Language (AQL) search query.
+      tags:
+        - Searches
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: 'items.find({"repo":"my-repo","path":{"$match":"*"}})'
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AqlSearchResult'
+  /api/search/gavc:
+    get:
+      operationId: searchByGAVC
+      summary: GAVC Search
+      description: Search for artifacts by Maven coordinates (GroupId, ArtifactId, Version, Classifier).
+      tags:
+        - Searches
+      parameters:
+        - name: g
+          in: query
+          schema:
+            type: string
+          description: Group ID
+        - name: a
+          in: query
+          schema:
+            type: string
+          description: Artifact ID
+        - name: v
+          in: query
+          schema:
+            type: string
+          description: Version
+        - name: c
+          in: query
+          schema:
+            type: string
+          description: Classifier
+        - name: repos
+          in: query
+          schema:
+            type: string
+          description: Comma-separated list of repositories to search
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+  /api/search/prop:
+    get:
+      operationId: searchByProperties
+      summary: Property Search
+      description: Search for artifacts by property values.
+      tags:
+        - Searches
+      parameters:
+        - name: repos
+          in: query
+          schema:
+            type: string
+          description: Comma-separated list of repositories to search
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+  /api/search/checksum:
+    get:
+      operationId: searchByChecksum
+      summary: Checksum Search
+      description: Search for artifacts by their checksum values.
+      tags:
+        - Searches
+      parameters:
+        - name: sha1
+          in: query
+          schema:
+            type: string
+          description: SHA1 checksum to search for
+        - name: sha256
+          in: query
+          schema:
+            type: string
+          description: SHA256 checksum to search for
+        - name: md5
+          in: query
+          schema:
+            type: string
+          description: MD5 checksum to search for
+        - name: repos
+          in: query
+          schema:
+            type: string
+          description: Comma-separated list of repositories to search
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+  /api/search/latestVersion:
+    get:
+      operationId: getLatestVersion
+      summary: Get Latest Artifact Version
+      description: Returns the latest version of an artifact by group and artifact ID.
+      tags:
+        - Searches
+      parameters:
+        - name: g
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Group ID
+        - name: a
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Artifact ID
+        - name: repos
+          in: query
+          schema:
+            type: string
+          description: Comma-separated list of repositories
+      responses:
+        '200':
+          description: Latest version string
+          content:
+            text/plain:
+              schema:
+                type: string
+  /api/security/users:
+    get:
+      operationId: listUsers
+      summary: List Users
+      description: Returns a list of all users.
+      tags:
+        - Security
+      responses:
+        '200':
+          description: Users list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSummary'
+  /api/security/users/{username}:
+    get:
+      operationId: getUser
+      summary: Get User Details
+      description: Returns details for a specific user.
+      tags:
+        - Security
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      responses:
+        '200':
+          description: User details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    put:
+      operationId: createOrReplaceUser
+      summary: Create or Replace User
+      description: Creates a new user or replaces an existing user.
+      tags:
+        - Security
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created
+        '200':
+          description: User replaced
+    delete:
+      operationId: deleteUser
+      summary: Delete User
+      description: Removes a user.
+      tags:
+        - Security
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Username
+      responses:
+        '200':
+          description: User deleted
+        '404':
+          description: User not found
+  /api/security/groups:
+    get:
+      operationId: listGroups
+      summary: List Groups
+      description: Returns a list of all groups.
+      tags:
+        - Security
+      responses:
+        '200':
+          description: Groups list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupSummary'
+  /api/security/groups/{groupName}:
+    get:
+      operationId: getGroup
+      summary: Get Group Details
+      description: Returns details for a specific group.
+      tags:
+        - Security
+      parameters:
+        - name: groupName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group name
+      responses:
+        '200':
+          description: Group details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+    put:
+      operationId: createOrReplaceGroup
+      summary: Create or Replace Group
+      description: Creates a new group or replaces an existing group.
+      tags:
+        - Security
+      parameters:
+        - name: groupName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          description: Group created
+        '200':
+          description: Group replaced
+    delete:
+      operationId: deleteGroup
+      summary: Delete Group
+      description: Removes a group.
+      tags:
+        - Security
+      parameters:
+        - name: groupName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Group name
+      responses:
+        '200':
+          description: Group deleted
+  /api/security/permissions:
+    get:
+      operationId: listPermissionTargets
+      summary: List Permission Targets
+      description: Returns a list of all permission targets.
+      tags:
+        - Security
+      responses:
+        '200':
+          description: Permission targets list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PermissionTargetSummary'
+  /api/security/permissions/{permissionTargetName}:
+    get:
+      operationId: getPermissionTarget
+      summary: Get Permission Target
+      description: Returns configuration details for a specific permission target.
+      tags:
+        - Security
+      parameters:
+        - name: permissionTargetName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Permission target name
+      responses:
+        '200':
+          description: Permission target details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionTarget'
+    put:
+      operationId: createOrReplacePermissionTarget
+      summary: Create or Replace Permission Target
+      description: Creates a new or replaces an existing permission target.
+      tags:
+        - Security
+      parameters:
+        - name: permissionTargetName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Permission target name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PermissionTarget'
+      responses:
+        '200':
+          description: Permission target created/replaced
+    delete:
+      operationId: deletePermissionTarget
+      summary: Delete Permission Target
+      description: Removes a permission target.
+      tags:
+        - Security
+      parameters:
+        - name: permissionTargetName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Permission target name
+      responses:
+        '200':
+          description: Permission target deleted
+  /api/security/token:
+    post:
+      operationId: createToken
+      summary: Create Access Token
+      description: Creates a new access token for authentication.
+      tags:
+        - Security
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The user to create the token for
+                scope:
+                  type: string
+                  description: The scope of the token
+                expires_in:
+                  type: integer
+                  description: Token expiry in seconds (0 for non-expiring)
+                refreshable:
+                  type: boolean
+                  description: Whether the token is refreshable
+      responses:
+        '200':
+          description: Token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+  /api/build:
+    get:
+      operationId: listBuilds
+      summary: List All Builds
+      description: Returns a list of all builds stored in Artifactory.
+      tags:
+        - Builds
+      responses:
+        '200':
+          description: Builds list retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildsList'
+  /api/build/{buildName}:
+    get:
+      operationId: getBuildRuns
+      summary: Get Build Runs
+      description: Returns all runs for a specific build.
+      tags:
+        - Builds
+      parameters:
+        - name: buildName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Build name
+      responses:
+        '200':
+          description: Build runs retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildRuns'
+  /api/build/{buildName}/{buildNumber}:
+    get:
+      operationId: getBuildInfo
+      summary: Get Build Information
+      description: Returns full build information for a specific build run.
+      tags:
+        - Builds
+      parameters:
+        - name: buildName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Build name
+        - name: buildNumber
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Build number
+      responses:
+        '200':
+          description: Build info retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildInfo'
+  /api/build/promote/{buildName}/{buildNumber}:
+    post:
+      operationId: promoteBuild
+      summary: Promote Build
+      description: Promotes a build by moving or copying artifacts to a target repository.
+      tags:
+        - Builds
+      parameters:
+        - name: buildName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Build name
+        - name: buildNumber
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Build number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildPromotion'
+      responses:
+        '200':
+          description: Build promoted successfully
+  /api/replications:
+    get:
+      operationId: listReplications
+      summary: List All Replications
+      description: Returns a list of all replication configurations.
+      tags:
+        - Replication
+      responses:
+        '200':
+          description: Replication list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReplicationConfig'
+  /api/replications/{repoKey}:
+    get:
+      operationId: getReplication
+      summary: Get Replication Configuration
+      description: Returns replication configuration for a specific repository.
+      tags:
+        - Replication
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      responses:
+        '200':
+          description: Replication config retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationConfig'
+    put:
+      operationId: createOrReplaceReplication
+      summary: Create or Replace Replication
+      description: Creates or replaces a replication configuration for a repository.
+      tags:
+        - Replication
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplicationConfig'
+      responses:
+        '200':
+          description: Replication config created/replaced
+    delete:
+      operationId: deleteReplication
+      summary: Delete Replication
+      description: Removes a replication configuration.
+      tags:
+        - Replication
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+      responses:
+        '200':
+          description: Replication config deleted
+  /api/storage/{repoKey}/{itemPath}?properties:
+    get:
+      operationId: getItemProperties
+      summary: Get Item Properties
+      description: Returns properties set on an artifact or folder.
+      tags:
+        - Properties
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+        - name: itemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Item path
+      responses:
+        '200':
+          description: Properties retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemProperties'
+    put:
+      operationId: setItemProperties
+      summary: Set Item Properties
+      description: Sets properties on an artifact or folder.
+      tags:
+        - Properties
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+        - name: itemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Item path
+        - name: properties
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 'Properties in format: key1=value1;key2=value2'
+        - name: recursive
+          in: query
+          schema:
+            type: integer
+            enum: [0, 1]
+            default: 0
+          description: Apply recursively to sub-paths
+      responses:
+        '204':
+          description: Properties set successfully
+    delete:
+      operationId: deleteItemProperties
+      summary: Delete Item Properties
+      description: Removes properties from an artifact or folder.
+      tags:
+        - Properties
+      parameters:
+        - name: repoKey
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Repository key
+        - name: itemPath
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Item path
+        - name: properties
+          in: query
+          required: true
+          schema:
+            type: string
+          description: 'Comma-separated list of property keys to remove'
+      responses:
+        '204':
+          description: Properties deleted
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-JFrog-Art-Api
+      description: API key authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    SystemVersion:
+      type: object
+      properties:
+        version:
+          type: string
+          example: "7.77.5"
+        revision:
+          type: string
+          example: "77700900"
+        addons:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
+          example: "Enterprise+"
+    LicenseInfo:
+      type: object
+      properties:
+        type:
+          type: string
+        validThrough:
+          type: string
+        licensedTo:
+          type: string
+    FileInfo:
+      type: object
+      properties:
+        repo:
+          type: string
+        path:
+          type: string
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+        downloadUri:
+          type: string
+          format: uri
+        mimeType:
+          type: string
+        size:
+          type: string
+        checksums:
+          $ref: '#/components/schemas/Checksums'
+        originalChecksums:
+          $ref: '#/components/schemas/Checksums'
+        uri:
+          type: string
+          format: uri
+    FolderInfo:
+      type: object
+      properties:
+        repo:
+          type: string
+        path:
+          type: string
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+        children:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              folder:
+                type: boolean
+        uri:
+          type: string
+          format: uri
+    Checksums:
+      type: object
+      properties:
+        sha1:
+          type: string
+        sha256:
+          type: string
+        md5:
+          type: string
+    StorageSummary:
+      type: object
+      properties:
+        binariesSummary:
+          type: object
+          properties:
+            binariesCount:
+              type: string
+            binariesSize:
+              type: string
+            artifactsSize:
+              type: string
+            optimization:
+              type: string
+            itemsCount:
+              type: string
+        fileStoreSummary:
+          type: object
+          properties:
+            storageType:
+              type: string
+            storageDirectory:
+              type: string
+            totalSpace:
+              type: string
+            usedSpace:
+              type: string
+            freeSpace:
+              type: string
+        repositoriesSummaryList:
+          type: array
+          items:
+            type: object
+            properties:
+              repoKey:
+                type: string
+              repoType:
+                type: string
+              foldersCount:
+                type: integer
+              filesCount:
+                type: integer
+              usedSpace:
+                type: string
+              itemsCount:
+                type: integer
+              packageType:
+                type: string
+              percentage:
+                type: string
+    DeployResponse:
+      type: object
+      properties:
+        repo:
+          type: string
+        path:
+          type: string
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        downloadUri:
+          type: string
+          format: uri
+        mimeType:
+          type: string
+        size:
+          type: integer
+        checksums:
+          $ref: '#/components/schemas/Checksums'
+        originalChecksums:
+          $ref: '#/components/schemas/Checksums'
+        uri:
+          type: string
+          format: uri
+    MoveOrCopyResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: string
+              message:
+                type: string
+    RepositoryListItem:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        packageType:
+          type: string
+    RepositoryConfiguration:
+      type: object
+      properties:
+        key:
+          type: string
+        rclass:
+          type: string
+          enum: [local, remote, virtual, federated]
+        packageType:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string
+        includesPattern:
+          type: string
+          default: "**/*"
+        excludesPattern:
+          type: string
+        repoLayoutRef:
+          type: string
+        handleReleases:
+          type: boolean
+        handleSnapshots:
+          type: boolean
+        maxUniqueSnapshots:
+          type: integer
+        suppressPomConsistencyChecks:
+          type: boolean
+        blackedOut:
+          type: boolean
+        propertySets:
+          type: array
+          items:
+            type: string
+        xrayIndex:
+          type: boolean
+      required:
+        - key
+        - rclass
+        - packageType
+    AqlSearchResult:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              repo:
+                type: string
+              path:
+                type: string
+              name:
+                type: string
+              type:
+                type: string
+              size:
+                type: integer
+              created:
+                type: string
+                format: date-time
+              modified:
+                type: string
+                format: date-time
+        range:
+          type: object
+          properties:
+            start_pos:
+              type: integer
+            end_pos:
+              type: integer
+            total:
+              type: integer
+    SearchResult:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+                format: uri
+    UserSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+        realm:
+          type: string
+        status:
+          type: string
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profileUpdatable:
+          type: boolean
+        disableUIAccess:
+          type: boolean
+        internalPasswordDisabled:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+        - email
+        - password
+    GroupSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        autoJoin:
+          type: boolean
+        adminPrivileges:
+          type: boolean
+        realm:
+          type: string
+        realmAttributes:
+          type: string
+        userNames:
+          type: array
+          items:
+            type: string
+      required:
+        - name
+    PermissionTargetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+    PermissionTarget:
+      type: object
+      properties:
+        name:
+          type: string
+        repo:
+          type: object
+          properties:
+            repositories:
+              type: array
+              items:
+                type: string
+            actions:
+              type: object
+              properties:
+                users:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+                groups:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+            includePatterns:
+              type: array
+              items:
+                type: string
+            excludePatterns:
+              type: array
+              items:
+                type: string
+        build:
+          type: object
+          properties:
+            repositories:
+              type: array
+              items:
+                type: string
+            actions:
+              type: object
+              properties:
+                users:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+                groups:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+        scope:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        refresh_token:
+          type: string
+    BuildsList:
+      type: object
+      properties:
+        builds:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              lastStarted:
+                type: string
+                format: date-time
+    BuildRuns:
+      type: object
+      properties:
+        uri:
+          type: string
+        buildsNumbers:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              started:
+                type: string
+                format: date-time
+    BuildInfo:
+      type: object
+      properties:
+        buildInfo:
+          type: object
+          properties:
+            version:
+              type: string
+            name:
+              type: string
+            number:
+              type: string
+            type:
+              type: string
+            buildAgent:
+              type: object
+              properties:
+                name:
+                  type: string
+                version:
+                  type: string
+            agent:
+              type: object
+              properties:
+                name:
+                  type: string
+                version:
+                  type: string
+            started:
+              type: string
+              format: date-time
+            durationMillis:
+              type: integer
+            modules:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  artifacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        sha1:
+                          type: string
+                        sha256:
+                          type: string
+                        md5:
+                          type: string
+                        name:
+                          type: string
+    BuildPromotion:
+      type: object
+      properties:
+        status:
+          type: string
+        comment:
+          type: string
+        ciUser:
+          type: string
+        timestamp:
+          type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        sourceRepo:
+          type: string
+        targetRepo:
+          type: string
+        copy:
+          type: boolean
+        artifacts:
+          type: boolean
+        dependencies:
+          type: boolean
+        failFast:
+          type: boolean
+      required:
+        - targetRepo
+    ReplicationConfig:
+      type: object
+      properties:
+        repoKey:
+          type: string
+        url:
+          type: string
+          format: uri
+        socketTimeoutMillis:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+        enableEventReplication:
+          type: boolean
+        enabled:
+          type: boolean
+        cronExp:
+          type: string
+        syncDeletes:
+          type: boolean
+        syncProperties:
+          type: boolean
+        syncStatistics:
+          type: boolean
+        pathPrefix:
+          type: string
+    ItemProperties:
+      type: object
+      properties:
+        properties:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        uri:
+          type: string
+          format: uri

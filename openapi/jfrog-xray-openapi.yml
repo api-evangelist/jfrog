@@ -1,0 +1,1023 @@
+openapi: 3.1.0
+info:
+  title: JFrog Xray REST API
+  description: >-
+    API for vulnerability scanning, license compliance, and impact analysis.
+    JFrog Xray provides universal software composition analysis (SCA) that
+    natively integrates with Artifactory to scan artifacts for known
+    vulnerabilities, license compliance violations, and operational risks.
+  version: 3.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+externalDocs:
+  description: JFrog Xray REST API Documentation
+  url: https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API
+servers:
+  - url: https://{server}.jfrog.io/xray/api
+    description: JFrog Cloud
+    variables:
+      server:
+        default: myserver
+        description: Your JFrog server name
+  - url: https://{host}/xray/api
+    description: Self-hosted JFrog instance
+    variables:
+      host:
+        default: localhost:8082
+        description: Your self-hosted JFrog server host
+security:
+  - bearerAuth: []
+  - basicAuth: []
+tags:
+  - name: System
+    description: Xray system information and health
+  - name: Components
+    description: Component details and vulnerability information
+  - name: Scanning
+    description: On-demand scanning operations
+  - name: Watches
+    description: Watch policies for monitoring artifacts
+  - name: Policies
+    description: Security and license compliance policies
+  - name: Violations
+    description: Policy violations management
+  - name: Reports
+    description: Vulnerability and compliance reports
+  - name: Ignore Rules
+    description: Rules for ignoring specific vulnerabilities
+  - name: Summary
+    description: Artifact and build vulnerability summaries
+paths:
+  /v1/system/ping:
+    get:
+      operationId: systemPing
+      summary: System Ping
+      description: Returns a simple ping response indicating Xray is accessible.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Xray is accessible
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: pong
+  /v1/system/version:
+    get:
+      operationId: getSystemVersion
+      summary: Get System Version
+      description: Returns the Xray version and revision information.
+      tags:
+        - System
+      responses:
+        '200':
+          description: Version info retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  xray_version:
+                    type: string
+                  xray_revision:
+                    type: string
+  /v1/component:
+    post:
+      operationId: getComponentDetails
+      summary: Get Component Details
+      description: Returns vulnerability and license information for specified components.
+      tags:
+        - Components
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                component_details:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      component_id:
+                        type: string
+                        description: 'Component ID in format type://name:version'
+                        example: 'npm://lodash:4.17.21'
+              required:
+                - component_details
+      responses:
+        '200':
+          description: Component details retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComponentDetail'
+  /v1/summary/artifact:
+    post:
+      operationId: getArtifactSummary
+      summary: Get Artifact Summary
+      description: Returns a summary of security issues and license information for specified artifacts.
+      tags:
+        - Summary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                paths:
+                  type: array
+                  items:
+                    type: string
+                  description: List of artifact paths in Artifactory
+              required:
+                - paths
+      responses:
+        '200':
+          description: Artifact summary retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtifactSummary'
+  /v1/summary/build:
+    post:
+      operationId: getBuildSummary
+      summary: Get Build Summary
+      description: Returns a summary of security issues for specified build.
+      tags:
+        - Summary
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                build_name:
+                  type: string
+                build_number:
+                  type: string
+              required:
+                - build_name
+                - build_number
+      responses:
+        '200':
+          description: Build summary retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildSummary'
+  /v2/ci/scan:
+    post:
+      operationId: scanBuild
+      summary: Scan Build (v2)
+      description: Triggers an on-demand scan for a build.
+      tags:
+        - Scanning
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                buildName:
+                  type: string
+                buildNumber:
+                  type: string
+                rescan:
+                  type: boolean
+                  default: false
+              required:
+                - buildName
+                - buildNumber
+      responses:
+        '200':
+          description: Scan initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+  /v1/scanArtifact:
+    post:
+      operationId: scanArtifact
+      summary: Scan Artifact
+      description: Triggers a scan for a specific artifact by its component ID.
+      tags:
+        - Scanning
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                componentID:
+                  type: string
+                  description: 'Component identifier in package type format'
+      responses:
+        '200':
+          description: Scan initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+  /v2/watches:
+    get:
+      operationId: listWatches
+      summary: List Watches
+      description: Returns a list of all configured watches.
+      tags:
+        - Watches
+      responses:
+        '200':
+          description: Watches list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Watch'
+    post:
+      operationId: createWatch
+      summary: Create Watch
+      description: Creates a new watch for monitoring artifacts.
+      tags:
+        - Watches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watch'
+      responses:
+        '201':
+          description: Watch created
+        '400':
+          description: Invalid watch configuration
+  /v2/watches/{watchName}:
+    get:
+      operationId: getWatch
+      summary: Get Watch
+      description: Returns configuration for a specific watch.
+      tags:
+        - Watches
+      parameters:
+        - name: watchName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Watch name
+      responses:
+        '200':
+          description: Watch details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watch'
+    put:
+      operationId: updateWatch
+      summary: Update Watch
+      description: Updates an existing watch configuration.
+      tags:
+        - Watches
+      parameters:
+        - name: watchName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Watch name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watch'
+      responses:
+        '200':
+          description: Watch updated
+    delete:
+      operationId: deleteWatch
+      summary: Delete Watch
+      description: Removes a watch configuration.
+      tags:
+        - Watches
+      parameters:
+        - name: watchName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Watch name
+      responses:
+        '200':
+          description: Watch deleted
+  /v2/policies:
+    get:
+      operationId: listPolicies
+      summary: List Policies
+      description: Returns a list of all security and license policies.
+      tags:
+        - Policies
+      responses:
+        '200':
+          description: Policies list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Policy'
+    post:
+      operationId: createPolicy
+      summary: Create Policy
+      description: Creates a new security or license compliance policy.
+      tags:
+        - Policies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '201':
+          description: Policy created
+        '400':
+          description: Invalid policy configuration
+  /v2/policies/{policyName}:
+    get:
+      operationId: getPolicy
+      summary: Get Policy
+      description: Returns details of a specific policy.
+      tags:
+        - Policies
+      parameters:
+        - name: policyName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Policy name
+      responses:
+        '200':
+          description: Policy details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Policy'
+    put:
+      operationId: updatePolicy
+      summary: Update Policy
+      description: Updates an existing policy.
+      tags:
+        - Policies
+      parameters:
+        - name: policyName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Policy name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '200':
+          description: Policy updated
+    delete:
+      operationId: deletePolicy
+      summary: Delete Policy
+      description: Removes a policy.
+      tags:
+        - Policies
+      parameters:
+        - name: policyName
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Policy name
+      responses:
+        '200':
+          description: Policy deleted
+  /v1/violations:
+    post:
+      operationId: getViolations
+      summary: Get Violations
+      description: Returns violations based on specified filters.
+      tags:
+        - Violations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum: [security, license, operational_risk]
+                    watch_name:
+                      type: string
+                    min_severity:
+                      type: string
+                      enum: [Low, Medium, High, Critical]
+                    created_from:
+                      type: string
+                      format: date-time
+                pagination:
+                  type: object
+                  properties:
+                    order_by:
+                      type: string
+                    limit:
+                      type: integer
+                    offset:
+                      type: integer
+      responses:
+        '200':
+          description: Violations retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViolationsResponse'
+  /v1/report/vulnerabilities:
+    post:
+      operationId: generateVulnerabilityReport
+      summary: Generate Vulnerability Report
+      description: Generates a vulnerability report for specified scope.
+      tags:
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                resources:
+                  type: object
+                  properties:
+                    repositories:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                filters:
+                  type: object
+                  properties:
+                    severity:
+                      type: array
+                      items:
+                        type: string
+                    has_remediation:
+                      type: boolean
+              required:
+                - name
+                - resources
+      responses:
+        '200':
+          description: Report generation started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  report_id:
+                    type: integer
+                  status:
+                    type: string
+  /v1/report/{reportId}:
+    get:
+      operationId: getReportStatus
+      summary: Get Report Status
+      description: Returns the status and details of a report.
+      tags:
+        - Reports
+      parameters:
+        - name: reportId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Report ID
+      responses:
+        '200':
+          description: Report status retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  name:
+                    type: string
+                  status:
+                    type: string
+                    enum: [pending, running, completed, failed]
+    delete:
+      operationId: deleteReport
+      summary: Delete Report
+      description: Deletes a generated report.
+      tags:
+        - Reports
+      parameters:
+        - name: reportId
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Report ID
+      responses:
+        '200':
+          description: Report deleted
+  /v1/ignore_rules:
+    get:
+      operationId: listIgnoreRules
+      summary: List Ignore Rules
+      description: Returns all ignore rules configured in Xray.
+      tags:
+        - Ignore Rules
+      responses:
+        '200':
+          description: Ignore rules retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IgnoreRule'
+    post:
+      operationId: createIgnoreRule
+      summary: Create Ignore Rule
+      description: Creates a new ignore rule for a specific vulnerability or license.
+      tags:
+        - Ignore Rules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IgnoreRule'
+      responses:
+        '201':
+          description: Ignore rule created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+  /v1/ignore_rules/{ruleId}:
+    get:
+      operationId: getIgnoreRule
+      summary: Get Ignore Rule
+      description: Returns a specific ignore rule.
+      tags:
+        - Ignore Rules
+      parameters:
+        - name: ruleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Ignore rule ID
+      responses:
+        '200':
+          description: Ignore rule retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IgnoreRule'
+    delete:
+      operationId: deleteIgnoreRule
+      summary: Delete Ignore Rule
+      description: Deletes an ignore rule.
+      tags:
+        - Ignore Rules
+      parameters:
+        - name: ruleId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Ignore rule ID
+      responses:
+        '200':
+          description: Ignore rule deleted
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+  schemas:
+    ComponentDetail:
+      type: object
+      properties:
+        component_id:
+          type: string
+        component_name:
+          type: string
+        package_type:
+          type: string
+        version:
+          type: string
+        licenses:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              full_name:
+                type: string
+              more_info_url:
+                type: array
+                items:
+                  type: string
+                  format: uri
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+    Vulnerability:
+      type: object
+      properties:
+        cve:
+          type: string
+        severity:
+          type: string
+          enum: [Low, Medium, High, Critical]
+        cvss_v2_score:
+          type: string
+        cvss_v3_score:
+          type: string
+        summary:
+          type: string
+        description:
+          type: string
+        fixed_versions:
+          type: array
+          items:
+            type: string
+        references:
+          type: array
+          items:
+            type: string
+            format: uri
+        published:
+          type: string
+          format: date-time
+    ArtifactSummary:
+      type: object
+      properties:
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              general:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  path:
+                    type: string
+                  sha256:
+                    type: string
+                  component_id:
+                    type: string
+              issues:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Issue'
+              licenses:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    full_name:
+                      type: string
+                    components:
+                      type: array
+                      items:
+                        type: string
+    BuildSummary:
+      type: object
+      properties:
+        build:
+          type: object
+          properties:
+            build_name:
+              type: string
+            build_number:
+              type: string
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/Issue'
+    Issue:
+      type: object
+      properties:
+        issue_id:
+          type: string
+        severity:
+          type: string
+          enum: [Low, Medium, High, Critical]
+        summary:
+          type: string
+        description:
+          type: string
+        issue_type:
+          type: string
+        provider:
+          type: string
+        cves:
+          type: array
+          items:
+            type: object
+            properties:
+              cve:
+                type: string
+              cvss_v2_score:
+                type: string
+              cvss_v3_score:
+                type: string
+        created:
+          type: string
+          format: date-time
+        impacted_artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              display_name:
+                type: string
+              path:
+                type: string
+              sha256:
+                type: string
+    Watch:
+      type: object
+      properties:
+        general_data:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            active:
+              type: boolean
+        project_resources:
+          type: object
+          properties:
+            resources:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum: [repository, build, all-repos, all-builds]
+                  name:
+                    type: string
+                  bin_mgr_id:
+                    type: string
+                  filters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum: [regex, package-type, path-regex, mime-type]
+                        value:
+                          type: string
+        assigned_policies:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum: [security, license, operational_risk]
+      required:
+        - general_data
+        - project_resources
+        - assigned_policies
+    Policy:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+          enum: [security, license, operational_risk]
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              priority:
+                type: integer
+              criteria:
+                type: object
+                properties:
+                  min_severity:
+                    type: string
+                    enum: [Low, Medium, High, Critical]
+                  cvss_range:
+                    type: object
+                    properties:
+                      from:
+                        type: number
+                      to:
+                        type: number
+                  allow_unknown:
+                    type: boolean
+                  banned_licenses:
+                    type: array
+                    items:
+                      type: string
+                  allowed_licenses:
+                    type: array
+                    items:
+                      type: string
+              actions:
+                type: object
+                properties:
+                  webhooks:
+                    type: array
+                    items:
+                      type: string
+                  mails:
+                    type: array
+                    items:
+                      type: string
+                  block_download:
+                    type: object
+                    properties:
+                      unscanned:
+                        type: boolean
+                      active:
+                        type: boolean
+                  block_release_bundle_distribution:
+                    type: boolean
+                  fail_build:
+                    type: boolean
+                  notify_deployer:
+                    type: boolean
+                  notify_watch_recipients:
+                    type: boolean
+                  create_ticket_enabled:
+                    type: boolean
+      required:
+        - name
+        - type
+        - rules
+    ViolationsResponse:
+      type: object
+      properties:
+        total_violations:
+          type: integer
+        violations:
+          type: array
+          items:
+            type: object
+            properties:
+              violation_type:
+                type: string
+              severity:
+                type: string
+              watch_name:
+                type: string
+              description:
+                type: string
+              matched_policies:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    policy:
+                      type: string
+                    rule:
+                      type: string
+              created:
+                type: string
+                format: date-time
+              impacted_artifacts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    display_name:
+                      type: string
+                    path:
+                      type: string
+    IgnoreRule:
+      type: object
+      properties:
+        id:
+          type: string
+        notes:
+          type: string
+        expiration_date:
+          type: string
+          format: date-time
+        vulnerabilities:
+          type: array
+          items:
+            type: object
+            properties:
+              cve:
+                type: string
+        cves:
+          type: array
+          items:
+            type: object
+            properties:
+              cve:
+                type: string
+        licenses:
+          type: array
+          items:
+            type: string
+        watches:
+          type: array
+          items:
+            type: string
+        policies:
+          type: array
+          items:
+            type: string
+        component:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+        artifact:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+            path:
+              type: string

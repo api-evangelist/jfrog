@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://jfrog.com/schemas/release-bundle",
+  "title": "JFrog Release Bundle",
+  "description": "Represents a release bundle in the JFrog Platform, which is an immutable, signed collection of artifacts that can be promoted through environments and distributed to edge nodes for reliable software delivery.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Release bundle name",
+      "examples": [
+        "my-app-release"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Release bundle version",
+      "examples": [
+        "1.0.0",
+        "2025.01.15"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the release bundle",
+      "enum": [
+        "OPEN",
+        "SIGNED",
+        "STORED",
+        "READY_FOR_DISTRIBUTION",
+        "CREATED",
+        "PROMOTED",
+        "DISTRIBUTED"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the release bundle"
+    },
+    "release_notes": {
+      "type": "object",
+      "description": "Release notes content",
+      "properties": {
+        "syntax": {
+          "type": "string",
+          "description": "Format of the release notes content",
+          "enum": [
+            "plain_text",
+            "markdown",
+            "asciidoc"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "description": "Release notes text"
+        }
+      }
+    },
+    "source_type": {
+      "type": "string",
+      "description": "Type of source used to create the release bundle",
+      "enum": [
+        "artifacts",
+        "builds",
+        "release_bundles",
+        "aql"
+      ]
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Creation timestamp"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "User who created the release bundle"
+    },
+    "artifacts": {
+      "type": "array",
+      "description": "Artifacts included in the release bundle",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_repo_path": {
+            "type": "string",
+            "description": "Original repository path"
+          },
+          "target_repo_path": {
+            "type": "string",
+            "description": "Target repository path for distribution"
+          },
+          "sha256": {
+            "type": "string",
+            "description": "SHA-256 checksum"
+          },
+          "size": {
+            "type": "integer",
+            "description": "Artifact size in bytes"
+          },
+          "props": {
+            "type": "array",
+            "description": "Properties attached to the artifact",
+            "items": {
+              "type": "object",
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "values": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "current_environment": {
+      "type": "string",
+      "description": "Current promotion environment",
+      "examples": [
+        "DEV",
+        "STAGING",
+        "PROD"
+      ]
+    },
+    "promotion_history": {
+      "type": "array",
+      "description": "History of environment promotions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "type": "string"
+          },
+          "promoted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "promoted_by": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "COMPLETED",
+              "IN_PROGRESS",
+              "FAILED"
+            ]
+          }
+        }
+      }
+    },
+    "distribution_status": {
+      "type": "object",
+      "description": "Distribution status to edge nodes",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "Not distributed",
+            "In progress",
+            "Completed",
+            "Failed"
+          ]
+        },
+        "sites": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "site_name": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "distributed_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "description": "Evidence and attestations attached to this release",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "evidence_type": {
+            "type": "string",
+            "enum": [
+              "test_results",
+              "approval",
+              "scan_results",
+              "build_info",
+              "custom"
+            ]
+          },
+          "description": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "created_by": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "version"
+  ]
+}
