@@ -28,14 +28,14 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: Models
-    description: ML model registry and management
-  - name: Model Versions
-    description: Model version management
-  - name: Experiments
-    description: ML experiment tracking
   - name: Deployments
     description: Model deployment and serving
+  - name: Experiments
+    description: ML experiment tracking
+  - name: Model Versions
+    description: Model version management
+  - name: Models
+    description: ML model registry and management
 paths:
   /v1/models:
     get:

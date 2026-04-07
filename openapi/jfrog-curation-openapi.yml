@@ -34,10 +34,10 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: Policies
-    description: Curation policy management
   - name: Audit
     description: Curation audit and activity logs
+  - name: Policies
+    description: Curation policy management
 paths:
   /v1/policies:
     get:

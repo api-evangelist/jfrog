@@ -34,10 +34,10 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: Workers
-    description: Worker lifecycle management
   - name: Execution
     description: Worker testing and execution
+  - name: Workers
+    description: Worker lifecycle management
 paths:
   /v1/workers:
     get:

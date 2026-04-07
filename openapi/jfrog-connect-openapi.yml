@@ -23,16 +23,16 @@ servers:
 security:
   - apiKeyAuth: []
 tags:
-  - name: Projects
-    description: Project management
-  - name: Devices
-    description: Device management and monitoring
-  - name: Updates
-    description: OTA software update deployments
-  - name: Device Groups
-    description: Logical grouping of devices
   - name: Commands
     description: Remote command execution on devices
+  - name: Device Groups
+    description: Logical grouping of devices
+  - name: Devices
+    description: Device management and monitoring
+  - name: Projects
+    description: Project management
+  - name: Updates
+    description: OTA software update deployments
 paths:
   /projects:
     get:

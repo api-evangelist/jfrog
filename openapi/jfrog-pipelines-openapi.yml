@@ -33,8 +33,10 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: System
-    description: Pipelines system information
+  - name: Integrations
+    description: External service integrations
+  - name: Node Pools
+    description: Build node pool management
   - name: Pipeline Sources
     description: Manage pipeline source configurations
   - name: Pipelines
@@ -43,10 +45,8 @@ tags:
     description: Pipeline run execution and monitoring
   - name: Steps
     description: Pipeline step execution details
-  - name: Integrations
-    description: External service integrations
-  - name: Node Pools
-    description: Build node pool management
+  - name: System
+    description: Pipelines system information
 paths:
   /v1/system/info:
     get:

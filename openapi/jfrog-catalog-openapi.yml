@@ -37,10 +37,10 @@ security:
 tags:
   - name: GraphQL
     description: GraphQL query interface for package and CVE data
-  - name: Packages
-    description: Package metadata search and retrieval
   - name: Labels
     description: Custom label management for packages
+  - name: Packages
+    description: Package metadata search and retrieval
 paths:
   /custom/graphql:
     post:

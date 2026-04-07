@@ -34,10 +34,6 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: Tokens
-    description: Access token creation, management, and revocation
-  - name: Users
-    description: Platform user management
   - name: Groups
     description: User group management
   - name: Permissions
@@ -46,6 +42,10 @@ tags:
     description: Project administration
   - name: System
     description: Access service system information
+  - name: Tokens
+    description: Access token creation, management, and revocation
+  - name: Users
+    description: Platform user management
 paths:
   /api/v1/system/ping:
     get:

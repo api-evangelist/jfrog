@@ -34,14 +34,14 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: System
-    description: System health and version information
   - name: JPDs
     description: JFrog Platform Deployment management
   - name: Licenses
     description: License management across instances
   - name: Scripts
     description: Remote execution scripts
+  - name: System
+    description: System health and version information
 paths:
   /v1/system/ping:
     get:

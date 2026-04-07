@@ -36,22 +36,22 @@ security:
   - apiKeyAuth: []
   - basicAuth: []
 tags:
-  - name: System & Configuration
-    description: System health, configuration, and version information
-  - name: Repositories
-    description: Create, read, update, and delete repositories
   - name: Artifacts & Storage
     description: Deploy, retrieve, copy, move, and delete artifacts
+  - name: Builds
+    description: Build information and promotion
+  - name: Properties
+    description: Set, update, and delete artifact properties
+  - name: Replication
+    description: Push and pull replication configuration
+  - name: Repositories
+    description: Create, read, update, and delete repositories
   - name: Searches
     description: Search for artifacts using various criteria
   - name: Security
     description: Users, groups, permissions, and access tokens
-  - name: Builds
-    description: Build information and promotion
-  - name: Replication
-    description: Push and pull replication configuration
-  - name: Properties
-    description: Set, update, and delete artifact properties
+  - name: System & Configuration
+    description: System health, configuration, and version information
 paths:
   /api/system/ping:
     get:

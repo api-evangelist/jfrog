@@ -33,18 +33,18 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: System
-    description: Platform system health and configuration
   - name: Access Tokens
     description: Token creation and management
-  - name: Users
-    description: Platform user management
   - name: Groups
     description: Group management
-  - name: Projects
-    description: Project management
   - name: Permissions
     description: Permission management
+  - name: Projects
+    description: Project management
+  - name: System
+    description: Platform system health and configuration
+  - name: Users
+    description: Platform user management
   - name: Webhooks
     description: Webhook configuration
 paths:

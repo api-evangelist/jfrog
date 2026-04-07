@@ -34,12 +34,12 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: System
-    description: Distribution system health and information
-  - name: Release Bundles v1
-    description: Create and manage release bundles (v1)
   - name: Distribution
     description: Distribute release bundles to edge nodes
+  - name: Release Bundles V1
+    description: Create and manage release bundles (v1)
+  - name: System
+    description: Distribution system health and information
 paths:
   /v1/system/ping:
     get:
@@ -64,7 +64,7 @@ paths:
       summary: JFrog List Release Bundles
       description: Returns a list of all release bundles.
       tags:
-        - Release Bundles v1
+        - Release Bundles V1
       responses:
         '200':
           description: Release bundles list retrieved
@@ -89,7 +89,7 @@ paths:
       summary: JFrog Create Release Bundle
       description: Creates a new release bundle with specified artifacts.
       tags:
-        - Release Bundles v1
+        - Release Bundles V1
       requestBody:
         required: true
         content:
@@ -111,7 +111,7 @@ paths:
       summary: JFrog Get Release Bundle
       description: Returns details for a specific release bundle version.
       tags:
-        - Release Bundles v1
+        - Release Bundles V1
       parameters:
         - name: name
           in: path
@@ -139,7 +139,7 @@ paths:
       summary: JFrog Update Release Bundle
       description: Updates an existing release bundle.
       tags:
-        - Release Bundles v1
+        - Release Bundles V1
       parameters:
         - name: name
           in: path
@@ -167,7 +167,7 @@ paths:
       summary: JFrog Delete Release Bundle
       description: Deletes a release bundle version.
       tags:
-        - Release Bundles v1
+        - Release Bundles V1
       parameters:
         - name: name
           in: path
@@ -190,7 +190,7 @@ paths:
       summary: JFrog Sign Release Bundle
       description: Signs a release bundle, making it immutable and ready for distribution.
       tags:
-        - Release Bundles v1
+        - Release Bundles V1
       parameters:
         - name: name
           in: path

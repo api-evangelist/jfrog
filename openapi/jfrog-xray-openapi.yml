@@ -34,24 +34,24 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: System
-    description: Xray system information and health
   - name: Components
     description: Component details and vulnerability information
-  - name: Scanning
-    description: On-demand scanning operations
-  - name: Watches
-    description: Watch policies for monitoring artifacts
-  - name: Policies
-    description: Security and license compliance policies
-  - name: Violations
-    description: Policy violations management
-  - name: Reports
-    description: Vulnerability and compliance reports
   - name: Ignore Rules
     description: Rules for ignoring specific vulnerabilities
+  - name: Policies
+    description: Security and license compliance policies
+  - name: Reports
+    description: Vulnerability and compliance reports
+  - name: Scanning
+    description: On-demand scanning operations
   - name: Summary
     description: Artifact and build vulnerability summaries
+  - name: System
+    description: Xray system information and health
+  - name: Violations
+    description: Policy violations management
+  - name: Watches
+    description: Watch policies for monitoring artifacts
 paths:
   /v1/system/ping:
     get:

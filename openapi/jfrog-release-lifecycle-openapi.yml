@@ -34,14 +34,14 @@ security:
   - bearerAuth: []
   - basicAuth: []
 tags:
-  - name: Release Bundles v2
-    description: Create and manage release bundles v2
-  - name: Promotion
-    description: Promote release bundles through environments
-  - name: Evidence
-    description: Collect and manage release evidence and attestations
   - name: Distribution
     description: Distribute release bundles to edge nodes
+  - name: Evidence
+    description: Collect and manage release evidence and attestations
+  - name: Promotion
+    description: Promote release bundles through environments
+  - name: Release Bundles V2
+    description: Create and manage release bundles v2
 paths:
   /v2/release_bundle:
     post:
@@ -49,7 +49,7 @@ paths:
       summary: JFrog Create Release Bundle v2
       description: Creates a new release bundle version 2 from specified artifacts.
       tags:
-        - Release Bundles v2
+        - Release Bundles V2
       requestBody:
         required: true
         content:
@@ -71,7 +71,7 @@ paths:
       summary: JFrog List Release Bundles v2
       description: Returns a list of all release bundle v2 records.
       tags:
-        - Release Bundles v2
+        - Release Bundles V2
       parameters:
         - name: name
           in: query
@@ -107,7 +107,7 @@ paths:
       summary: JFrog Get Release Bundle v2
       description: Returns details for a specific release bundle version.
       tags:
-        - Release Bundles v2
+        - Release Bundles V2
       parameters:
         - name: name
           in: path
@@ -133,7 +133,7 @@ paths:
       summary: JFrog Delete Release Bundle v2
       description: Deletes a release bundle version.
       tags:
-        - Release Bundles v2
+        - Release Bundles V2
       parameters:
         - name: name
           in: path
