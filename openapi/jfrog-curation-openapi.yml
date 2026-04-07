@@ -42,7 +42,7 @@ paths:
   /v1/policies:
     get:
       operationId: listPolicies
-      summary: List Curation Policies
+      summary: JFrog List Curation Policies
       description: Returns a list of all curation policies.
       tags:
         - Policies
@@ -60,7 +60,7 @@ paths:
                       $ref: '#/components/schemas/CurationPolicy'
     post:
       operationId: createPolicy
-      summary: Create Curation Policy
+      summary: JFrog Create Curation Policy
       description: Creates a new curation policy for blocking or allowing packages.
       tags:
         - Policies
@@ -82,7 +82,7 @@ paths:
   /v1/policies/{policyName}:
     get:
       operationId: getPolicy
-      summary: Get Curation Policy
+      summary: JFrog Get Curation Policy
       description: Returns details for a specific curation policy.
       tags:
         - Policies
@@ -104,7 +104,7 @@ paths:
           description: Policy not found
     put:
       operationId: updatePolicy
-      summary: Update Curation Policy
+      summary: JFrog Update Curation Policy
       description: Updates an existing curation policy.
       tags:
         - Policies
@@ -126,7 +126,7 @@ paths:
           description: Policy updated
     delete:
       operationId: deletePolicy
-      summary: Delete Curation Policy
+      summary: JFrog Delete Curation Policy
       description: Deletes a curation policy.
       tags:
         - Policies
@@ -143,7 +143,7 @@ paths:
   /v1/audit:
     get:
       operationId: getAuditLog
-      summary: Get Curation Audit Log
+      summary: JFrog Get Curation Audit Log
       description: Returns the curation audit log showing blocked and allowed packages.
       tags:
         - Audit

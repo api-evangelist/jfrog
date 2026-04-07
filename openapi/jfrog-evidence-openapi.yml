@@ -42,7 +42,7 @@ paths:
   /v1/evidence:
     post:
       operationId: createEvidence
-      summary: Create Evidence
+      summary: JFrog Create Evidence
       description: >-
         Creates a new evidence attestation and attaches it to a subject (artifact,
         build, package, or release bundle). The evidence is signed as an in-toto
@@ -73,7 +73,7 @@ paths:
   /v1/evidence/search:
     post:
       operationId: searchEvidence
-      summary: Search Evidence
+      summary: JFrog Search Evidence
       description: >-
         Searches for evidence records matching specified criteria. Supports
         filtering by subject type, subject identifier, evidence type, and
@@ -105,7 +105,7 @@ paths:
   /v1/evidence/{evidenceId}:
     get:
       operationId: getEvidence
-      summary: Get Evidence
+      summary: JFrog Get Evidence
       description: Returns details for a specific evidence record, including its DSSE envelope and verification status.
       tags:
         - Evidence
@@ -127,7 +127,7 @@ paths:
           description: Evidence not found
     delete:
       operationId: deleteEvidence
-      summary: Delete Evidence
+      summary: JFrog Delete Evidence
       description: Removes an evidence record from the platform.
       tags:
         - Evidence
@@ -146,7 +146,7 @@ paths:
   /v1/evidence/subject/artifact:
     get:
       operationId: getArtifactEvidence
-      summary: Get Artifact Evidence
+      summary: JFrog Get Artifact Evidence
       description: Returns all evidence records attached to a specific artifact identified by repository path and SHA-256.
       tags:
         - Evidence
@@ -179,7 +179,7 @@ paths:
   /v1/evidence/subject/build:
     get:
       operationId: getBuildEvidence
-      summary: Get Build Evidence
+      summary: JFrog Get Build Evidence
       description: Returns all evidence records attached to a specific build.
       tags:
         - Evidence
@@ -218,7 +218,7 @@ paths:
   /v1/evidence/subject/release-bundle:
     get:
       operationId: getReleaseBundleEvidence
-      summary: Get Release Bundle Evidence
+      summary: JFrog Get Release Bundle Evidence
       description: Returns all evidence records attached to a specific release bundle version.
       tags:
         - Evidence
@@ -257,7 +257,7 @@ paths:
   /v1/evidence/subject/package:
     get:
       operationId: getPackageEvidence
-      summary: Get Package Evidence
+      summary: JFrog Get Package Evidence
       description: Returns all evidence records attached to a specific package.
       tags:
         - Evidence
@@ -297,7 +297,7 @@ paths:
   /v1/evidence/{evidenceId}/verify:
     get:
       operationId: verifyEvidence
-      summary: Verify Evidence
+      summary: JFrog Verify Evidence
       description: >-
         Verifies the cryptographic signature of an evidence record against
         registered public keys. Returns the verification status and details.

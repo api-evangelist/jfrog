@@ -50,7 +50,7 @@ paths:
   /api/v1/system/ping:
     get:
       operationId: systemPing
-      summary: System Ping
+      summary: JFrog System Ping
       description: Returns a simple health check response indicating the Access service is operational.
       tags:
         - System
@@ -65,7 +65,7 @@ paths:
   /api/v1/system/version:
     get:
       operationId: getSystemVersion
-      summary: Get System Version
+      summary: JFrog Get System Version
       description: Returns the Access service version and revision information.
       tags:
         - System
@@ -84,7 +84,7 @@ paths:
   /api/v2/tokens:
     get:
       operationId: listTokens
-      summary: List Access Tokens
+      summary: JFrog List Access Tokens
       description: >-
         Returns a list of all access tokens. Admin users see all tokens while
         non-admin users see only their own tokens.
@@ -117,7 +117,7 @@ paths:
           description: Unauthorized
     post:
       operationId: createToken
-      summary: Create Access Token
+      summary: JFrog Create Access Token
       description: >-
         Creates a new scoped access token. Tokens can be scoped to specific
         resources, groups, and permissions. Supports creating user tokens,
@@ -144,7 +144,7 @@ paths:
   /api/v2/tokens/{tokenId}:
     get:
       operationId: getToken
-      summary: Get Token Details
+      summary: JFrog Get Token Details
       description: Returns metadata for a specific access token, not including the token value itself.
       tags:
         - Tokens
@@ -166,7 +166,7 @@ paths:
           description: Token not found
     delete:
       operationId: revokeToken
-      summary: Revoke Access Token
+      summary: JFrog Revoke Access Token
       description: Revokes an existing access token, immediately invalidating it across all services.
       tags:
         - Tokens
@@ -185,7 +185,7 @@ paths:
   /api/v2/users:
     get:
       operationId: listUsers
-      summary: List Users
+      summary: JFrog List Users
       description: Returns a list of all platform users managed by the Access service.
       tags:
         - Users
@@ -221,7 +221,7 @@ paths:
                       $ref: '#/components/schemas/User'
     post:
       operationId: createUser
-      summary: Create User
+      summary: JFrog Create User
       description: Creates a new platform user in the Access service identity store.
       tags:
         - Users
@@ -245,7 +245,7 @@ paths:
   /api/v2/users/{username}:
     get:
       operationId: getUser
-      summary: Get User
+      summary: JFrog Get User
       description: Returns details for a specific user identified by username.
       tags:
         - Users
@@ -267,7 +267,7 @@ paths:
           description: User not found
     patch:
       operationId: updateUser
-      summary: Update User
+      summary: JFrog Update User
       description: Updates properties of an existing user. Only provided fields are updated.
       tags:
         - Users
@@ -291,7 +291,7 @@ paths:
           description: User not found
     delete:
       operationId: deleteUser
-      summary: Delete User
+      summary: JFrog Delete User
       description: Permanently deletes a user from the platform.
       tags:
         - Users
@@ -310,7 +310,7 @@ paths:
   /api/v2/groups:
     get:
       operationId: listGroups
-      summary: List Groups
+      summary: JFrog List Groups
       description: Returns a list of all groups configured in the Access service.
       tags:
         - Groups
@@ -328,7 +328,7 @@ paths:
                       $ref: '#/components/schemas/Group'
     post:
       operationId: createGroup
-      summary: Create Group
+      summary: JFrog Create Group
       description: Creates a new group in the Access service for organizing users and assigning permissions.
       tags:
         - Groups
@@ -348,7 +348,7 @@ paths:
   /api/v2/groups/{groupName}:
     get:
       operationId: getGroup
-      summary: Get Group
+      summary: JFrog Get Group
       description: Returns details for a specific group, including its members.
       tags:
         - Groups
@@ -370,7 +370,7 @@ paths:
           description: Group not found
     patch:
       operationId: updateGroup
-      summary: Update Group
+      summary: JFrog Update Group
       description: Updates group properties. Only provided fields are modified.
       tags:
         - Groups
@@ -394,7 +394,7 @@ paths:
           description: Group not found
     delete:
       operationId: deleteGroup
-      summary: Delete Group
+      summary: JFrog Delete Group
       description: Deletes a group and removes all user associations.
       tags:
         - Groups
@@ -413,7 +413,7 @@ paths:
   /api/v2/permissions:
     get:
       operationId: listPermissions
-      summary: List Permissions
+      summary: JFrog List Permissions
       description: Returns a list of all permission targets configured in the platform.
       tags:
         - Permissions
@@ -431,7 +431,7 @@ paths:
                       $ref: '#/components/schemas/Permission'
     post:
       operationId: createPermission
-      summary: Create Permission
+      summary: JFrog Create Permission
       description: >-
         Creates a new permission target defining access control rules for
         repositories, builds, and release bundles.
@@ -453,7 +453,7 @@ paths:
   /api/v2/permissions/{permissionName}:
     get:
       operationId: getPermission
-      summary: Get Permission
+      summary: JFrog Get Permission
       description: Returns the full configuration of a specific permission target.
       tags:
         - Permissions
@@ -475,7 +475,7 @@ paths:
           description: Permission not found
     put:
       operationId: updatePermission
-      summary: Update Permission
+      summary: JFrog Update Permission
       description: Replaces the full configuration of an existing permission target.
       tags:
         - Permissions
@@ -499,7 +499,7 @@ paths:
           description: Permission not found
     delete:
       operationId: deletePermission
-      summary: Delete Permission
+      summary: JFrog Delete Permission
       description: Removes a permission target and all its access control rules.
       tags:
         - Permissions
@@ -518,7 +518,7 @@ paths:
   /api/v1/projects:
     get:
       operationId: listProjects
-      summary: List Projects
+      summary: JFrog List Projects
       description: Returns a list of all projects in the platform.
       tags:
         - Projects
@@ -533,7 +533,7 @@ paths:
                   $ref: '#/components/schemas/Project'
     post:
       operationId: createProject
-      summary: Create Project
+      summary: JFrog Create Project
       description: Creates a new project with its own isolated resource scope and administration.
       tags:
         - Projects
@@ -557,7 +557,7 @@ paths:
   /api/v1/projects/{projectKey}:
     get:
       operationId: getProject
-      summary: Get Project
+      summary: JFrog Get Project
       description: Returns details for a specific project identified by its key.
       tags:
         - Projects
@@ -579,7 +579,7 @@ paths:
           description: Project not found
     put:
       operationId: updateProject
-      summary: Update Project
+      summary: JFrog Update Project
       description: Updates project configuration and settings.
       tags:
         - Projects
@@ -603,7 +603,7 @@ paths:
           description: Project not found
     delete:
       operationId: deleteProject
-      summary: Delete Project
+      summary: JFrog Delete Project
       description: Permanently deletes a project and disassociates all its resources.
       tags:
         - Projects
@@ -622,7 +622,7 @@ paths:
   /api/v1/projects/{projectKey}/users/{username}:
     put:
       operationId: addUserToProject
-      summary: Add User to Project
+      summary: JFrog Add User to Project
       description: Adds a user to a project with specified role assignments.
       tags:
         - Projects
@@ -658,7 +658,7 @@ paths:
           description: Project or user not found
     delete:
       operationId: removeUserFromProject
-      summary: Remove User from Project
+      summary: JFrog Remove User from Project
       description: Removes a user from a project, revoking all project-specific roles.
       tags:
         - Projects
@@ -683,7 +683,7 @@ paths:
   /api/v1/projects/{projectKey}/groups/{groupName}:
     put:
       operationId: addGroupToProject
-      summary: Add Group to Project
+      summary: JFrog Add Group to Project
       description: Adds a group to a project with specified role assignments.
       tags:
         - Projects
@@ -716,7 +716,7 @@ paths:
           description: Group added to project
     delete:
       operationId: removeGroupFromProject
-      summary: Remove Group from Project
+      summary: JFrog Remove Group from Project
       description: Removes a group from a project.
       tags:
         - Projects

@@ -37,7 +37,7 @@ paths:
   /projects:
     get:
       operationId: listProjects
-      summary: List Projects
+      summary: JFrog List Projects
       description: Returns a list of all projects in the account.
       tags:
         - Projects
@@ -55,7 +55,7 @@ paths:
                       $ref: '#/components/schemas/Project'
     post:
       operationId: createProject
-      summary: Create Project
+      summary: JFrog Create Project
       description: Creates a new project for organizing devices.
       tags:
         - Projects
@@ -75,7 +75,7 @@ paths:
   /projects/{projectId}:
     get:
       operationId: getProject
-      summary: Get Project
+      summary: JFrog Get Project
       description: Returns details for a specific project.
       tags:
         - Projects
@@ -95,7 +95,7 @@ paths:
                 $ref: '#/components/schemas/Project'
     delete:
       operationId: deleteProject
-      summary: Delete Project
+      summary: JFrog Delete Project
       description: Deletes a project.
       tags:
         - Projects
@@ -112,7 +112,7 @@ paths:
   /projects/{projectId}/devices:
     get:
       operationId: listDevices
-      summary: List Devices
+      summary: JFrog List Devices
       description: Returns a list of all devices in a project.
       tags:
         - Devices
@@ -162,7 +162,7 @@ paths:
   /projects/{projectId}/devices/{deviceId}:
     get:
       operationId: getDevice
-      summary: Get Device
+      summary: JFrog Get Device
       description: Returns details for a specific device.
       tags:
         - Devices
@@ -188,7 +188,7 @@ paths:
                 $ref: '#/components/schemas/Device'
     delete:
       operationId: removeDevice
-      summary: Remove Device
+      summary: JFrog Remove Device
       description: Removes a device from the project.
       tags:
         - Devices
@@ -211,7 +211,7 @@ paths:
   /projects/{projectId}/device-groups:
     get:
       operationId: listDeviceGroups
-      summary: List Device Groups
+      summary: JFrog List Device Groups
       description: Returns all device groups in a project.
       tags:
         - Device Groups
@@ -236,7 +236,7 @@ paths:
                       $ref: '#/components/schemas/DeviceGroup'
     post:
       operationId: createDeviceGroup
-      summary: Create Device Group
+      summary: JFrog Create Device Group
       description: Creates a new device group.
       tags:
         - Device Groups
@@ -259,7 +259,7 @@ paths:
   /projects/{projectId}/device-groups/{groupId}:
     get:
       operationId: getDeviceGroup
-      summary: Get Device Group
+      summary: JFrog Get Device Group
       description: Returns details for a specific device group.
       tags:
         - Device Groups
@@ -285,7 +285,7 @@ paths:
                 $ref: '#/components/schemas/DeviceGroup'
     delete:
       operationId: deleteDeviceGroup
-      summary: Delete Device Group
+      summary: JFrog Delete Device Group
       description: Deletes a device group.
       tags:
         - Device Groups
@@ -308,7 +308,7 @@ paths:
   /projects/{projectId}/updates:
     get:
       operationId: listUpdates
-      summary: List Updates
+      summary: JFrog List Updates
       description: Returns a list of all OTA update deployments.
       tags:
         - Updates
@@ -339,7 +339,7 @@ paths:
                       $ref: '#/components/schemas/Update'
     post:
       operationId: createUpdate
-      summary: Create Update
+      summary: JFrog Create Update
       description: Creates a new OTA software update deployment.
       tags:
         - Updates
@@ -366,7 +366,7 @@ paths:
   /projects/{projectId}/updates/{updateId}:
     get:
       operationId: getUpdate
-      summary: Get Update
+      summary: JFrog Get Update
       description: Returns details and status for a specific update.
       tags:
         - Updates
@@ -393,7 +393,7 @@ paths:
   /projects/{projectId}/updates/{updateId}/cancel:
     post:
       operationId: cancelUpdate
-      summary: Cancel Update
+      summary: JFrog Cancel Update
       description: Cancels a pending or in-progress update.
       tags:
         - Updates
@@ -416,7 +416,7 @@ paths:
   /projects/{projectId}/commands:
     post:
       operationId: executeCommand
-      summary: Execute Remote Command
+      summary: JFrog Execute Remote Command
       description: Executes a command on specified devices.
       tags:
         - Commands
@@ -448,7 +448,7 @@ paths:
   /projects/{projectId}/commands/{commandId}:
     get:
       operationId: getCommandStatus
-      summary: Get Command Status
+      summary: JFrog Get Command Status
       description: Returns the status and results of a remote command execution.
       tags:
         - Commands

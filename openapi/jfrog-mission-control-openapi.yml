@@ -46,7 +46,7 @@ paths:
   /v1/system/ping:
     get:
       operationId: systemPing
-      summary: System Ping
+      summary: JFrog System Ping
       description: Returns a health check status for Mission Control.
       tags:
         - System
@@ -63,7 +63,7 @@ paths:
   /v1/system/version:
     get:
       operationId: getSystemVersion
-      summary: Get System Version
+      summary: JFrog Get System Version
       description: Returns Mission Control version information.
       tags:
         - System
@@ -82,7 +82,7 @@ paths:
   /v3/jpds:
     get:
       operationId: listJPDs
-      summary: List JPDs
+      summary: JFrog List JPDs
       description: Returns a list of all managed JFrog Platform Deployments.
       tags:
         - JPDs
@@ -97,7 +97,7 @@ paths:
                   $ref: '#/components/schemas/JPD'
     post:
       operationId: addJPD
-      summary: Add JPD
+      summary: JFrog Add JPD
       description: Adds a new JFrog Platform Deployment to Mission Control.
       tags:
         - JPDs
@@ -117,7 +117,7 @@ paths:
   /v3/jpds/{jpdId}:
     get:
       operationId: getJPD
-      summary: Get JPD
+      summary: JFrog Get JPD
       description: Returns details for a specific JPD.
       tags:
         - JPDs
@@ -137,7 +137,7 @@ paths:
                 $ref: '#/components/schemas/JPD'
     put:
       operationId: updateJPD
-      summary: Update JPD
+      summary: JFrog Update JPD
       description: Updates JPD configuration.
       tags:
         - JPDs
@@ -159,7 +159,7 @@ paths:
           description: JPD updated
     delete:
       operationId: removeJPD
-      summary: Remove JPD
+      summary: JFrog Remove JPD
       description: Removes a JPD from Mission Control management.
       tags:
         - JPDs
@@ -176,7 +176,7 @@ paths:
   /v3/attach_lic/buckets:
     get:
       operationId: listLicenseBuckets
-      summary: List License Buckets
+      summary: JFrog List License Buckets
       description: Returns a list of all license buckets.
       tags:
         - Licenses
@@ -191,7 +191,7 @@ paths:
                   $ref: '#/components/schemas/LicenseBucket'
     post:
       operationId: addLicenseBucket
-      summary: Add License Bucket
+      summary: JFrog Add License Bucket
       description: Adds a new license bucket.
       tags:
         - Licenses
@@ -219,7 +219,7 @@ paths:
   /v3/attach_lic/buckets/{bucketId}:
     delete:
       operationId: deleteLicenseBucket
-      summary: Delete License Bucket
+      summary: JFrog Delete License Bucket
       description: Removes a license bucket.
       tags:
         - Licenses
@@ -236,7 +236,7 @@ paths:
   /v1/scripts:
     get:
       operationId: listScripts
-      summary: List Scripts
+      summary: JFrog List Scripts
       description: Returns a list of all available execution scripts.
       tags:
         - Scripts
@@ -251,7 +251,7 @@ paths:
                   $ref: '#/components/schemas/Script'
     post:
       operationId: createScript
-      summary: Create Script
+      summary: JFrog Create Script
       description: Creates a new execution script.
       tags:
         - Scripts
@@ -267,7 +267,7 @@ paths:
   /v1/scripts/{scriptName}/execute:
     post:
       operationId: executeScript
-      summary: Execute Script
+      summary: JFrog Execute Script
       description: Executes a script on specified JPDs.
       tags:
         - Scripts

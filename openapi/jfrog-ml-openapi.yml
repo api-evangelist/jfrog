@@ -40,7 +40,7 @@ paths:
   /v1/models:
     get:
       operationId: listModels
-      summary: List Models
+      summary: JFrog List Models
       description: Returns a list of all registered ML models.
       tags:
         - Models
@@ -72,7 +72,7 @@ paths:
                     type: integer
     post:
       operationId: createModel
-      summary: Create Model
+      summary: JFrog Create Model
       description: Registers a new ML model in the model registry.
       tags:
         - Models
@@ -92,7 +92,7 @@ paths:
   /v1/models/{modelId}:
     get:
       operationId: getModel
-      summary: Get Model
+      summary: JFrog Get Model
       description: Returns details for a specific model.
       tags:
         - Models
@@ -112,7 +112,7 @@ paths:
                 $ref: '#/components/schemas/Model'
     put:
       operationId: updateModel
-      summary: Update Model
+      summary: JFrog Update Model
       description: Updates model metadata.
       tags:
         - Models
@@ -134,7 +134,7 @@ paths:
           description: Model updated
     delete:
       operationId: deleteModel
-      summary: Delete Model
+      summary: JFrog Delete Model
       description: Deletes a model and all its versions.
       tags:
         - Models
@@ -151,7 +151,7 @@ paths:
   /v1/models/{modelId}/versions:
     get:
       operationId: listModelVersions
-      summary: List Model Versions
+      summary: JFrog List Model Versions
       description: Returns all versions for a specific model.
       tags:
         - Model Versions
@@ -176,7 +176,7 @@ paths:
                       $ref: '#/components/schemas/ModelVersion'
     post:
       operationId: createModelVersion
-      summary: Create Model Version
+      summary: JFrog Create Model Version
       description: Creates a new version for a model.
       tags:
         - Model Versions
@@ -203,7 +203,7 @@ paths:
   /v1/models/{modelId}/versions/{versionId}:
     get:
       operationId: getModelVersion
-      summary: Get Model Version
+      summary: JFrog Get Model Version
       description: Returns details for a specific model version.
       tags:
         - Model Versions
@@ -229,7 +229,7 @@ paths:
                 $ref: '#/components/schemas/ModelVersion'
     delete:
       operationId: deleteModelVersion
-      summary: Delete Model Version
+      summary: JFrog Delete Model Version
       description: Deletes a specific model version.
       tags:
         - Model Versions
@@ -252,7 +252,7 @@ paths:
   /v1/experiments:
     get:
       operationId: listExperiments
-      summary: List Experiments
+      summary: JFrog List Experiments
       description: Returns a list of all ML experiments.
       tags:
         - Experiments
@@ -276,7 +276,7 @@ paths:
                       $ref: '#/components/schemas/Experiment'
     post:
       operationId: createExperiment
-      summary: Create Experiment
+      summary: JFrog Create Experiment
       description: Creates a new ML experiment.
       tags:
         - Experiments
@@ -296,7 +296,7 @@ paths:
   /v1/experiments/{experimentId}:
     get:
       operationId: getExperiment
-      summary: Get Experiment
+      summary: JFrog Get Experiment
       description: Returns details for a specific experiment.
       tags:
         - Experiments
@@ -316,7 +316,7 @@ paths:
                 $ref: '#/components/schemas/Experiment'
     delete:
       operationId: deleteExperiment
-      summary: Delete Experiment
+      summary: JFrog Delete Experiment
       description: Deletes an experiment.
       tags:
         - Experiments
@@ -333,7 +333,7 @@ paths:
   /v1/deployments:
     get:
       operationId: listDeployments
-      summary: List Deployments
+      summary: JFrog List Deployments
       description: Returns a list of all model deployments.
       tags:
         - Deployments
@@ -351,7 +351,7 @@ paths:
                       $ref: '#/components/schemas/Deployment'
     post:
       operationId: createDeployment
-      summary: Create Deployment
+      summary: JFrog Create Deployment
       description: Deploys a model version for serving predictions.
       tags:
         - Deployments
@@ -371,7 +371,7 @@ paths:
   /v1/deployments/{deploymentId}:
     get:
       operationId: getDeployment
-      summary: Get Deployment
+      summary: JFrog Get Deployment
       description: Returns details for a specific deployment.
       tags:
         - Deployments
@@ -391,7 +391,7 @@ paths:
                 $ref: '#/components/schemas/Deployment'
     delete:
       operationId: deleteDeployment
-      summary: Delete Deployment
+      summary: JFrog Delete Deployment
       description: Removes a model deployment.
       tags:
         - Deployments

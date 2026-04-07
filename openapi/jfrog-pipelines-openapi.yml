@@ -51,7 +51,7 @@ paths:
   /v1/system/info:
     get:
       operationId: getSystemInfo
-      summary: Get System Info
+      summary: JFrog Get System Info
       description: Returns Pipelines system information and version.
       tags:
         - System
@@ -70,7 +70,7 @@ paths:
   /v1/pipelineSources:
     get:
       operationId: listPipelineSources
-      summary: List Pipeline Sources
+      summary: JFrog List Pipeline Sources
       description: Returns a list of all pipeline source configurations.
       tags:
         - Pipeline Sources
@@ -85,7 +85,7 @@ paths:
                   $ref: '#/components/schemas/PipelineSource'
     post:
       operationId: createPipelineSource
-      summary: Create Pipeline Source
+      summary: JFrog Create Pipeline Source
       description: Creates a new pipeline source pointing to a repository with pipeline definitions.
       tags:
         - Pipeline Sources
@@ -105,7 +105,7 @@ paths:
   /v1/pipelineSources/{pipelineSourceId}:
     get:
       operationId: getPipelineSource
-      summary: Get Pipeline Source
+      summary: JFrog Get Pipeline Source
       description: Returns details for a specific pipeline source.
       tags:
         - Pipeline Sources
@@ -125,7 +125,7 @@ paths:
                 $ref: '#/components/schemas/PipelineSource'
     delete:
       operationId: deletePipelineSource
-      summary: Delete Pipeline Source
+      summary: JFrog Delete Pipeline Source
       description: Deletes a pipeline source configuration.
       tags:
         - Pipeline Sources
@@ -142,7 +142,7 @@ paths:
   /v1/pipelines:
     get:
       operationId: listPipelines
-      summary: List Pipelines
+      summary: JFrog List Pipelines
       description: Returns a list of all pipelines.
       tags:
         - Pipelines
@@ -169,7 +169,7 @@ paths:
   /v1/pipelines/{pipelineId}:
     get:
       operationId: getPipeline
-      summary: Get Pipeline
+      summary: JFrog Get Pipeline
       description: Returns details for a specific pipeline.
       tags:
         - Pipelines
@@ -190,7 +190,7 @@ paths:
   /v1/runs:
     get:
       operationId: listRuns
-      summary: List Pipeline Runs
+      summary: JFrog List Pipeline Runs
       description: Returns a list of pipeline runs.
       tags:
         - Runs
@@ -228,7 +228,7 @@ paths:
   /v1/runs/{runId}:
     get:
       operationId: getRun
-      summary: Get Pipeline Run
+      summary: JFrog Get Pipeline Run
       description: Returns details for a specific pipeline run.
       tags:
         - Runs
@@ -249,7 +249,7 @@ paths:
   /v1/runs/{runId}/cancel:
     post:
       operationId: cancelRun
-      summary: Cancel Pipeline Run
+      summary: JFrog Cancel Pipeline Run
       description: Cancels a running pipeline execution.
       tags:
         - Runs
@@ -266,7 +266,7 @@ paths:
   /v1/pipelines/{pipelineId}/trigger:
     post:
       operationId: triggerPipeline
-      summary: Trigger Pipeline
+      summary: JFrog Trigger Pipeline
       description: Triggers a new run of the specified pipeline.
       tags:
         - Runs
@@ -295,7 +295,7 @@ paths:
   /v1/steps/{stepId}:
     get:
       operationId: getStep
-      summary: Get Step Details
+      summary: JFrog Get Step Details
       description: Returns details for a specific step execution.
       tags:
         - Steps
@@ -316,7 +316,7 @@ paths:
   /v1/steps/{stepId}/logs:
     get:
       operationId: getStepLogs
-      summary: Get Step Logs
+      summary: JFrog Get Step Logs
       description: Returns console logs for a specific step execution.
       tags:
         - Steps
@@ -345,7 +345,7 @@ paths:
   /v1/integrations:
     get:
       operationId: listIntegrations
-      summary: List Integrations
+      summary: JFrog List Integrations
       description: Returns a list of all configured integrations.
       tags:
         - Integrations
@@ -360,7 +360,7 @@ paths:
                   $ref: '#/components/schemas/Integration'
     post:
       operationId: createIntegration
-      summary: Create Integration
+      summary: JFrog Create Integration
       description: Creates a new external service integration.
       tags:
         - Integrations
@@ -376,7 +376,7 @@ paths:
   /v1/integrations/{integrationId}:
     get:
       operationId: getIntegration
-      summary: Get Integration
+      summary: JFrog Get Integration
       description: Returns details for a specific integration.
       tags:
         - Integrations
@@ -396,7 +396,7 @@ paths:
                 $ref: '#/components/schemas/Integration'
     put:
       operationId: updateIntegration
-      summary: Update Integration
+      summary: JFrog Update Integration
       description: Updates an existing integration.
       tags:
         - Integrations
@@ -418,7 +418,7 @@ paths:
           description: Integration updated
     delete:
       operationId: deleteIntegration
-      summary: Delete Integration
+      summary: JFrog Delete Integration
       description: Deletes an integration.
       tags:
         - Integrations
@@ -435,7 +435,7 @@ paths:
   /v1/nodePools:
     get:
       operationId: listNodePools
-      summary: List Node Pools
+      summary: JFrog List Node Pools
       description: Returns a list of all build node pools.
       tags:
         - Node Pools
@@ -450,7 +450,7 @@ paths:
                   $ref: '#/components/schemas/NodePool'
     post:
       operationId: createNodePool
-      summary: Create Node Pool
+      summary: JFrog Create Node Pool
       description: Creates a new build node pool.
       tags:
         - Node Pools
@@ -466,7 +466,7 @@ paths:
   /v1/nodePools/{nodePoolId}:
     get:
       operationId: getNodePool
-      summary: Get Node Pool
+      summary: JFrog Get Node Pool
       description: Returns details for a specific node pool.
       tags:
         - Node Pools
@@ -486,7 +486,7 @@ paths:
                 $ref: '#/components/schemas/NodePool'
     delete:
       operationId: deleteNodePool
-      summary: Delete Node Pool
+      summary: JFrog Delete Node Pool
       description: Deletes a node pool.
       tags:
         - Node Pools

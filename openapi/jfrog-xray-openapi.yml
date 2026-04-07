@@ -56,7 +56,7 @@ paths:
   /v1/system/ping:
     get:
       operationId: systemPing
-      summary: System Ping
+      summary: JFrog System Ping
       description: Returns a simple ping response indicating Xray is accessible.
       tags:
         - System
@@ -74,7 +74,7 @@ paths:
   /v1/system/version:
     get:
       operationId: getSystemVersion
-      summary: Get System Version
+      summary: JFrog Get System Version
       description: Returns the Xray version and revision information.
       tags:
         - System
@@ -93,7 +93,7 @@ paths:
   /v1/component:
     post:
       operationId: getComponentDetails
-      summary: Get Component Details
+      summary: JFrog Get Component Details
       description: Returns vulnerability and license information for specified components.
       tags:
         - Components
@@ -127,7 +127,7 @@ paths:
   /v1/summary/artifact:
     post:
       operationId: getArtifactSummary
-      summary: Get Artifact Summary
+      summary: JFrog Get Artifact Summary
       description: Returns a summary of security issues and license information for specified artifacts.
       tags:
         - Summary
@@ -155,7 +155,7 @@ paths:
   /v1/summary/build:
     post:
       operationId: getBuildSummary
-      summary: Get Build Summary
+      summary: JFrog Get Build Summary
       description: Returns a summary of security issues for specified build.
       tags:
         - Summary
@@ -183,7 +183,7 @@ paths:
   /v2/ci/scan:
     post:
       operationId: scanBuild
-      summary: Scan Build (v2)
+      summary: JFrog Scan Build (v2)
       description: Triggers an on-demand scan for a build.
       tags:
         - Scanning
@@ -217,7 +217,7 @@ paths:
   /v1/scanArtifact:
     post:
       operationId: scanArtifact
-      summary: Scan Artifact
+      summary: JFrog Scan Artifact
       description: Triggers a scan for a specific artifact by its component ID.
       tags:
         - Scanning
@@ -244,7 +244,7 @@ paths:
   /v2/watches:
     get:
       operationId: listWatches
-      summary: List Watches
+      summary: JFrog List Watches
       description: Returns a list of all configured watches.
       tags:
         - Watches
@@ -259,7 +259,7 @@ paths:
                   $ref: '#/components/schemas/Watch'
     post:
       operationId: createWatch
-      summary: Create Watch
+      summary: JFrog Create Watch
       description: Creates a new watch for monitoring artifacts.
       tags:
         - Watches
@@ -277,7 +277,7 @@ paths:
   /v2/watches/{watchName}:
     get:
       operationId: getWatch
-      summary: Get Watch
+      summary: JFrog Get Watch
       description: Returns configuration for a specific watch.
       tags:
         - Watches
@@ -297,7 +297,7 @@ paths:
                 $ref: '#/components/schemas/Watch'
     put:
       operationId: updateWatch
-      summary: Update Watch
+      summary: JFrog Update Watch
       description: Updates an existing watch configuration.
       tags:
         - Watches
@@ -319,7 +319,7 @@ paths:
           description: Watch updated
     delete:
       operationId: deleteWatch
-      summary: Delete Watch
+      summary: JFrog Delete Watch
       description: Removes a watch configuration.
       tags:
         - Watches
@@ -336,7 +336,7 @@ paths:
   /v2/policies:
     get:
       operationId: listPolicies
-      summary: List Policies
+      summary: JFrog List Policies
       description: Returns a list of all security and license policies.
       tags:
         - Policies
@@ -351,7 +351,7 @@ paths:
                   $ref: '#/components/schemas/Policy'
     post:
       operationId: createPolicy
-      summary: Create Policy
+      summary: JFrog Create Policy
       description: Creates a new security or license compliance policy.
       tags:
         - Policies
@@ -369,7 +369,7 @@ paths:
   /v2/policies/{policyName}:
     get:
       operationId: getPolicy
-      summary: Get Policy
+      summary: JFrog Get Policy
       description: Returns details of a specific policy.
       tags:
         - Policies
@@ -389,7 +389,7 @@ paths:
                 $ref: '#/components/schemas/Policy'
     put:
       operationId: updatePolicy
-      summary: Update Policy
+      summary: JFrog Update Policy
       description: Updates an existing policy.
       tags:
         - Policies
@@ -411,7 +411,7 @@ paths:
           description: Policy updated
     delete:
       operationId: deletePolicy
-      summary: Delete Policy
+      summary: JFrog Delete Policy
       description: Removes a policy.
       tags:
         - Policies
@@ -428,7 +428,7 @@ paths:
   /v1/violations:
     post:
       operationId: getViolations
-      summary: Get Violations
+      summary: JFrog Get Violations
       description: Returns violations based on specified filters.
       tags:
         - Violations
@@ -472,7 +472,7 @@ paths:
   /v1/report/vulnerabilities:
     post:
       operationId: generateVulnerabilityReport
-      summary: Generate Vulnerability Report
+      summary: JFrog Generate Vulnerability Report
       description: Generates a vulnerability report for specified scope.
       tags:
         - Reports
@@ -522,7 +522,7 @@ paths:
   /v1/report/{reportId}:
     get:
       operationId: getReportStatus
-      summary: Get Report Status
+      summary: JFrog Get Report Status
       description: Returns the status and details of a report.
       tags:
         - Reports
@@ -550,7 +550,7 @@ paths:
                     enum: [pending, running, completed, failed]
     delete:
       operationId: deleteReport
-      summary: Delete Report
+      summary: JFrog Delete Report
       description: Deletes a generated report.
       tags:
         - Reports
@@ -567,7 +567,7 @@ paths:
   /v1/ignore_rules:
     get:
       operationId: listIgnoreRules
-      summary: List Ignore Rules
+      summary: JFrog List Ignore Rules
       description: Returns all ignore rules configured in Xray.
       tags:
         - Ignore Rules
@@ -585,7 +585,7 @@ paths:
                       $ref: '#/components/schemas/IgnoreRule'
     post:
       operationId: createIgnoreRule
-      summary: Create Ignore Rule
+      summary: JFrog Create Ignore Rule
       description: Creates a new ignore rule for a specific vulnerability or license.
       tags:
         - Ignore Rules
@@ -608,7 +608,7 @@ paths:
   /v1/ignore_rules/{ruleId}:
     get:
       operationId: getIgnoreRule
-      summary: Get Ignore Rule
+      summary: JFrog Get Ignore Rule
       description: Returns a specific ignore rule.
       tags:
         - Ignore Rules
@@ -628,7 +628,7 @@ paths:
                 $ref: '#/components/schemas/IgnoreRule'
     delete:
       operationId: deleteIgnoreRule
-      summary: Delete Ignore Rule
+      summary: JFrog Delete Ignore Rule
       description: Deletes an ignore rule.
       tags:
         - Ignore Rules

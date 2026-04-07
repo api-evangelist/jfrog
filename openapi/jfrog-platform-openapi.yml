@@ -51,7 +51,7 @@ paths:
   /router/api/v1/system/ping:
     get:
       operationId: routerPing
-      summary: Platform Router Ping
+      summary: JFrog Platform Router Ping
       description: Returns a simple health check from the JFrog Platform router.
       tags:
         - System
@@ -66,7 +66,7 @@ paths:
   /router/api/v1/system/health:
     get:
       operationId: getSystemHealth
-      summary: Get System Health
+      summary: JFrog Get System Health
       description: Returns health status of all JFrog services.
       tags:
         - System
@@ -80,7 +80,7 @@ paths:
   /access/api/v2/tokens:
     get:
       operationId: listTokens
-      summary: List Access Tokens
+      summary: JFrog List Access Tokens
       description: Returns a list of all access tokens.
       tags:
         - Access Tokens
@@ -98,7 +98,7 @@ paths:
                       $ref: '#/components/schemas/TokenInfo'
     post:
       operationId: createToken
-      summary: Create Access Token
+      summary: JFrog Create Access Token
       description: Creates a new access token.
       tags:
         - Access Tokens
@@ -118,7 +118,7 @@ paths:
   /access/api/v2/tokens/{tokenId}:
     get:
       operationId: getToken
-      summary: Get Token Details
+      summary: JFrog Get Token Details
       description: Returns details for a specific access token.
       tags:
         - Access Tokens
@@ -138,7 +138,7 @@ paths:
                 $ref: '#/components/schemas/TokenInfo'
     delete:
       operationId: revokeToken
-      summary: Revoke Access Token
+      summary: JFrog Revoke Access Token
       description: Revokes an access token.
       tags:
         - Access Tokens
@@ -155,7 +155,7 @@ paths:
   /access/api/v2/users:
     get:
       operationId: listUsers
-      summary: List Users
+      summary: JFrog List Users
       description: Returns a list of all platform users.
       tags:
         - Users
@@ -173,7 +173,7 @@ paths:
                       $ref: '#/components/schemas/PlatformUser'
     post:
       operationId: createUser
-      summary: Create User
+      summary: JFrog Create User
       description: Creates a new platform user.
       tags:
         - Users
@@ -193,7 +193,7 @@ paths:
   /access/api/v2/users/{username}:
     get:
       operationId: getUser
-      summary: Get User
+      summary: JFrog Get User
       description: Returns details for a specific user.
       tags:
         - Users
@@ -213,7 +213,7 @@ paths:
                 $ref: '#/components/schemas/PlatformUser'
     patch:
       operationId: updateUser
-      summary: Update User
+      summary: JFrog Update User
       description: Updates user details.
       tags:
         - Users
@@ -235,7 +235,7 @@ paths:
           description: User updated
     delete:
       operationId: deleteUser
-      summary: Delete User
+      summary: JFrog Delete User
       description: Deletes a user.
       tags:
         - Users
@@ -252,7 +252,7 @@ paths:
   /access/api/v2/groups:
     get:
       operationId: listGroups
-      summary: List Groups
+      summary: JFrog List Groups
       description: Returns a list of all platform groups.
       tags:
         - Groups
@@ -270,7 +270,7 @@ paths:
                       $ref: '#/components/schemas/PlatformGroup'
     post:
       operationId: createGroup
-      summary: Create Group
+      summary: JFrog Create Group
       description: Creates a new platform group.
       tags:
         - Groups
@@ -286,7 +286,7 @@ paths:
   /access/api/v2/groups/{groupName}:
     get:
       operationId: getGroup
-      summary: Get Group
+      summary: JFrog Get Group
       description: Returns details for a specific group.
       tags:
         - Groups
@@ -306,7 +306,7 @@ paths:
                 $ref: '#/components/schemas/PlatformGroup'
     patch:
       operationId: updateGroup
-      summary: Update Group
+      summary: JFrog Update Group
       description: Updates group details.
       tags:
         - Groups
@@ -328,7 +328,7 @@ paths:
           description: Group updated
     delete:
       operationId: deleteGroup
-      summary: Delete Group
+      summary: JFrog Delete Group
       description: Deletes a group.
       tags:
         - Groups
@@ -345,7 +345,7 @@ paths:
   /access/api/v1/projects:
     get:
       operationId: listProjects
-      summary: List Projects
+      summary: JFrog List Projects
       description: Returns a list of all projects.
       tags:
         - Projects
@@ -360,7 +360,7 @@ paths:
                   $ref: '#/components/schemas/Project'
     post:
       operationId: createProject
-      summary: Create Project
+      summary: JFrog Create Project
       description: Creates a new project.
       tags:
         - Projects
@@ -380,7 +380,7 @@ paths:
   /access/api/v1/projects/{projectKey}:
     get:
       operationId: getProject
-      summary: Get Project
+      summary: JFrog Get Project
       description: Returns details for a specific project.
       tags:
         - Projects
@@ -400,7 +400,7 @@ paths:
                 $ref: '#/components/schemas/Project'
     put:
       operationId: updateProject
-      summary: Update Project
+      summary: JFrog Update Project
       description: Updates project configuration.
       tags:
         - Projects
@@ -422,7 +422,7 @@ paths:
           description: Project updated
     delete:
       operationId: deleteProject
-      summary: Delete Project
+      summary: JFrog Delete Project
       description: Deletes a project.
       tags:
         - Projects
@@ -439,7 +439,7 @@ paths:
   /access/api/v1/projects/{projectKey}/users/{username}:
     put:
       operationId: addUserToProject
-      summary: Add User to Project
+      summary: JFrog Add User to Project
       description: Adds a user to a project with specified roles.
       tags:
         - Projects
@@ -472,7 +472,7 @@ paths:
           description: User added to project
     delete:
       operationId: removeUserFromProject
-      summary: Remove User from Project
+      summary: JFrog Remove User from Project
       description: Removes a user from a project.
       tags:
         - Projects
@@ -495,7 +495,7 @@ paths:
   /access/api/v2/permissions:
     get:
       operationId: listPermissions
-      summary: List Permissions
+      summary: JFrog List Permissions
       description: Returns a list of all permission configurations.
       tags:
         - Permissions
@@ -513,7 +513,7 @@ paths:
                       $ref: '#/components/schemas/Permission'
     post:
       operationId: createPermission
-      summary: Create Permission
+      summary: JFrog Create Permission
       description: Creates a new permission configuration.
       tags:
         - Permissions
@@ -529,7 +529,7 @@ paths:
   /access/api/v2/permissions/{permissionName}:
     get:
       operationId: getPermission
-      summary: Get Permission
+      summary: JFrog Get Permission
       description: Returns details for a specific permission.
       tags:
         - Permissions
@@ -549,7 +549,7 @@ paths:
                 $ref: '#/components/schemas/Permission'
     put:
       operationId: updatePermission
-      summary: Update Permission
+      summary: JFrog Update Permission
       description: Updates a permission configuration.
       tags:
         - Permissions
@@ -571,7 +571,7 @@ paths:
           description: Permission updated
     delete:
       operationId: deletePermission
-      summary: Delete Permission
+      summary: JFrog Delete Permission
       description: Deletes a permission configuration.
       tags:
         - Permissions
@@ -588,7 +588,7 @@ paths:
   /event/api/v1/subscriptions:
     get:
       operationId: listWebhooks
-      summary: List Webhooks
+      summary: JFrog List Webhooks
       description: Returns a list of all configured webhooks.
       tags:
         - Webhooks
@@ -603,7 +603,7 @@ paths:
                   $ref: '#/components/schemas/Webhook'
     post:
       operationId: createWebhook
-      summary: Create Webhook
+      summary: JFrog Create Webhook
       description: Creates a new webhook subscription.
       tags:
         - Webhooks
@@ -619,7 +619,7 @@ paths:
   /event/api/v1/subscriptions/{webhookKey}:
     get:
       operationId: getWebhook
-      summary: Get Webhook
+      summary: JFrog Get Webhook
       description: Returns details for a specific webhook.
       tags:
         - Webhooks
@@ -639,7 +639,7 @@ paths:
                 $ref: '#/components/schemas/Webhook'
     put:
       operationId: updateWebhook
-      summary: Update Webhook
+      summary: JFrog Update Webhook
       description: Updates a webhook configuration.
       tags:
         - Webhooks
@@ -661,7 +661,7 @@ paths:
           description: Webhook updated
     delete:
       operationId: deleteWebhook
-      summary: Delete Webhook
+      summary: JFrog Delete Webhook
       description: Deletes a webhook subscription.
       tags:
         - Webhooks

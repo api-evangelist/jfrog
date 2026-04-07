@@ -44,7 +44,7 @@ paths:
   /v1/system/ping:
     get:
       operationId: systemPing
-      summary: System Ping
+      summary: JFrog System Ping
       description: Returns a simple health check response.
       tags:
         - System
@@ -61,7 +61,7 @@ paths:
   /v1/release_bundle:
     get:
       operationId: listReleaseBundles
-      summary: List Release Bundles
+      summary: JFrog List Release Bundles
       description: Returns a list of all release bundles.
       tags:
         - Release Bundles v1
@@ -86,7 +86,7 @@ paths:
                       format: date-time
     post:
       operationId: createReleaseBundle
-      summary: Create Release Bundle
+      summary: JFrog Create Release Bundle
       description: Creates a new release bundle with specified artifacts.
       tags:
         - Release Bundles v1
@@ -108,7 +108,7 @@ paths:
   /v1/release_bundle/{name}/{version}:
     get:
       operationId: getReleaseBundle
-      summary: Get Release Bundle
+      summary: JFrog Get Release Bundle
       description: Returns details for a specific release bundle version.
       tags:
         - Release Bundles v1
@@ -136,7 +136,7 @@ paths:
           description: Release bundle not found
     put:
       operationId: updateReleaseBundle
-      summary: Update Release Bundle
+      summary: JFrog Update Release Bundle
       description: Updates an existing release bundle.
       tags:
         - Release Bundles v1
@@ -164,7 +164,7 @@ paths:
           description: Release bundle updated
     delete:
       operationId: deleteReleaseBundle
-      summary: Delete Release Bundle
+      summary: JFrog Delete Release Bundle
       description: Deletes a release bundle version.
       tags:
         - Release Bundles v1
@@ -187,7 +187,7 @@ paths:
   /v1/release_bundle/{name}/{version}/sign:
     post:
       operationId: signReleaseBundle
-      summary: Sign Release Bundle
+      summary: JFrog Sign Release Bundle
       description: Signs a release bundle, making it immutable and ready for distribution.
       tags:
         - Release Bundles v1
@@ -210,7 +210,7 @@ paths:
   /v1/distribution/{name}/{version}:
     post:
       operationId: distributeReleaseBundle
-      summary: Distribute Release Bundle
+      summary: JFrog Distribute Release Bundle
       description: Distributes a signed release bundle to target edge nodes.
       tags:
         - Distribution
@@ -247,7 +247,7 @@ paths:
   /v1/distribution/{name}/{version}/status:
     get:
       operationId: getDistributionStatus
-      summary: Get Distribution Status
+      summary: JFrog Get Distribution Status
       description: Returns the distribution status for a release bundle version.
       tags:
         - Distribution
@@ -287,7 +287,7 @@ paths:
   /v1/distribution/{name}/{version}/delete:
     post:
       operationId: deleteDistributedReleaseBundle
-      summary: Delete Distributed Release Bundle
+      summary: JFrog Delete Distributed Release Bundle
       description: Deletes a distributed release bundle from target edge nodes.
       tags:
         - Distribution

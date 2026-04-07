@@ -42,7 +42,7 @@ paths:
   /v1/workers:
     get:
       operationId: listWorkers
-      summary: List Workers
+      summary: JFrog List Workers
       description: Returns a list of all registered workers.
       tags:
         - Workers
@@ -60,7 +60,7 @@ paths:
                       $ref: '#/components/schemas/Worker'
     post:
       operationId: createWorker
-      summary: Create Worker
+      summary: JFrog Create Worker
       description: Creates a new serverless worker with TypeScript code.
       tags:
         - Workers
@@ -82,7 +82,7 @@ paths:
   /v1/workers/{workerKey}:
     get:
       operationId: getWorker
-      summary: Get Worker
+      summary: JFrog Get Worker
       description: Returns details for a specific worker.
       tags:
         - Workers
@@ -104,7 +104,7 @@ paths:
           description: Worker not found
     put:
       operationId: updateWorker
-      summary: Update Worker
+      summary: JFrog Update Worker
       description: Updates an existing worker's code or configuration.
       tags:
         - Workers
@@ -126,7 +126,7 @@ paths:
           description: Worker updated
     delete:
       operationId: deleteWorker
-      summary: Delete Worker
+      summary: JFrog Delete Worker
       description: Deletes a worker.
       tags:
         - Workers
@@ -143,7 +143,7 @@ paths:
   /v1/workers/{workerKey}/enable:
     put:
       operationId: enableWorker
-      summary: Enable Worker
+      summary: JFrog Enable Worker
       description: Enables a disabled worker.
       tags:
         - Workers
@@ -160,7 +160,7 @@ paths:
   /v1/workers/{workerKey}/disable:
     put:
       operationId: disableWorker
-      summary: Disable Worker
+      summary: JFrog Disable Worker
       description: Disables an active worker.
       tags:
         - Workers
@@ -177,7 +177,7 @@ paths:
   /v1/workers/{workerKey}/test:
     post:
       operationId: testWorker
-      summary: Test Worker
+      summary: JFrog Test Worker
       description: Executes a worker with a test payload to validate its behavior.
       tags:
         - Execution
@@ -223,7 +223,7 @@ paths:
   /v1/workers/{workerKey}/logs:
     get:
       operationId: getWorkerLogs
-      summary: Get Worker Logs
+      summary: JFrog Get Worker Logs
       description: Returns execution logs for a worker.
       tags:
         - Execution

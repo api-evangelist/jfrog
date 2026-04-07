@@ -46,7 +46,7 @@ paths:
   /v2/release_bundle:
     post:
       operationId: createReleaseBundle
-      summary: Create Release Bundle v2
+      summary: JFrog Create Release Bundle v2
       description: Creates a new release bundle version 2 from specified artifacts.
       tags:
         - Release Bundles v2
@@ -68,7 +68,7 @@ paths:
   /v2/release_bundle/records:
     get:
       operationId: listReleaseBundles
-      summary: List Release Bundles v2
+      summary: JFrog List Release Bundles v2
       description: Returns a list of all release bundle v2 records.
       tags:
         - Release Bundles v2
@@ -104,7 +104,7 @@ paths:
   /v2/release_bundle/records/{name}/{version}:
     get:
       operationId: getReleaseBundle
-      summary: Get Release Bundle v2
+      summary: JFrog Get Release Bundle v2
       description: Returns details for a specific release bundle version.
       tags:
         - Release Bundles v2
@@ -130,7 +130,7 @@ paths:
                 $ref: '#/components/schemas/ReleaseBundleV2'
     delete:
       operationId: deleteReleaseBundle
-      summary: Delete Release Bundle v2
+      summary: JFrog Delete Release Bundle v2
       description: Deletes a release bundle version.
       tags:
         - Release Bundles v2
@@ -153,7 +153,7 @@ paths:
   /v2/promotion/records/{name}/{version}:
     get:
       operationId: getPromotionStatus
-      summary: Get Promotion Status
+      summary: JFrog Get Promotion Status
       description: Returns the promotion status and history for a release bundle version.
       tags:
         - Promotion
@@ -180,7 +180,7 @@ paths:
   /v2/promotion:
     post:
       operationId: promoteReleaseBundle
-      summary: Promote Release Bundle
+      summary: JFrog Promote Release Bundle
       description: Promotes a release bundle to a target environment.
       tags:
         - Promotion
@@ -205,7 +205,7 @@ paths:
   /v2/release_bundle/distribute/{name}/{version}:
     post:
       operationId: distributeReleaseBundle
-      summary: Distribute Release Bundle v2
+      summary: JFrog Distribute Release Bundle v2
       description: Distributes a release bundle to specified edge nodes.
       tags:
         - Distribution
@@ -234,7 +234,7 @@ paths:
   /v2/release_bundle/distribute/{name}/{version}/status:
     get:
       operationId: getDistributionStatus
-      summary: Get Distribution Status
+      summary: JFrog Get Distribution Status
       description: Returns distribution status for a release bundle.
       tags:
         - Distribution
@@ -273,7 +273,7 @@ paths:
   /v2/evidence:
     post:
       operationId: createEvidence
-      summary: Create Evidence
+      summary: JFrog Create Evidence
       description: Creates a new evidence record attached to a release bundle.
       tags:
         - Evidence
@@ -293,7 +293,7 @@ paths:
   /v2/evidence/{name}/{version}:
     get:
       operationId: getEvidence
-      summary: Get Evidence
+      summary: JFrog Get Evidence
       description: Returns all evidence records for a release bundle version.
       tags:
         - Evidence

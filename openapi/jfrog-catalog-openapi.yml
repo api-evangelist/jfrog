@@ -45,7 +45,7 @@ paths:
   /custom/graphql:
     post:
       operationId: executeGraphQLQuery
-      summary: Execute GraphQL Query
+      summary: JFrog Execute GraphQL Query
       description: >-
         Executes a GraphQL query against the JFrog Catalog. Supports querying
         packages, package versions, CVE information, license data, and custom
@@ -73,7 +73,7 @@ paths:
   /packages/search:
     post:
       operationId: searchPackages
-      summary: Search Packages
+      summary: JFrog Search Packages
       description: >-
         Searches for packages across the catalog using various filter criteria
         including name, type, version, and labels.
@@ -97,7 +97,7 @@ paths:
   /packages/{packageType}/{packageName}:
     get:
       operationId: getPackage
-      summary: Get Package Details
+      summary: JFrog Get Package Details
       description: >-
         Returns detailed metadata for a specific package, including versions,
         licenses, vulnerabilities, and custom labels.
@@ -129,7 +129,7 @@ paths:
   /packages/{packageType}/{packageName}/versions:
     get:
       operationId: getPackageVersions
-      summary: Get Package Versions
+      summary: JFrog Get Package Versions
       description: >-
         Returns all known versions of a specific package with their associated
         metadata, vulnerability counts, and license information.
@@ -176,7 +176,7 @@ paths:
   /packages/{packageType}/{packageName}/versions/{version}/vulnerabilities:
     get:
       operationId: getVersionVulnerabilities
-      summary: Get Version Vulnerabilities
+      summary: JFrog Get Version Vulnerabilities
       description: >-
         Returns all known CVEs affecting a specific package version, including
         both direct (non-transitive) and transitive vulnerabilities.
@@ -224,7 +224,7 @@ paths:
   /labels:
     get:
       operationId: listLabels
-      summary: List Labels
+      summary: JFrog List Labels
       description: >-
         Returns a list of all custom labels configured in the Catalog.
         Labels can be attached to packages for organizational and policy purposes.
@@ -244,7 +244,7 @@ paths:
                       $ref: '#/components/schemas/Label'
     post:
       operationId: createLabel
-      summary: Create Label
+      summary: JFrog Create Label
       description: >-
         Creates a new custom label that can be applied to packages in the Catalog.
         Requires administrator permissions.
@@ -270,7 +270,7 @@ paths:
   /labels/{labelName}:
     get:
       operationId: getLabel
-      summary: Get Label
+      summary: JFrog Get Label
       description: Returns details for a specific label.
       tags:
         - Labels
@@ -292,7 +292,7 @@ paths:
           description: Label not found
     put:
       operationId: updateLabel
-      summary: Update Label
+      summary: JFrog Update Label
       description: Updates an existing label configuration.
       tags:
         - Labels
@@ -316,7 +316,7 @@ paths:
           description: Label not found
     delete:
       operationId: deleteLabel
-      summary: Delete Label
+      summary: JFrog Delete Label
       description: Removes a label from the Catalog and detaches it from all packages.
       tags:
         - Labels
@@ -335,7 +335,7 @@ paths:
   /labels/{labelName}/packages:
     post:
       operationId: applyLabelToPackages
-      summary: Apply Label to Packages
+      summary: JFrog Apply Label to Packages
       description: Applies a label to one or more packages.
       tags:
         - Labels
@@ -374,7 +374,7 @@ paths:
           description: Label applied to packages
     delete:
       operationId: removeLabelFromPackages
-      summary: Remove Label from Packages
+      summary: JFrog Remove Label from Packages
       description: Removes a label from one or more packages.
       tags:
         - Labels
