@@ -13,7 +13,7 @@ tags:
   - Security
   - Software Supply Chain
 created: '2024'
-modified: '2026-03-16'
+modified: '2026-04-28'
 apis:
   - name: JFrog Artifactory REST API
     description: REST API for managing artifacts, repositories, security, and system configuration in JFrog Artifactory. Provides endpoints for uploading, downloading, searching, and managing binary artifacts across all package types.
