@@ -4,282 +4,265 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: JFrog
 providerId: jfrog
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
-  - Artifactory
-  - CI/CD
-  - Container Registry
   - DevOps
-  - MLOps
-  - Package Management
-  - Security
+  - Artifactory
+  - Container Registry
   - Software Supply Chain
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+  - Security
+  - MLOps
+description: JFrog is sold in two delivery modes — JFrog SaaS (Cloud) and Self-Managed — each priced
+  in tiers (Pro, Enterprise X, Enterprise+) with a base monthly storage allotment, tiered overage rates
+  on storage and data transfer, and optional Security and MLOps bundles. Enterprise+ and self-managed
+  Enterprise+ are quoted by sales.
+sources:
+  - https://jfrog.com/pricing/
+  - https://jfrog.com/help/r/jfrog-platform-administration-documentation/jfrog-subscriptions
 plans:
-  - id: jfrog-free
-    name: Free
-    type: freemium
-    description: Free entry tier for the JFrog API surface. Intended for evaluation, prototyping, and
-      low-volume integrations. Real limits and pricing must be reconciled with the provider's published
-      plan documentation.
+  - id: jfrog-saas-pro
+    name: JFrog Cloud — Pro
+    type: subscription
+    description: Entry-level JFrog SaaS subscription with 25 GB monthly base consumption, Artifactory
+      universal repo, container and ML model registries, and CI/CD integrations.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
+      - label: Monthly base
+        name: pro_monthly
+        type: subscription
+        metric: month
+        limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://myserver.jfrog.io/artifactory/api
-          - https://myserver.jfrog.io/artifactory/api/v2
-          - https://myserver.jfrog.io/xray/api
-          - https://myserver.jfrog.io/distribution/api
-          - https://myserver.jfrog.io/pipelines/api
-          - https://myserver.jfrog.io/
-          - https://myserver.jfrog.io/access/api
-          - https://myserver.jfrog.io/curation/api
-          - https://myserver.jfrog.io/mc/api
-          - https://myserver.jfrog.io/lifecycle/api
-          - https://myserver.jfrog.io/worker/api
-          - https://myserver.jfrog.io/ml/api
-          - https://api.connect.jfrog.io/v2
-          - https://myserver.jfrog.io/catalog/api/v1
-          - https://myserver.jfrog.io/evidence/api
+        unit: 1
+        price: '150.00'
+        userMultiplied: false
+      - label: Included consumption
+        name: pro_included_consumption
+        type: quota
+        metric: GB
+        limit: 25
+        timeFrame: month
+        geo: global
         unit: 1
         price: '0.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
+      - label: Overage 25–1,204 GB
+        name: pro_overage_tier1
+        type: tiered
+        metric: GB
+        limit: -1
+        timeFrame: month
         geo: global
-        domains:
-          - https://myserver.jfrog.io/artifactory/api
-          - https://myserver.jfrog.io/artifactory/api/v2
-          - https://myserver.jfrog.io/xray/api
-          - https://myserver.jfrog.io/distribution/api
-          - https://myserver.jfrog.io/pipelines/api
-          - https://myserver.jfrog.io/
-          - https://myserver.jfrog.io/access/api
-          - https://myserver.jfrog.io/curation/api
-          - https://myserver.jfrog.io/mc/api
-          - https://myserver.jfrog.io/lifecycle/api
-          - https://myserver.jfrog.io/worker/api
-          - https://myserver.jfrog.io/ml/api
-          - https://api.connect.jfrog.io/v2
-          - https://myserver.jfrog.io/catalog/api/v1
-          - https://myserver.jfrog.io/evidence/api
         unit: 1
-        price: '0.00'
+        price: '1.25'
+        userMultiplied: false
+      - label: Overage 1,204–2,024 GB
+        name: pro_overage_tier2
+        type: tiered
+        metric: GB
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '1.00'
+        userMultiplied: false
+      - label: Overage 2,024+ GB
+        name: pro_overage_tier3
+        type: tiered
+        metric: GB
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.75'
         userMultiplied: false
     elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: JFrog Artifactory REST API
-      - name: JFrog Artifactory REST API V2
-      - name: JFrog Xray REST API
-      - name: JFrog Distribution REST API
-      - name: JFrog Pipelines REST API
-      - name: JFrog Platform REST API
-      - name: JFrog Access REST API
-      - name: JFrog Curation REST API
-  - id: jfrog-pro
-    name: Professional
-    type: paid
-    description: Production tier for JFrog. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
+      - name: Universal binary repository
+      - name: Container registry
+      - name: ML model registry
+      - name: CI/CD integrations
+      - name: Community support
+  - id: jfrog-saas-enterprise-x
+    name: JFrog Cloud — Enterprise X
+    type: subscription
+    description: Production-grade JFrog SaaS with 125 GB monthly base, high availability (99.9% uptime
+      SLA), artifact federation, automated cleanup, SSO/SAML, 24/7 SLA support.
     entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
+      - label: Monthly base
+        name: ex_monthly
+        type: subscription
+        metric: month
+        limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://myserver.jfrog.io/artifactory/api
-          - https://myserver.jfrog.io/artifactory/api/v2
-          - https://myserver.jfrog.io/xray/api
-          - https://myserver.jfrog.io/distribution/api
-          - https://myserver.jfrog.io/pipelines/api
-          - https://myserver.jfrog.io/
-          - https://myserver.jfrog.io/access/api
-          - https://myserver.jfrog.io/curation/api
-          - https://myserver.jfrog.io/mc/api
-          - https://myserver.jfrog.io/lifecycle/api
-          - https://myserver.jfrog.io/worker/api
-          - https://myserver.jfrog.io/ml/api
-          - https://api.connect.jfrog.io/v2
-          - https://myserver.jfrog.io/catalog/api/v1
-          - https://myserver.jfrog.io/evidence/api
         unit: 1
-        price: TBD
+        price: '950.00'
         userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
+      - label: Included consumption
+        name: ex_included_consumption
+        type: quota
+        metric: GB
+        limit: 125
+        timeFrame: month
         geo: global
-        domains:
-          - https://myserver.jfrog.io/artifactory/api
-          - https://myserver.jfrog.io/artifactory/api/v2
-          - https://myserver.jfrog.io/xray/api
-          - https://myserver.jfrog.io/distribution/api
-          - https://myserver.jfrog.io/pipelines/api
-          - https://myserver.jfrog.io/
-          - https://myserver.jfrog.io/access/api
-          - https://myserver.jfrog.io/curation/api
-          - https://myserver.jfrog.io/mc/api
-          - https://myserver.jfrog.io/lifecycle/api
-          - https://myserver.jfrog.io/worker/api
-          - https://myserver.jfrog.io/ml/api
-          - https://api.connect.jfrog.io/v2
-          - https://myserver.jfrog.io/catalog/api/v1
-          - https://myserver.jfrog.io/evidence/api
         unit: 1
         price: '0.00'
         userMultiplied: false
       - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+        name: ex_overage
+        type: tiered
+        metric: GB
         limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://myserver.jfrog.io/artifactory/api
-          - https://myserver.jfrog.io/artifactory/api/v2
-          - https://myserver.jfrog.io/xray/api
-          - https://myserver.jfrog.io/distribution/api
-          - https://myserver.jfrog.io/pipelines/api
-          - https://myserver.jfrog.io/
-          - https://myserver.jfrog.io/access/api
-          - https://myserver.jfrog.io/curation/api
-          - https://myserver.jfrog.io/mc/api
-          - https://myserver.jfrog.io/lifecycle/api
-          - https://myserver.jfrog.io/worker/api
-          - https://myserver.jfrog.io/ml/api
-          - https://api.connect.jfrog.io/v2
-          - https://myserver.jfrog.io/catalog/api/v1
-          - https://myserver.jfrog.io/evidence/api
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: see vendor pricing calculator
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: JFrog Artifactory REST API
-      - name: JFrog Artifactory REST API V2
-      - name: JFrog Xray REST API
-      - name: JFrog Distribution REST API
-      - name: JFrog Pipelines REST API
-      - name: JFrog Platform REST API
-      - name: JFrog Access REST API
-      - name: JFrog Curation REST API
-      - name: JFrog Mission Control REST API
-      - name: JFrog Release Lifecycle Management REST API
-      - name: JFrog Workers REST API
-      - name: JFrog ML REST API
-      - name: JFrog Connect REST API
-      - name: JFrog Catalog REST API
-      - name: JFrog Evidence REST API
-  - id: jfrog-enterprise
-    name: Enterprise
+      - name: Everything in Pro
+      - name: 99.9% uptime SLA
+      - name: Artifact federation
+      - name: Automated cleanup policies
+      - name: SSO / SAML
+      - name: GitHub integration
+      - name: 24/7 SLA support
+  - id: jfrog-saas-enterprise-plus
+    name: JFrog Cloud — Enterprise+
     type: enterprise
-    description: Custom-negotiated tier for JFrog. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: Top tier JFrog SaaS with custom consumption, multisite federation, distribution, advanced
+      network topologies, evidence collection, application governance, and high-touch 24/7 support with
+      a named technical account lead.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Subscription
+        name: ep_subscription
+        type: subscription
+        metric: month
         limit: -1
         timeFrame: month
-        geo: configurable
-        domains:
-          - https://myserver.jfrog.io/artifactory/api
-          - https://myserver.jfrog.io/artifactory/api/v2
-          - https://myserver.jfrog.io/xray/api
-          - https://myserver.jfrog.io/distribution/api
-          - https://myserver.jfrog.io/pipelines/api
-          - https://myserver.jfrog.io/
-          - https://myserver.jfrog.io/access/api
-          - https://myserver.jfrog.io/curation/api
-          - https://myserver.jfrog.io/mc/api
-          - https://myserver.jfrog.io/lifecycle/api
-          - https://myserver.jfrog.io/worker/api
-          - https://myserver.jfrog.io/ml/api
-          - https://api.connect.jfrog.io/v2
-          - https://myserver.jfrog.io/catalog/api/v1
-          - https://myserver.jfrog.io/evidence/api
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://myserver.jfrog.io/artifactory/api
-          - https://myserver.jfrog.io/artifactory/api/v2
-          - https://myserver.jfrog.io/xray/api
-          - https://myserver.jfrog.io/distribution/api
-          - https://myserver.jfrog.io/pipelines/api
-          - https://myserver.jfrog.io/
-          - https://myserver.jfrog.io/access/api
-          - https://myserver.jfrog.io/curation/api
-          - https://myserver.jfrog.io/mc/api
-          - https://myserver.jfrog.io/lifecycle/api
-          - https://myserver.jfrog.io/worker/api
-          - https://myserver.jfrog.io/ml/api
-          - https://api.connect.jfrog.io/v2
-          - https://myserver.jfrog.io/catalog/api/v1
-          - https://myserver.jfrog.io/evidence/api
-        unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: JFrog Artifactory REST API
-      - name: JFrog Artifactory REST API V2
-      - name: JFrog Xray REST API
-      - name: JFrog Distribution REST API
-      - name: JFrog Pipelines REST API
-      - name: JFrog Platform REST API
-      - name: JFrog Access REST API
-      - name: JFrog Curation REST API
-      - name: JFrog Mission Control REST API
-      - name: JFrog Release Lifecycle Management REST API
-      - name: JFrog Workers REST API
-      - name: JFrog ML REST API
-      - name: JFrog Connect REST API
-      - name: JFrog Catalog REST API
-      - name: JFrog Evidence REST API
+      - name: Everything in Enterprise X
+      - name: Multisite federation
+      - name: Distribution + edge nodes
+      - name: Advanced network topologies
+      - name: Evidence collection
+      - name: Application governance
+      - name: 24/7 high-touch support, named TAM
+  - id: jfrog-selfmanaged-pro-x
+    name: JFrog Self-Managed — Pro X
+    type: subscription
+    description: Self-hosted JFrog Pro X starting at $27,000/year, includes 1 server, universal binary
+      management, container registry, ML model registry.
+    entries:
+      - label: Annual subscription
+        name: pro_x_annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: '27000.00'
+        userMultiplied: false
+    elements:
+      - name: Self-hosted Artifactory
+      - name: Container registry
+      - name: ML model registry
+      - name: 1 included server
+  - id: jfrog-selfmanaged-enterprise-x
+    name: JFrog Self-Managed — Enterprise X
+    type: subscription
+    description: Self-hosted Enterprise X starting at $51,000/year, includes 3 servers, high availability,
+      federation, automated cleanup, enterprise access controls, security scanning.
+    entries:
+      - label: Annual subscription
+        name: enterprise_x_annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: '51000.00'
+        userMultiplied: false
+    elements:
+      - name: 3 included servers
+      - name: High availability
+      - name: Federation
+      - name: Automated cleanup
+      - name: Enterprise access controls
+      - name: Security scanning
+  - id: jfrog-selfmanaged-enterprise-plus
+    name: JFrog Self-Managed — Enterprise+
+    type: enterprise
+    description: Self-hosted Enterprise+ with custom pricing, 6 included servers, multisite, advanced
+      distribution, application governance, premium support.
+    entries:
+      - label: Annual subscription
+        name: enterprise_plus_annual
+        type: subscription
+        metric: year
+        limit: -1
+        timeFrame: year
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: 6 included servers
+      - name: Multisite federation
+      - name: Advanced distribution
+      - name: Application governance
+      - name: Premium support
+  - id: jfrog-security-bundles
+    name: Security Bundles (add-on)
+    type: subscription
+    description: Optional Security bundles layered on Cloud or Self-Managed. Unified Security covers
+      curation, advanced security, and agentic remediation; Ultimate Security adds AI Catalog and AppTrust.
+    entries:
+      - label: Bundle subscription
+        name: security_bundle
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Curation
+      - name: Advanced security
+      - name: Agentic remediation
+      - name: AI Catalog (Ultimate)
+      - name: AppTrust (Ultimate)
+  - id: jfrog-mlops-bundles
+    name: MLOps Bundles (add-on)
+    type: subscription
+    description: Optional MLOps bundles. Unified MLOps covers model registry, experiment tracking,
+      monitoring, and serving; Ultimate MLOps adds advanced deployments, feature store, and multi-cloud
+      / multi-region deployments.
+    entries:
+      - label: Bundle subscription
+        name: mlops_bundle
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Model registry
+      - name: Experiment tracking
+      - name: Monitoring + serving
+      - name: Feature store (Ultimate)
+      - name: Multi-cloud / multi-region (Ultimate)
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
+  - FN: API Evangelist
+    email: info@apievangelist.com

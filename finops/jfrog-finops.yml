@@ -1,278 +1,99 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: JFrog
+providerId: jfrog
+created: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - FinOps
+  - FOCUS
+  - DevOps
+  - Software Supply Chain
+  - Container Registry
+description: 'FOCUS-aligned FinOps for JFrog: tiered Cloud subscriptions priced by monthly base + tiered
+  storage / data-transfer overage, plus self-managed annual subscriptions and optional Security and
+  MLOps bundles. The dominant cost driver in Cloud is consumption (GB stored, GB transferred) above
+  the included tier allotment.'
+sources:
+  - https://jfrog.com/pricing/
+  - https://jfrog.com/help/r/jfrog-platform-administration-documentation/jfrog-subscriptions
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
   dataSpec: FOCUS
   dataSpecVersion: '1.3'
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
-provider: JFrog
-providerId: jfrog
-publisherName: JFrog
-serviceCategory: API
-created: '2026-05-04'
-modified: '2026-05-04'
-tags:
-  - Artifactory
-  - CI/CD
-  - Container Registry
-  - DevOps
-  - MLOps
-  - Package Management
-  - Security
-  - Software Supply Chain
-  - FinOps
-  - Cost Management
-  - FOCUS
-description: FinOps framework definition for the JFrog API surface. Provides a FOCUS-aligned mapping for
-  cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+publisherName: JFrog Ltd.
+serviceCategory: DevOps / Software Supply Chain
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Subscription + Tiered Overage
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
-    - Usage
     - Purchase
+    - Usage
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
+    - Credit
 focusColumns:
-  ServiceName: JFrog
-  ServiceCategory: Developer Tools / API
+  ServiceName: JFrog Platform
+  ServiceCategory: DevOps / Software Supply Chain
   ProviderName: JFrog
-  PublisherName: JFrog
-  InvoiceIssuerName: JFrog
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  PublisherName: JFrog Ltd.
+  InvoiceIssuerName: JFrog Ltd.
   BillingCurrency: USD
-  ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
-    unit: request
+  - name: subscription_base
+    unit: month
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
       - tier
+      - deployment
+  - name: storage_consumption
+    unit: GB-month
+    aggregation: sum
+    dimensions:
+      - repository
+      - package_type
       - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
+  - name: data_transfer
     unit: GB
     aggregation: sum
     dimensions:
-      - api
+      - direction
       - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
+  - name: server_subscription
+    unit: server-year
+    aggregation: max
+    dimensions:
+      - tier
+  - name: security_bundle
+    unit: month
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: JFrog Artifactory REST API
-    baseURL: https://myserver.jfrog.io/artifactory/api
-    tags:
-      - Artifacts
-      - Binary Management
-      - DevOps
-      - Package Management
-      - Repository Management
-    serviceName: JFrog Artifactory REST API
-    serviceCategory: API
-  - name: JFrog Artifactory REST API V2
-    baseURL: https://myserver.jfrog.io/artifactory/api/v2
-    tags:
-      - API V2
-      - Artifacts
-      - Binary Management
-      - Package Management
-      - Repository Management
-    serviceName: JFrog Artifactory REST API V2
-    serviceCategory: API
-  - name: JFrog Xray REST API
-    baseURL: https://myserver.jfrog.io/xray/api
-    tags:
-      - DevSecOps
-      - License Compliance
-      - Security
-      - Software Composition Analysis
-      - Vulnerability Scanning
-    serviceName: JFrog Xray REST API
-    serviceCategory: API
-  - name: JFrog Distribution REST API
-    baseURL: https://myserver.jfrog.io/distribution/api
-    tags:
-      - CDN
-      - Distribution
-      - Edge Nodes
-      - Release Management
-      - Software Distribution
-    serviceName: JFrog Distribution REST API
-    serviceCategory: API
-  - name: JFrog Pipelines REST API
-    baseURL: https://myserver.jfrog.io/pipelines/api
-    tags:
-      - Automation
-      - CI/CD
-      - DevOps
-      - Pipelines
-      - Workflows
-    serviceName: JFrog Pipelines REST API
-    serviceCategory: API
-  - name: JFrog Platform REST API
-    baseURL: https://myserver.jfrog.io/
-    tags:
-      - Access Management
-      - Administration
-      - Configuration
-      - Platform
-      - System Health
-    serviceName: JFrog Platform REST API
-    serviceCategory: API
-  - name: JFrog Access REST API
-    baseURL: https://myserver.jfrog.io/access/api
-    tags:
-      - Access Management
-      - Authentication
-      - Permissions
-      - Tokens
-      - Users
-    serviceName: JFrog Access REST API
-    serviceCategory: API
-  - name: JFrog Curation REST API
-    baseURL: https://myserver.jfrog.io/curation/api
-    tags:
-      - Curation
-      - Open Source
-      - Policy Management
-      - Security
-      - Software Supply Chain
-    serviceName: JFrog Curation REST API
-    serviceCategory: API
-  - name: JFrog Mission Control REST API
-    baseURL: https://myserver.jfrog.io/mc/api
-    tags:
-      - Administration
-      - Mission Control
-      - Monitoring
-      - Multi-Instance Management
-      - Operations
-    serviceName: JFrog Mission Control REST API
-    serviceCategory: API
-  - name: JFrog Release Lifecycle Management REST API
-    baseURL: https://myserver.jfrog.io/lifecycle/api
-    tags:
-      - Evidence
-      - Lifecycle
-      - Promotion
-      - Release Bundles
-      - Release Management
-    serviceName: JFrog Release Lifecycle Management REST API
-    serviceCategory: API
-  - name: JFrog Workers REST API
-    baseURL: https://myserver.jfrog.io/worker/api
-    tags:
-      - Automation
-      - Extensibility
-      - Plugins
-      - Serverless
-      - Workers
-    serviceName: JFrog Workers REST API
-    serviceCategory: API
-  - name: JFrog ML REST API
-    baseURL: https://myserver.jfrog.io/ml/api
-    tags:
-      - AI
-      - Machine Learning
-      - MLOps
-      - Model Management
-      - Model Registry
-    serviceName: JFrog ML REST API
-    serviceCategory: API
-  - name: JFrog Connect REST API
-    baseURL: https://api.connect.jfrog.io/v2
-    tags:
-      - Device Management
-      - Edge Computing
-      - Fleet Management
-      - IoT
-      - OTA Updates
-    serviceName: JFrog Connect REST API
-    serviceCategory: API
-  - name: JFrog Catalog REST API
-    baseURL: https://myserver.jfrog.io/catalog/api/v1
-    tags:
-      - Catalog
-      - CVE Search
-      - Package Metadata
-      - Security
-      - Software Supply Chain
-    serviceName: JFrog Catalog REST API
-    serviceCategory: API
-  - name: JFrog Evidence REST API
-    baseURL: https://myserver.jfrog.io/evidence/api
-    tags:
-      - Attestation
-      - Compliance
-      - Evidence
-      - Software Supply Chain
-      - Supply Chain Security
-    serviceName: JFrog Evidence REST API
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - bundle
+  - name: mlops_bundle
+    unit: month
+    aggregation: sum
+    dimensions:
+      - bundle
+principles:
+  - name: Visibility
+    description: Use the JFrog Platform Usage / Subscription dashboard and the Artifactory storage
+      summary REST endpoint to see GB consumption per repository and per package type; export to your
+      data warehouse for FOCUS reporting.
+  - name: Allocation
+    description: Tag repositories with team / product / environment metadata so storage and data-transfer
+      cost can be charged back; use Projects in JFrog Platform to bound consumption per tenant.
+  - name: Optimization
+    description: Apply automated cleanup policies (Enterprise X+) to expire snapshots and old images,
+      enable replication / federation only where business-critical, deduplicate base images, and choose
+      regions to minimize cross-region transfer; lock in 3-year commits for stable workloads.
+  - name: Accountability
+    description: DevOps platform team owns the JFrog tenancy and reconciles monthly base + overage
+      against forecast; per-team cost reviews quarterly via Projects-based showback.
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
-    url: https://apievangelist.com
+  - FN: API Evangelist
+    email: info@apievangelist.com
