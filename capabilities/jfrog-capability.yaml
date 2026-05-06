@@ -1,0 +1,1279 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Access REST API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access
+    handles identity management, role-based access control, federated identity, and scoped token creation for authentication
+    and authorization across all JFrog services.
+  tags:
+  - Jfrog
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: jfrog
+    baseUri: https://myserver.jfrog.io/access
+    description: JFrog Access REST API HTTP API.
+    authentication:
+      type: bearer
+      token: '{{JFROG_TOKEN}}'
+    resources:
+    - name: api-v1-system-ping
+      path: /api/v1/system/ping
+      operations:
+      - name: systemping
+        method: GET
+        description: JFrog System Ping
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-system-version
+      path: /api/v1/system/version
+      operations:
+      - name: getsystemversion
+        method: GET
+        description: JFrog Get System Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-tokens
+      path: /api/v2/tokens
+      operations:
+      - name: listtokens
+        method: GET
+        description: JFrog List Access Tokens
+        inputParameters:
+        - name: subject
+          in: query
+          type: string
+          description: Filter tokens by subject
+        - name: token_id
+          in: query
+          type: string
+          description: Filter by specific token ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createtoken
+        method: POST
+        description: JFrog Create Access Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-tokens-tokenid
+      path: /api/v2/tokens/{tokenId}
+      operations:
+      - name: gettoken
+        method: GET
+        description: JFrog Get Token Details
+        inputParameters:
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+          description: Token ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: revoketoken
+        method: DELETE
+        description: JFrog Revoke Access Token
+        inputParameters:
+        - name: tokenId
+          in: path
+          type: string
+          required: true
+          description: Token ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-users
+      path: /api/v2/users
+      operations:
+      - name: listusers
+        method: GET
+        description: JFrog List Users
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+          description: Filter by user status
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results
+        - name: offset
+          in: query
+          type: integer
+          description: Offset for pagination
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createuser
+        method: POST
+        description: JFrog Create User
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-users-username
+      path: /api/v2/users/{username}
+      operations:
+      - name: getuser
+        method: GET
+        description: JFrog Get User
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: Username
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateuser
+        method: PATCH
+        description: JFrog Update User
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: Username
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteuser
+        method: DELETE
+        description: JFrog Delete User
+        inputParameters:
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: Username
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-groups
+      path: /api/v2/groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: JFrog List Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategroup
+        method: POST
+        description: JFrog Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-groups-groupname
+      path: /api/v2/groups/{groupName}
+      operations:
+      - name: getgroup
+        method: GET
+        description: JFrog Get Group
+        inputParameters:
+        - name: groupName
+          in: path
+          type: string
+          required: true
+          description: Group name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updategroup
+        method: PATCH
+        description: JFrog Update Group
+        inputParameters:
+        - name: groupName
+          in: path
+          type: string
+          required: true
+          description: Group name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletegroup
+        method: DELETE
+        description: JFrog Delete Group
+        inputParameters:
+        - name: groupName
+          in: path
+          type: string
+          required: true
+          description: Group name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-permissions
+      path: /api/v2/permissions
+      operations:
+      - name: listpermissions
+        method: GET
+        description: JFrog List Permissions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpermission
+        method: POST
+        description: JFrog Create Permission
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-permissions-permissionname
+      path: /api/v2/permissions/{permissionName}
+      operations:
+      - name: getpermission
+        method: GET
+        description: JFrog Get Permission
+        inputParameters:
+        - name: permissionName
+          in: path
+          type: string
+          required: true
+          description: Permission name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatepermission
+        method: PUT
+        description: JFrog Update Permission
+        inputParameters:
+        - name: permissionName
+          in: path
+          type: string
+          required: true
+          description: Permission name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deletepermission
+        method: DELETE
+        description: JFrog Delete Permission
+        inputParameters:
+        - name: permissionName
+          in: path
+          type: string
+          required: true
+          description: Permission name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-projects
+      path: /api/v1/projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: JFrog List Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproject
+        method: POST
+        description: JFrog Create Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-projects-projectkey
+      path: /api/v1/projects/{projectKey}
+      operations:
+      - name: getproject
+        method: GET
+        description: JFrog Get Project
+        inputParameters:
+        - name: projectKey
+          in: path
+          type: string
+          required: true
+          description: Project key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateproject
+        method: PUT
+        description: JFrog Update Project
+        inputParameters:
+        - name: projectKey
+          in: path
+          type: string
+          required: true
+          description: Project key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteproject
+        method: DELETE
+        description: JFrog Delete Project
+        inputParameters:
+        - name: projectKey
+          in: path
+          type: string
+          required: true
+          description: Project key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-projects-projectkey-users-username
+      path: /api/v1/projects/{projectKey}/users/{username}
+      operations:
+      - name: addusertoproject
+        method: PUT
+        description: JFrog Add User to Project
+        inputParameters:
+        - name: projectKey
+          in: path
+          type: string
+          required: true
+          description: Project key
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: Username to add
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: removeuserfromproject
+        method: DELETE
+        description: JFrog Remove User from Project
+        inputParameters:
+        - name: projectKey
+          in: path
+          type: string
+          required: true
+          description: Project key
+        - name: username
+          in: path
+          type: string
+          required: true
+          description: Username to remove
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v1-projects-projectkey-groups-groupname
+      path: /api/v1/projects/{projectKey}/groups/{groupName}
+      operations:
+      - name: addgrouptoproject
+        method: PUT
+        description: JFrog Add Group to Project
+        inputParameters:
+        - name: projectKey
+          in: path
+          type: string
+          required: true
+          description: Project key
+        - name: groupName
+          in: path
+          type: string
+          required: true
+          description: Group name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: removegroupfromproject
+        method: DELETE
+        description: JFrog Remove Group from Project
+        inputParameters:
+        - name: projectKey
+          in: path
+          type: string
+          required: true
+          description: Project key
+        - name: groupName
+          in: path
+          type: string
+          required: true
+          description: Group name
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: jfrog-rest
+    description: REST adapter for JFrog Access REST API.
+    resources:
+    - path: /api/v1/system/ping
+      name: systemping
+      operations:
+      - method: GET
+        name: systemping
+        description: JFrog System Ping
+        call: jfrog.systemping
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/system/version
+      name: getsystemversion
+      operations:
+      - method: GET
+        name: getsystemversion
+        description: JFrog Get System Version
+        call: jfrog.getsystemversion
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/tokens
+      name: listtokens
+      operations:
+      - method: GET
+        name: listtokens
+        description: JFrog List Access Tokens
+        call: jfrog.listtokens
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/tokens
+      name: createtoken
+      operations:
+      - method: POST
+        name: createtoken
+        description: JFrog Create Access Token
+        call: jfrog.createtoken
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/tokens/{tokenId}
+      name: gettoken
+      operations:
+      - method: GET
+        name: gettoken
+        description: JFrog Get Token Details
+        call: jfrog.gettoken
+        with:
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/tokens/{tokenId}
+      name: revoketoken
+      operations:
+      - method: DELETE
+        name: revoketoken
+        description: JFrog Revoke Access Token
+        call: jfrog.revoketoken
+        with:
+          tokenId: rest.tokenId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/users
+      name: listusers
+      operations:
+      - method: GET
+        name: listusers
+        description: JFrog List Users
+        call: jfrog.listusers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/users
+      name: createuser
+      operations:
+      - method: POST
+        name: createuser
+        description: JFrog Create User
+        call: jfrog.createuser
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/users/{username}
+      name: getuser
+      operations:
+      - method: GET
+        name: getuser
+        description: JFrog Get User
+        call: jfrog.getuser
+        with:
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/users/{username}
+      name: updateuser
+      operations:
+      - method: PATCH
+        name: updateuser
+        description: JFrog Update User
+        call: jfrog.updateuser
+        with:
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/users/{username}
+      name: deleteuser
+      operations:
+      - method: DELETE
+        name: deleteuser
+        description: JFrog Delete User
+        call: jfrog.deleteuser
+        with:
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/groups
+      name: listgroups
+      operations:
+      - method: GET
+        name: listgroups
+        description: JFrog List Groups
+        call: jfrog.listgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/groups
+      name: creategroup
+      operations:
+      - method: POST
+        name: creategroup
+        description: JFrog Create Group
+        call: jfrog.creategroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/groups/{groupName}
+      name: getgroup
+      operations:
+      - method: GET
+        name: getgroup
+        description: JFrog Get Group
+        call: jfrog.getgroup
+        with:
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/groups/{groupName}
+      name: updategroup
+      operations:
+      - method: PATCH
+        name: updategroup
+        description: JFrog Update Group
+        call: jfrog.updategroup
+        with:
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/groups/{groupName}
+      name: deletegroup
+      operations:
+      - method: DELETE
+        name: deletegroup
+        description: JFrog Delete Group
+        call: jfrog.deletegroup
+        with:
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/permissions
+      name: listpermissions
+      operations:
+      - method: GET
+        name: listpermissions
+        description: JFrog List Permissions
+        call: jfrog.listpermissions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/permissions
+      name: createpermission
+      operations:
+      - method: POST
+        name: createpermission
+        description: JFrog Create Permission
+        call: jfrog.createpermission
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/permissions/{permissionName}
+      name: getpermission
+      operations:
+      - method: GET
+        name: getpermission
+        description: JFrog Get Permission
+        call: jfrog.getpermission
+        with:
+          permissionName: rest.permissionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/permissions/{permissionName}
+      name: updatepermission
+      operations:
+      - method: PUT
+        name: updatepermission
+        description: JFrog Update Permission
+        call: jfrog.updatepermission
+        with:
+          permissionName: rest.permissionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v2/permissions/{permissionName}
+      name: deletepermission
+      operations:
+      - method: DELETE
+        name: deletepermission
+        description: JFrog Delete Permission
+        call: jfrog.deletepermission
+        with:
+          permissionName: rest.permissionName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects
+      name: listprojects
+      operations:
+      - method: GET
+        name: listprojects
+        description: JFrog List Projects
+        call: jfrog.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects
+      name: createproject
+      operations:
+      - method: POST
+        name: createproject
+        description: JFrog Create Project
+        call: jfrog.createproject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{projectKey}
+      name: getproject
+      operations:
+      - method: GET
+        name: getproject
+        description: JFrog Get Project
+        call: jfrog.getproject
+        with:
+          projectKey: rest.projectKey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{projectKey}
+      name: updateproject
+      operations:
+      - method: PUT
+        name: updateproject
+        description: JFrog Update Project
+        call: jfrog.updateproject
+        with:
+          projectKey: rest.projectKey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{projectKey}
+      name: deleteproject
+      operations:
+      - method: DELETE
+        name: deleteproject
+        description: JFrog Delete Project
+        call: jfrog.deleteproject
+        with:
+          projectKey: rest.projectKey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{projectKey}/users/{username}
+      name: addusertoproject
+      operations:
+      - method: PUT
+        name: addusertoproject
+        description: JFrog Add User to Project
+        call: jfrog.addusertoproject
+        with:
+          projectKey: rest.projectKey
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{projectKey}/users/{username}
+      name: removeuserfromproject
+      operations:
+      - method: DELETE
+        name: removeuserfromproject
+        description: JFrog Remove User from Project
+        call: jfrog.removeuserfromproject
+        with:
+          projectKey: rest.projectKey
+          username: rest.username
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{projectKey}/groups/{groupName}
+      name: addgrouptoproject
+      operations:
+      - method: PUT
+        name: addgrouptoproject
+        description: JFrog Add Group to Project
+        call: jfrog.addgrouptoproject
+        with:
+          projectKey: rest.projectKey
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /api/v1/projects/{projectKey}/groups/{groupName}
+      name: removegroupfromproject
+      operations:
+      - method: DELETE
+        name: removegroupfromproject
+        description: JFrog Remove Group from Project
+        call: jfrog.removegroupfromproject
+        with:
+          projectKey: rest.projectKey
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: jfrog-mcp
+    transport: http
+    description: MCP adapter for JFrog Access REST API for AI agent use.
+    tools:
+    - name: systemping
+      description: JFrog System Ping
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.systemping
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getsystemversion
+      description: JFrog Get System Version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.getsystemversion
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listtokens
+      description: JFrog List Access Tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.listtokens
+      with:
+        subject: tools.subject
+        token_id: tools.token_id
+      inputParameters:
+      - name: subject
+        type: string
+        description: Filter tokens by subject
+      - name: token_id
+        type: string
+        description: Filter by specific token ID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createtoken
+      description: JFrog Create Access Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: jfrog.createtoken
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: gettoken
+      description: JFrog Get Token Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.gettoken
+      with:
+        tokenId: tools.tokenId
+      inputParameters:
+      - name: tokenId
+        type: string
+        description: Token ID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: revoketoken
+      description: JFrog Revoke Access Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: jfrog.revoketoken
+      with:
+        tokenId: tools.tokenId
+      inputParameters:
+      - name: tokenId
+        type: string
+        description: Token ID
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listusers
+      description: JFrog List Users
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.listusers
+      with:
+        status: tools.status
+        limit: tools.limit
+        offset: tools.offset
+      inputParameters:
+      - name: status
+        type: string
+        description: Filter by user status
+      - name: limit
+        type: integer
+        description: Maximum number of results
+      - name: offset
+        type: integer
+        description: Offset for pagination
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createuser
+      description: JFrog Create User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: jfrog.createuser
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getuser
+      description: JFrog Get User
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.getuser
+      with:
+        username: tools.username
+      inputParameters:
+      - name: username
+        type: string
+        description: Username
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateuser
+      description: JFrog Update User
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: jfrog.updateuser
+      with:
+        username: tools.username
+      inputParameters:
+      - name: username
+        type: string
+        description: Username
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteuser
+      description: JFrog Delete User
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: jfrog.deleteuser
+      with:
+        username: tools.username
+      inputParameters:
+      - name: username
+        type: string
+        description: Username
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listgroups
+      description: JFrog List Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.listgroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creategroup
+      description: JFrog Create Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: jfrog.creategroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgroup
+      description: JFrog Get Group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.getgroup
+      with:
+        groupName: tools.groupName
+      inputParameters:
+      - name: groupName
+        type: string
+        description: Group name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updategroup
+      description: JFrog Update Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: jfrog.updategroup
+      with:
+        groupName: tools.groupName
+      inputParameters:
+      - name: groupName
+        type: string
+        description: Group name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletegroup
+      description: JFrog Delete Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: jfrog.deletegroup
+      with:
+        groupName: tools.groupName
+      inputParameters:
+      - name: groupName
+        type: string
+        description: Group name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listpermissions
+      description: JFrog List Permissions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.listpermissions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createpermission
+      description: JFrog Create Permission
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: jfrog.createpermission
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getpermission
+      description: JFrog Get Permission
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.getpermission
+      with:
+        permissionName: tools.permissionName
+      inputParameters:
+      - name: permissionName
+        type: string
+        description: Permission name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updatepermission
+      description: JFrog Update Permission
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: jfrog.updatepermission
+      with:
+        permissionName: tools.permissionName
+      inputParameters:
+      - name: permissionName
+        type: string
+        description: Permission name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletepermission
+      description: JFrog Delete Permission
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: jfrog.deletepermission
+      with:
+        permissionName: tools.permissionName
+      inputParameters:
+      - name: permissionName
+        type: string
+        description: Permission name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: listprojects
+      description: JFrog List Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: createproject
+      description: JFrog Create Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: jfrog.createproject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getproject
+      description: JFrog Get Project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: jfrog.getproject
+      with:
+        projectKey: tools.projectKey
+      inputParameters:
+      - name: projectKey
+        type: string
+        description: Project key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: updateproject
+      description: JFrog Update Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: jfrog.updateproject
+      with:
+        projectKey: tools.projectKey
+      inputParameters:
+      - name: projectKey
+        type: string
+        description: Project key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deleteproject
+      description: JFrog Delete Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: jfrog.deleteproject
+      with:
+        projectKey: tools.projectKey
+      inputParameters:
+      - name: projectKey
+        type: string
+        description: Project key
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: addusertoproject
+      description: JFrog Add User to Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: jfrog.addusertoproject
+      with:
+        projectKey: tools.projectKey
+        username: tools.username
+      inputParameters:
+      - name: projectKey
+        type: string
+        description: Project key
+        required: true
+      - name: username
+        type: string
+        description: Username to add
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removeuserfromproject
+      description: JFrog Remove User from Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: jfrog.removeuserfromproject
+      with:
+        projectKey: tools.projectKey
+        username: tools.username
+      inputParameters:
+      - name: projectKey
+        type: string
+        description: Project key
+        required: true
+      - name: username
+        type: string
+        description: Username to remove
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: addgrouptoproject
+      description: JFrog Add Group to Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: jfrog.addgrouptoproject
+      with:
+        projectKey: tools.projectKey
+        groupName: tools.groupName
+      inputParameters:
+      - name: projectKey
+        type: string
+        description: Project key
+        required: true
+      - name: groupName
+        type: string
+        description: Group name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: removegroupfromproject
+      description: JFrog Remove Group from Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: jfrog.removegroupfromproject
+      with:
+        projectKey: tools.projectKey
+        groupName: tools.groupName
+      inputParameters:
+      - name: projectKey
+        type: string
+        description: Project key
+        required: true
+      - name: groupName
+        type: string
+        description: Group name
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+binds:
+- namespace: env
+  keys:
+    JFROG_TOKEN: JFROG_TOKEN
