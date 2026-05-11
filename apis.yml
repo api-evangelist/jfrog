@@ -381,6 +381,11 @@ common:
     url: json-schema/jfrog-curation-policy-schema.json
   - type: JSON Schema - Evidence
     url: json-schema/jfrog-evidence-schema.json
+  - type: Integrations
+    url: https://jfrog.com/integrations/
+integrations:
+  - name: Docker
+  - name: Maven
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
