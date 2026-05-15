@@ -16,7 +16,7 @@ created: '2024'
 modified: '2026-04-28'
 apis:
   - name: JFrog Artifactory REST API
-    description: REST API for managing artifacts, repositories, security, and system configuration in JFrog Artifactory. Provides endpoints for uploading, downloading, searching, and managing binary artifacts across all package types.
+    description: REST API for managing artifacts, repositories, security, and system configuration in JFrog Artifactory. Provides endpoints for uploading, downloading, searching, and managing binary artifacts across all package types, including the Skills repository type for AI Agent Skills published via the JFrog AI Catalog.
     image: https://jfrog.com/brand/artifactory-logo.png
     baseURL: https://myserver.jfrog.io/artifactory/api
     humanURL: https://jfrog.com/artifactory/
@@ -26,6 +26,8 @@ apis:
       - DevOps
       - Package Management
       - Repository Management
+      - Skills
+      - AI Agents
     properties:
       - type: Documentation
         url: https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API
@@ -37,6 +39,8 @@ apis:
         url: https://jfrog.com/help/r/jfrog-artifactory-documentation/use-the-rest-api
       - type: Reference
         url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis
+      - type: Blog
+        url: https://jfrog.com/blog/agent-skills-new-ai-packages/
   - name: JFrog Artifactory REST API V2
     description: The next generation Artifactory REST API providing improved endpoints for repository management, artifact operations, and system administration with enhanced consistency and functionality.
     baseURL: https://myserver.jfrog.io/artifactory/api/v2
