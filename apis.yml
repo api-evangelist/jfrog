@@ -35,7 +35,7 @@ apis:
         url: openapi/jfrog-artifactory-openapi.yml
       - type: Authentication
         url: https://www.jfrog.com/confluence/display/JFROG/Access+Tokens
-      - type: Getting Started
+      - type: GettingStarted
         url: https://jfrog.com/help/r/jfrog-artifactory-documentation/use-the-rest-api
       - type: Reference
         url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis
@@ -78,7 +78,7 @@ apis:
         url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
       - type: Reference
         url: https://jfrog.com/help/r/xray-rest-apis
-      - type: Getting Started
+      - type: GettingStarted
         url: https://jfrog.com/help/r/xray-rest-apis/introduction-to-the-xray-rest-apis
   - name: JFrog Distribution REST API
     description: API for distributing release binaries to multiple remote locations. Enables secure, reliable distribution of release bundles across edge nodes and remote sites at scale.
@@ -116,7 +116,7 @@ apis:
         url: openapi/jfrog-pipelines-openapi.yml
       - type: Authentication
         url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
-      - type: Getting Started
+      - type: GettingStarted
         url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-pipelines-rest-apis
       - type: Reference
         url: https://jfrog.com/help/r/jfrog-rest-apis/pipelines-rest-apis
@@ -137,7 +137,7 @@ apis:
         url: openapi/jfrog-platform-openapi.yml
       - type: Authentication
         url: https://www.jfrog.com/confluence/display/JFROG/Access+Tokens
-      - type: Getting Started
+      - type: GettingStarted
         url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-jfrog-platform-rest-apis
       - type: Reference
         url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-platform-rest-apis
@@ -158,7 +158,7 @@ apis:
         url: openapi/jfrog-access-openapi.yml
       - type: Authentication
         url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
-      - type: Getting Started
+      - type: GettingStarted
         url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/introduction-to-access-tokens
   - name: JFrog Curation REST API
     description: >-
@@ -309,21 +309,21 @@ common:
     url: https://jfrog.com/developers/
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-rest-apis
-  - type: Getting Started
+  - type: GettingStarted
     url: https://jfrog.com/artifactory/getting-started/
   - type: Authentication
     url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
   - type: Blog
     url: https://jfrog.com/blog/
-  - type: Status
+  - type: StatusPage
     url: https://status.jfrog.io/
   - type: Support
     url: https://jfrog.com/support/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://jfrog.com/terms-of-service/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://jfrog.com/privacy-policy/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/jfrog
   - type: Community
     url: https://jfrog.com/community/
@@ -331,13 +331,13 @@ common:
     url: https://jfrog.com/
   - type: Login
     url: https://my.jfrog.com/login/
-  - type: Sign Up
+  - type: SignUp
     url: https://jfrog.com/start-free/
   - type: Pricing
     url: https://jfrog.com/pricing/
   - type: CLI
     url: https://jfrog.com/getcli/
-  - type: Change Log
+  - type: ChangeLog
     url: https://jfrog.com/help/r/jfrog-release-information/jfrog-release-notes
   - type: SDKs
     url: https://github.com/jfrog/jfrog-client-go
@@ -353,9 +353,9 @@ common:
     url: https://registry.terraform.io/providers/jfrog/platform/latest/docs
   - type: YouTube
     url: https://www.youtube.com/@jfrog
-  - type: Stack Overflow
+  - type: StackOverflow
     url: https://stackoverflow.com/questions/tagged/jfrog
-  - type: Rate Limits
+  - type: RateLimits
     url: https://jfrog.com/help/r/jfrog-rest-apis/usage-and-rate-limits
   - type: Postman Collection
     url: https://www.postman.com/api-evangelist/jfrog/documentation/zgmorin/jfrog-rest-api
