@@ -13,7 +13,7 @@ tags:
   - Security
   - Software Supply Chain
 created: '2024'
-modified: '2026-04-28'
+modified: '2026-05-19'
 apis:
   - name: JFrog Artifactory REST API
     description: REST API for managing artifacts, repositories, security, and system configuration in JFrog Artifactory. Provides endpoints for uploading, downloading, searching, and managing binary artifacts across all package types, including the Skills repository type for AI Agent Skills published via the JFrog AI Catalog.
@@ -387,6 +387,12 @@ common:
     url: json-schema/jfrog-evidence-schema.json
   - type: Integrations
     url: https://jfrog.com/integrations/
+  - name: MCP Server
+    url: https://github.com/jfrog/mcp-jfrog
+    type: MCPServer
+  - name: Agent Skills
+    url: https://github.com/jfrog/jfrog-skills
+    type: AgentSkill
 integrations:
   - name: Docker
   - name: Maven
