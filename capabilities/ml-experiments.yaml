@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog ML REST API — Experiments
+  description: 'JFrog ML REST API — Experiments. 4 operations. Lead operation: JFrog List Experiments. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Experiments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ml-experiments
+    baseUri: https://{server}.jfrog.io/ml/api
+    description: JFrog ML REST API — Experiments business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-experiments
+      path: /v1/experiments
+      operations:
+      - name: listexperiments
+        method: GET
+        description: JFrog List Experiments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: model_id
+          in: query
+          type: string
+          description: Filter by model ID
+      - name: createexperiment
+        method: POST
+        description: JFrog Create Experiment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-experiments-experimentId
+      path: /v1/experiments/{experimentId}
+      operations:
+      - name: getexperiment
+        method: GET
+        description: JFrog Get Experiment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: experimentId
+          in: path
+          type: string
+          description: Experiment ID
+          required: true
+      - name: deleteexperiment
+        method: DELETE
+        description: JFrog Delete Experiment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: experimentId
+          in: path
+          type: string
+          description: Experiment ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ml-experiments-rest
+    port: 8080
+    description: REST adapter for JFrog ML REST API — Experiments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/experiments
+      name: v1-experiments
+      description: REST surface for v1-experiments.
+      operations:
+      - method: GET
+        name: listexperiments
+        description: JFrog List Experiments
+        call: ml-experiments.listexperiments
+        with:
+          model_id: rest.model_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createexperiment
+        description: JFrog Create Experiment
+        call: ml-experiments.createexperiment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/experiments/{experimentid}
+      name: v1-experiments-experimentid
+      description: REST surface for v1-experiments-experimentId.
+      operations:
+      - method: GET
+        name: getexperiment
+        description: JFrog Get Experiment
+        call: ml-experiments.getexperiment
+        with:
+          experimentId: rest.experimentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteexperiment
+        description: JFrog Delete Experiment
+        call: ml-experiments.deleteexperiment
+        with:
+          experimentId: rest.experimentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ml-experiments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog ML REST API — Experiments. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: jfrog-list-experiments
+      description: JFrog List Experiments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-experiments.listexperiments
+      with:
+        model_id: tools.model_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-experiment
+      description: JFrog Create Experiment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ml-experiments.createexperiment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-experiment
+      description: JFrog Get Experiment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-experiments.getexperiment
+      with:
+        experimentId: tools.experimentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-experiment
+      description: JFrog Delete Experiment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ml-experiments.deleteexperiment
+      with:
+        experimentId: tools.experimentId
+      outputParameters:
+      - type: object
+        mapping: $.

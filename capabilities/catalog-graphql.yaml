@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Catalog REST API — GraphQL
+  description: 'JFrog Catalog REST API — GraphQL. 1 operations. Lead operation: JFrog Execute GraphQL Query. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - GraphQL
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: catalog-graphql
+    baseUri: https://{server}.jfrog.io/catalog/api/v1
+    description: JFrog Catalog REST API — GraphQL business capability. Self-contained, no shared references.
+    resources:
+    - name: custom-graphql
+      path: /custom/graphql
+      operations:
+      - name: executegraphqlquery
+        method: POST
+        description: JFrog Execute GraphQL Query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: catalog-graphql-rest
+    port: 8080
+    description: REST adapter for JFrog Catalog REST API — GraphQL. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/custom/graphql
+      name: custom-graphql
+      description: REST surface for custom-graphql.
+      operations:
+      - method: POST
+        name: executegraphqlquery
+        description: JFrog Execute GraphQL Query
+        call: catalog-graphql.executegraphqlquery
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: catalog-graphql-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Catalog REST API — GraphQL. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-execute-graphql-query
+      description: JFrog Execute GraphQL Query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: catalog-graphql.executegraphqlquery
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

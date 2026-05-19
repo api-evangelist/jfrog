@@ -1,0 +1,413 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Evidence REST API — Evidence
+  description: 'JFrog Evidence REST API — Evidence. 8 operations. Lead operation: JFrog Create Evidence. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Evidence
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: evidence-evidence
+    baseUri: https://{server}.jfrog.io/evidence/api
+    description: JFrog Evidence REST API — Evidence business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-evidence
+      path: /v1/evidence
+      operations:
+      - name: createevidence
+        method: POST
+        description: JFrog Create Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-evidence-search
+      path: /v1/evidence/search
+      operations:
+      - name: searchevidence
+        method: POST
+        description: JFrog Search Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-evidence-subject-artifact
+      path: /v1/evidence/subject/artifact
+      operations:
+      - name: getartifactevidence
+        method: GET
+        description: JFrog Get Artifact Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repo_path
+          in: query
+          type: string
+          description: Full artifact repository path
+          required: true
+        - name: sha256
+          in: query
+          type: string
+          description: SHA-256 checksum of the artifact
+    - name: v1-evidence-subject-build
+      path: /v1/evidence/subject/build
+      operations:
+      - name: getbuildevidence
+        method: GET
+        description: JFrog Get Build Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: build_name
+          in: query
+          type: string
+          description: Build name
+          required: true
+        - name: build_number
+          in: query
+          type: string
+          description: Build number
+          required: true
+        - name: project
+          in: query
+          type: string
+          description: Project key (if build is project-scoped)
+    - name: v1-evidence-subject-package
+      path: /v1/evidence/subject/package
+      operations:
+      - name: getpackageevidence
+        method: GET
+        description: JFrog Get Package Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_name
+          in: query
+          type: string
+          description: Package name
+          required: true
+        - name: package_version
+          in: query
+          type: string
+          description: Package version
+          required: true
+        - name: repo_key
+          in: query
+          type: string
+          description: Repository key containing the package
+          required: true
+    - name: v1-evidence-subject-release-bundle
+      path: /v1/evidence/subject/release-bundle
+      operations:
+      - name: getreleasebundleevidence
+        method: GET
+        description: JFrog Get Release Bundle Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: query
+          type: string
+          description: Release bundle name
+          required: true
+        - name: version
+          in: query
+          type: string
+          description: Release bundle version
+          required: true
+        - name: project
+          in: query
+          type: string
+          description: Project key
+    - name: v1-evidence-evidenceId
+      path: /v1/evidence/{evidenceId}
+      operations:
+      - name: getevidence
+        method: GET
+        description: JFrog Get Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: evidenceId
+          in: path
+          type: string
+          description: Evidence record identifier
+          required: true
+      - name: deleteevidence
+        method: DELETE
+        description: JFrog Delete Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: evidenceId
+          in: path
+          type: string
+          description: Evidence record identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: evidence-evidence-rest
+    port: 8080
+    description: REST adapter for JFrog Evidence REST API — Evidence. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/evidence
+      name: v1-evidence
+      description: REST surface for v1-evidence.
+      operations:
+      - method: POST
+        name: createevidence
+        description: JFrog Create Evidence
+        call: evidence-evidence.createevidence
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/evidence/search
+      name: v1-evidence-search
+      description: REST surface for v1-evidence-search.
+      operations:
+      - method: POST
+        name: searchevidence
+        description: JFrog Search Evidence
+        call: evidence-evidence.searchevidence
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/evidence/subject/artifact
+      name: v1-evidence-subject-artifact
+      description: REST surface for v1-evidence-subject-artifact.
+      operations:
+      - method: GET
+        name: getartifactevidence
+        description: JFrog Get Artifact Evidence
+        call: evidence-evidence.getartifactevidence
+        with:
+          repo_path: rest.repo_path
+          sha256: rest.sha256
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/evidence/subject/build
+      name: v1-evidence-subject-build
+      description: REST surface for v1-evidence-subject-build.
+      operations:
+      - method: GET
+        name: getbuildevidence
+        description: JFrog Get Build Evidence
+        call: evidence-evidence.getbuildevidence
+        with:
+          build_name: rest.build_name
+          build_number: rest.build_number
+          project: rest.project
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/evidence/subject/package
+      name: v1-evidence-subject-package
+      description: REST surface for v1-evidence-subject-package.
+      operations:
+      - method: GET
+        name: getpackageevidence
+        description: JFrog Get Package Evidence
+        call: evidence-evidence.getpackageevidence
+        with:
+          package_name: rest.package_name
+          package_version: rest.package_version
+          repo_key: rest.repo_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/evidence/subject/release-bundle
+      name: v1-evidence-subject-release-bundle
+      description: REST surface for v1-evidence-subject-release-bundle.
+      operations:
+      - method: GET
+        name: getreleasebundleevidence
+        description: JFrog Get Release Bundle Evidence
+        call: evidence-evidence.getreleasebundleevidence
+        with:
+          name: rest.name
+          version: rest.version
+          project: rest.project
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/evidence/{evidenceid}
+      name: v1-evidence-evidenceid
+      description: REST surface for v1-evidence-evidenceId.
+      operations:
+      - method: GET
+        name: getevidence
+        description: JFrog Get Evidence
+        call: evidence-evidence.getevidence
+        with:
+          evidenceId: rest.evidenceId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteevidence
+        description: JFrog Delete Evidence
+        call: evidence-evidence.deleteevidence
+        with:
+          evidenceId: rest.evidenceId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: evidence-evidence-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Evidence REST API — Evidence. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-create-evidence
+      description: JFrog Create Evidence
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: evidence-evidence.createevidence
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-search-evidence
+      description: JFrog Search Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: evidence-evidence.searchevidence
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-artifact-evidence
+      description: JFrog Get Artifact Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: evidence-evidence.getartifactevidence
+      with:
+        repo_path: tools.repo_path
+        sha256: tools.sha256
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-build-evidence
+      description: JFrog Get Build Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: evidence-evidence.getbuildevidence
+      with:
+        build_name: tools.build_name
+        build_number: tools.build_number
+        project: tools.project
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-package-evidence
+      description: JFrog Get Package Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: evidence-evidence.getpackageevidence
+      with:
+        package_name: tools.package_name
+        package_version: tools.package_version
+        repo_key: tools.repo_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-release-bundle-evidence
+      description: JFrog Get Release Bundle Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: evidence-evidence.getreleasebundleevidence
+      with:
+        name: tools.name
+        version: tools.version
+        project: tools.project
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-evidence
+      description: JFrog Get Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: evidence-evidence.getevidence
+      with:
+        evidenceId: tools.evidenceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-evidence
+      description: JFrog Delete Evidence
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: evidence-evidence.deleteevidence
+      with:
+        evidenceId: tools.evidenceId
+      outputParameters:
+      - type: object
+        mapping: $.

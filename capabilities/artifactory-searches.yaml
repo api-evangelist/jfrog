@@ -1,0 +1,300 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Artifactory REST API — Searches
+  description: 'JFrog Artifactory REST API — Searches. 5 operations. Lead operation: JFrog Execute AQL Search. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Searches
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: artifactory-searches
+    baseUri: https://{server}.jfrog.io/artifactory
+    description: JFrog Artifactory REST API — Searches business capability. Self-contained, no shared references.
+    resources:
+    - name: api-search-aql
+      path: /api/search/aql
+      operations:
+      - name: executeaqlsearch
+        method: POST
+        description: JFrog Execute AQL Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-search-checksum
+      path: /api/search/checksum
+      operations:
+      - name: searchbychecksum
+        method: GET
+        description: JFrog Checksum Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sha1
+          in: query
+          type: string
+          description: SHA1 checksum to search for
+        - name: sha256
+          in: query
+          type: string
+          description: SHA256 checksum to search for
+        - name: md5
+          in: query
+          type: string
+          description: MD5 checksum to search for
+        - name: repos
+          in: query
+          type: string
+          description: Comma-separated list of repositories to search
+    - name: api-search-gavc
+      path: /api/search/gavc
+      operations:
+      - name: searchbygavc
+        method: GET
+        description: JFrog GAVC Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: g
+          in: query
+          type: string
+          description: Group ID
+        - name: a
+          in: query
+          type: string
+          description: Artifact ID
+        - name: v
+          in: query
+          type: string
+          description: Version
+        - name: c
+          in: query
+          type: string
+          description: Classifier
+        - name: repos
+          in: query
+          type: string
+          description: Comma-separated list of repositories to search
+    - name: api-search-latestVersion
+      path: /api/search/latestVersion
+      operations:
+      - name: getlatestversion
+        method: GET
+        description: JFrog Get Latest Artifact Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: g
+          in: query
+          type: string
+          description: Group ID
+          required: true
+        - name: a
+          in: query
+          type: string
+          description: Artifact ID
+          required: true
+        - name: repos
+          in: query
+          type: string
+          description: Comma-separated list of repositories
+    - name: api-search-prop
+      path: /api/search/prop
+      operations:
+      - name: searchbyproperties
+        method: GET
+        description: JFrog Property Search
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repos
+          in: query
+          type: string
+          description: Comma-separated list of repositories to search
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: artifactory-searches-rest
+    port: 8080
+    description: REST adapter for JFrog Artifactory REST API — Searches. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/search/aql
+      name: api-search-aql
+      description: REST surface for api-search-aql.
+      operations:
+      - method: POST
+        name: executeaqlsearch
+        description: JFrog Execute AQL Search
+        call: artifactory-searches.executeaqlsearch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/search/checksum
+      name: api-search-checksum
+      description: REST surface for api-search-checksum.
+      operations:
+      - method: GET
+        name: searchbychecksum
+        description: JFrog Checksum Search
+        call: artifactory-searches.searchbychecksum
+        with:
+          sha1: rest.sha1
+          sha256: rest.sha256
+          md5: rest.md5
+          repos: rest.repos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/search/gavc
+      name: api-search-gavc
+      description: REST surface for api-search-gavc.
+      operations:
+      - method: GET
+        name: searchbygavc
+        description: JFrog GAVC Search
+        call: artifactory-searches.searchbygavc
+        with:
+          g: rest.g
+          a: rest.a
+          v: rest.v
+          c: rest.c
+          repos: rest.repos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/search/latestversion
+      name: api-search-latestversion
+      description: REST surface for api-search-latestVersion.
+      operations:
+      - method: GET
+        name: getlatestversion
+        description: JFrog Get Latest Artifact Version
+        call: artifactory-searches.getlatestversion
+        with:
+          g: rest.g
+          a: rest.a
+          repos: rest.repos
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/search/prop
+      name: api-search-prop
+      description: REST surface for api-search-prop.
+      operations:
+      - method: GET
+        name: searchbyproperties
+        description: JFrog Property Search
+        call: artifactory-searches.searchbyproperties
+        with:
+          repos: rest.repos
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: artifactory-searches-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Artifactory REST API — Searches. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-execute-aql-search
+      description: JFrog Execute AQL Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: artifactory-searches.executeaqlsearch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-checksum-search
+      description: JFrog Checksum Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: artifactory-searches.searchbychecksum
+      with:
+        sha1: tools.sha1
+        sha256: tools.sha256
+        md5: tools.md5
+        repos: tools.repos
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-gavc-search
+      description: JFrog GAVC Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: artifactory-searches.searchbygavc
+      with:
+        g: tools.g
+        a: tools.a
+        v: tools.v
+        c: tools.c
+        repos: tools.repos
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-latest-artifact-version
+      description: JFrog Get Latest Artifact Version
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: artifactory-searches.getlatestversion
+      with:
+        g: tools.g
+        a: tools.a
+        repos: tools.repos
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-property-search
+      description: JFrog Property Search
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: artifactory-searches.searchbyproperties
+      with:
+        repos: tools.repos
+      outputParameters:
+      - type: object
+        mapping: $.

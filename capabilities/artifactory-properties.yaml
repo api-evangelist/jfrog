@@ -1,0 +1,191 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Artifactory REST API — Properties
+  description: 'JFrog Artifactory REST API — Properties. 3 operations. Lead operation: JFrog Get Item Properties. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Properties
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: artifactory-properties
+    baseUri: https://{server}.jfrog.io/artifactory
+    description: JFrog Artifactory REST API — Properties business capability. Self-contained, no shared references.
+    resources:
+    - name: api-storage-repoKey-itemPath}?properties
+      path: /api/storage/{repoKey}/{itemPath}?properties
+      operations:
+      - name: getitemproperties
+        method: GET
+        description: JFrog Get Item Properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repoKey
+          in: path
+          type: string
+          description: Repository key
+          required: true
+        - name: itemPath
+          in: path
+          type: string
+          description: Item path
+          required: true
+      - name: setitemproperties
+        method: PUT
+        description: JFrog Set Item Properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repoKey
+          in: path
+          type: string
+          description: Repository key
+          required: true
+        - name: itemPath
+          in: path
+          type: string
+          description: Item path
+          required: true
+        - name: properties
+          in: query
+          type: string
+          description: 'Properties in format: key1=value1;key2=value2'
+          required: true
+        - name: recursive
+          in: query
+          type: integer
+          description: Apply recursively to sub-paths
+      - name: deleteitemproperties
+        method: DELETE
+        description: JFrog Delete Item Properties
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: repoKey
+          in: path
+          type: string
+          description: Repository key
+          required: true
+        - name: itemPath
+          in: path
+          type: string
+          description: Item path
+          required: true
+        - name: properties
+          in: query
+          type: string
+          description: Comma-separated list of property keys to remove
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: artifactory-properties-rest
+    port: 8080
+    description: REST adapter for JFrog Artifactory REST API — Properties. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/storage/{repokey}/itempath-properties
+      name: api-storage-repokey-itempath-properties
+      description: REST surface for api-storage-repoKey-itemPath}?properties.
+      operations:
+      - method: GET
+        name: getitemproperties
+        description: JFrog Get Item Properties
+        call: artifactory-properties.getitemproperties
+        with:
+          repoKey: rest.repoKey
+          itemPath: rest.itemPath
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: setitemproperties
+        description: JFrog Set Item Properties
+        call: artifactory-properties.setitemproperties
+        with:
+          repoKey: rest.repoKey
+          itemPath: rest.itemPath
+          properties: rest.properties
+          recursive: rest.recursive
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteitemproperties
+        description: JFrog Delete Item Properties
+        call: artifactory-properties.deleteitemproperties
+        with:
+          repoKey: rest.repoKey
+          itemPath: rest.itemPath
+          properties: rest.properties
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: artifactory-properties-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Artifactory REST API — Properties. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-get-item-properties
+      description: JFrog Get Item Properties
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: artifactory-properties.getitemproperties
+      with:
+        repoKey: tools.repoKey
+        itemPath: tools.itemPath
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-set-item-properties
+      description: JFrog Set Item Properties
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: artifactory-properties.setitemproperties
+      with:
+        repoKey: tools.repoKey
+        itemPath: tools.itemPath
+        properties: tools.properties
+        recursive: tools.recursive
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-item-properties
+      description: JFrog Delete Item Properties
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: artifactory-properties.deleteitemproperties
+      with:
+        repoKey: tools.repoKey
+        itemPath: tools.itemPath
+        properties: tools.properties
+      outputParameters:
+      - type: object
+        mapping: $.

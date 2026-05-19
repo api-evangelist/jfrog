@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Xray REST API — Components
+  description: 'JFrog Xray REST API — Components. 1 operations. Lead operation: JFrog Get Component Details. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Components
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: xray-components
+    baseUri: https://{server}.jfrog.io/xray/api
+    description: JFrog Xray REST API — Components business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-component
+      path: /v1/component
+      operations:
+      - name: getcomponentdetails
+        method: POST
+        description: JFrog Get Component Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: xray-components-rest
+    port: 8080
+    description: REST adapter for JFrog Xray REST API — Components. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/component
+      name: v1-component
+      description: REST surface for v1-component.
+      operations:
+      - method: POST
+        name: getcomponentdetails
+        description: JFrog Get Component Details
+        call: xray-components.getcomponentdetails
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: xray-components-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Xray REST API — Components. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-get-component-details
+      description: JFrog Get Component Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: xray-components.getcomponentdetails
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

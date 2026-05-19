@@ -1,0 +1,157 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Xray REST API — Reports
+  description: 'JFrog Xray REST API — Reports. 3 operations. Lead operation: JFrog Generate Vulnerability Report. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: xray-reports
+    baseUri: https://{server}.jfrog.io/xray/api
+    description: JFrog Xray REST API — Reports business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-report-vulnerabilities
+      path: /v1/report/vulnerabilities
+      operations:
+      - name: generatevulnerabilityreport
+        method: POST
+        description: JFrog Generate Vulnerability Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-report-reportId
+      path: /v1/report/{reportId}
+      operations:
+      - name: getreportstatus
+        method: GET
+        description: JFrog Get Report Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportId
+          in: path
+          type: integer
+          description: Report ID
+          required: true
+      - name: deletereport
+        method: DELETE
+        description: JFrog Delete Report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportId
+          in: path
+          type: integer
+          description: Report ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: xray-reports-rest
+    port: 8080
+    description: REST adapter for JFrog Xray REST API — Reports. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/report/vulnerabilities
+      name: v1-report-vulnerabilities
+      description: REST surface for v1-report-vulnerabilities.
+      operations:
+      - method: POST
+        name: generatevulnerabilityreport
+        description: JFrog Generate Vulnerability Report
+        call: xray-reports.generatevulnerabilityreport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/report/{reportid}
+      name: v1-report-reportid
+      description: REST surface for v1-report-reportId.
+      operations:
+      - method: GET
+        name: getreportstatus
+        description: JFrog Get Report Status
+        call: xray-reports.getreportstatus
+        with:
+          reportId: rest.reportId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletereport
+        description: JFrog Delete Report
+        call: xray-reports.deletereport
+        with:
+          reportId: rest.reportId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: xray-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Xray REST API — Reports. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: jfrog-generate-vulnerability-report
+      description: JFrog Generate Vulnerability Report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: xray-reports.generatevulnerabilityreport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-report-status
+      description: JFrog Get Report Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: xray-reports.getreportstatus
+      with:
+        reportId: tools.reportId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-report
+      description: JFrog Delete Report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: xray-reports.deletereport
+      with:
+        reportId: tools.reportId
+      outputParameters:
+      - type: object
+        mapping: $.

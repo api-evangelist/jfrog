@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Release Lifecycle Management REST API — Evidence
+  description: 'JFrog Release Lifecycle Management REST API — Evidence. 2 operations. Lead operation: JFrog Create Evidence.
+    Self-contained Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Evidence
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: release-lifecycle-evidence
+    baseUri: https://{server}.jfrog.io/lifecycle/api
+    description: JFrog Release Lifecycle Management REST API — Evidence business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-evidence
+      path: /v2/evidence
+      operations:
+      - name: createevidence
+        method: POST
+        description: JFrog Create Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-evidence-name-version
+      path: /v2/evidence/{name}/{version}
+      operations:
+      - name: getevidence
+        method: GET
+        description: JFrog Get Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Release bundle name
+          required: true
+        - name: version
+          in: path
+          type: string
+          description: Release bundle version
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: release-lifecycle-evidence-rest
+    port: 8080
+    description: REST adapter for JFrog Release Lifecycle Management REST API — Evidence. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v2/evidence
+      name: v2-evidence
+      description: REST surface for v2-evidence.
+      operations:
+      - method: POST
+        name: createevidence
+        description: JFrog Create Evidence
+        call: release-lifecycle-evidence.createevidence
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/evidence/{name}/{version}
+      name: v2-evidence-name-version
+      description: REST surface for v2-evidence-name-version.
+      operations:
+      - method: GET
+        name: getevidence
+        description: JFrog Get Evidence
+        call: release-lifecycle-evidence.getevidence
+        with:
+          name: rest.name
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: release-lifecycle-evidence-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Release Lifecycle Management REST API — Evidence. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: jfrog-create-evidence
+      description: JFrog Create Evidence
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: release-lifecycle-evidence.createevidence
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-evidence
+      description: JFrog Get Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: release-lifecycle-evidence.getevidence
+      with:
+        name: tools.name
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Xray REST API — Watches
+  description: 'JFrog Xray REST API — Watches. 5 operations. Lead operation: JFrog List Watches. Self-contained Naftiko capability
+    covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Watches
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: xray-watches
+    baseUri: https://{server}.jfrog.io/xray/api
+    description: JFrog Xray REST API — Watches business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-watches
+      path: /v2/watches
+      operations:
+      - name: listwatches
+        method: GET
+        description: JFrog List Watches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwatch
+        method: POST
+        description: JFrog Create Watch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-watches-watchName
+      path: /v2/watches/{watchName}
+      operations:
+      - name: getwatch
+        method: GET
+        description: JFrog Get Watch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: watchName
+          in: path
+          type: string
+          description: Watch name
+          required: true
+      - name: updatewatch
+        method: PUT
+        description: JFrog Update Watch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: watchName
+          in: path
+          type: string
+          description: Watch name
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewatch
+        method: DELETE
+        description: JFrog Delete Watch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: watchName
+          in: path
+          type: string
+          description: Watch name
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: xray-watches-rest
+    port: 8080
+    description: REST adapter for JFrog Xray REST API — Watches. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/watches
+      name: v2-watches
+      description: REST surface for v2-watches.
+      operations:
+      - method: GET
+        name: listwatches
+        description: JFrog List Watches
+        call: xray-watches.listwatches
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwatch
+        description: JFrog Create Watch
+        call: xray-watches.createwatch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/watches/{watchname}
+      name: v2-watches-watchname
+      description: REST surface for v2-watches-watchName.
+      operations:
+      - method: GET
+        name: getwatch
+        description: JFrog Get Watch
+        call: xray-watches.getwatch
+        with:
+          watchName: rest.watchName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatewatch
+        description: JFrog Update Watch
+        call: xray-watches.updatewatch
+        with:
+          watchName: rest.watchName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewatch
+        description: JFrog Delete Watch
+        call: xray-watches.deletewatch
+        with:
+          watchName: rest.watchName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: xray-watches-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Xray REST API — Watches. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: jfrog-list-watches
+      description: JFrog List Watches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: xray-watches.listwatches
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-watch
+      description: JFrog Create Watch
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: xray-watches.createwatch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-watch
+      description: JFrog Get Watch
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: xray-watches.getwatch
+      with:
+        watchName: tools.watchName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-update-watch
+      description: JFrog Update Watch
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: xray-watches.updatewatch
+      with:
+        watchName: tools.watchName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-watch
+      description: JFrog Delete Watch
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: xray-watches.deletewatch
+      with:
+        watchName: tools.watchName
+      outputParameters:
+      - type: object
+        mapping: $.

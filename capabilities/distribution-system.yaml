@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Distribution REST API — System
+  description: 'JFrog Distribution REST API — System. 1 operations. Lead operation: JFrog System Ping. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - System
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: distribution-system
+    baseUri: https://{server}.jfrog.io/distribution/api
+    description: JFrog Distribution REST API — System business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-system-ping
+      path: /v1/system/ping
+      operations:
+      - name: systemping
+        method: GET
+        description: JFrog System Ping
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: distribution-system-rest
+    port: 8080
+    description: REST adapter for JFrog Distribution REST API — System. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/system/ping
+      name: v1-system-ping
+      description: REST surface for v1-system-ping.
+      operations:
+      - method: GET
+        name: systemping
+        description: JFrog System Ping
+        call: distribution-system.systemping
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: distribution-system-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Distribution REST API — System. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-system-ping
+      description: JFrog System Ping
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: distribution-system.systemping
+      outputParameters:
+      - type: object
+        mapping: $.

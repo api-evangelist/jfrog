@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Connect REST API — Devices
+  description: 'JFrog Connect REST API — Devices. 3 operations. Lead operation: JFrog List Devices. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Devices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: connect-devices
+    baseUri: https://api.connect.jfrog.io/v2
+    description: JFrog Connect REST API — Devices business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-devices
+      path: /projects/{projectId}/devices
+      operations:
+      - name: listdevices
+        method: GET
+        description: JFrog List Devices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: status
+          in: query
+          type: string
+          description: Filter by device status
+        - name: group_id
+          in: query
+          type: string
+          description: Filter by device group
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum results
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+    - name: projects-projectId-devices-deviceId
+      path: /projects/{projectId}/devices/{deviceId}
+      operations:
+      - name: getdevice
+        method: GET
+        description: JFrog Get Device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: deviceId
+          in: path
+          type: string
+          description: Device ID
+          required: true
+      - name: removedevice
+        method: DELETE
+        description: JFrog Remove Device
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: deviceId
+          in: path
+          type: string
+          description: Device ID
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.JFROG_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: connect-devices-rest
+    port: 8080
+    description: REST adapter for JFrog Connect REST API — Devices. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/devices
+      name: projects-projectid-devices
+      description: REST surface for projects-projectId-devices.
+      operations:
+      - method: GET
+        name: listdevices
+        description: JFrog List Devices
+        call: connect-devices.listdevices
+        with:
+          projectId: rest.projectId
+          status: rest.status
+          group_id: rest.group_id
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/devices/{deviceid}
+      name: projects-projectid-devices-deviceid
+      description: REST surface for projects-projectId-devices-deviceId.
+      operations:
+      - method: GET
+        name: getdevice
+        description: JFrog Get Device
+        call: connect-devices.getdevice
+        with:
+          projectId: rest.projectId
+          deviceId: rest.deviceId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: removedevice
+        description: JFrog Remove Device
+        call: connect-devices.removedevice
+        with:
+          projectId: rest.projectId
+          deviceId: rest.deviceId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: connect-devices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Connect REST API — Devices. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-list-devices
+      description: JFrog List Devices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-devices.listdevices
+      with:
+        projectId: tools.projectId
+        status: tools.status
+        group_id: tools.group_id
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-device
+      description: JFrog Get Device
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-devices.getdevice
+      with:
+        projectId: tools.projectId
+        deviceId: tools.deviceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-remove-device
+      description: JFrog Remove Device
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: connect-devices.removedevice
+      with:
+        projectId: tools.projectId
+        deviceId: tools.deviceId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog ML REST API — Deployments
+  description: 'JFrog ML REST API — Deployments. 4 operations. Lead operation: JFrog List Deployments. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Deployments
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ml-deployments
+    baseUri: https://{server}.jfrog.io/ml/api
+    description: JFrog ML REST API — Deployments business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-deployments
+      path: /v1/deployments
+      operations:
+      - name: listdeployments
+        method: GET
+        description: JFrog List Deployments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createdeployment
+        method: POST
+        description: JFrog Create Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-deployments-deploymentId
+      path: /v1/deployments/{deploymentId}
+      operations:
+      - name: getdeployment
+        method: GET
+        description: JFrog Get Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deploymentId
+          in: path
+          type: string
+          description: Deployment ID
+          required: true
+      - name: deletedeployment
+        method: DELETE
+        description: JFrog Delete Deployment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deploymentId
+          in: path
+          type: string
+          description: Deployment ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ml-deployments-rest
+    port: 8080
+    description: REST adapter for JFrog ML REST API — Deployments. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/deployments
+      name: v1-deployments
+      description: REST surface for v1-deployments.
+      operations:
+      - method: GET
+        name: listdeployments
+        description: JFrog List Deployments
+        call: ml-deployments.listdeployments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdeployment
+        description: JFrog Create Deployment
+        call: ml-deployments.createdeployment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/deployments/{deploymentid}
+      name: v1-deployments-deploymentid
+      description: REST surface for v1-deployments-deploymentId.
+      operations:
+      - method: GET
+        name: getdeployment
+        description: JFrog Get Deployment
+        call: ml-deployments.getdeployment
+        with:
+          deploymentId: rest.deploymentId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedeployment
+        description: JFrog Delete Deployment
+        call: ml-deployments.deletedeployment
+        with:
+          deploymentId: rest.deploymentId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ml-deployments-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog ML REST API — Deployments. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: jfrog-list-deployments
+      description: JFrog List Deployments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-deployments.listdeployments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-deployment
+      description: JFrog Create Deployment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: ml-deployments.createdeployment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-deployment
+      description: JFrog Get Deployment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ml-deployments.getdeployment
+      with:
+        deploymentId: tools.deploymentId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-deployment
+      description: JFrog Delete Deployment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: ml-deployments.deletedeployment
+      with:
+        deploymentId: tools.deploymentId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Platform REST API — Groups
+  description: 'JFrog Platform REST API — Groups. 5 operations. Lead operation: JFrog List Groups. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-groups
+    baseUri: https://{server}.jfrog.io
+    description: JFrog Platform REST API — Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: access-api-v2-groups
+      path: /access/api/v2/groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: JFrog List Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: creategroup
+        method: POST
+        description: JFrog Create Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: access-api-v2-groups-groupName
+      path: /access/api/v2/groups/{groupName}
+      operations:
+      - name: getgroup
+        method: GET
+        description: JFrog Get Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupName
+          in: path
+          type: string
+          description: Group name
+          required: true
+      - name: updategroup
+        method: PATCH
+        description: JFrog Update Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupName
+          in: path
+          type: string
+          description: Group name
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletegroup
+        method: DELETE
+        description: JFrog Delete Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupName
+          in: path
+          type: string
+          description: Group name
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-groups-rest
+    port: 8080
+    description: REST adapter for JFrog Platform REST API — Groups. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/access/api/v2/groups
+      name: access-api-v2-groups
+      description: REST surface for access-api-v2-groups.
+      operations:
+      - method: GET
+        name: listgroups
+        description: JFrog List Groups
+        call: platform-groups.listgroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: creategroup
+        description: JFrog Create Group
+        call: platform-groups.creategroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/access/api/v2/groups/{groupname}
+      name: access-api-v2-groups-groupname
+      description: REST surface for access-api-v2-groups-groupName.
+      operations:
+      - method: GET
+        name: getgroup
+        description: JFrog Get Group
+        call: platform-groups.getgroup
+        with:
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updategroup
+        description: JFrog Update Group
+        call: platform-groups.updategroup
+        with:
+          groupName: rest.groupName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletegroup
+        description: JFrog Delete Group
+        call: platform-groups.deletegroup
+        with:
+          groupName: rest.groupName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Platform REST API — Groups. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-list-groups
+      description: JFrog List Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-groups.listgroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-group
+      description: JFrog Create Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-groups.creategroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-group
+      description: JFrog Get Group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-groups.getgroup
+      with:
+        groupName: tools.groupName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-update-group
+      description: JFrog Update Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-groups.updategroup
+      with:
+        groupName: tools.groupName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-group
+      description: JFrog Delete Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-groups.deletegroup
+      with:
+        groupName: tools.groupName
+      outputParameters:
+      - type: object
+        mapping: $.

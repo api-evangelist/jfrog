@@ -1,0 +1,147 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Mission Control REST API — Licenses
+  description: 'JFrog Mission Control REST API — Licenses. 3 operations. Lead operation: JFrog List License Buckets. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Licenses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mission-control-licenses
+    baseUri: https://{server}.jfrog.io/mc/api
+    description: JFrog Mission Control REST API — Licenses business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-attach_lic-buckets
+      path: /v3/attach_lic/buckets
+      operations:
+      - name: listlicensebuckets
+        method: GET
+        description: JFrog List License Buckets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addlicensebucket
+        method: POST
+        description: JFrog Add License Bucket
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v3-attach_lic-buckets-bucketId
+      path: /v3/attach_lic/buckets/{bucketId}
+      operations:
+      - name: deletelicensebucket
+        method: DELETE
+        description: JFrog Delete License Bucket
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: bucketId
+          in: path
+          type: string
+          description: License bucket ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: mission-control-licenses-rest
+    port: 8080
+    description: REST adapter for JFrog Mission Control REST API — Licenses. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v3/attach-lic/buckets
+      name: v3-attach-lic-buckets
+      description: REST surface for v3-attach_lic-buckets.
+      operations:
+      - method: GET
+        name: listlicensebuckets
+        description: JFrog List License Buckets
+        call: mission-control-licenses.listlicensebuckets
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addlicensebucket
+        description: JFrog Add License Bucket
+        call: mission-control-licenses.addlicensebucket
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/attach-lic/buckets/{bucketid}
+      name: v3-attach-lic-buckets-bucketid
+      description: REST surface for v3-attach_lic-buckets-bucketId.
+      operations:
+      - method: DELETE
+        name: deletelicensebucket
+        description: JFrog Delete License Bucket
+        call: mission-control-licenses.deletelicensebucket
+        with:
+          bucketId: rest.bucketId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mission-control-licenses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Mission Control REST API — Licenses. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: jfrog-list-license-buckets
+      description: JFrog List License Buckets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mission-control-licenses.listlicensebuckets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-add-license-bucket
+      description: JFrog Add License Bucket
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: mission-control-licenses.addlicensebucket
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-license-bucket
+      description: JFrog Delete License Bucket
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: mission-control-licenses.deletelicensebucket
+      with:
+        bucketId: tools.bucketId
+      outputParameters:
+      - type: object
+        mapping: $.

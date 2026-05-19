@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Pipelines REST API — Pipeline Sources
+  description: 'JFrog Pipelines REST API — Pipeline Sources. 4 operations. Lead operation: JFrog List Pipeline Sources. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Pipeline Sources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipelines-pipeline-sources
+    baseUri: https://{server}.jfrog.io/pipelines/api
+    description: JFrog Pipelines REST API — Pipeline Sources business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-pipelineSources
+      path: /v1/pipelineSources
+      operations:
+      - name: listpipelinesources
+        method: GET
+        description: JFrog List Pipeline Sources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpipelinesource
+        method: POST
+        description: JFrog Create Pipeline Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-pipelineSources-pipelineSourceId
+      path: /v1/pipelineSources/{pipelineSourceId}
+      operations:
+      - name: getpipelinesource
+        method: GET
+        description: JFrog Get Pipeline Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipelineSourceId
+          in: path
+          type: integer
+          description: Pipeline source ID
+          required: true
+      - name: deletepipelinesource
+        method: DELETE
+        description: JFrog Delete Pipeline Source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipelineSourceId
+          in: path
+          type: integer
+          description: Pipeline source ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipelines-pipeline-sources-rest
+    port: 8080
+    description: REST adapter for JFrog Pipelines REST API — Pipeline Sources. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/pipelinesources
+      name: v1-pipelinesources
+      description: REST surface for v1-pipelineSources.
+      operations:
+      - method: GET
+        name: listpipelinesources
+        description: JFrog List Pipeline Sources
+        call: pipelines-pipeline-sources.listpipelinesources
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpipelinesource
+        description: JFrog Create Pipeline Source
+        call: pipelines-pipeline-sources.createpipelinesource
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/pipelinesources/{pipelinesourceid}
+      name: v1-pipelinesources-pipelinesourceid
+      description: REST surface for v1-pipelineSources-pipelineSourceId.
+      operations:
+      - method: GET
+        name: getpipelinesource
+        description: JFrog Get Pipeline Source
+        call: pipelines-pipeline-sources.getpipelinesource
+        with:
+          pipelineSourceId: rest.pipelineSourceId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepipelinesource
+        description: JFrog Delete Pipeline Source
+        call: pipelines-pipeline-sources.deletepipelinesource
+        with:
+          pipelineSourceId: rest.pipelineSourceId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipelines-pipeline-sources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Pipelines REST API — Pipeline Sources. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: jfrog-list-pipeline-sources
+      description: JFrog List Pipeline Sources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipelines-pipeline-sources.listpipelinesources
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-pipeline-source
+      description: JFrog Create Pipeline Source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipelines-pipeline-sources.createpipelinesource
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-pipeline-source
+      description: JFrog Get Pipeline Source
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipelines-pipeline-sources.getpipelinesource
+      with:
+        pipelineSourceId: tools.pipelineSourceId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-pipeline-source
+      description: JFrog Delete Pipeline Source
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: pipelines-pipeline-sources.deletepipelinesource
+      with:
+        pipelineSourceId: tools.pipelineSourceId
+      outputParameters:
+      - type: object
+        mapping: $.

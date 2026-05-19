@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Pipelines REST API — System
+  description: 'JFrog Pipelines REST API — System. 1 operations. Lead operation: JFrog Get System Info. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - System
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipelines-system
+    baseUri: https://{server}.jfrog.io/pipelines/api
+    description: JFrog Pipelines REST API — System business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-system-info
+      path: /v1/system/info
+      operations:
+      - name: getsysteminfo
+        method: GET
+        description: JFrog Get System Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipelines-system-rest
+    port: 8080
+    description: REST adapter for JFrog Pipelines REST API — System. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/system/info
+      name: v1-system-info
+      description: REST surface for v1-system-info.
+      operations:
+      - method: GET
+        name: getsysteminfo
+        description: JFrog Get System Info
+        call: pipelines-system.getsysteminfo
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipelines-system-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Pipelines REST API — System. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-get-system-info
+      description: JFrog Get System Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipelines-system.getsysteminfo
+      outputParameters:
+      - type: object
+        mapping: $.

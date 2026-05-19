@@ -1,0 +1,154 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Mission Control REST API — Scripts
+  description: 'JFrog Mission Control REST API — Scripts. 3 operations. Lead operation: JFrog List Scripts. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Scripts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mission-control-scripts
+    baseUri: https://{server}.jfrog.io/mc/api
+    description: JFrog Mission Control REST API — Scripts business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-scripts
+      path: /v1/scripts
+      operations:
+      - name: listscripts
+        method: GET
+        description: JFrog List Scripts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createscript
+        method: POST
+        description: JFrog Create Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-scripts-scriptName-execute
+      path: /v1/scripts/{scriptName}/execute
+      operations:
+      - name: executescript
+        method: POST
+        description: JFrog Execute Script
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptName
+          in: path
+          type: string
+          description: Script name
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: mission-control-scripts-rest
+    port: 8080
+    description: REST adapter for JFrog Mission Control REST API — Scripts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/scripts
+      name: v1-scripts
+      description: REST surface for v1-scripts.
+      operations:
+      - method: GET
+        name: listscripts
+        description: JFrog List Scripts
+        call: mission-control-scripts.listscripts
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createscript
+        description: JFrog Create Script
+        call: mission-control-scripts.createscript
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/scripts/{scriptname}/execute
+      name: v1-scripts-scriptname-execute
+      description: REST surface for v1-scripts-scriptName-execute.
+      operations:
+      - method: POST
+        name: executescript
+        description: JFrog Execute Script
+        call: mission-control-scripts.executescript
+        with:
+          scriptName: rest.scriptName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mission-control-scripts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Mission Control REST API — Scripts. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: jfrog-list-scripts
+      description: JFrog List Scripts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mission-control-scripts.listscripts
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-script
+      description: JFrog Create Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: mission-control-scripts.createscript
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-execute-script
+      description: JFrog Execute Script
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: mission-control-scripts.executescript
+      with:
+        scriptName: tools.scriptName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

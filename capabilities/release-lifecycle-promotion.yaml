@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Release Lifecycle Management REST API — Promotion
+  description: 'JFrog Release Lifecycle Management REST API — Promotion. 2 operations. Lead operation: JFrog Promote Release
+    Bundle. Self-contained Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Promotion
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: release-lifecycle-promotion
+    baseUri: https://{server}.jfrog.io/lifecycle/api
+    description: JFrog Release Lifecycle Management REST API — Promotion business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-promotion
+      path: /v2/promotion
+      operations:
+      - name: promotereleasebundle
+        method: POST
+        description: JFrog Promote Release Bundle
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-promotion-records-name-version
+      path: /v2/promotion/records/{name}/{version}
+      operations:
+      - name: getpromotionstatus
+        method: GET
+        description: JFrog Get Promotion Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: name
+          in: path
+          type: string
+          description: Release bundle name
+          required: true
+        - name: version
+          in: path
+          type: string
+          description: Release bundle version
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: release-lifecycle-promotion-rest
+    port: 8080
+    description: REST adapter for JFrog Release Lifecycle Management REST API — Promotion. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/v2/promotion
+      name: v2-promotion
+      description: REST surface for v2-promotion.
+      operations:
+      - method: POST
+        name: promotereleasebundle
+        description: JFrog Promote Release Bundle
+        call: release-lifecycle-promotion.promotereleasebundle
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/promotion/records/{name}/{version}
+      name: v2-promotion-records-name-version
+      description: REST surface for v2-promotion-records-name-version.
+      operations:
+      - method: GET
+        name: getpromotionstatus
+        description: JFrog Get Promotion Status
+        call: release-lifecycle-promotion.getpromotionstatus
+        with:
+          name: rest.name
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: release-lifecycle-promotion-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Release Lifecycle Management REST API — Promotion. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: jfrog-promote-release-bundle
+      description: JFrog Promote Release Bundle
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: release-lifecycle-promotion.promotereleasebundle
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-promotion-status
+      description: JFrog Get Promotion Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: release-lifecycle-promotion.getpromotionstatus
+      with:
+        name: tools.name
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,122 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Pipelines REST API — Steps
+  description: 'JFrog Pipelines REST API — Steps. 2 operations. Lead operation: JFrog Get Step Details. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Steps
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipelines-steps
+    baseUri: https://{server}.jfrog.io/pipelines/api
+    description: JFrog Pipelines REST API — Steps business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-steps-stepId
+      path: /v1/steps/{stepId}
+      operations:
+      - name: getstep
+        method: GET
+        description: JFrog Get Step Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: stepId
+          in: path
+          type: integer
+          description: Step ID
+          required: true
+    - name: v1-steps-stepId-logs
+      path: /v1/steps/{stepId}/logs
+      operations:
+      - name: getsteplogs
+        method: GET
+        description: JFrog Get Step Logs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: stepId
+          in: path
+          type: integer
+          description: Step ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipelines-steps-rest
+    port: 8080
+    description: REST adapter for JFrog Pipelines REST API — Steps. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/steps/{stepid}
+      name: v1-steps-stepid
+      description: REST surface for v1-steps-stepId.
+      operations:
+      - method: GET
+        name: getstep
+        description: JFrog Get Step Details
+        call: pipelines-steps.getstep
+        with:
+          stepId: rest.stepId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/steps/{stepid}/logs
+      name: v1-steps-stepid-logs
+      description: REST surface for v1-steps-stepId-logs.
+      operations:
+      - method: GET
+        name: getsteplogs
+        description: JFrog Get Step Logs
+        call: pipelines-steps.getsteplogs
+        with:
+          stepId: rest.stepId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipelines-steps-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Pipelines REST API — Steps. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-get-step-details
+      description: JFrog Get Step Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipelines-steps.getstep
+      with:
+        stepId: tools.stepId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-step-logs
+      description: JFrog Get Step Logs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipelines-steps.getsteplogs
+      with:
+        stepId: tools.stepId
+      outputParameters:
+      - type: object
+        mapping: $.

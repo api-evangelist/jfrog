@@ -1,0 +1,230 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Pipelines REST API — Runs
+  description: 'JFrog Pipelines REST API — Runs. 4 operations. Lead operation: JFrog Trigger Pipeline. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Runs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: pipelines-runs
+    baseUri: https://{server}.jfrog.io/pipelines/api
+    description: JFrog Pipelines REST API — Runs business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-pipelines-pipelineId-trigger
+      path: /v1/pipelines/{pipelineId}/trigger
+      operations:
+      - name: triggerpipeline
+        method: POST
+        description: JFrog Trigger Pipeline
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipelineId
+          in: path
+          type: integer
+          description: Pipeline ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-runs
+      path: /v1/runs
+      operations:
+      - name: listruns
+        method: GET
+        description: JFrog List Pipeline Runs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pipelineIds
+          in: query
+          type: string
+          description: Comma-separated pipeline IDs to filter by
+        - name: statusCodes
+          in: query
+          type: string
+          description: Comma-separated status codes to filter by
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results
+        - name: offset
+          in: query
+          type: integer
+          description: Offset for pagination
+    - name: v1-runs-runId
+      path: /v1/runs/{runId}
+      operations:
+      - name: getrun
+        method: GET
+        description: JFrog Get Pipeline Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: runId
+          in: path
+          type: integer
+          description: Run ID
+          required: true
+    - name: v1-runs-runId-cancel
+      path: /v1/runs/{runId}/cancel
+      operations:
+      - name: cancelrun
+        method: POST
+        description: JFrog Cancel Pipeline Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: runId
+          in: path
+          type: integer
+          description: Run ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: pipelines-runs-rest
+    port: 8080
+    description: REST adapter for JFrog Pipelines REST API — Runs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/pipelines/{pipelineid}/trigger
+      name: v1-pipelines-pipelineid-trigger
+      description: REST surface for v1-pipelines-pipelineId-trigger.
+      operations:
+      - method: POST
+        name: triggerpipeline
+        description: JFrog Trigger Pipeline
+        call: pipelines-runs.triggerpipeline
+        with:
+          pipelineId: rest.pipelineId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/runs
+      name: v1-runs
+      description: REST surface for v1-runs.
+      operations:
+      - method: GET
+        name: listruns
+        description: JFrog List Pipeline Runs
+        call: pipelines-runs.listruns
+        with:
+          pipelineIds: rest.pipelineIds
+          statusCodes: rest.statusCodes
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/runs/{runid}
+      name: v1-runs-runid
+      description: REST surface for v1-runs-runId.
+      operations:
+      - method: GET
+        name: getrun
+        description: JFrog Get Pipeline Run
+        call: pipelines-runs.getrun
+        with:
+          runId: rest.runId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/runs/{runid}/cancel
+      name: v1-runs-runid-cancel
+      description: REST surface for v1-runs-runId-cancel.
+      operations:
+      - method: POST
+        name: cancelrun
+        description: JFrog Cancel Pipeline Run
+        call: pipelines-runs.cancelrun
+        with:
+          runId: rest.runId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: pipelines-runs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Pipelines REST API — Runs. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: jfrog-trigger-pipeline
+      description: JFrog Trigger Pipeline
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipelines-runs.triggerpipeline
+      with:
+        pipelineId: tools.pipelineId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-list-pipeline-runs
+      description: JFrog List Pipeline Runs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipelines-runs.listruns
+      with:
+        pipelineIds: tools.pipelineIds
+        statusCodes: tools.statusCodes
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-pipeline-run
+      description: JFrog Get Pipeline Run
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: pipelines-runs.getrun
+      with:
+        runId: tools.runId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-cancel-pipeline-run
+      description: JFrog Cancel Pipeline Run
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: pipelines-runs.cancelrun
+      with:
+        runId: tools.runId
+      outputParameters:
+      - type: object
+        mapping: $.

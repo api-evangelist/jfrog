@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Evidence REST API — Verification
+  description: 'JFrog Evidence REST API — Verification. 1 operations. Lead operation: JFrog Verify Evidence. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Verification
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: evidence-verification
+    baseUri: https://{server}.jfrog.io/evidence/api
+    description: JFrog Evidence REST API — Verification business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-evidence-evidenceId-verify
+      path: /v1/evidence/{evidenceId}/verify
+      operations:
+      - name: verifyevidence
+        method: GET
+        description: JFrog Verify Evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: evidenceId
+          in: path
+          type: string
+          description: Evidence record identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: evidence-verification-rest
+    port: 8080
+    description: REST adapter for JFrog Evidence REST API — Verification. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/evidence/{evidenceid}/verify
+      name: v1-evidence-evidenceid-verify
+      description: REST surface for v1-evidence-evidenceId-verify.
+      operations:
+      - method: GET
+        name: verifyevidence
+        description: JFrog Verify Evidence
+        call: evidence-verification.verifyevidence
+        with:
+          evidenceId: rest.evidenceId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: evidence-verification-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Evidence REST API — Verification. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-verify-evidence
+      description: JFrog Verify Evidence
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: evidence-verification.verifyevidence
+      with:
+        evidenceId: tools.evidenceId
+      outputParameters:
+      - type: object
+        mapping: $.

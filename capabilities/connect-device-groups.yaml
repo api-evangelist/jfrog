@@ -1,0 +1,215 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Connect REST API — Device Groups
+  description: 'JFrog Connect REST API — Device Groups. 4 operations. Lead operation: JFrog List Device Groups. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Device Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: connect-device-groups
+    baseUri: https://api.connect.jfrog.io/v2
+    description: JFrog Connect REST API — Device Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-device-groups
+      path: /projects/{projectId}/device-groups
+      operations:
+      - name: listdevicegroups
+        method: GET
+        description: JFrog List Device Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+      - name: createdevicegroup
+        method: POST
+        description: JFrog Create Device Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId-device-groups-groupId
+      path: /projects/{projectId}/device-groups/{groupId}
+      operations:
+      - name: getdevicegroup
+        method: GET
+        description: JFrog Get Device Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: groupId
+          in: path
+          type: string
+          description: Group ID
+          required: true
+      - name: deletedevicegroup
+        method: DELETE
+        description: JFrog Delete Device Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: groupId
+          in: path
+          type: string
+          description: Group ID
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.JFROG_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: connect-device-groups-rest
+    port: 8080
+    description: REST adapter for JFrog Connect REST API — Device Groups. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/device-groups
+      name: projects-projectid-device-groups
+      description: REST surface for projects-projectId-device-groups.
+      operations:
+      - method: GET
+        name: listdevicegroups
+        description: JFrog List Device Groups
+        call: connect-device-groups.listdevicegroups
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createdevicegroup
+        description: JFrog Create Device Group
+        call: connect-device-groups.createdevicegroup
+        with:
+          projectId: rest.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/device-groups/{groupid}
+      name: projects-projectid-device-groups-groupid
+      description: REST surface for projects-projectId-device-groups-groupId.
+      operations:
+      - method: GET
+        name: getdevicegroup
+        description: JFrog Get Device Group
+        call: connect-device-groups.getdevicegroup
+        with:
+          projectId: rest.projectId
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletedevicegroup
+        description: JFrog Delete Device Group
+        call: connect-device-groups.deletedevicegroup
+        with:
+          projectId: rest.projectId
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: connect-device-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Connect REST API — Device Groups. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-list-device-groups
+      description: JFrog List Device Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-device-groups.listdevicegroups
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-device-group
+      description: JFrog Create Device Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: connect-device-groups.createdevicegroup
+      with:
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-device-group
+      description: JFrog Get Device Group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-device-groups.getdevicegroup
+      with:
+        projectId: tools.projectId
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-device-group
+      description: JFrog Delete Device Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: connect-device-groups.deletedevicegroup
+      with:
+        projectId: tools.projectId
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.

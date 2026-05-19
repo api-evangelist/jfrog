@@ -1,0 +1,138 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Connect REST API — Commands
+  description: 'JFrog Connect REST API — Commands. 2 operations. Lead operation: JFrog Execute Remote Command. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Commands
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: connect-commands
+    baseUri: https://api.connect.jfrog.io/v2
+    description: JFrog Connect REST API — Commands business capability. Self-contained, no shared references.
+    resources:
+    - name: projects-projectId-commands
+      path: /projects/{projectId}/commands
+      operations:
+      - name: executecommand
+        method: POST
+        description: JFrog Execute Remote Command
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId-commands-commandId
+      path: /projects/{projectId}/commands/{commandId}
+      operations:
+      - name: getcommandstatus
+        method: GET
+        description: JFrog Get Command Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+        - name: commandId
+          in: path
+          type: string
+          description: Command ID
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.JFROG_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: connect-commands-rest
+    port: 8080
+    description: REST adapter for JFrog Connect REST API — Commands. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects/{projectid}/commands
+      name: projects-projectid-commands
+      description: REST surface for projects-projectId-commands.
+      operations:
+      - method: POST
+        name: executecommand
+        description: JFrog Execute Remote Command
+        call: connect-commands.executecommand
+        with:
+          projectId: rest.projectId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}/commands/{commandid}
+      name: projects-projectid-commands-commandid
+      description: REST surface for projects-projectId-commands-commandId.
+      operations:
+      - method: GET
+        name: getcommandstatus
+        description: JFrog Get Command Status
+        call: connect-commands.getcommandstatus
+        with:
+          projectId: rest.projectId
+          commandId: rest.commandId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: connect-commands-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Connect REST API — Commands. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-execute-remote-command
+      description: JFrog Execute Remote Command
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: connect-commands.executecommand
+      with:
+        projectId: tools.projectId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-command-status
+      description: JFrog Get Command Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-commands.getcommandstatus
+      with:
+        projectId: tools.projectId
+        commandId: tools.commandId
+      outputParameters:
+      - type: object
+        mapping: $.

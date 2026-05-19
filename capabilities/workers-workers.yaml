@@ -1,0 +1,308 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Workers REST API — Workers
+  description: 'JFrog Workers REST API — Workers. 7 operations. Lead operation: JFrog List Workers. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Workers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: workers-workers
+    baseUri: https://{server}.jfrog.io/worker/api
+    description: JFrog Workers REST API — Workers business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-workers
+      path: /v1/workers
+      operations:
+      - name: listworkers
+        method: GET
+        description: JFrog List Workers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createworker
+        method: POST
+        description: JFrog Create Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-workers-workerKey
+      path: /v1/workers/{workerKey}
+      operations:
+      - name: getworker
+        method: GET
+        description: JFrog Get Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workerKey
+          in: path
+          type: string
+          description: Worker key identifier
+          required: true
+      - name: updateworker
+        method: PUT
+        description: JFrog Update Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workerKey
+          in: path
+          type: string
+          description: Worker key identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworker
+        method: DELETE
+        description: JFrog Delete Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workerKey
+          in: path
+          type: string
+          description: Worker key identifier
+          required: true
+    - name: v1-workers-workerKey-disable
+      path: /v1/workers/{workerKey}/disable
+      operations:
+      - name: disableworker
+        method: PUT
+        description: JFrog Disable Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workerKey
+          in: path
+          type: string
+          description: Worker key identifier
+          required: true
+    - name: v1-workers-workerKey-enable
+      path: /v1/workers/{workerKey}/enable
+      operations:
+      - name: enableworker
+        method: PUT
+        description: JFrog Enable Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: workerKey
+          in: path
+          type: string
+          description: Worker key identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: workers-workers-rest
+    port: 8080
+    description: REST adapter for JFrog Workers REST API — Workers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/workers
+      name: v1-workers
+      description: REST surface for v1-workers.
+      operations:
+      - method: GET
+        name: listworkers
+        description: JFrog List Workers
+        call: workers-workers.listworkers
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createworker
+        description: JFrog Create Worker
+        call: workers-workers.createworker
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/workers/{workerkey}
+      name: v1-workers-workerkey
+      description: REST surface for v1-workers-workerKey.
+      operations:
+      - method: GET
+        name: getworker
+        description: JFrog Get Worker
+        call: workers-workers.getworker
+        with:
+          workerKey: rest.workerKey
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateworker
+        description: JFrog Update Worker
+        call: workers-workers.updateworker
+        with:
+          workerKey: rest.workerKey
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworker
+        description: JFrog Delete Worker
+        call: workers-workers.deleteworker
+        with:
+          workerKey: rest.workerKey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/workers/{workerkey}/disable
+      name: v1-workers-workerkey-disable
+      description: REST surface for v1-workers-workerKey-disable.
+      operations:
+      - method: PUT
+        name: disableworker
+        description: JFrog Disable Worker
+        call: workers-workers.disableworker
+        with:
+          workerKey: rest.workerKey
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/workers/{workerkey}/enable
+      name: v1-workers-workerkey-enable
+      description: REST surface for v1-workers-workerKey-enable.
+      operations:
+      - method: PUT
+        name: enableworker
+        description: JFrog Enable Worker
+        call: workers-workers.enableworker
+        with:
+          workerKey: rest.workerKey
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: workers-workers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Workers REST API — Workers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-list-workers
+      description: JFrog List Workers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: workers-workers.listworkers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-worker
+      description: JFrog Create Worker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: workers-workers.createworker
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-worker
+      description: JFrog Get Worker
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: workers-workers.getworker
+      with:
+        workerKey: tools.workerKey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-update-worker
+      description: JFrog Update Worker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: workers-workers.updateworker
+      with:
+        workerKey: tools.workerKey
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-worker
+      description: JFrog Delete Worker
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: workers-workers.deleteworker
+      with:
+        workerKey: tools.workerKey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-disable-worker
+      description: JFrog Disable Worker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: workers-workers.disableworker
+      with:
+        workerKey: tools.workerKey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-enable-worker
+      description: JFrog Enable Worker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: workers-workers.enableworker
+      with:
+        workerKey: tools.workerKey
+      outputParameters:
+      - type: object
+        mapping: $.

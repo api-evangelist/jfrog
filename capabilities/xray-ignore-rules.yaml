@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Xray REST API — Ignore Rules
+  description: 'JFrog Xray REST API — Ignore Rules. 4 operations. Lead operation: JFrog List Ignore Rules. Self-contained
+    Naftiko capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Ignore Rules
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: xray-ignore-rules
+    baseUri: https://{server}.jfrog.io/xray/api
+    description: JFrog Xray REST API — Ignore Rules business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-ignore_rules
+      path: /v1/ignore_rules
+      operations:
+      - name: listignorerules
+        method: GET
+        description: JFrog List Ignore Rules
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createignorerule
+        method: POST
+        description: JFrog Create Ignore Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-ignore_rules-ruleId
+      path: /v1/ignore_rules/{ruleId}
+      operations:
+      - name: getignorerule
+        method: GET
+        description: JFrog Get Ignore Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ruleId
+          in: path
+          type: string
+          description: Ignore rule ID
+          required: true
+      - name: deleteignorerule
+        method: DELETE
+        description: JFrog Delete Ignore Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ruleId
+          in: path
+          type: string
+          description: Ignore rule ID
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: xray-ignore-rules-rest
+    port: 8080
+    description: REST adapter for JFrog Xray REST API — Ignore Rules. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/ignore-rules
+      name: v1-ignore-rules
+      description: REST surface for v1-ignore_rules.
+      operations:
+      - method: GET
+        name: listignorerules
+        description: JFrog List Ignore Rules
+        call: xray-ignore-rules.listignorerules
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createignorerule
+        description: JFrog Create Ignore Rule
+        call: xray-ignore-rules.createignorerule
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/ignore-rules/{ruleid}
+      name: v1-ignore-rules-ruleid
+      description: REST surface for v1-ignore_rules-ruleId.
+      operations:
+      - method: GET
+        name: getignorerule
+        description: JFrog Get Ignore Rule
+        call: xray-ignore-rules.getignorerule
+        with:
+          ruleId: rest.ruleId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteignorerule
+        description: JFrog Delete Ignore Rule
+        call: xray-ignore-rules.deleteignorerule
+        with:
+          ruleId: rest.ruleId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: xray-ignore-rules-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Xray REST API — Ignore Rules. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-list-ignore-rules
+      description: JFrog List Ignore Rules
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: xray-ignore-rules.listignorerules
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-ignore-rule
+      description: JFrog Create Ignore Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: xray-ignore-rules.createignorerule
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-ignore-rule
+      description: JFrog Get Ignore Rule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: xray-ignore-rules.getignorerule
+      with:
+        ruleId: tools.ruleId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-ignore-rule
+      description: JFrog Delete Ignore Rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: xray-ignore-rules.deleteignorerule
+      with:
+        ruleId: tools.ruleId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Xray REST API — Policies
+  description: 'JFrog Xray REST API — Policies. 5 operations. Lead operation: JFrog List Policies. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Policies
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: xray-policies
+    baseUri: https://{server}.jfrog.io/xray/api
+    description: JFrog Xray REST API — Policies business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-policies
+      path: /v2/policies
+      operations:
+      - name: listpolicies
+        method: GET
+        description: JFrog List Policies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createpolicy
+        method: POST
+        description: JFrog Create Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-policies-policyName
+      path: /v2/policies/{policyName}
+      operations:
+      - name: getpolicy
+        method: GET
+        description: JFrog Get Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policyName
+          in: path
+          type: string
+          description: Policy name
+          required: true
+      - name: updatepolicy
+        method: PUT
+        description: JFrog Update Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policyName
+          in: path
+          type: string
+          description: Policy name
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepolicy
+        method: DELETE
+        description: JFrog Delete Policy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: policyName
+          in: path
+          type: string
+          description: Policy name
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: xray-policies-rest
+    port: 8080
+    description: REST adapter for JFrog Xray REST API — Policies. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/policies
+      name: v2-policies
+      description: REST surface for v2-policies.
+      operations:
+      - method: GET
+        name: listpolicies
+        description: JFrog List Policies
+        call: xray-policies.listpolicies
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpolicy
+        description: JFrog Create Policy
+        call: xray-policies.createpolicy
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/policies/{policyname}
+      name: v2-policies-policyname
+      description: REST surface for v2-policies-policyName.
+      operations:
+      - method: GET
+        name: getpolicy
+        description: JFrog Get Policy
+        call: xray-policies.getpolicy
+        with:
+          policyName: rest.policyName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepolicy
+        description: JFrog Update Policy
+        call: xray-policies.updatepolicy
+        with:
+          policyName: rest.policyName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepolicy
+        description: JFrog Delete Policy
+        call: xray-policies.deletepolicy
+        with:
+          policyName: rest.policyName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: xray-policies-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Xray REST API — Policies. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: jfrog-list-policies
+      description: JFrog List Policies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: xray-policies.listpolicies
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-policy
+      description: JFrog Create Policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: xray-policies.createpolicy
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-policy
+      description: JFrog Get Policy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: xray-policies.getpolicy
+      with:
+        policyName: tools.policyName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-update-policy
+      description: JFrog Update Policy
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: xray-policies.updatepolicy
+      with:
+        policyName: tools.policyName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-policy
+      description: JFrog Delete Policy
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: xray-policies.deletepolicy
+      with:
+        policyName: tools.policyName
+      outputParameters:
+      - type: object
+        mapping: $.

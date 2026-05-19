@@ -1,0 +1,224 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Platform REST API — Webhooks
+  description: 'JFrog Platform REST API — Webhooks. 5 operations. Lead operation: JFrog List Webhooks. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: platform-webhooks
+    baseUri: https://{server}.jfrog.io
+    description: JFrog Platform REST API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: event-api-v1-subscriptions
+      path: /event/api/v1/subscriptions
+      operations:
+      - name: listwebhooks
+        method: GET
+        description: JFrog List Webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwebhook
+        method: POST
+        description: JFrog Create Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: event-api-v1-subscriptions-webhookKey
+      path: /event/api/v1/subscriptions/{webhookKey}
+      operations:
+      - name: getwebhook
+        method: GET
+        description: JFrog Get Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhookKey
+          in: path
+          type: string
+          description: Webhook key
+          required: true
+      - name: updatewebhook
+        method: PUT
+        description: JFrog Update Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhookKey
+          in: path
+          type: string
+          description: Webhook key
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: JFrog Delete Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhookKey
+          in: path
+          type: string
+          description: Webhook key
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: platform-webhooks-rest
+    port: 8080
+    description: REST adapter for JFrog Platform REST API — Webhooks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/event/api/v1/subscriptions
+      name: event-api-v1-subscriptions
+      description: REST surface for event-api-v1-subscriptions.
+      operations:
+      - method: GET
+        name: listwebhooks
+        description: JFrog List Webhooks
+        call: platform-webhooks.listwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: JFrog Create Webhook
+        call: platform-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/event/api/v1/subscriptions/{webhookkey}
+      name: event-api-v1-subscriptions-webhookkey
+      description: REST surface for event-api-v1-subscriptions-webhookKey.
+      operations:
+      - method: GET
+        name: getwebhook
+        description: JFrog Get Webhook
+        call: platform-webhooks.getwebhook
+        with:
+          webhookKey: rest.webhookKey
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatewebhook
+        description: JFrog Update Webhook
+        call: platform-webhooks.updatewebhook
+        with:
+          webhookKey: rest.webhookKey
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: JFrog Delete Webhook
+        call: platform-webhooks.deletewebhook
+        with:
+          webhookKey: rest.webhookKey
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: platform-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Platform REST API — Webhooks. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-list-webhooks
+      description: JFrog List Webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-webhooks.listwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-webhook
+      description: JFrog Create Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: platform-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-webhook
+      description: JFrog Get Webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: platform-webhooks.getwebhook
+      with:
+        webhookKey: tools.webhookKey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-update-webhook
+      description: JFrog Update Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: platform-webhooks.updatewebhook
+      with:
+        webhookKey: tools.webhookKey
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-webhook
+      description: JFrog Delete Webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: platform-webhooks.deletewebhook
+      with:
+        webhookKey: tools.webhookKey
+      outputParameters:
+      - type: object
+        mapping: $.

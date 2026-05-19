@@ -1,0 +1,184 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Connect REST API — Projects
+  description: 'JFrog Connect REST API — Projects. 4 operations. Lead operation: JFrog List Projects. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Projects
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: connect-projects
+    baseUri: https://api.connect.jfrog.io/v2
+    description: JFrog Connect REST API — Projects business capability. Self-contained, no shared references.
+    resources:
+    - name: projects
+      path: /projects
+      operations:
+      - name: listprojects
+        method: GET
+        description: JFrog List Projects
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createproject
+        method: POST
+        description: JFrog Create Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: projects-projectId
+      path: /projects/{projectId}
+      operations:
+      - name: getproject
+        method: GET
+        description: JFrog Get Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+      - name: deleteproject
+        method: DELETE
+        description: JFrog Delete Project
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: path
+          type: string
+          description: Project ID
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.JFROG_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: connect-projects-rest
+    port: 8080
+    description: REST adapter for JFrog Connect REST API — Projects. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/projects
+      name: projects
+      description: REST surface for projects.
+      operations:
+      - method: GET
+        name: listprojects
+        description: JFrog List Projects
+        call: connect-projects.listprojects
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createproject
+        description: JFrog Create Project
+        call: connect-projects.createproject
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/projects/{projectid}
+      name: projects-projectid
+      description: REST surface for projects-projectId.
+      operations:
+      - method: GET
+        name: getproject
+        description: JFrog Get Project
+        call: connect-projects.getproject
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteproject
+        description: JFrog Delete Project
+        call: connect-projects.deleteproject
+        with:
+          projectId: rest.projectId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: connect-projects-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Connect REST API — Projects. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-list-projects
+      description: JFrog List Projects
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-projects.listprojects
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-create-project
+      description: JFrog Create Project
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: connect-projects.createproject
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-project
+      description: JFrog Get Project
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-projects.getproject
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-delete-project
+      description: JFrog Delete Project
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: connect-projects.deleteproject
+      with:
+        projectId: tools.projectId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,252 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: JFrog Catalog REST API — Packages
+  description: 'JFrog Catalog REST API — Packages. 4 operations. Lead operation: JFrog Search Packages. Self-contained Naftiko
+    capability covering one Jfrog business surface.'
+  tags:
+  - Jfrog
+  - Packages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    JFROG_API_KEY: JFROG_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: catalog-packages
+    baseUri: https://{server}.jfrog.io/catalog/api/v1
+    description: JFrog Catalog REST API — Packages business capability. Self-contained, no shared references.
+    resources:
+    - name: packages-search
+      path: /packages/search
+      operations:
+      - name: searchpackages
+        method: POST
+        description: JFrog Search Packages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: packages-packageType-packageName
+      path: /packages/{packageType}/{packageName}
+      operations:
+      - name: getpackage
+        method: GET
+        description: JFrog Get Package Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: packageType
+          in: path
+          type: string
+          description: Package ecosystem type
+          required: true
+        - name: packageName
+          in: path
+          type: string
+          description: Package name (URL-encoded if contains special characters)
+          required: true
+    - name: packages-packageType-packageName-versions
+      path: /packages/{packageType}/{packageName}/versions
+      operations:
+      - name: getpackageversions
+        method: GET
+        description: JFrog Get Package Versions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: packageType
+          in: path
+          type: string
+          description: Package ecosystem type
+          required: true
+        - name: packageName
+          in: path
+          type: string
+          description: Package name
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results
+        - name: offset
+          in: query
+          type: integer
+          description: Pagination offset
+    - name: packages-packageType-packageName-versions-version-vulnerabilities
+      path: /packages/{packageType}/{packageName}/versions/{version}/vulnerabilities
+      operations:
+      - name: getversionvulnerabilities
+        method: GET
+        description: JFrog Get Version Vulnerabilities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: packageType
+          in: path
+          type: string
+          description: Package ecosystem type
+          required: true
+        - name: packageName
+          in: path
+          type: string
+          description: Package name
+          required: true
+        - name: version
+          in: path
+          type: string
+          description: Package version
+          required: true
+        - name: severity
+          in: query
+          type: string
+          description: Filter by minimum severity
+    authentication:
+      type: bearer
+      token: '{{env.JFROG_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: catalog-packages-rest
+    port: 8080
+    description: REST adapter for JFrog Catalog REST API — Packages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/packages/search
+      name: packages-search
+      description: REST surface for packages-search.
+      operations:
+      - method: POST
+        name: searchpackages
+        description: JFrog Search Packages
+        call: catalog-packages.searchpackages
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/packages/{packagetype}/{packagename}
+      name: packages-packagetype-packagename
+      description: REST surface for packages-packageType-packageName.
+      operations:
+      - method: GET
+        name: getpackage
+        description: JFrog Get Package Details
+        call: catalog-packages.getpackage
+        with:
+          packageType: rest.packageType
+          packageName: rest.packageName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/packages/{packagetype}/{packagename}/versions
+      name: packages-packagetype-packagename-versions
+      description: REST surface for packages-packageType-packageName-versions.
+      operations:
+      - method: GET
+        name: getpackageversions
+        description: JFrog Get Package Versions
+        call: catalog-packages.getpackageversions
+        with:
+          packageType: rest.packageType
+          packageName: rest.packageName
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/packages/{packagetype}/{packagename}/versions/{version}/vulnerabilities
+      name: packages-packagetype-packagename-versions-version-vulnerabilities
+      description: REST surface for packages-packageType-packageName-versions-version-vulnerabilities.
+      operations:
+      - method: GET
+        name: getversionvulnerabilities
+        description: JFrog Get Version Vulnerabilities
+        call: catalog-packages.getversionvulnerabilities
+        with:
+          packageType: rest.packageType
+          packageName: rest.packageName
+          version: rest.version
+          severity: rest.severity
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: catalog-packages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for JFrog Catalog REST API — Packages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: jfrog-search-packages
+      description: JFrog Search Packages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: catalog-packages.searchpackages
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-package-details
+      description: JFrog Get Package Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-packages.getpackage
+      with:
+        packageType: tools.packageType
+        packageName: tools.packageName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-package-versions
+      description: JFrog Get Package Versions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-packages.getpackageversions
+      with:
+        packageType: tools.packageType
+        packageName: tools.packageName
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: jfrog-get-version-vulnerabilities
+      description: JFrog Get Version Vulnerabilities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-packages.getversionvulnerabilities
+      with:
+        packageType: tools.packageType
+        packageName: tools.packageName
+        version: tools.version
+        severity: tools.severity
+      outputParameters:
+      - type: object
+        mapping: $.
