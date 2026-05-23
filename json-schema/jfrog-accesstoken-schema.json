@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccessToken",
+  "title": "AccessToken",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string"
+    },
+    "expires_in": {
+      "type": "integer"
+    },
+    "scope": {
+      "type": "string"
+    },
+    "token_type": {
+      "type": "string",
+      "example": "Bearer"
+    },
+    "refresh_token": {
+      "type": "string"
+    }
+  }
+}

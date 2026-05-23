@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReleaseBundleV2",
+  "title": "ReleaseBundleV2",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "SIGNED",
+        "PROMOTED",
+        "DISTRIBUTED"
+      ]
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "source_type": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string"
+          },
+          "size": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "current_environment": {
+      "type": "string"
+    },
+    "promotion_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "environment": {
+            "type": "string"
+          },
+          "promoted_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "promoted_by": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

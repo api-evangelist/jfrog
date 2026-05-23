@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LicenseBucket",
+  "title": "LicenseBucket",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "total_licenses": {
+      "type": "integer"
+    },
+    "used_licenses": {
+      "type": "integer"
+    },
+    "available_licenses": {
+      "type": "integer"
+    }
+  }
+}

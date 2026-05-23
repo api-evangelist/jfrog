@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackageDetail",
+  "title": "PackageDetail",
+  "type": "object",
+  "properties": {
+    "package_type": {
+      "type": "string"
+    },
+    "package_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "latest_version": {
+      "type": "string"
+    },
+    "versions_count": {
+      "type": "integer"
+    },
+    "licenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      }
+    },
+    "vulnerabilities_summary": {
+      "type": "object",
+      "properties": {
+        "critical": {
+          "type": "integer"
+        },
+        "high": {
+          "type": "integer"
+        },
+        "medium": {
+          "type": "integer"
+        },
+        "low": {
+          "type": "integer"
+        },
+        "total": {
+          "type": "integer"
+        }
+      }
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "repository_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "homepage": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

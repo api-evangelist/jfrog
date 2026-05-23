@@ -1,0 +1,597 @@
+{
+  "provider": "JFrog",
+  "providerId": "jfrog",
+  "kind": "json-structure",
+  "description": "Structural overview of the JFrog API surface; extracted from openapi/.",
+  "schemaCount": 25,
+  "operationCount": 47,
+  "schemas": [
+    {
+      "name": "SystemVersion",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "LicenseInfo",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "FileInfo",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "FolderInfo",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "Checksums",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "StorageSummary",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "DeployResponse",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "MoveOrCopyResponse",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "RepositoryListItem",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "RepositoryConfiguration",
+      "type": "object",
+      "propertyCount": 15,
+      "required": [
+        "key",
+        "rclass",
+        "packageType"
+      ]
+    },
+    {
+      "name": "AqlSearchResult",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "SearchResult",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "UserSummary",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "User",
+      "type": "object",
+      "propertyCount": 8,
+      "required": [
+        "name",
+        "email",
+        "password"
+      ]
+    },
+    {
+      "name": "GroupSummary",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "Group",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name"
+      ]
+    },
+    {
+      "name": "PermissionTargetSummary",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "PermissionTarget",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "AccessToken",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "BuildsList",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BuildRuns",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "BuildInfo",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "BuildPromotion",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "targetRepo"
+      ]
+    },
+    {
+      "name": "ReplicationConfig",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "ItemProperties",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/api/system/ping",
+      "operationId": "systemPing",
+      "summary": "JFrog System Health Ping",
+      "tags": [
+        "System & Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/version",
+      "operationId": "getSystemVersion",
+      "summary": "JFrog Get Version Information",
+      "tags": [
+        "System & Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/configuration",
+      "operationId": "getSystemConfiguration",
+      "summary": "JFrog Get System Configuration",
+      "tags": [
+        "System & Configuration"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/system/configuration",
+      "operationId": "updateSystemConfiguration",
+      "summary": "JFrog Update System Configuration",
+      "tags": [
+        "System & Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/system/licenses",
+      "operationId": "getSystemLicenses",
+      "summary": "JFrog Get License Information",
+      "tags": [
+        "System & Configuration"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/storage/{repoKey}/{itemPath}",
+      "operationId": "getStorageInfo",
+      "summary": "JFrog Get File or Folder Info",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/storage/{repoKey}",
+      "operationId": "getRepositoryStorageInfo",
+      "summary": "JFrog Get Repository Storage Summary",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/storageinfo",
+      "operationId": "getStorageSummaryInfo",
+      "summary": "JFrog Get Storage Summary",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/{repoKey}/{itemPath}",
+      "operationId": "retrieveArtifact",
+      "summary": "JFrog Retrieve Artifact",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/{repoKey}/{itemPath}",
+      "operationId": "deployArtifact",
+      "summary": "JFrog Deploy Artifact",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/{repoKey}/{itemPath}",
+      "operationId": "deleteArtifact",
+      "summary": "JFrog Delete Artifact",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/copy/{srcRepoKey}/{srcItemPath}",
+      "operationId": "copyArtifact",
+      "summary": "JFrog Copy Artifact",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/move/{srcRepoKey}/{srcItemPath}",
+      "operationId": "moveArtifact",
+      "summary": "JFrog Move Artifact",
+      "tags": [
+        "Artifacts & Storage"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/repositories",
+      "operationId": "listRepositories",
+      "summary": "JFrog List All Repositories",
+      "tags": [
+        "Repositories"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/repositories/{repoKey}",
+      "operationId": "getRepository",
+      "summary": "JFrog Get Repository Configuration",
+      "tags": [
+        "Repositories"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/repositories/{repoKey}",
+      "operationId": "updateRepository",
+      "summary": "JFrog Update Repository Configuration",
+      "tags": [
+        "Repositories"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/repositories/{repoKey}",
+      "operationId": "createRepository",
+      "summary": "JFrog Create Repository",
+      "tags": [
+        "Repositories"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/repositories/{repoKey}",
+      "operationId": "deleteRepository",
+      "summary": "JFrog Delete Repository",
+      "tags": [
+        "Repositories"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/search/aql",
+      "operationId": "executeAqlSearch",
+      "summary": "JFrog Execute AQL Search",
+      "tags": [
+        "Searches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/search/gavc",
+      "operationId": "searchByGAVC",
+      "summary": "JFrog GAVC Search",
+      "tags": [
+        "Searches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/search/prop",
+      "operationId": "searchByProperties",
+      "summary": "JFrog Property Search",
+      "tags": [
+        "Searches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/search/checksum",
+      "operationId": "searchByChecksum",
+      "summary": "JFrog Checksum Search",
+      "tags": [
+        "Searches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/search/latestVersion",
+      "operationId": "getLatestVersion",
+      "summary": "JFrog Get Latest Artifact Version",
+      "tags": [
+        "Searches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/security/users",
+      "operationId": "listUsers",
+      "summary": "JFrog List Users",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/security/users/{username}",
+      "operationId": "getUser",
+      "summary": "JFrog Get User Details",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/security/users/{username}",
+      "operationId": "createOrReplaceUser",
+      "summary": "JFrog Create or Replace User",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/security/users/{username}",
+      "operationId": "deleteUser",
+      "summary": "JFrog Delete User",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/security/groups",
+      "operationId": "listGroups",
+      "summary": "JFrog List Groups",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/security/groups/{groupName}",
+      "operationId": "getGroup",
+      "summary": "JFrog Get Group Details",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/security/groups/{groupName}",
+      "operationId": "createOrReplaceGroup",
+      "summary": "JFrog Create or Replace Group",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/security/groups/{groupName}",
+      "operationId": "deleteGroup",
+      "summary": "JFrog Delete Group",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/security/permissions",
+      "operationId": "listPermissionTargets",
+      "summary": "JFrog List Permission Targets",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/security/permissions/{permissionTargetName}",
+      "operationId": "getPermissionTarget",
+      "summary": "JFrog Get Permission Target",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/security/permissions/{permissionTargetName}",
+      "operationId": "createOrReplacePermissionTarget",
+      "summary": "JFrog Create or Replace Permission Target",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/security/permissions/{permissionTargetName}",
+      "operationId": "deletePermissionTarget",
+      "summary": "JFrog Delete Permission Target",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/security/token",
+      "operationId": "createToken",
+      "summary": "JFrog Create Access Token",
+      "tags": [
+        "Security"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/build",
+      "operationId": "listBuilds",
+      "summary": "JFrog List All Builds",
+      "tags": [
+        "Builds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/build/{buildName}",
+      "operationId": "getBuildRuns",
+      "summary": "JFrog Get Build Runs",
+      "tags": [
+        "Builds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/build/{buildName}/{buildNumber}",
+      "operationId": "getBuildInfo",
+      "summary": "JFrog Get Build Information",
+      "tags": [
+        "Builds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/build/promote/{buildName}/{buildNumber}",
+      "operationId": "promoteBuild",
+      "summary": "JFrog Promote Build",
+      "tags": [
+        "Builds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/replications",
+      "operationId": "listReplications",
+      "summary": "JFrog List All Replications",
+      "tags": [
+        "Replication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/replications/{repoKey}",
+      "operationId": "getReplication",
+      "summary": "JFrog Get Replication Configuration",
+      "tags": [
+        "Replication"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/replications/{repoKey}",
+      "operationId": "createOrReplaceReplication",
+      "summary": "JFrog Create or Replace Replication",
+      "tags": [
+        "Replication"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/replications/{repoKey}",
+      "operationId": "deleteReplication",
+      "summary": "JFrog Delete Replication",
+      "tags": [
+        "Replication"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/storage/{repoKey}/{itemPath}?properties",
+      "operationId": "getItemProperties",
+      "summary": "JFrog Get Item Properties",
+      "tags": [
+        "Properties"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/storage/{repoKey}/{itemPath}?properties",
+      "operationId": "setItemProperties",
+      "summary": "JFrog Set Item Properties",
+      "tags": [
+        "Properties"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/storage/{repoKey}/{itemPath}?properties",
+      "operationId": "deleteItemProperties",
+      "summary": "JFrog Delete Item Properties",
+      "tags": [
+        "Properties"
+      ]
+    }
+  ]
+}

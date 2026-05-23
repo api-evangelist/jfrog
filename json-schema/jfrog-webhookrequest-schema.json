@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WebhookRequest",
+  "title": "WebhookRequest",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "secret": {
+      "type": "string"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "deployed",
+          "deleted",
+          "moved",
+          "copied",
+          "cached",
+          "property_added",
+          "property_deleted",
+          "docker_pushed",
+          "docker_deleted",
+          "build_published",
+          "build_promotion",
+          "build_deleted",
+          "release_bundle_created",
+          "release_bundle_signed",
+          "release_bundle_deleted"
+        ]
+      }
+    },
+    "criteria": {
+      "type": "object",
+      "properties": {
+        "anyLocal": {
+          "type": "boolean"
+        },
+        "anyRemote": {
+          "type": "boolean"
+        },
+        "anyFederated": {
+          "type": "boolean"
+        },
+        "repoKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "includePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "excludePatterns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "key",
+    "url",
+    "events"
+  ]
+}

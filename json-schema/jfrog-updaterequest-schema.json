@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UpdateRequest",
+  "title": "UpdateRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "update_type": {
+      "type": "string",
+      "enum": [
+        "file",
+        "script",
+        "package",
+        "docker_compose"
+      ]
+    },
+    "target_devices": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "target_groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "file_path": {
+      "type": "string",
+      "description": "Path to update file"
+    },
+    "destination_path": {
+      "type": "string",
+      "description": "Destination path on device"
+    },
+    "script_content": {
+      "type": "string",
+      "description": "Script content for script-type updates"
+    },
+    "pre_install_script": {
+      "type": "string"
+    },
+    "post_install_script": {
+      "type": "string"
+    },
+    "rollback_on_failure": {
+      "type": "boolean",
+      "default": false
+    },
+    "schedule": {
+      "type": "object",
+      "properties": {
+        "start_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "batch_size": {
+          "type": "integer",
+          "description": "Number of devices to update concurrently"
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "update_type"
+  ]
+}

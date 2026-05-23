@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Deployment",
+  "title": "Deployment",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "model_version_id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "deploying",
+        "active",
+        "stopped",
+        "failed"
+      ]
+    },
+    "endpoint_url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "replicas": {
+      "type": "integer"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/WorkerRequest",
+  "title": "WorkerRequest",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "source_code": {
+      "type": "string",
+      "description": "TypeScript source code for the worker"
+    },
+    "action": {
+      "type": "string",
+      "enum": [
+        "BEFORE_DOWNLOAD",
+        "AFTER_DOWNLOAD",
+        "BEFORE_UPLOAD",
+        "AFTER_CREATE",
+        "AFTER_BUILD_INFO_SAVE",
+        "AFTER_MOVE",
+        "AFTER_COPY",
+        "BEFORE_DELETE",
+        "BEFORE_CREATE_TOKEN",
+        "GENERIC_EVENT"
+      ]
+    },
+    "filter_criteria": {
+      "type": "object",
+      "properties": {
+        "artifact_filter_criteria": {
+          "type": "object",
+          "properties": {
+            "repo_keys": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "secrets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "key",
+    "source_code",
+    "action"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FolderInfo",
+  "title": "FolderInfo",
+  "type": "object",
+  "properties": {
+    "repo": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifiedBy": {
+      "type": "string"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "uri": {
+            "type": "string"
+          },
+          "folder": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

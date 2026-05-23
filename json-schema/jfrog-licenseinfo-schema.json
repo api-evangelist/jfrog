@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LicenseInfo",
+  "title": "LicenseInfo",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string"
+    },
+    "validThrough": {
+      "type": "string"
+    },
+    "licensedTo": {
+      "type": "string"
+    }
+  }
+}

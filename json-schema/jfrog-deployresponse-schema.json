@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DeployResponse",
+  "title": "DeployResponse",
+  "type": "object",
+  "properties": {
+    "repo": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "downloadUri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "mimeType": {
+      "type": "string"
+    },
+    "size": {
+      "type": "integer"
+    },
+    "checksums": {
+      "$ref": "#/components/schemas/Checksums"
+    },
+    "originalChecksums": {
+      "$ref": "#/components/schemas/Checksums"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

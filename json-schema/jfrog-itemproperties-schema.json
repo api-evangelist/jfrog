@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ItemProperties",
+  "title": "ItemProperties",
+  "type": "object",
+  "properties": {
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NodePoolRequest",
+  "title": "NodePoolRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "integer"
+    },
+    "numberOfNodes": {
+      "type": "integer"
+    },
+    "isOnDemand": {
+      "type": "boolean"
+    },
+    "architecture": {
+      "type": "string"
+    },
+    "operatingSystem": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

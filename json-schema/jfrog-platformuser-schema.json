@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PlatformUser",
+  "title": "PlatformUser",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "admin": {
+      "type": "boolean"
+    },
+    "profile_updatable": {
+      "type": "boolean"
+    },
+    "disable_ui_access": {
+      "type": "boolean"
+    },
+    "internal_password_disabled": {
+      "type": "boolean"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "enabled",
+        "disabled"
+      ]
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

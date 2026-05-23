@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RepositoryConfiguration",
+  "title": "RepositoryConfiguration",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string"
+    },
+    "rclass": {
+      "type": "string",
+      "enum": [
+        "local",
+        "remote",
+        "virtual",
+        "federated"
+      ]
+    },
+    "packageType": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "includesPattern": {
+      "type": "string",
+      "default": "**/*"
+    },
+    "excludesPattern": {
+      "type": "string"
+    },
+    "repoLayoutRef": {
+      "type": "string"
+    },
+    "handleReleases": {
+      "type": "boolean"
+    },
+    "handleSnapshots": {
+      "type": "boolean"
+    },
+    "maxUniqueSnapshots": {
+      "type": "integer"
+    },
+    "suppressPomConsistencyChecks": {
+      "type": "boolean"
+    },
+    "blackedOut": {
+      "type": "boolean"
+    },
+    "propertySets": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "xrayIndex": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "key",
+    "rclass",
+    "packageType"
+  ]
+}

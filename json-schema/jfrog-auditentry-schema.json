@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AuditEntry",
+  "title": "AuditEntry",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "package_name": {
+      "type": "string"
+    },
+    "package_version": {
+      "type": "string"
+    },
+    "package_type": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "policy_name": {
+      "type": "string"
+    },
+    "action_taken": {
+      "type": "string",
+      "enum": [
+        "blocked",
+        "allowed",
+        "warned"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "requesting_user": {
+      "type": "string"
+    }
+  }
+}

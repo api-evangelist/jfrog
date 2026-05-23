@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BuildPromotion",
+  "title": "BuildPromotion",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "ciUser": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceRepo": {
+      "type": "string"
+    },
+    "targetRepo": {
+      "type": "string"
+    },
+    "copy": {
+      "type": "boolean"
+    },
+    "artifacts": {
+      "type": "boolean"
+    },
+    "dependencies": {
+      "type": "boolean"
+    },
+    "failFast": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "targetRepo"
+  ]
+}

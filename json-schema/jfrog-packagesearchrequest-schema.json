@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackageSearchRequest",
+  "title": "PackageSearchRequest",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "Text search query for package name"
+    },
+    "package_type": {
+      "type": "string",
+      "description": "Filter by package type"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Filter by applied labels"
+    },
+    "has_vulnerabilities": {
+      "type": "boolean",
+      "description": "Filter packages with known vulnerabilities"
+    },
+    "min_severity": {
+      "type": "string",
+      "enum": [
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ],
+      "description": "Minimum vulnerability severity filter"
+    },
+    "limit": {
+      "type": "integer",
+      "default": 25
+    },
+    "offset": {
+      "type": "integer"
+    }
+  }
+}

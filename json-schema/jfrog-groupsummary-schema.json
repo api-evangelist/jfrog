@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GroupSummary",
+  "title": "GroupSummary",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

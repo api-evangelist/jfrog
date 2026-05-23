@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Project",
+  "title": "Project",
+  "type": "object",
+  "properties": {
+    "project_key": {
+      "type": "string",
+      "description": "Unique project key (max 32 chars)",
+      "maxLength": 32
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "admin_privileges": {
+      "type": "object",
+      "properties": {
+        "manage_members": {
+          "type": "boolean"
+        },
+        "manage_resources": {
+          "type": "boolean"
+        },
+        "manage_security_assets": {
+          "type": "boolean"
+        },
+        "index_resources": {
+          "type": "boolean"
+        },
+        "allow_ignore_rules": {
+          "type": "boolean"
+        }
+      }
+    },
+    "max_storage_in_gibibytes": {
+      "type": "integer"
+    },
+    "soft_limit": {
+      "type": "boolean"
+    },
+    "storage_quota_bytes": {
+      "type": "integer"
+    },
+    "storage_quota_email_notification": {
+      "type": "boolean"
+    }
+  }
+}

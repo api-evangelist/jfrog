@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ProjectRequest",
+  "title": "ProjectRequest",
+  "type": "object",
+  "properties": {
+    "project_key": {
+      "type": "string",
+      "maxLength": 32
+    },
+    "display_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "admin_privileges": {
+      "type": "object",
+      "properties": {
+        "manage_members": {
+          "type": "boolean"
+        },
+        "manage_resources": {
+          "type": "boolean"
+        },
+        "manage_security_assets": {
+          "type": "boolean"
+        },
+        "index_resources": {
+          "type": "boolean"
+        },
+        "allow_ignore_rules": {
+          "type": "boolean"
+        }
+      }
+    },
+    "max_storage_in_gibibytes": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "project_key",
+    "display_name"
+  ]
+}

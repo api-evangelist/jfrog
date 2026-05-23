@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReleaseBundleV2Request",
+  "title": "ReleaseBundleV2Request",
+  "type": "object",
+  "properties": {
+    "release_bundle_name": {
+      "type": "string"
+    },
+    "release_bundle_version": {
+      "type": "string"
+    },
+    "skip_docker_manifest_resolution": {
+      "type": "boolean",
+      "default": false
+    },
+    "source_type": {
+      "type": "string",
+      "enum": [
+        "artifacts",
+        "builds",
+        "release_bundles",
+        "aql"
+      ]
+    },
+    "source": {
+      "type": "object",
+      "properties": {
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "sha256": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "builds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "number": {
+                "type": "string"
+              },
+              "project": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "release_bundles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "version": {
+                "type": "string"
+              },
+              "project_key": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "aql": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "release_bundle_name",
+    "release_bundle_version",
+    "source_type",
+    "source"
+  ]
+}

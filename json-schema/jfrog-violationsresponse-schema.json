@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ViolationsResponse",
+  "title": "ViolationsResponse",
+  "type": "object",
+  "properties": {
+    "total_violations": {
+      "type": "integer"
+    },
+    "violations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "violation_type": {
+            "type": "string"
+          },
+          "severity": {
+            "type": "string"
+          },
+          "watch_name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "matched_policies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "policy": {
+                  "type": "string"
+                },
+                "rule": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "impacted_artifacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "display_name": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

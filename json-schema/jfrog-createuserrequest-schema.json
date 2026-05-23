@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateUserRequest",
+  "title": "CreateUserRequest",
+  "type": "object",
+  "properties": {
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "password": {
+      "type": "string"
+    },
+    "admin": {
+      "type": "boolean",
+      "default": false
+    },
+    "profile_updatable": {
+      "type": "boolean",
+      "default": true
+    },
+    "disable_ui_access": {
+      "type": "boolean",
+      "default": false
+    },
+    "groups": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "username",
+    "email",
+    "password"
+  ]
+}

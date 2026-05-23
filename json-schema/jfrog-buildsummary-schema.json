@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BuildSummary",
+  "title": "BuildSummary",
+  "type": "object",
+  "properties": {
+    "build": {
+      "type": "object",
+      "properties": {
+        "build_name": {
+          "type": "string"
+        },
+        "build_number": {
+          "type": "string"
+        }
+      }
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Issue"
+      }
+    }
+  }
+}

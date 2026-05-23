@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReplicationConfig",
+  "title": "ReplicationConfig",
+  "type": "object",
+  "properties": {
+    "repoKey": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string",
+      "format": "uri"
+    },
+    "socketTimeoutMillis": {
+      "type": "integer"
+    },
+    "username": {
+      "type": "string"
+    },
+    "password": {
+      "type": "string"
+    },
+    "enableEventReplication": {
+      "type": "boolean"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "cronExp": {
+      "type": "string"
+    },
+    "syncDeletes": {
+      "type": "boolean"
+    },
+    "syncProperties": {
+      "type": "boolean"
+    },
+    "syncStatistics": {
+      "type": "boolean"
+    },
+    "pathPrefix": {
+      "type": "string"
+    }
+  }
+}

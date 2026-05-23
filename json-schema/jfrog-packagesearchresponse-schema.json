@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackageSearchResponse",
+  "title": "PackageSearchResponse",
+  "type": "object",
+  "properties": {
+    "packages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/PackageSummary"
+      }
+    },
+    "total_count": {
+      "type": "integer"
+    }
+  }
+}

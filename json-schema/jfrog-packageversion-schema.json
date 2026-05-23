@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackageVersion",
+  "title": "PackageVersion",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "licenses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "vulnerabilities_count": {
+      "type": "integer"
+    },
+    "direct_vulnerabilities_count": {
+      "type": "integer",
+      "description": "Non-transitive vulnerabilities affecting this version"
+    },
+    "transitive_vulnerabilities_count": {
+      "type": "integer",
+      "description": "Transitive vulnerabilities from dependencies"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

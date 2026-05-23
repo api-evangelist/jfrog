@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateEvidenceRequest",
+  "title": "CreateEvidenceRequest",
+  "type": "object",
+  "properties": {
+    "subject_type": {
+      "type": "string",
+      "description": "Type of the subject to attach evidence to",
+      "enum": [
+        "artifact",
+        "build",
+        "package",
+        "release_bundle"
+      ]
+    },
+    "subject": {
+      "type": "object",
+      "description": "Subject identifier (fields depend on subject_type)",
+      "properties": {
+        "repo_path": {
+          "type": "string",
+          "description": "Artifact repository path (for artifact subject)"
+        },
+        "sha256": {
+          "type": "string",
+          "description": "Artifact SHA-256 checksum (for artifact subject)"
+        },
+        "build_name": {
+          "type": "string",
+          "description": "Build name (for build subject)"
+        },
+        "build_number": {
+          "type": "string",
+          "description": "Build number (for build subject)"
+        },
+        "package_name": {
+          "type": "string",
+          "description": "Package name (for package subject)"
+        },
+        "package_version": {
+          "type": "string",
+          "description": "Package version (for package subject)"
+        },
+        "repo_key": {
+          "type": "string",
+          "description": "Repository key (for package subject)"
+        },
+        "release_bundle_name": {
+          "type": "string",
+          "description": "Release bundle name (for release_bundle subject)"
+        },
+        "release_bundle_version": {
+          "type": "string",
+          "description": "Release bundle version (for release_bundle subject)"
+        },
+        "project": {
+          "type": "string",
+          "description": "Project key for project-scoped subjects"
+        }
+      }
+    },
+    "predicate": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "The evidence predicate content (in-toto statement predicate)"
+    },
+    "predicate_type": {
+      "type": "string",
+      "format": "uri",
+      "description": "URI identifying the predicate type (e.g., https://in-toto.io/attestation/vulns)"
+    },
+    "key_alias": {
+      "type": "string",
+      "description": "Alias of the public key registered for signature verification"
+    },
+    "dsse_envelope": {
+      "type": "string",
+      "description": "Pre-signed DSSE envelope (alternative to providing predicate and key)"
+    }
+  },
+  "required": [
+    "subject_type",
+    "subject"
+  ]
+}

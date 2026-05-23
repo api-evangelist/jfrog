@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EvidenceSearchRequest",
+  "title": "EvidenceSearchRequest",
+  "type": "object",
+  "properties": {
+    "subject_type": {
+      "type": "string",
+      "enum": [
+        "artifact",
+        "build",
+        "package",
+        "release_bundle"
+      ]
+    },
+    "predicate_type": {
+      "type": "string",
+      "format": "uri"
+    },
+    "created_from": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_to": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "limit": {
+      "type": "integer",
+      "default": 25
+    },
+    "offset": {
+      "type": "integer"
+    }
+  }
+}

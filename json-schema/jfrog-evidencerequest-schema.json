@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EvidenceRequest",
+  "title": "EvidenceRequest",
+  "type": "object",
+  "properties": {
+    "release_bundle_name": {
+      "type": "string"
+    },
+    "release_bundle_version": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "evidence_type": {
+      "type": "string",
+      "enum": [
+        "test_results",
+        "approval",
+        "scan_results",
+        "build_info",
+        "custom"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "dsse_file_path": {
+      "type": "string",
+      "description": "Path to a DSSE signed envelope file in Artifactory"
+    }
+  },
+  "required": [
+    "release_bundle_name",
+    "release_bundle_version"
+  ]
+}

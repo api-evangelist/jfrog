@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReleaseBundleRequest",
+  "title": "ReleaseBundleRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "dry_run": {
+      "type": "boolean",
+      "default": false
+    },
+    "sign_immediately": {
+      "type": "boolean",
+      "default": false
+    },
+    "description": {
+      "type": "string"
+    },
+    "release_notes": {
+      "type": "object",
+      "properties": {
+        "syntax": {
+          "type": "string",
+          "enum": [
+            "plain_text",
+            "markdown",
+            "asciidoc"
+          ]
+        },
+        "content": {
+          "type": "string"
+        }
+      }
+    },
+    "spec": {
+      "type": "object",
+      "properties": {
+        "queries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "aql": {
+                "type": "string"
+              },
+              "query_name": {
+                "type": "string"
+              },
+              "mappings": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "input": {
+                      "type": "string"
+                    },
+                    "output": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "added_props": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "key": {
+                      "type": "string"
+                    },
+                    "values": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "version",
+    "spec"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Checksums",
+  "title": "Checksums",
+  "type": "object",
+  "properties": {
+    "sha1": {
+      "type": "string"
+    },
+    "sha256": {
+      "type": "string"
+    },
+    "md5": {
+      "type": "string"
+    }
+  }
+}

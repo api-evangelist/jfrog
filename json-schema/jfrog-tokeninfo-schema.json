@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TokenInfo",
+  "title": "TokenInfo",
+  "type": "object",
+  "properties": {
+    "token_id": {
+      "type": "string",
+      "description": "Unique token identifier"
+    },
+    "subject": {
+      "type": "string",
+      "description": "Token subject (user or service)"
+    },
+    "expiry": {
+      "type": "integer",
+      "description": "Token expiry timestamp (epoch seconds)"
+    },
+    "issued_at": {
+      "type": "integer",
+      "description": "Token issuance timestamp (epoch seconds)"
+    },
+    "issuer": {
+      "type": "string",
+      "description": "Token issuer service identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable token description"
+    },
+    "refreshable": {
+      "type": "boolean",
+      "description": "Whether the token can be refreshed"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Token scope defining permissions"
+    },
+    "audience": {
+      "type": "string",
+      "description": "Token audience"
+    }
+  }
+}

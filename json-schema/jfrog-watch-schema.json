@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Watch",
+  "title": "Watch",
+  "type": "object",
+  "properties": {
+    "general_data": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        }
+      }
+    },
+    "project_resources": {
+      "type": "object",
+      "properties": {
+        "resources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "repository",
+                  "build",
+                  "all-repos",
+                  "all-builds"
+                ]
+              },
+              "name": {
+                "type": "string"
+              },
+              "bin_mgr_id": {
+                "type": "string"
+              },
+              "filters": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "regex",
+                        "package-type",
+                        "path-regex",
+                        "mime-type"
+                      ]
+                    },
+                    "value": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "assigned_policies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "security",
+              "license",
+              "operational_risk"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "general_data",
+    "project_resources",
+    "assigned_policies"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IgnoreRule",
+  "title": "IgnoreRule",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "expiration_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "vulnerabilities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cve": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "cves": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cve": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "licenses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "watches": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "policies": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "component": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CurationPolicyRequest",
+  "title": "CurationPolicyRequest",
+  "type": "object",
+  "properties": {
+    "policy_name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "policy_type": {
+      "type": "string"
+    },
+    "repositories": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "package_types": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "conditions": {
+      "type": "object"
+    },
+    "actions": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "policy_name",
+    "policy_type"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IntegrationRequest",
+  "title": "IntegrationRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "masterIntegrationId": {
+      "type": "integer"
+    },
+    "masterIntegrationName": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "integer"
+    },
+    "formJSONValues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "name",
+    "masterIntegrationName"
+  ]
+}

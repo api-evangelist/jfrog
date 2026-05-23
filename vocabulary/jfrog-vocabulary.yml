@@ -1,0 +1,21 @@
+name: JFrog Domain Vocabulary
+provider: JFrog
+providerId: jfrog
+description: Tag-derived vocabulary for the JFrog API surface; sourced from openapi/ tags.
+terms:
+- term: Artifacts & Storage
+  description: Deploy, retrieve, copy, move, and delete artifacts
+- term: Builds
+  description: Build information and promotion
+- term: Properties
+  description: Set, update, and delete artifact properties
+- term: Replication
+  description: Push and pull replication configuration
+- term: Repositories
+  description: Create, read, update, and delete repositories
+- term: Searches
+  description: Search for artifacts using various criteria
+- term: Security
+  description: Users, groups, permissions, and access tokens
+- term: System & Configuration
+  description: System health, configuration, and version information

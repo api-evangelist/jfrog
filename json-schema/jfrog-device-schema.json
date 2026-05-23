@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Device",
+  "title": "Device",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "online",
+        "offline",
+        "updating"
+      ]
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "os": {
+      "type": "string"
+    },
+    "os_version": {
+      "type": "string"
+    },
+    "architecture": {
+      "type": "string"
+    },
+    "agent_version": {
+      "type": "string"
+    },
+    "group_id": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "last_seen": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "registered_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "system_info": {
+      "type": "object",
+      "properties": {
+        "cpu_usage": {
+          "type": "number"
+        },
+        "memory_total": {
+          "type": "integer"
+        },
+        "memory_used": {
+          "type": "integer"
+        },
+        "disk_total": {
+          "type": "integer"
+        },
+        "disk_used": {
+          "type": "integer"
+        },
+        "uptime_seconds": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

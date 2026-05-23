@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Group",
+  "title": "Group",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique group name"
+    },
+    "description": {
+      "type": "string"
+    },
+    "auto_join": {
+      "type": "boolean",
+      "description": "Whether new users automatically join this group"
+    },
+    "admin_privileges": {
+      "type": "boolean",
+      "description": "Whether group members receive admin privileges"
+    },
+    "realm": {
+      "type": "string",
+      "description": "Authentication realm for external groups"
+    },
+    "external_id": {
+      "type": "string",
+      "description": "External identity provider group identifier"
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of usernames in the group"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

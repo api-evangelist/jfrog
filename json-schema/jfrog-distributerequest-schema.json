@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DistributeRequest",
+  "title": "DistributeRequest",
+  "type": "object",
+  "properties": {
+    "auto_create_missing_repositories": {
+      "type": "boolean",
+      "default": false
+    },
+    "distribution_rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "site_name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "distribution_rules"
+  ]
+}

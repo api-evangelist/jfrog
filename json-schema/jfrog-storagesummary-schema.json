@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/StorageSummary",
+  "title": "StorageSummary",
+  "type": "object",
+  "properties": {
+    "binariesSummary": {
+      "type": "object",
+      "properties": {
+        "binariesCount": {
+          "type": "string"
+        },
+        "binariesSize": {
+          "type": "string"
+        },
+        "artifactsSize": {
+          "type": "string"
+        },
+        "optimization": {
+          "type": "string"
+        },
+        "itemsCount": {
+          "type": "string"
+        }
+      }
+    },
+    "fileStoreSummary": {
+      "type": "object",
+      "properties": {
+        "storageType": {
+          "type": "string"
+        },
+        "storageDirectory": {
+          "type": "string"
+        },
+        "totalSpace": {
+          "type": "string"
+        },
+        "usedSpace": {
+          "type": "string"
+        },
+        "freeSpace": {
+          "type": "string"
+        }
+      }
+    },
+    "repositoriesSummaryList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "repoKey": {
+            "type": "string"
+          },
+          "repoType": {
+            "type": "string"
+          },
+          "foldersCount": {
+            "type": "integer"
+          },
+          "filesCount": {
+            "type": "integer"
+          },
+          "usedSpace": {
+            "type": "string"
+          },
+          "itemsCount": {
+            "type": "integer"
+          },
+          "packageType": {
+            "type": "string"
+          },
+          "percentage": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

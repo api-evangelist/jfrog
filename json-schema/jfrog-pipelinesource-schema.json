@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PipelineSource",
+  "title": "PipelineSource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "projectId": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "repositoryFullName": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "fileFilter": {
+      "type": "string"
+    },
+    "integrationId": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

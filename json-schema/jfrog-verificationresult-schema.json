@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VerificationResult",
+  "title": "VerificationResult",
+  "type": "object",
+  "properties": {
+    "evidence_id": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "Whether the signature is valid"
+    },
+    "verification_timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "key_alias": {
+      "type": "string",
+      "description": "Alias of the public key used for verification"
+    },
+    "signature_algorithm": {
+      "type": "string",
+      "enum": [
+        "ECDSA",
+        "RSA",
+        "ED25519"
+      ]
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Verification errors, if any"
+    }
+  }
+}

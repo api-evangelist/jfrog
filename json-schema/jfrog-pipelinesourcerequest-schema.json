@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PipelineSourceRequest",
+  "title": "PipelineSourceRequest",
+  "type": "object",
+  "properties": {
+    "projectId": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "repositoryFullName": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "fileFilter": {
+      "type": "string"
+    },
+    "integrationId": {
+      "type": "integer"
+    }
+  },
+  "required": [
+    "repositoryFullName",
+    "branch",
+    "integrationId"
+  ]
+}

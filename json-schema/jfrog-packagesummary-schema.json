@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PackageSummary",
+  "title": "PackageSummary",
+  "type": "object",
+  "properties": {
+    "package_type": {
+      "type": "string"
+    },
+    "package_name": {
+      "type": "string"
+    },
+    "latest_version": {
+      "type": "string"
+    },
+    "versions_count": {
+      "type": "integer"
+    },
+    "vulnerabilities_count": {
+      "type": "integer"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "license": {
+      "type": "string"
+    }
+  }
+}

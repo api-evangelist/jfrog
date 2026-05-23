@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Run",
+  "title": "Run",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "pipelineId": {
+      "type": "integer"
+    },
+    "pipelineSourceId": {
+      "type": "integer"
+    },
+    "statusCode": {
+      "type": "integer",
+      "description": "4001=queued, 4002=processing, 4003=success, 4004=error, 4005=cancelled, 4006=timeout, 4007=skipped"
+    },
+    "runNumber": {
+      "type": "integer"
+    },
+    "branchName": {
+      "type": "string"
+    },
+    "startedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "endedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "durationSeconds": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

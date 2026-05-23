@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Label",
+  "title": "Label",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique label name"
+    },
+    "description": {
+      "type": "string"
+    },
+    "color": {
+      "type": "string",
+      "description": "Label display color (hex)"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "packages_count": {
+      "type": "integer",
+      "description": "Number of packages with this label applied"
+    }
+  }
+}
