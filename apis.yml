@@ -534,6 +534,8 @@ common:
 - name: Agent Skills
   url: https://github.com/jfrog/jfrog-skills
   type: AgentSkill
+- type: LLMsTxt
+  url: https://docs.connect.jfrog.io/llms.txt
 integrations:
 - name: Docker
 - name: Maven
