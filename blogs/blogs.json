@@ -2,12 +2,21 @@
   "repo": "jfrog",
   "feeds": [
     {
-      "source": "https://jfrog.com/blog/",
+      "source": "https://jfrog.com/blog/feed/",
       "feed_url": "https://jfrog.com/blog/feed/",
-      "title": "From the Frog's mouth - JFrog Blog",
-      "saved": 8
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens",
+      "error": "HTTPError"
     }
   ],
-  "post_count": 18,
-  "fetched": "2026-05-17T20:20:35Z"
+  "post_count": 22,
+  "fetched": "2026-06-01T23:35:02Z"
 }
