@@ -1,0 +1,79 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Attach Build Evidence
+  summary: Create signed evidence for a build then verify its signature.
+  description: >-
+    Software supply-chain attestation with the JFrog Evidence service. The
+    workflow creates a signed evidence record attached to a build subject, then
+    verifies the evidence's cryptographic signature against registered keys.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: evidenceApi
+  url: ../openapi/jfrog-evidence-openapi.yml
+  type: openapi
+workflows:
+- workflowId: attach-build-evidence
+  summary: Attach evidence to a build and verify it.
+  description: >-
+    Creates evidence for a build subject with a predicate and key alias, then
+    verifies the resulting evidence record's signature.
+  inputs:
+    type: object
+    required:
+    - buildName
+    - buildNumber
+    - predicateType
+    - keyAlias
+    properties:
+      buildName:
+        type: string
+        description: The build name to attach evidence to.
+      buildNumber:
+        type: string
+        description: The build number to attach evidence to.
+      predicateType:
+        type: string
+        description: The URI identifying the predicate type.
+      keyAlias:
+        type: string
+        description: The alias of the registered signing key.
+      predicate:
+        type: object
+        description: The evidence predicate content.
+  steps:
+  - stepId: createEvidence
+    description: >-
+      Create a signed evidence record attached to the build subject using the
+      supplied predicate and signing key alias.
+    operationId: createEvidence
+    requestBody:
+      contentType: application/json
+      payload:
+        subject_type: build
+        subject:
+          build_name: $inputs.buildName
+          build_number: $inputs.buildNumber
+        predicate: $inputs.predicate
+        predicate_type: $inputs.predicateType
+        key_alias: $inputs.keyAlias
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      evidenceId: $response.body#/id
+  - stepId: verifyEvidence
+    description: >-
+      Verify the cryptographic signature of the newly created evidence record.
+    operationId: verifyEvidence
+    parameters:
+    - name: evidenceId
+      in: path
+      value: $steps.createEvidence.outputs.evidenceId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      verificationResult: $response.body
+  outputs:
+    evidenceId: $steps.createEvidence.outputs.evidenceId
+    verificationResult: $steps.verifyEvidence.outputs.verificationResult

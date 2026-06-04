@@ -1,0 +1,100 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Configure Repository Replication
+  summary: Confirm a repository exists then configure push replication for it.
+  description: >-
+    Replication keeps repositories in sync across JFrog instances. The workflow
+    verifies the source repository exists, creates or replaces its replication
+    configuration pointing at a remote URL, then reads the replication config
+    back to confirm it was stored. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: artifactoryApi
+  url: ../openapi/jfrog-artifactory-openapi.yml
+  type: openapi
+workflows:
+- workflowId: configure-repository-replication
+  summary: Set up push replication for an existing repository and verify it.
+  description: >-
+    Checks the repository configuration, creates or replaces a replication
+    config with the supplied remote URL and cron expression, then fetches the
+    replication config to confirm it persisted.
+  inputs:
+    type: object
+    required:
+    - repoKey
+    - url
+    - cronExp
+    properties:
+      repoKey:
+        type: string
+        description: The repository key to replicate.
+      url:
+        type: string
+        description: The target instance repository URL to replicate to.
+      username:
+        type: string
+        description: The username for authenticating to the target instance.
+      password:
+        type: string
+        description: The password or token for the target instance.
+      cronExp:
+        type: string
+        description: The cron expression controlling replication frequency.
+  steps:
+  - stepId: confirmRepo
+    description: >-
+      Read the repository configuration to confirm the source repository exists
+      before configuring replication.
+    operationId: getRepository
+    parameters:
+    - name: repoKey
+      in: path
+      value: $inputs.repoKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      key: $response.body#/key
+  - stepId: createReplication
+    description: >-
+      Create or replace the replication configuration for the repository,
+      pointing at the target URL on the supplied cron schedule.
+    operationId: createOrReplaceReplication
+    parameters:
+    - name: repoKey
+      in: path
+      value: $steps.confirmRepo.outputs.key
+    requestBody:
+      contentType: application/json
+      payload:
+        repoKey: $inputs.repoKey
+        url: $inputs.url
+        username: $inputs.username
+        password: $inputs.password
+        cronExp: $inputs.cronExp
+        enabled: true
+        syncDeletes: false
+        syncProperties: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      configuredKey: $inputs.repoKey
+  - stepId: verifyReplication
+    description: >-
+      Read the replication configuration back to confirm it was stored for the
+      repository.
+    operationId: getReplication
+    parameters:
+    - name: repoKey
+      in: path
+      value: $steps.createReplication.outputs.configuredKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      url: $response.body#/url
+      enabled: $response.body#/enabled
+  outputs:
+    url: $steps.verifyReplication.outputs.url
+    enabled: $steps.verifyReplication.outputs.enabled

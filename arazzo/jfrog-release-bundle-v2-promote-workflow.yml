@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Release Bundle v2 Promote
+  summary: Create a v2 release bundle from a build and promote it to an environment.
+  description: >-
+    The Release Lifecycle Management promotion flow. The workflow creates a v2
+    release bundle sourced from a build, promotes it to a target environment,
+    then polls the promotion status until it completes. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: releaseLifecycleApi
+  url: ../openapi/jfrog-release-lifecycle-openapi.yml
+  type: openapi
+workflows:
+- workflowId: promote-release-bundle-v2
+  summary: Create a v2 release bundle from a build and promote it.
+  description: >-
+    Creates a release bundle v2 from a build, promotes it to the target
+    environment, then polls promotion status until it is no longer in progress.
+  inputs:
+    type: object
+    required:
+    - bundleName
+    - bundleVersion
+    - buildName
+    - buildNumber
+    - environment
+    properties:
+      bundleName:
+        type: string
+        description: The release bundle name.
+      bundleVersion:
+        type: string
+        description: The release bundle version.
+      buildName:
+        type: string
+        description: The source build name.
+      buildNumber:
+        type: string
+        description: The source build number.
+      environment:
+        type: string
+        description: The target environment to promote to (e.g. DEV, STAGING, PROD).
+  steps:
+  - stepId: createBundle
+    description: >-
+      Create a v2 release bundle sourced from the supplied build.
+    operationId: createReleaseBundle
+    requestBody:
+      contentType: application/json
+      payload:
+        release_bundle_name: $inputs.bundleName
+        release_bundle_version: $inputs.bundleVersion
+        source_type: builds
+        source:
+          builds:
+          - name: $inputs.buildName
+            number: $inputs.buildNumber
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      name: $response.body#/name
+      version: $response.body#/version
+  - stepId: promote
+    description: >-
+      Promote the release bundle to the target environment.
+    operationId: promoteReleaseBundle
+    requestBody:
+      contentType: application/json
+      payload:
+        release_bundle_name: $inputs.bundleName
+        release_bundle_version: $inputs.bundleVersion
+        environment: $inputs.environment
+        overwrite_existing_artifacts: false
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      promotionId: $response.body#/promotion_id
+  - stepId: pollPromotion
+    description: >-
+      Poll the promotion status. While the latest promotion is in progress, loop
+      back and check again; otherwise finish.
+    operationId: getPromotionStatus
+    parameters:
+    - name: name
+      in: path
+      value: $steps.createBundle.outputs.name
+    - name: version
+      in: path
+      value: $steps.createBundle.outputs.version
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currentEnvironment: $response.body#/current_environment
+      promotions: $response.body#/promotions
+    onSuccess:
+    - name: inProgress
+      type: goto
+      stepId: pollPromotion
+      criteria:
+      - context: $response.body
+        condition: $.promotions[0].status == 'IN_PROGRESS'
+        type: jsonpath
+    - name: settled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.promotions[0].status != 'IN_PROGRESS'
+        type: jsonpath
+  outputs:
+    bundleName: $steps.createBundle.outputs.name
+    currentEnvironment: $steps.pollPromotion.outputs.currentEnvironment

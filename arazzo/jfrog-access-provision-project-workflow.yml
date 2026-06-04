@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Access Provision Project
+  summary: Create a project, add a user to it, and confirm the project.
+  description: >-
+    Project-based isolation in the JFrog Platform via the Access service. The
+    workflow creates a project with a storage quota, adds an existing user to it
+    with a role, then reads the project back to confirm it was created. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: accessApi
+  url: ../openapi/jfrog-access-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-project
+  summary: Create a project, assign a user, and verify the project.
+  description: >-
+    Creates a project keyed by projectKey, adds a user with the supplied roles,
+    then fetches the project to confirm it exists.
+  inputs:
+    type: object
+    required:
+    - projectKey
+    - displayName
+    - username
+    - role
+    properties:
+      projectKey:
+        type: string
+        description: The unique project key (max 32 chars).
+      displayName:
+        type: string
+        description: The human-readable project name.
+      username:
+        type: string
+        description: An existing username to add to the project.
+      role:
+        type: string
+        description: The role to assign the user (e.g. Developer, Project Admin).
+      maxStorage:
+        type: integer
+        description: The maximum storage in gibibytes for the project.
+  steps:
+  - stepId: createProject
+    description: >-
+      Create a new project with the supplied key, display name and storage
+      quota.
+    operationId: createProject
+    requestBody:
+      contentType: application/json
+      payload:
+        project_key: $inputs.projectKey
+        display_name: $inputs.displayName
+        description: Provisioned by the provision-project workflow
+        max_storage_in_gibibytes: $inputs.maxStorage
+        admin_privileges:
+          manage_members: true
+          manage_resources: true
+          index_resources: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      projectKey: $response.body#/project_key
+  - stepId: addUser
+    description: >-
+      Add the supplied user to the project with the requested role.
+    operationId: addUserToProject
+    parameters:
+    - name: projectKey
+      in: path
+      value: $steps.createProject.outputs.projectKey
+    - name: username
+      in: path
+      value: $inputs.username
+    requestBody:
+      contentType: application/json
+      payload:
+        roles:
+        - $inputs.role
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      addedUser: $inputs.username
+  - stepId: confirmProject
+    description: >-
+      Read the project back to confirm it was created with the expected key.
+    operationId: getProject
+    parameters:
+    - name: projectKey
+      in: path
+      value: $steps.createProject.outputs.projectKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      projectKey: $response.body#/project_key
+      displayName: $response.body#/display_name
+  outputs:
+    projectKey: $steps.confirmProject.outputs.projectKey
+    addedUser: $steps.addUser.outputs.addedUser

@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Pipelines Trigger and Monitor
+  summary: Trigger a pipeline run, find the new run, and poll until it finishes.
+  description: >-
+    CI orchestration with JFrog Pipelines. The workflow triggers a new run of a
+    pipeline on a branch, lists the recent runs for that pipeline to capture the
+    newest run id, then polls the run until its status code leaves the queued or
+    processing states. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: pipelinesApi
+  url: ../openapi/jfrog-pipelines-openapi.yml
+  type: openapi
+workflows:
+- workflowId: trigger-and-monitor-pipeline
+  summary: Trigger a pipeline and wait for the resulting run to complete.
+  description: >-
+    Triggers a pipeline on a branch, lists runs to capture the latest run id,
+    then polls run status until it is no longer queued or processing.
+  inputs:
+    type: object
+    required:
+    - pipelineId
+    - branchName
+    properties:
+      pipelineId:
+        type: integer
+        description: The id of the pipeline to trigger.
+      branchName:
+        type: string
+        description: The branch to run the pipeline on.
+  steps:
+  - stepId: trigger
+    description: >-
+      Trigger a new run of the pipeline on the supplied branch.
+    operationId: triggerPipeline
+    parameters:
+    - name: pipelineId
+      in: path
+      value: $inputs.pipelineId
+    requestBody:
+      contentType: application/json
+      payload:
+        branchName: $inputs.branchName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      triggered: $inputs.pipelineId
+  - stepId: findRun
+    description: >-
+      List the most recent runs for the pipeline to capture the id of the run
+      that was just triggered.
+    operationId: listRuns
+    parameters:
+    - name: pipelineIds
+      in: query
+      value: $inputs.pipelineId
+    - name: limit
+      in: query
+      value: 1
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      runId: $response.body#/0/id
+  - stepId: pollRun
+    description: >-
+      Poll the run status. While the status code indicates queued (4001) or
+      processing (4002), loop back and check again; otherwise finish.
+    operationId: getRun
+    parameters:
+    - name: runId
+      in: path
+      value: $steps.findRun.outputs.runId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      statusCode: $response.body#/statusCode
+      runNumber: $response.body#/runNumber
+    onSuccess:
+    - name: running
+      type: goto
+      stepId: pollRun
+      criteria:
+      - context: $response.body
+        condition: $.statusCode == 4001 || $.statusCode == 4002
+        type: jsonpath
+    - name: finished
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.statusCode != 4001 && $.statusCode != 4002
+        type: jsonpath
+  outputs:
+    runId: $steps.findRun.outputs.runId
+    statusCode: $steps.pollRun.outputs.statusCode

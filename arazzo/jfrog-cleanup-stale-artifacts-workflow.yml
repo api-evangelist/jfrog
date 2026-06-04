@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Cleanup Stale Artifacts
+  summary: Run an AQL search for stale artifacts and delete the first match.
+  description: >-
+    Storage hygiene via Artifactory Query Language. The workflow executes an AQL
+    query to find candidate artifacts, then branches: when results are returned
+    it deletes the first matched artifact and confirms the deletion, and when no
+    results are returned it ends without deleting anything. Every step spells out
+    its request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: artifactoryApi
+  url: ../openapi/jfrog-artifactory-openapi.yml
+  type: openapi
+workflows:
+- workflowId: cleanup-stale-artifacts
+  summary: Find artifacts via AQL and delete the first matching item.
+  description: >-
+    Runs the supplied AQL query, and if at least one artifact is returned
+    deletes the first result by repo and path.
+  inputs:
+    type: object
+    required:
+    - aql
+    properties:
+      aql:
+        type: string
+        description: >-
+          The AQL query string (e.g.
+          items.find({"repo":"my-repo","modified":{"$before":"30d"}})).
+  steps:
+  - stepId: search
+    description: >-
+      Execute the AQL search to find candidate artifacts for cleanup.
+    operationId: executeAqlSearch
+    requestBody:
+      contentType: text/plain
+      payload: $inputs.aql
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/results
+      firstRepo: $response.body#/results/0/repo
+      firstPath: $response.body#/results/0/path
+      firstName: $response.body#/results/0/name
+    onSuccess:
+    - name: hasResults
+      type: goto
+      stepId: deleteArtifact
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: noResults
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: deleteArtifact
+    description: >-
+      Delete the first matched artifact using its repository and path.
+    operationId: deleteArtifact
+    parameters:
+    - name: repoKey
+      in: path
+      value: $steps.search.outputs.firstRepo
+    - name: itemPath
+      in: path
+      value: $steps.search.outputs.firstPath
+    successCriteria:
+    - condition: $statusCode == 204
+    outputs:
+      deletedRepo: $steps.search.outputs.firstRepo
+      deletedPath: $steps.search.outputs.firstPath
+  outputs:
+    deletedRepo: $steps.deleteArtifact.outputs.deletedRepo
+    deletedPath: $steps.deleteArtifact.outputs.deletedPath

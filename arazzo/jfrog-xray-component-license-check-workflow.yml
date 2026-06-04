@@ -1,0 +1,82 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Xray Component License Check
+  summary: Look up component details then confirm via the catalog version data.
+  description: >-
+    A dependency due-diligence flow spanning Xray and the JFrog Catalog. The
+    workflow reads vulnerability and license details for a component from Xray,
+    then cross-references the same package version's known vulnerabilities in the
+    Catalog. Because both specs are referenced, operationIds are namespaced.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: xrayApi
+  url: ../openapi/jfrog-xray-openapi.yml
+  type: openapi
+- name: catalogApi
+  url: ../openapi/jfrog-catalog-openapi.yml
+  type: openapi
+workflows:
+- workflowId: component-license-check
+  summary: Cross-reference a component's Xray details with Catalog vulnerabilities.
+  description: >-
+    Reads component details from Xray, then fetches the matching package
+    version's vulnerabilities from the Catalog for an independent view.
+  inputs:
+    type: object
+    required:
+    - componentId
+    - packageType
+    - packageName
+    - version
+    properties:
+      componentId:
+        type: string
+        description: 'The Xray component id (e.g. npm://lodash:4.17.21).'
+      packageType:
+        type: string
+        description: The package ecosystem type (e.g. npm, maven, pypi).
+      packageName:
+        type: string
+        description: The package name to look up in the Catalog.
+      version:
+        type: string
+        description: The package version to check.
+  steps:
+  - stepId: componentDetails
+    description: >-
+      Read vulnerability and license information for the component from Xray.
+    operationId: $sourceDescriptions.xrayApi.getComponentDetails
+    requestBody:
+      contentType: application/json
+      payload:
+        component_details:
+        - component_id: $inputs.componentId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      details: $response.body
+  - stepId: catalogVulns
+    description: >-
+      Fetch the same package version's known vulnerabilities from the JFrog
+      Catalog for an independent cross-reference.
+    operationId: $sourceDescriptions.catalogApi.getVersionVulnerabilities
+    parameters:
+    - name: packageType
+      in: path
+      value: $inputs.packageType
+    - name: packageName
+      in: path
+      value: $inputs.packageName
+    - name: version
+      in: path
+      value: $inputs.version
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      vulnerabilities: $response.body#/vulnerabilities
+      totalCount: $response.body#/total_count
+  outputs:
+    xrayDetails: $steps.componentDetails.outputs.details
+    catalogVulnerabilities: $steps.catalogVulns.outputs.vulnerabilities

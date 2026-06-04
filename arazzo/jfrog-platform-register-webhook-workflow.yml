@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Platform Register Webhook
+  summary: Create a platform webhook subscription and confirm it.
+  description: >-
+    Event-driven integration through the JFrog Platform. The workflow creates a
+    webhook subscription for artifact events on a repository, then reads the
+    webhook back by key to confirm it was registered. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/jfrog-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-webhook
+  summary: Register a webhook for artifact events and verify it.
+  description: >-
+    Creates a webhook subscription for deploy and delete events on a repository,
+    then fetches the webhook by key to confirm registration.
+  inputs:
+    type: object
+    required:
+    - webhookKey
+    - url
+    - repoKey
+    properties:
+      webhookKey:
+        type: string
+        description: The unique key for the webhook subscription.
+      url:
+        type: string
+        description: The target URL events will be POSTed to.
+      secret:
+        type: string
+        description: The shared secret used to sign webhook payloads.
+      repoKey:
+        type: string
+        description: The repository key to scope the webhook to.
+  steps:
+  - stepId: createWebhook
+    description: >-
+      Create a webhook subscription for deployed and deleted artifact events on
+      the supplied repository.
+    operationId: createWebhook
+    requestBody:
+      contentType: application/json
+      payload:
+        key: $inputs.webhookKey
+        description: Created by the register-webhook workflow
+        enabled: true
+        url: $inputs.url
+        secret: $inputs.secret
+        events:
+        - deployed
+        - deleted
+        criteria:
+          repoKeys:
+          - $inputs.repoKey
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      webhookKey: $inputs.webhookKey
+  - stepId: confirmWebhook
+    description: >-
+      Read the webhook back by key to confirm the subscription was registered.
+    operationId: getWebhook
+    parameters:
+    - name: webhookKey
+      in: path
+      value: $steps.createWebhook.outputs.webhookKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      key: $response.body#/key
+      url: $response.body#/url
+  outputs:
+    webhookKey: $steps.confirmWebhook.outputs.key
+    url: $steps.confirmWebhook.outputs.url

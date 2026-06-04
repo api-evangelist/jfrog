@@ -1,0 +1,106 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Xray Policy and Watch
+  summary: Create a security policy then a watch that assigns it to a repository.
+  description: >-
+    The standard Xray governance setup. The workflow creates a security policy
+    with a minimum-severity rule, creates a watch that monitors a repository and
+    assigns the new policy, then reads the watch back to confirm the binding.
+    Every step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: xrayApi
+  url: ../openapi/jfrog-xray-openapi.yml
+  type: openapi
+workflows:
+- workflowId: policy-and-watch
+  summary: Create a security policy and a watch that enforces it on a repository.
+  description: >-
+    Creates a security policy that fails builds above a severity threshold,
+    creates a watch over a repository referencing that policy, then fetches the
+    watch to confirm.
+  inputs:
+    type: object
+    required:
+    - policyName
+    - watchName
+    - repoKey
+    - minSeverity
+    properties:
+      policyName:
+        type: string
+        description: The name of the security policy to create.
+      watchName:
+        type: string
+        description: The name of the watch to create.
+      repoKey:
+        type: string
+        description: The repository key the watch will monitor.
+      minSeverity:
+        type: string
+        description: The minimum severity that triggers the policy (Low, Medium, High, Critical).
+  steps:
+  - stepId: createPolicy
+    description: >-
+      Create a security policy with a rule that blocks downloads and fails
+      builds at or above the supplied minimum severity.
+    operationId: createPolicy
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.policyName
+        description: Created by the policy-and-watch workflow
+        type: security
+        rules:
+        - name: severity-gate
+          priority: 1
+          criteria:
+            min_severity: $inputs.minSeverity
+          actions:
+            block_download:
+              unscanned: false
+              active: true
+            fail_build: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      policyName: $inputs.policyName
+  - stepId: createWatch
+    description: >-
+      Create a watch that monitors the repository and assigns the newly created
+      security policy.
+    operationId: createWatch
+    requestBody:
+      contentType: application/json
+      payload:
+        general_data:
+          name: $inputs.watchName
+          description: Created by the policy-and-watch workflow
+          active: true
+        project_resources:
+          resources:
+          - type: repository
+            name: $inputs.repoKey
+        assigned_policies:
+        - name: $steps.createPolicy.outputs.policyName
+          type: security
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      watchName: $inputs.watchName
+  - stepId: verifyWatch
+    description: >-
+      Read the watch back to confirm it was created with the assigned policy.
+    operationId: getWatch
+    parameters:
+    - name: watchName
+      in: path
+      value: $steps.createWatch.outputs.watchName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      assignedPolicies: $response.body#/assigned_policies
+  outputs:
+    watchName: $steps.createWatch.outputs.watchName
+    assignedPolicies: $steps.verifyWatch.outputs.assignedPolicies

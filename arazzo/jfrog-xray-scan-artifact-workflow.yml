@@ -1,0 +1,63 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Xray Scan Artifact
+  summary: Trigger an Xray scan for an artifact then pull its security summary.
+  description: >-
+    On-demand security scanning with JFrog Xray. The workflow triggers a scan
+    for a specific component, then reads the artifact summary to capture the
+    resulting security issues and license information. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: xrayApi
+  url: ../openapi/jfrog-xray-openapi.yml
+  type: openapi
+workflows:
+- workflowId: scan-artifact
+  summary: Scan an artifact and retrieve its security summary.
+  description: >-
+    Initiates an Xray scan for the supplied component, then requests the
+    artifact summary for the corresponding path to read back issues.
+  inputs:
+    type: object
+    required:
+    - componentID
+    - path
+    properties:
+      componentID:
+        type: string
+        description: 'The component identifier in package type format (e.g. docker://image:tag).'
+      path:
+        type: string
+        description: The artifact path in Artifactory to summarize.
+  steps:
+  - stepId: triggerScan
+    description: >-
+      Trigger an on-demand Xray scan for the supplied component identifier.
+    operationId: scanArtifact
+    requestBody:
+      contentType: application/json
+      payload:
+        componentID: $inputs.componentID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      info: $response.body#/info
+  - stepId: artifactSummary
+    description: >-
+      Read the artifact summary to capture the security issues and license
+      details for the scanned path.
+    operationId: getArtifactSummary
+    requestBody:
+      contentType: application/json
+      payload:
+        paths:
+        - $inputs.path
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      artifacts: $response.body#/artifacts
+  outputs:
+    scanInfo: $steps.triggerScan.outputs.info
+    artifacts: $steps.artifactSummary.outputs.artifacts

@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: JFrog ML Register Model Version
+  summary: Register an ML model then publish a version of it.
+  description: >-
+    Model lifecycle management with JFrog ML. The workflow creates a model
+    record, creates a version under that model pointing at an artifact path,
+    then reads the version back to confirm it was published. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: mlApi
+  url: ../openapi/jfrog-ml-openapi.yml
+  type: openapi
+workflows:
+- workflowId: register-model-version
+  summary: Create an ML model and publish a version, then verify it.
+  description: >-
+    Creates a model, creates a version under it with metrics, then fetches the
+    version to confirm.
+  inputs:
+    type: object
+    required:
+    - modelName
+    - framework
+    - version
+    - artifactPath
+    properties:
+      modelName:
+        type: string
+        description: The name of the model to register.
+      framework:
+        type: string
+        description: The ML framework (e.g. tensorflow, pytorch, sklearn).
+      version:
+        type: string
+        description: The model version to publish.
+      artifactPath:
+        type: string
+        description: The Artifactory path to the model version artifact.
+  steps:
+  - stepId: createModel
+    description: >-
+      Create a new model record with the supplied name and framework.
+    operationId: createModel
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.modelName
+        description: Registered by the register-model-version workflow
+        framework: $inputs.framework
+        task_type: classification
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      modelId: $response.body#/id
+  - stepId: createVersion
+    description: >-
+      Create a version under the model pointing at the supplied artifact path.
+    operationId: createModelVersion
+    parameters:
+    - name: modelId
+      in: path
+      value: $steps.createModel.outputs.modelId
+    requestBody:
+      contentType: application/json
+      payload:
+        version: $inputs.version
+        description: Published by the register-model-version workflow
+        status: staging
+        artifact_path: $inputs.artifactPath
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      versionId: $response.body#/id
+  - stepId: confirmVersion
+    description: >-
+      Read the model version back to confirm it was published.
+    operationId: getModelVersion
+    parameters:
+    - name: modelId
+      in: path
+      value: $steps.createModel.outputs.modelId
+    - name: versionId
+      in: path
+      value: $steps.createVersion.outputs.versionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      version: $response.body#/version
+      status: $response.body#/status
+  outputs:
+    modelId: $steps.createModel.outputs.modelId
+    versionId: $steps.createVersion.outputs.versionId
+    status: $steps.confirmVersion.outputs.status

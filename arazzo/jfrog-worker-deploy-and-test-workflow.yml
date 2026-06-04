@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Worker Deploy and Test
+  summary: Create a worker, run a test payload, then enable it on success.
+  description: >-
+    Event-driven extensibility with JFrog Workers. The workflow creates a worker
+    from TypeScript source for a platform event, runs it against a test payload,
+    then branches: when the test returns STATUS_OK it enables the worker, and
+    otherwise it ends without enabling. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: workersApi
+  url: ../openapi/jfrog-workers-openapi.yml
+  type: openapi
+workflows:
+- workflowId: deploy-and-test-worker
+  summary: Create a worker, test it, and enable it when the test passes.
+  description: >-
+    Creates a worker, runs a test execution, and only enables the worker when
+    the test result status is STATUS_OK.
+  inputs:
+    type: object
+    required:
+    - workerKey
+    - sourceCode
+    - action
+    - testAction
+    properties:
+      workerKey:
+        type: string
+        description: The unique key for the worker.
+      sourceCode:
+        type: string
+        description: The TypeScript source code for the worker.
+      action:
+        type: string
+        description: 'The platform event that triggers the worker (e.g. AFTER_CREATE).'
+      testAction:
+        type: string
+        description: The event action to simulate in the test run.
+      testData:
+        type: object
+        description: The test payload data for the simulated event.
+  steps:
+  - stepId: createWorker
+    description: >-
+      Create the worker from the supplied TypeScript source bound to the given
+      platform event.
+    operationId: createWorker
+    requestBody:
+      contentType: application/json
+      payload:
+        key: $inputs.workerKey
+        description: Created by the deploy-and-test-worker workflow
+        enabled: false
+        source_code: $inputs.sourceCode
+        action: $inputs.action
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      workerKey: $response.body#/key
+  - stepId: testWorker
+    description: >-
+      Run the worker against a test payload to validate its behaviour before
+      enabling it.
+    operationId: testWorker
+    parameters:
+    - name: workerKey
+      in: path
+      value: $steps.createWorker.outputs.workerKey
+    requestBody:
+      contentType: application/json
+      payload:
+        action: $inputs.testAction
+        data: $inputs.testData
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: testPassed
+      type: goto
+      stepId: enableWorker
+      criteria:
+      - context: $response.body
+        condition: $.status == 'STATUS_OK'
+        type: jsonpath
+    - name: testFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != 'STATUS_OK'
+        type: jsonpath
+  - stepId: enableWorker
+    description: >-
+      Enable the worker now that the test execution passed.
+    operationId: enableWorker
+    parameters:
+    - name: workerKey
+      in: path
+      value: $steps.createWorker.outputs.workerKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      enabledKey: $steps.createWorker.outputs.workerKey
+  outputs:
+    workerKey: $steps.createWorker.outputs.workerKey
+    testStatus: $steps.testWorker.outputs.status

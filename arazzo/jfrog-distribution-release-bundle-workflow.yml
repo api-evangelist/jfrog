@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Distribution Release Bundle
+  summary: Create a release bundle, sign it, distribute it, and poll for status.
+  description: >-
+    The end-to-end software distribution flow. The workflow creates a v1 release
+    bundle from an AQL spec, signs it to make it immutable, distributes it to
+    target edge nodes, then polls the distribution status until it leaves the in
+    progress state. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: distributionApi
+  url: ../openapi/jfrog-distribution-openapi.yml
+  type: openapi
+workflows:
+- workflowId: distribute-release-bundle
+  summary: Create, sign, distribute a release bundle and wait for completion.
+  description: >-
+    Creates a release bundle from a query, signs it, distributes it to a named
+    site, then polls distribution status until it is no longer in progress.
+  inputs:
+    type: object
+    required:
+    - name
+    - version
+    - aql
+    - siteName
+    properties:
+      name:
+        type: string
+        description: The release bundle name.
+      version:
+        type: string
+        description: The release bundle version.
+      aql:
+        type: string
+        description: The AQL query selecting artifacts for the bundle.
+      siteName:
+        type: string
+        description: The target edge node site name to distribute to.
+  steps:
+  - stepId: createBundle
+    description: >-
+      Create a release bundle whose contents are selected by the supplied AQL
+      query.
+    operationId: createReleaseBundle
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        version: $inputs.version
+        dry_run: false
+        sign_immediately: false
+        description: Created by the distribute-release-bundle workflow
+        spec:
+          queries:
+          - aql: $inputs.aql
+            query_name: primary
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      name: $inputs.name
+      version: $inputs.version
+  - stepId: signBundle
+    description: >-
+      Sign the release bundle, making it immutable and ready for distribution.
+    operationId: signReleaseBundle
+    parameters:
+    - name: name
+      in: path
+      value: $steps.createBundle.outputs.name
+    - name: version
+      in: path
+      value: $steps.createBundle.outputs.version
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      signed: $inputs.name
+  - stepId: distribute
+    description: >-
+      Distribute the signed release bundle to the target edge node site.
+    operationId: distributeReleaseBundle
+    parameters:
+    - name: name
+      in: path
+      value: $steps.createBundle.outputs.name
+    - name: version
+      in: path
+      value: $steps.createBundle.outputs.version
+    requestBody:
+      contentType: application/json
+      payload:
+        dry_run: false
+        auto_create_missing_repositories: true
+        distribution_rules:
+        - site_name: $inputs.siteName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      trackerId: $response.body#/id
+  - stepId: pollStatus
+    description: >-
+      Poll the distribution status. While it is still in progress, loop back and
+      check again; otherwise finish.
+    operationId: getDistributionStatus
+    parameters:
+    - name: name
+      in: path
+      value: $steps.createBundle.outputs.name
+    - name: version
+      in: path
+      value: $steps.createBundle.outputs.version
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+    onSuccess:
+    - name: inProgress
+      type: goto
+      stepId: pollStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == 'In progress'
+        type: jsonpath
+    - name: settled
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status != 'In progress'
+        type: jsonpath
+  outputs:
+    name: $steps.createBundle.outputs.name
+    version: $steps.createBundle.outputs.version
+    status: $steps.pollStatus.outputs.status

@@ -1,0 +1,78 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Curation Policy Setup
+  summary: Create a curation policy then review its audit log.
+  description: >-
+    Software supply-chain gating with JFrog Curation. The workflow creates a
+    curation policy that blocks packages with vulnerabilities on a set of
+    repositories, then reads the curation audit log to observe blocked or
+    allowed package decisions. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: curationApi
+  url: ../openapi/jfrog-curation-openapi.yml
+  type: openapi
+workflows:
+- workflowId: curation-policy-setup
+  summary: Create a curation policy and review the audit log.
+  description: >-
+    Creates a curation policy blocking vulnerable packages above a severity
+    threshold, then fetches the curation audit log.
+  inputs:
+    type: object
+    required:
+    - policyName
+    - repoKey
+    - minSeverity
+    properties:
+      policyName:
+        type: string
+        description: The name of the curation policy to create.
+      repoKey:
+        type: string
+        description: The repository the policy applies to.
+      minSeverity:
+        type: string
+        description: The minimum severity that triggers a block.
+  steps:
+  - stepId: createPolicy
+    description: >-
+      Create a curation policy that blocks packages with vulnerabilities at or
+      above the supplied minimum severity on the repository.
+    operationId: createPolicy
+    requestBody:
+      contentType: application/json
+      payload:
+        policy_name: $inputs.policyName
+        description: Created by the curation-policy-setup workflow
+        enabled: true
+        policy_type: block_packages_with_vulnerabilities
+        repositories:
+        - $inputs.repoKey
+        conditions:
+          min_severity: $inputs.minSeverity
+        actions:
+          block: true
+          notify: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      policyName: $response.body#/policy_name
+  - stepId: reviewAudit
+    description: >-
+      Read the curation audit log to observe the package decisions made under
+      curation policies.
+    operationId: getAuditLog
+    parameters:
+    - name: policy_name
+      in: query
+      value: $steps.createPolicy.outputs.policyName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      auditLog: $response.body#/audit_entries
+  outputs:
+    policyName: $steps.createPolicy.outputs.policyName
+    auditEntries: $steps.reviewAudit.outputs.auditLog

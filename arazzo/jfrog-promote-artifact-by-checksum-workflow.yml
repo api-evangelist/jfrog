@@ -1,0 +1,114 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Promote Artifact by Checksum
+  summary: Find an artifact by its checksum and copy it to a release repository.
+  description: >-
+    A common promotion pattern that does not rely on knowing the exact path. The
+    workflow searches Artifactory for an artifact by its SHA256 checksum, then
+    branches: when a match is found it copies the artifact to the target release
+    repository and confirms the copy, and when no match is found it ends without
+    side effects. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: artifactoryApi
+  url: ../openapi/jfrog-artifactory-openapi.yml
+  type: openapi
+workflows:
+- workflowId: promote-artifact-by-checksum
+  summary: Locate an artifact by checksum and copy it to a release repository.
+  description: >-
+    Searches by SHA256 checksum, and if a result is returned copies the source
+    item to the target repository path, then verifies the copy via storage info.
+  inputs:
+    type: object
+    required:
+    - sha256
+    - srcRepoKey
+    - srcItemPath
+    - targetRepoKey
+    - targetItemPath
+    properties:
+      sha256:
+        type: string
+        description: The SHA256 checksum to locate the artifact by.
+      srcRepoKey:
+        type: string
+        description: The source repository key of the artifact.
+      srcItemPath:
+        type: string
+        description: The source item path of the artifact.
+      targetRepoKey:
+        type: string
+        description: The target repository key to promote into.
+      targetItemPath:
+        type: string
+        description: The target item path for the promoted artifact.
+  steps:
+  - stepId: findByChecksum
+    description: >-
+      Search for the artifact by its SHA256 checksum to confirm it exists before
+      promoting it.
+    operationId: searchByChecksum
+    parameters:
+    - name: sha256
+      in: query
+      value: $inputs.sha256
+    - name: repos
+      in: query
+      value: $inputs.srcRepoKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      results: $response.body#/results
+    onSuccess:
+    - name: found
+      type: goto
+      stepId: copyArtifact
+      criteria:
+      - context: $response.body
+        condition: $.results.length > 0
+        type: jsonpath
+    - name: notFound
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.results.length == 0
+        type: jsonpath
+  - stepId: copyArtifact
+    description: >-
+      Copy the located artifact from the source repository path to the target
+      release repository path.
+    operationId: copyArtifact
+    parameters:
+    - name: srcRepoKey
+      in: path
+      value: $inputs.srcRepoKey
+    - name: srcItemPath
+      in: path
+      value: $inputs.srcItemPath
+    - name: to
+      in: query
+      value: $inputs.targetRepoKey/$inputs.targetItemPath
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      messages: $response.body#/messages
+  - stepId: verifyPromotion
+    description: >-
+      Confirm the artifact now exists at the target path by reading its storage
+      info.
+    operationId: getStorageInfo
+    parameters:
+    - name: repoKey
+      in: path
+      value: $inputs.targetRepoKey
+    - name: itemPath
+      in: path
+      value: $inputs.targetItemPath
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      downloadUri: $response.body#/downloadUri
+  outputs:
+    downloadUri: $steps.verifyPromotion.outputs.downloadUri

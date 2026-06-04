@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Deploy and Verify Artifact
+  summary: Deploy an artifact to a repository and confirm its storage metadata.
+  description: >-
+    The core publish flow for Artifactory. The workflow deploys a binary
+    artifact to a repository path, then reads the file storage info back to
+    confirm the artifact landed with the expected checksums and size. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: artifactoryApi
+  url: ../openapi/jfrog-artifactory-openapi.yml
+  type: openapi
+workflows:
+- workflowId: deploy-and-verify-artifact
+  summary: Deploy an artifact and verify it landed in storage.
+  description: >-
+    Uploads an artifact to the given repository path, then fetches the file info
+    from storage to confirm the deployment and capture its checksums.
+  inputs:
+    type: object
+    required:
+    - repoKey
+    - itemPath
+    - content
+    properties:
+      repoKey:
+        type: string
+        description: The repository key to deploy the artifact into.
+      itemPath:
+        type: string
+        description: The path within the repository for the artifact.
+      content:
+        type: string
+        description: The raw artifact content to deploy.
+      sha256:
+        type: string
+        description: Optional SHA256 checksum header for the artifact.
+  steps:
+  - stepId: deploy
+    description: >-
+      Deploy the artifact binary to the repository path, supplying the optional
+      SHA256 checksum header for integrity validation.
+    operationId: deployArtifact
+    parameters:
+    - name: repoKey
+      in: path
+      value: $inputs.repoKey
+    - name: itemPath
+      in: path
+      value: $inputs.itemPath
+    - name: X-Checksum-Sha256
+      in: header
+      value: $inputs.sha256
+    requestBody:
+      contentType: application/octet-stream
+      payload: $inputs.content
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      downloadUri: $response.body#/downloadUri
+      deployedPath: $response.body#/path
+  - stepId: verifyStorage
+    description: >-
+      Read the file info from storage to confirm the artifact was persisted and
+      capture its checksums.
+    operationId: getStorageInfo
+    parameters:
+    - name: repoKey
+      in: path
+      value: $inputs.repoKey
+    - name: itemPath
+      in: path
+      value: $inputs.itemPath
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      size: $response.body#/size
+      sha256: $response.body#/checksums/sha256
+      downloadUri: $response.body#/downloadUri
+  outputs:
+    downloadUri: $steps.verifyStorage.outputs.downloadUri
+    size: $steps.verifyStorage.outputs.size
+    sha256: $steps.verifyStorage.outputs.sha256

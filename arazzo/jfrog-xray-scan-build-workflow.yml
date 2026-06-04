@@ -1,0 +1,64 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Xray Scan Build
+  summary: Trigger an Xray CI build scan then read the build security summary.
+  description: >-
+    The CI gate flow for build scanning. The workflow triggers an on-demand
+    Xray scan for a build name and number, then reads the build summary to
+    capture the resulting issues so a pipeline can decide whether to fail. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: xrayApi
+  url: ../openapi/jfrog-xray-openapi.yml
+  type: openapi
+workflows:
+- workflowId: scan-build
+  summary: Scan a build with Xray and retrieve its issue summary.
+  description: >-
+    Initiates a v2 CI scan for the build, then requests the build summary to
+    read back security issues.
+  inputs:
+    type: object
+    required:
+    - buildName
+    - buildNumber
+    properties:
+      buildName:
+        type: string
+        description: The build name to scan.
+      buildNumber:
+        type: string
+        description: The build number to scan.
+  steps:
+  - stepId: triggerBuildScan
+    description: >-
+      Trigger an on-demand v2 Xray scan for the supplied build name and number.
+    operationId: scanBuild
+    requestBody:
+      contentType: application/json
+      payload:
+        buildName: $inputs.buildName
+        buildNumber: $inputs.buildNumber
+        rescan: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      info: $response.body#/info
+  - stepId: buildSummary
+    description: >-
+      Read the build summary to capture the security issues found for the build.
+    operationId: getBuildSummary
+    requestBody:
+      contentType: application/json
+      payload:
+        build_name: $inputs.buildName
+        build_number: $inputs.buildNumber
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      issues: $response.body#/issues
+  outputs:
+    scanInfo: $steps.triggerBuildScan.outputs.info
+    issues: $steps.buildSummary.outputs.issues

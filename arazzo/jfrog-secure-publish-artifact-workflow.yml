@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Secure Publish Artifact
+  summary: Deploy an artifact then immediately scan it with Xray for issues.
+  description: >-
+    A secure publish flow that spans Artifactory and Xray. The workflow deploys
+    an artifact to a repository path, then triggers an Xray scan for the
+    corresponding component and reads the artifact summary so the publisher sees
+    its security posture right after upload. Because both specs are referenced,
+    operationIds are namespaced. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: artifactoryApi
+  url: ../openapi/jfrog-artifactory-openapi.yml
+  type: openapi
+- name: xrayApi
+  url: ../openapi/jfrog-xray-openapi.yml
+  type: openapi
+workflows:
+- workflowId: secure-publish-artifact
+  summary: Deploy an artifact and scan it with Xray in one flow.
+  description: >-
+    Deploys an artifact to Artifactory, triggers an Xray scan for its component,
+    then reads the artifact security summary back.
+  inputs:
+    type: object
+    required:
+    - repoKey
+    - itemPath
+    - content
+    - componentID
+    properties:
+      repoKey:
+        type: string
+        description: The repository key to deploy into.
+      itemPath:
+        type: string
+        description: The repository path for the artifact.
+      content:
+        type: string
+        description: The raw artifact content to deploy.
+      componentID:
+        type: string
+        description: 'The Xray component id for the artifact (e.g. docker://image:tag).'
+  steps:
+  - stepId: deploy
+    description: >-
+      Deploy the artifact to the target repository path.
+    operationId: $sourceDescriptions.artifactoryApi.deployArtifact
+    parameters:
+    - name: repoKey
+      in: path
+      value: $inputs.repoKey
+    - name: itemPath
+      in: path
+      value: $inputs.itemPath
+    requestBody:
+      contentType: application/octet-stream
+      payload: $inputs.content
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      downloadUri: $response.body#/downloadUri
+      deployedPath: $response.body#/path
+  - stepId: scan
+    description: >-
+      Trigger an Xray scan for the deployed artifact's component.
+    operationId: $sourceDescriptions.xrayApi.scanArtifact
+    requestBody:
+      contentType: application/json
+      payload:
+        componentID: $inputs.componentID
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      info: $response.body#/info
+  - stepId: summary
+    description: >-
+      Read the artifact summary to capture the security issues and licenses for
+      the freshly published artifact.
+    operationId: $sourceDescriptions.xrayApi.getArtifactSummary
+    requestBody:
+      contentType: application/json
+      payload:
+        paths:
+        - $inputs.repoKey/$inputs.itemPath
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      artifacts: $response.body#/artifacts
+  outputs:
+    downloadUri: $steps.deploy.outputs.downloadUri
+    scanInfo: $steps.scan.outputs.info
+    artifacts: $steps.summary.outputs.artifacts

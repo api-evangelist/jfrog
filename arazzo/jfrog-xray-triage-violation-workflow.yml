@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Xray Triage Violation
+  summary: Query Xray violations and create an ignore rule when any are found.
+  description: >-
+    A security triage flow. The workflow queries violations for a watch above a
+    minimum severity, then branches: when violations exist it creates an ignore
+    rule (for example to accept a documented risk) and confirms it, and when no
+    violations exist it ends. Every step spells out its request inline so the
+    flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: xrayApi
+  url: ../openapi/jfrog-xray-openapi.yml
+  type: openapi
+workflows:
+- workflowId: triage-violation
+  summary: Fetch violations and create an ignore rule for a known CVE.
+  description: >-
+    Retrieves violations for a watch, and when at least one is returned creates
+    a time-bound ignore rule for the supplied CVE, then reads it back.
+  inputs:
+    type: object
+    required:
+    - watchName
+    - minSeverity
+    - cve
+    - expirationDate
+    properties:
+      watchName:
+        type: string
+        description: The watch whose violations to query.
+      minSeverity:
+        type: string
+        description: The minimum severity to filter violations by.
+      cve:
+        type: string
+        description: The CVE identifier to create an ignore rule for.
+      expirationDate:
+        type: string
+        description: The expiration date-time for the ignore rule.
+  steps:
+  - stepId: getViolations
+    description: >-
+      Query security violations for the watch at or above the supplied minimum
+      severity.
+    operationId: getViolations
+    requestBody:
+      contentType: application/json
+      payload:
+        filters:
+          type: security
+          watch_name: $inputs.watchName
+          min_severity: $inputs.minSeverity
+        pagination:
+          limit: 25
+          offset: 0
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      total: $response.body#/total_violations
+      violations: $response.body#/violations
+    onSuccess:
+    - name: hasViolations
+      type: goto
+      stepId: createIgnoreRule
+      criteria:
+      - context: $response.body
+        condition: $.total_violations > 0
+        type: jsonpath
+    - name: clean
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.total_violations == 0
+        type: jsonpath
+  - stepId: createIgnoreRule
+    description: >-
+      Create a time-bound ignore rule for the supplied CVE scoped to the watch.
+    operationId: createIgnoreRule
+    requestBody:
+      contentType: application/json
+      payload:
+        notes: Created by the triage-violation workflow
+        expiration_date: $inputs.expirationDate
+        cves:
+        - cve: $inputs.cve
+        watches:
+        - $inputs.watchName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      ruleId: $response.body#/id
+  - stepId: verifyRule
+    description: >-
+      Read the ignore rule back to confirm it was created.
+    operationId: getIgnoreRule
+    parameters:
+    - name: ruleId
+      in: path
+      value: $steps.createIgnoreRule.outputs.ruleId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      id: $response.body#/id
+  outputs:
+    ruleId: $steps.createIgnoreRule.outputs.ruleId
+    totalViolations: $steps.getViolations.outputs.total

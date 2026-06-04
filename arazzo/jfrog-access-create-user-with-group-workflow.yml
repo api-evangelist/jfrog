@@ -1,0 +1,90 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Access Create User With Group
+  summary: Create a group then a user in that group via the Access service.
+  description: >-
+    Identity provisioning through the JFrog Access v2 API. The workflow creates
+    a group, creates a user that belongs to it, then reads the user back to
+    confirm the membership. Every step spells out its request inline so the flow
+    can be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: accessApi
+  url: ../openapi/jfrog-access-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-user-with-group
+  summary: Create a group and a user in it, then verify the user.
+  description: >-
+    Creates a group, creates a user with that group in its groups list, then
+    fetches the user to confirm membership.
+  inputs:
+    type: object
+    required:
+    - groupName
+    - username
+    - email
+    - password
+    properties:
+      groupName:
+        type: string
+        description: The group name to create.
+      username:
+        type: string
+        description: The username to create.
+      email:
+        type: string
+        description: The user's email address.
+      password:
+        type: string
+        description: The initial password for the user.
+  steps:
+  - stepId: createGroup
+    description: >-
+      Create a group in the Access service for the new user.
+    operationId: createGroup
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.groupName
+        description: Created by the create-user-with-group workflow
+        auto_join: false
+        admin_privileges: false
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      groupName: $inputs.groupName
+  - stepId: createUser
+    description: >-
+      Create a user assigned to the newly created group.
+    operationId: createUser
+    requestBody:
+      contentType: application/json
+      payload:
+        username: $inputs.username
+        email: $inputs.email
+        password: $inputs.password
+        admin: false
+        profile_updatable: true
+        groups:
+        - $steps.createGroup.outputs.groupName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      username: $response.body#/username
+  - stepId: confirmUser
+    description: >-
+      Read the user back to confirm it exists and belongs to the group.
+    operationId: getUser
+    parameters:
+    - name: username
+      in: path
+      value: $steps.createUser.outputs.username
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      username: $response.body#/username
+      groups: $response.body#/groups
+  outputs:
+    username: $steps.confirmUser.outputs.username
+    groups: $steps.confirmUser.outputs.groups

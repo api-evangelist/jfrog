@@ -1,0 +1,82 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Platform Rotate Access Token
+  summary: Issue a fresh platform token then revoke a superseded one.
+  description: >-
+    A token rotation flow through the JFrog Platform access endpoints. The
+    workflow creates a new access token, confirms it by reading its metadata,
+    then revokes the previously issued token so only the new credential remains
+    valid. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: platformApi
+  url: ../openapi/jfrog-platform-openapi.yml
+  type: openapi
+workflows:
+- workflowId: rotate-access-token
+  summary: Create a new token, verify it, and revoke the old one.
+  description: >-
+    Creates a replacement access token, reads its metadata to confirm, then
+    revokes the supplied old token id.
+  inputs:
+    type: object
+    required:
+    - scope
+    - oldTokenId
+    properties:
+      scope:
+        type: string
+        description: The scope for the new token.
+      subject:
+        type: string
+        description: The subject for the new token.
+      oldTokenId:
+        type: string
+        description: The id of the token being rotated out and revoked.
+  steps:
+  - stepId: createToken
+    description: >-
+      Create a replacement access token with the supplied scope and subject.
+    operationId: createToken
+    requestBody:
+      contentType: application/json
+      payload:
+        subject: $inputs.subject
+        scope: $inputs.scope
+        refreshable: true
+        description: Rotation replacement token
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      newTokenId: $response.body#/token_id
+      accessToken: $response.body#/access_token
+  - stepId: confirmNewToken
+    description: >-
+      Read the new token metadata back to confirm it was issued before revoking
+      the old one.
+    operationId: getToken
+    parameters:
+    - name: tokenId
+      in: path
+      value: $steps.createToken.outputs.newTokenId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      tokenId: $response.body#/token_id
+  - stepId: revokeOldToken
+    description: >-
+      Revoke the superseded token so only the freshly issued credential remains
+      valid.
+    operationId: revokeToken
+    parameters:
+    - name: tokenId
+      in: path
+      value: $inputs.oldTokenId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      revokedTokenId: $inputs.oldTokenId
+  outputs:
+    newTokenId: $steps.createToken.outputs.newTokenId
+    revokedTokenId: $steps.revokeOldToken.outputs.revokedTokenId

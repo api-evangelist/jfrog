@@ -1,0 +1,76 @@
+arazzo: 1.0.1
+info:
+  title: JFrog Provision Local Repository
+  summary: Create a local Artifactory repository and confirm its configuration.
+  description: >-
+    A foundational Artifactory onboarding flow. The workflow creates a new local
+    repository with the supplied package type and configuration, then reads the
+    repository configuration back to confirm it was persisted exactly as
+    requested. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: artifactoryApi
+  url: ../openapi/jfrog-artifactory-openapi.yml
+  type: openapi
+workflows:
+- workflowId: provision-local-repository
+  summary: Create a local repository and verify its configuration.
+  description: >-
+    Creates a local repository keyed by repoKey, then fetches the repository
+    configuration to validate that the create succeeded and the key matches.
+  inputs:
+    type: object
+    required:
+    - repoKey
+    - packageType
+    properties:
+      repoKey:
+        type: string
+        description: The unique repository key to create (e.g. my-maven-local).
+      packageType:
+        type: string
+        description: The package type for the repository (e.g. maven, npm, docker).
+      description:
+        type: string
+        description: A human-readable description for the repository.
+  steps:
+  - stepId: createRepo
+    description: >-
+      Create a new local repository with the supplied key, package type and
+      description.
+    operationId: createRepository
+    parameters:
+    - name: repoKey
+      in: path
+      value: $inputs.repoKey
+    requestBody:
+      contentType: application/json
+      payload:
+        key: $inputs.repoKey
+        rclass: local
+        packageType: $inputs.packageType
+        description: $inputs.description
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      createdKey: $inputs.repoKey
+  - stepId: confirmRepo
+    description: >-
+      Read the repository configuration back to confirm the local repository
+      was created with the expected key.
+    operationId: getRepository
+    parameters:
+    - name: repoKey
+      in: path
+      value: $steps.createRepo.outputs.createdKey
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      key: $response.body#/key
+      rclass: $response.body#/rclass
+      packageType: $response.body#/packageType
+  outputs:
+    repoKey: $steps.confirmRepo.outputs.key
+    rclass: $steps.confirmRepo.outputs.rclass
+    packageType: $steps.confirmRepo.outputs.packageType
