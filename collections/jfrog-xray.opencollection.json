@@ -1,0 +1,491 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Xray REST API",
+    "version": "3.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog System Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v1/system/ping"
+          },
+          "docs": "Returns a simple ping response indicating Xray is accessible."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v1/system/version"
+          },
+          "docs": "Returns the Xray version and revision information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Components",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Component Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v1/component",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns vulnerability and license information for specified components."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Summary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Artifact Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v1/summary/artifact",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a summary of security issues and license information for specified artifacts."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Build Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v1/summary/build",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a summary of security issues for specified build."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scanning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Scan Build (v2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v2/ci/scan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers an on-demand scan for a build."
+        },
+        {
+          "info": {
+            "name": "JFrog Scan Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v1/scanArtifact",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers a scan for a specific artifact by its component ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Watches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Watches",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v2/watches"
+          },
+          "docs": "Returns a list of all configured watches."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Watch",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v2/watches",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new watch for monitoring artifacts."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Watch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v2/watches/:watchName",
+            "params": [
+              {
+                "name": "watchName",
+                "value": "",
+                "type": "path",
+                "description": "Watch name"
+              }
+            ]
+          },
+          "docs": "Returns configuration for a specific watch."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Watch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/xray/api/v2/watches/:watchName",
+            "params": [
+              {
+                "name": "watchName",
+                "value": "",
+                "type": "path",
+                "description": "Watch name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing watch configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Watch",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/xray/api/v2/watches/:watchName",
+            "params": [
+              {
+                "name": "watchName",
+                "value": "",
+                "type": "path",
+                "description": "Watch name"
+              }
+            ]
+          },
+          "docs": "Removes a watch configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v2/policies"
+          },
+          "docs": "Returns a list of all security and license policies."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v2/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new security or license compliance policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v2/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/xray/api/v2/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/xray/api/v2/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Removes a policy."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Violations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Violations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v1/violations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns violations based on specified filters."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Generate Vulnerability Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v1/report/vulnerabilities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a vulnerability report for specified scope."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Report Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v1/report/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Returns the status and details of a report."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/xray/api/v1/report/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Deletes a generated report."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ignore Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Ignore Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v1/ignore_rules"
+          },
+          "docs": "Returns all ignore rules configured in Xray."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Ignore Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/xray/api/v1/ignore_rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ignore rule for a specific vulnerability or license."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Ignore Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/xray/api/v1/ignore_rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Ignore rule ID"
+              }
+            ]
+          },
+          "docs": "Returns a specific ignore rule."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Ignore Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/xray/api/v1/ignore_rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Ignore rule ID"
+              }
+            ]
+          },
+          "docs": "Deletes an ignore rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

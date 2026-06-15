@@ -1,0 +1,756 @@
+{
+  "info": {
+    "_postman_id": "bb659a47-8042-4c6b-8209-9b486962c1dd",
+    "name": "JFrog Curation REST API",
+    "description": "API for managing package curation policies that automatically vet and block malicious, vulnerable, or risky open-source packages before they enter the development environment. JFrog Curation acts as a gateway between public package registries and your organization's repositories.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:04:39.000Z",
+    "updatedAt": "2026-06-05T13:04:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-bb659a47-8042-4c6b-8209-9b486962c1dd"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "policies",
+          "item": [
+            {
+              "name": "{policyName}",
+              "item": [
+                {
+                  "name": "JFrog Get Curation Policy",
+                  "id": "54cabc8f-a2d9-477c-9985-88cf86b67ca4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/policies/:policyName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "policies",
+                        ":policyName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "206e5d44-bccc-4fef-9607-ecbd807816eb",
+                          "key": "policyName",
+                          "value": "<string>",
+                          "description": "(Required) Policy name"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific curation policy."
+                  },
+                  "response": [
+                    {
+                      "id": "55fb32a0-d9bb-4b82-8242-09f6dce9b27f",
+                      "name": "Policy details retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/policies/:policyName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "policies",
+                            ":policyName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policyName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"policy_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"policy_type\": \"block_packages_without_license\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": {\n    \"min_severity\": \"Low\",\n    \"max_age_days\": \"<integer>\",\n    \"banned_package_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"banned_licenses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"approved_packages\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"block\": \"<boolean>\",\n    \"notify\": \"<boolean>\",\n    \"notify_emails\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"custom_message\": \"<string>\"\n  },\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:04:39.000Z",
+                      "updatedAt": "2026-06-05T13:04:39.000Z",
+                      "uid": "35240-55fb32a0-d9bb-4b82-8242-09f6dce9b27f"
+                    },
+                    {
+                      "id": "bbc6cde9-48c8-49b2-bc5a-d034fe3db526",
+                      "name": "Policy not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/policies/:policyName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "policies",
+                            ":policyName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policyName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:04:39.000Z",
+                      "updatedAt": "2026-06-05T13:04:39.000Z",
+                      "uid": "35240-bbc6cde9-48c8-49b2-bc5a-d034fe3db526"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:39.000Z",
+                  "updatedAt": "2026-06-05T13:04:39.000Z",
+                  "uid": "35240-54cabc8f-a2d9-477c-9985-88cf86b67ca4"
+                },
+                {
+                  "name": "JFrog Update Curation Policy",
+                  "id": "8d9619be-8899-4a23-8f3b-ee74abc5e014",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": {},\n  \"actions\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/policies/:policyName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "policies",
+                        ":policyName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8c8a5df6-dce9-40f9-b9d3-eece9df98af4",
+                          "key": "policyName",
+                          "value": "<string>",
+                          "description": "(Required) Policy name"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing curation policy."
+                  },
+                  "response": [
+                    {
+                      "id": "f90f58a3-bbb8-4e7c-837e-30e0b3be450e",
+                      "name": "Policy updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": {},\n  \"actions\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/policies/:policyName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "policies",
+                            ":policyName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policyName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:04:39.000Z",
+                      "updatedAt": "2026-06-05T13:04:39.000Z",
+                      "uid": "35240-f90f58a3-bbb8-4e7c-837e-30e0b3be450e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:39.000Z",
+                  "updatedAt": "2026-06-05T13:04:39.000Z",
+                  "uid": "35240-8d9619be-8899-4a23-8f3b-ee74abc5e014"
+                },
+                {
+                  "name": "JFrog Delete Curation Policy",
+                  "id": "958357a0-6474-44c0-875a-0ff2cd9a9d76",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/policies/:policyName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "policies",
+                        ":policyName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "cbff33df-f384-45b8-8e9d-39110dbe55df",
+                          "key": "policyName",
+                          "value": "<string>",
+                          "description": "(Required) Policy name"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a curation policy."
+                  },
+                  "response": [
+                    {
+                      "id": "c69669d2-726c-46e1-914b-6ea7e490ef70",
+                      "name": "Policy deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/policies/:policyName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "policies",
+                            ":policyName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policyName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:04:39.000Z",
+                      "updatedAt": "2026-06-05T13:04:39.000Z",
+                      "uid": "35240-c69669d2-726c-46e1-914b-6ea7e490ef70"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:39.000Z",
+                  "updatedAt": "2026-06-05T13:04:39.000Z",
+                  "uid": "35240-958357a0-6474-44c0-875a-0ff2cd9a9d76"
+                }
+              ],
+              "id": "1e8146b3-e100-497f-9975-1a935dd0b6e3",
+              "createdAt": "2026-06-05T13:04:39.000Z",
+              "updatedAt": "2026-06-05T13:04:39.000Z",
+              "uid": "35240-1e8146b3-e100-497f-9975-1a935dd0b6e3"
+            },
+            {
+              "name": "JFrog List Curation Policies",
+              "id": "7592191e-0592-4b62-b881-206fcff03f1c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "policies"
+                  ]
+                },
+                "description": "Returns a list of all curation policies."
+              },
+              "response": [
+                {
+                  "id": "528d9cf4-e7e2-4aea-943e-2bf3fb17bf57",
+                  "name": "Policies list retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "policies"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"policies\": [\n    {\n      \"policy_name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"policy_type\": \"block_malicious_packages\",\n      \"repositories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"package_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"conditions\": {\n        \"min_severity\": \"Low\",\n        \"max_age_days\": \"<integer>\",\n        \"banned_package_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"approved_packages\": [\n          {\n            \"name\": \"<string>\",\n            \"version\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"version\": \"<string>\"\n          }\n        ]\n      },\n      \"actions\": {\n        \"block\": \"<boolean>\",\n        \"notify\": \"<boolean>\",\n        \"notify_emails\": [\n          \"<email>\",\n          \"<email>\"\n        ],\n        \"custom_message\": \"<string>\"\n      },\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    },\n    {\n      \"policy_name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"policy_type\": \"allow_only_approved_packages\",\n      \"repositories\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"package_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"conditions\": {\n        \"min_severity\": \"Low\",\n        \"max_age_days\": \"<integer>\",\n        \"banned_package_names\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"approved_packages\": [\n          {\n            \"name\": \"<string>\",\n            \"version\": \"<string>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"version\": \"<string>\"\n          }\n        ]\n      },\n      \"actions\": {\n        \"block\": \"<boolean>\",\n        \"notify\": \"<boolean>\",\n        \"notify_emails\": [\n          \"<email>\",\n          \"<email>\"\n        ],\n        \"custom_message\": \"<string>\"\n      },\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:04:39.000Z",
+                  "updatedAt": "2026-06-05T13:04:39.000Z",
+                  "uid": "35240-528d9cf4-e7e2-4aea-943e-2bf3fb17bf57"
+                }
+              ],
+              "createdAt": "2026-06-05T13:04:39.000Z",
+              "updatedAt": "2026-06-05T13:04:39.000Z",
+              "uid": "35240-7592191e-0592-4b62-b881-206fcff03f1c"
+            },
+            {
+              "name": "JFrog Create Curation Policy",
+              "id": "b87d4d7a-3a22-47e4-96c8-7ac13a5a96a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": {},\n  \"actions\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "policies"
+                  ]
+                },
+                "description": "Creates a new curation policy for blocking or allowing packages."
+              },
+              "response": [
+                {
+                  "id": "8ac53845-6e1d-4f03-be0b-527ca7e2b294",
+                  "name": "Policy created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": {},\n  \"actions\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "policies"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"policy_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"policy_type\": \"block_packages_without_license\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": {\n    \"min_severity\": \"Low\",\n    \"max_age_days\": \"<integer>\",\n    \"banned_package_names\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"banned_licenses\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"approved_packages\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"block\": \"<boolean>\",\n    \"notify\": \"<boolean>\",\n    \"notify_emails\": [\n      \"<email>\",\n      \"<email>\"\n    ],\n    \"custom_message\": \"<string>\"\n  },\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:04:39.000Z",
+                  "updatedAt": "2026-06-05T13:04:39.000Z",
+                  "uid": "35240-8ac53845-6e1d-4f03-be0b-527ca7e2b294"
+                },
+                {
+                  "id": "52f399e0-6e01-452a-8a3f-3b5b074bef8b",
+                  "name": "Invalid policy configuration",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": {},\n  \"actions\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "policies"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:04:39.000Z",
+                  "updatedAt": "2026-06-05T13:04:39.000Z",
+                  "uid": "35240-52f399e0-6e01-452a-8a3f-3b5b074bef8b"
+                }
+              ],
+              "createdAt": "2026-06-05T13:04:39.000Z",
+              "updatedAt": "2026-06-05T13:04:39.000Z",
+              "uid": "35240-b87d4d7a-3a22-47e4-96c8-7ac13a5a96a4"
+            }
+          ],
+          "id": "429fd91d-f158-4c6d-8495-b9bdfdacace1",
+          "createdAt": "2026-06-05T13:04:39.000Z",
+          "updatedAt": "2026-06-05T13:04:39.000Z",
+          "uid": "35240-429fd91d-f158-4c6d-8495-b9bdfdacace1"
+        },
+        {
+          "name": "audit",
+          "item": [
+            {
+              "name": "JFrog Get Curation Audit Log",
+              "id": "344b5b40-ecea-430e-8641-bf5a35e7c87c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/audit?from_date=<dateTime>&to_date=<dateTime>&package_type=<string>&policy_name=<string>&action_taken=warned&limit=25&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "audit"
+                  ],
+                  "query": [
+                    {
+                      "description": "Start date for the audit log query",
+                      "key": "from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "End date for the audit log query",
+                      "key": "to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter by package type (npm, maven, pypi, etc.)",
+                      "key": "package_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by policy name",
+                      "key": "policy_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter by action taken",
+                      "key": "action_taken",
+                      "value": "warned"
+                    },
+                    {
+                      "description": "Maximum number of results",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Returns the curation audit log showing blocked and allowed packages."
+              },
+              "response": [
+                {
+                  "id": "df28dcbd-6f2e-40a3-b4f2-c374c00c981f",
+                  "name": "Audit log retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/audit?from_date=<dateTime>&to_date=<dateTime>&package_type=<string>&policy_name=<string>&action_taken=warned&limit=25&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "audit"
+                      ],
+                      "query": [
+                        {
+                          "description": "Start date for the audit log query",
+                          "key": "from_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "End date for the audit log query",
+                          "key": "to_date",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter by package type (npm, maven, pypi, etc.)",
+                          "key": "package_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by policy name",
+                          "key": "policy_name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by action taken",
+                          "key": "action_taken",
+                          "value": "warned"
+                        },
+                        {
+                          "description": "Maximum number of results",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total_count\": \"<integer>\",\n  \"audit_entries\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"package_name\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"package_type\": \"<string>\",\n      \"repository\": \"<string>\",\n      \"policy_name\": \"<string>\",\n      \"action_taken\": \"warned\",\n      \"reason\": \"<string>\",\n      \"requesting_user\": \"<string>\"\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"package_name\": \"<string>\",\n      \"package_version\": \"<string>\",\n      \"package_type\": \"<string>\",\n      \"repository\": \"<string>\",\n      \"policy_name\": \"<string>\",\n      \"action_taken\": \"warned\",\n      \"reason\": \"<string>\",\n      \"requesting_user\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:04:39.000Z",
+                  "updatedAt": "2026-06-05T13:04:39.000Z",
+                  "uid": "35240-df28dcbd-6f2e-40a3-b4f2-c374c00c981f"
+                }
+              ],
+              "createdAt": "2026-06-05T13:04:39.000Z",
+              "updatedAt": "2026-06-05T13:04:39.000Z",
+              "uid": "35240-344b5b40-ecea-430e-8641-bf5a35e7c87c"
+            }
+          ],
+          "id": "bf091b05-11cc-4401-889f-2b7c1e51b3a1",
+          "createdAt": "2026-06-05T13:04:39.000Z",
+          "updatedAt": "2026-06-05T13:04:39.000Z",
+          "uid": "35240-bf091b05-11cc-4401-889f-2b7c1e51b3a1"
+        }
+      ],
+      "id": "b3482b62-b2f2-4239-bd46-aa7f2365ee52",
+      "createdAt": "2026-06-05T13:04:39.000Z",
+      "updatedAt": "2026-06-05T13:04:39.000Z",
+      "uid": "35240-b3482b62-b2f2-4239-bd46-aa7f2365ee52"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/curation/api"
+    }
+  ]
+}

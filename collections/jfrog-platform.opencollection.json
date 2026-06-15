@@ -1,0 +1,647 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Platform REST API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Platform Router Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/router/api/v1/system/ping"
+          },
+          "docs": "Returns a simple health check from the JFrog Platform router."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/router/api/v1/system/health"
+          },
+          "docs": "Returns health status of all JFrog services."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Access Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Access Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/tokens"
+          },
+          "docs": "Returns a list of all access tokens."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/v2/tokens",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new access token."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Token Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/tokens/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific access token."
+        },
+        {
+          "info": {
+            "name": "JFrog Revoke Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/v2/tokens/:tokenId",
+            "params": [
+              {
+                "name": "tokenId",
+                "value": "",
+                "type": "path",
+                "description": "Token ID"
+              }
+            ]
+          },
+          "docs": "Revokes an access token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/users"
+          },
+          "docs": "Returns a list of all platform users."
+        },
+        {
+          "info": {
+            "name": "JFrog Create User",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/v2/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new platform user."
+        },
+        {
+          "info": {
+            "name": "JFrog Get User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific user."
+        },
+        {
+          "info": {
+            "name": "JFrog Update User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{server}.jfrog.io/access/api/v2/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates user details."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/v2/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ]
+          },
+          "docs": "Deletes a user."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/groups"
+          },
+          "docs": "Returns a list of all platform groups."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/v2/groups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new platform group."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific group."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{server}.jfrog.io/access/api/v2/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates group details."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/v2/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ]
+          },
+          "docs": "Deletes a group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v1/projects"
+          },
+          "docs": "Returns a list of all projects."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/v1/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new project."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v1/projects/:projectKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Project key"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific project."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/v1/projects/:projectKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Project key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates project configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/v1/projects/:projectKey",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Project key"
+              }
+            ]
+          },
+          "docs": "Deletes a project."
+        },
+        {
+          "info": {
+            "name": "JFrog Add User to Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/v1/projects/:projectKey/users/:username",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Project key"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a user to a project with specified roles."
+        },
+        {
+          "info": {
+            "name": "JFrog Remove User from Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/v1/projects/:projectKey/users/:username",
+            "params": [
+              {
+                "name": "projectKey",
+                "value": "",
+                "type": "path",
+                "description": "Project key"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ]
+          },
+          "docs": "Removes a user from a project."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions"
+          },
+          "docs": "Returns a list of all permission configurations."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new permission configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific permission."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a permission configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ]
+          },
+          "docs": "Deletes a permission configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/event/api/v1/subscriptions"
+          },
+          "docs": "Returns a list of all configured webhooks."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/event/api/v1/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook subscription."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/event/api/v1/subscriptions/:webhookKey",
+            "params": [
+              {
+                "name": "webhookKey",
+                "value": "",
+                "type": "path",
+                "description": "Webhook key"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific webhook."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/event/api/v1/subscriptions/:webhookKey",
+            "params": [
+              {
+                "name": "webhookKey",
+                "value": "",
+                "type": "path",
+                "description": "Webhook key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a webhook configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/event/api/v1/subscriptions/:webhookKey",
+            "params": [
+              {
+                "name": "webhookKey",
+                "value": "",
+                "type": "path",
+                "description": "Webhook key"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

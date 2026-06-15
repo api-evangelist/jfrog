@@ -1,0 +1,251 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Mission Control REST API",
+    "version": "4.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog System Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/mc/api/v1/system/ping"
+          },
+          "docs": "Returns a health check status for Mission Control."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/mc/api/v1/system/version"
+          },
+          "docs": "Returns Mission Control version information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "JPDs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List JPDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/mc/api/v3/jpds"
+          },
+          "docs": "Returns a list of all managed JFrog Platform Deployments."
+        },
+        {
+          "info": {
+            "name": "JFrog Add JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/mc/api/v3/jpds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new JFrog Platform Deployment to Mission Control."
+        },
+        {
+          "info": {
+            "name": "JFrog Get JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/mc/api/v3/jpds/:jpdId",
+            "params": [
+              {
+                "name": "jpdId",
+                "value": "",
+                "type": "path",
+                "description": "JPD ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific JPD."
+        },
+        {
+          "info": {
+            "name": "JFrog Update JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/mc/api/v3/jpds/:jpdId",
+            "params": [
+              {
+                "name": "jpdId",
+                "value": "",
+                "type": "path",
+                "description": "JPD ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates JPD configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Remove JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/mc/api/v3/jpds/:jpdId",
+            "params": [
+              {
+                "name": "jpdId",
+                "value": "",
+                "type": "path",
+                "description": "JPD ID"
+              }
+            ]
+          },
+          "docs": "Removes a JPD from Mission Control management."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List License Buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/mc/api/v3/attach_lic/buckets"
+          },
+          "docs": "Returns a list of all license buckets."
+        },
+        {
+          "info": {
+            "name": "JFrog Add License Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/mc/api/v3/attach_lic/buckets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new license bucket."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete License Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/mc/api/v3/attach_lic/buckets/:bucketId",
+            "params": [
+              {
+                "name": "bucketId",
+                "value": "",
+                "type": "path",
+                "description": "License bucket ID"
+              }
+            ]
+          },
+          "docs": "Removes a license bucket."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/mc/api/v1/scripts"
+          },
+          "docs": "Returns a list of all available execution scripts."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/mc/api/v1/scripts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new execution script."
+        },
+        {
+          "info": {
+            "name": "JFrog Execute Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/mc/api/v1/scripts/:scriptName/execute",
+            "params": [
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a script on specified JPDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

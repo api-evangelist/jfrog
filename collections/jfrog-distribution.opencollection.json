@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Distribution REST API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog System Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/system/ping"
+          },
+          "docs": "Returns a simple health check response."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Release Bundles V1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Release Bundles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/release_bundle"
+          },
+          "docs": "Returns a list of all release bundles."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/release_bundle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new release bundle with specified artifacts."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/release_bundle/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific release bundle version."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/release_bundle/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing release bundle."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/release_bundle/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Deletes a release bundle version."
+        },
+        {
+          "info": {
+            "name": "JFrog Sign Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/release_bundle/:name/:version/sign",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Signs a release bundle, making it immutable and ready for distribution."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Distribution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Distribute Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/distribution/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Distributes a signed release bundle to target edge nodes."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Distribution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/distribution/:name/:version/status",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Returns the distribution status for a release bundle version."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Distributed Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/distribution/api/v1/distribution/:name/:version/delete",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes a distributed release bundle from target edge nodes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,478 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Pipelines REST API",
+    "version": "1.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get System Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/system/info"
+          },
+          "docs": "Returns Pipelines system information and version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipeline Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Pipeline Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/pipelineSources"
+          },
+          "docs": "Returns a list of all pipeline source configurations."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Pipeline Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/pipelineSources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new pipeline source pointing to a repository with pipeline definitions."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Pipeline Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/pipelineSources/:pipelineSourceId",
+            "params": [
+              {
+                "name": "pipelineSourceId",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline source ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific pipeline source."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Pipeline Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/pipelineSources/:pipelineSourceId",
+            "params": [
+              {
+                "name": "pipelineSourceId",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline source ID"
+              }
+            ]
+          },
+          "docs": "Deletes a pipeline source configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/pipelines",
+            "params": [
+              {
+                "name": "pipelineSourceIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of pipeline source IDs to filter by"
+              },
+              {
+                "name": "names",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated pipeline names filter"
+              }
+            ]
+          },
+          "docs": "Returns a list of all pipelines."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific pipeline."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Pipeline Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/runs",
+            "params": [
+              {
+                "name": "pipelineIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated pipeline IDs to filter by"
+              },
+              {
+                "name": "statusCodes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated status codes to filter by"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of pipeline runs."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Pipeline Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/runs/:runId",
+            "params": [
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "Run ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific pipeline run."
+        },
+        {
+          "info": {
+            "name": "JFrog Cancel Pipeline Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/runs/:runId/cancel",
+            "params": [
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "Run ID"
+              }
+            ]
+          },
+          "docs": "Cancels a running pipeline execution."
+        },
+        {
+          "info": {
+            "name": "JFrog Trigger Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/pipelines/:pipelineId/trigger",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Triggers a new run of the specified pipeline."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Steps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Step Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/steps/:stepId",
+            "params": [
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "path",
+                "description": "Step ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific step execution."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Step Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/steps/:stepId/logs",
+            "params": [
+              {
+                "name": "stepId",
+                "value": "",
+                "type": "path",
+                "description": "Step ID"
+              }
+            ]
+          },
+          "docs": "Returns console logs for a specific step execution."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Integrations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Integrations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/integrations"
+          },
+          "docs": "Returns a list of all configured integrations."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/integrations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new external service integration."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/integrations/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific integration."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/integrations/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing integration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Integration",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/integrations/:integrationId",
+            "params": [
+              {
+                "name": "integrationId",
+                "value": "",
+                "type": "path",
+                "description": "Integration ID"
+              }
+            ]
+          },
+          "docs": "Deletes an integration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Node Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Node Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/nodePools"
+          },
+          "docs": "Returns a list of all build node pools."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/nodePools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new build node pool."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/nodePools/:nodePoolId",
+            "params": [
+              {
+                "name": "nodePoolId",
+                "value": "",
+                "type": "path",
+                "description": "Node pool ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific node pool."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/pipelines/api/v1/nodePools/:nodePoolId",
+            "params": [
+              {
+                "name": "nodePoolId",
+                "value": "",
+                "type": "path",
+                "description": "Node pool ID"
+              }
+            ]
+          },
+          "docs": "Deletes a node pool."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

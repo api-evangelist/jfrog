@@ -1,0 +1,1026 @@
+{
+  "info": {
+    "_postman_id": "cca69071-8935-4a57-b67d-94b8d90960a4",
+    "name": "JFrog Workers REST API",
+    "description": "API for creating and managing custom serverless workers that extend JFrog Platform functionality through synchronized hooks and automation in a secure, isolated execution environment. Workers are TypeScript-based functions that can react to JFrog Platform events.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:05:10.000Z",
+    "updatedAt": "2026-06-05T13:05:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cca69071-8935-4a57-b67d-94b8d90960a4"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "workers",
+          "item": [
+            {
+              "name": "{workerKey}",
+              "item": [
+                {
+                  "name": "enable",
+                  "item": [
+                    {
+                      "name": "JFrog Enable Worker",
+                      "id": "c59fb433-b8ee-40a9-af74-ae6cd543f6db",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey/enable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey",
+                            "enable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b5efd585-6144-48d3-bf10-fce274977e9a",
+                              "key": "workerKey",
+                              "value": "<string>",
+                              "description": "(Required) Worker key identifier"
+                            }
+                          ]
+                        },
+                        "description": "Enables a disabled worker."
+                      },
+                      "response": [
+                        {
+                          "id": "02ff3739-9e52-44a0-b2e2-6b4e0c4e5447",
+                          "name": "Worker enabled",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/workers/:workerKey/enable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "workers",
+                                ":workerKey",
+                                "enable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:11.000Z",
+                          "updatedAt": "2026-06-05T13:05:11.000Z",
+                          "uid": "35240-02ff3739-9e52-44a0-b2e2-6b4e0c4e5447"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-c59fb433-b8ee-40a9-af74-ae6cd543f6db"
+                    }
+                  ],
+                  "id": "d5f95375-b562-4fc1-9407-7de606c50d9a",
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-d5f95375-b562-4fc1-9407-7de606c50d9a"
+                },
+                {
+                  "name": "disable",
+                  "item": [
+                    {
+                      "name": "JFrog Disable Worker",
+                      "id": "33b306ea-18e7-4b2c-8393-66a2f76cae2a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey/disable",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey",
+                            "disable"
+                          ],
+                          "variable": [
+                            {
+                              "id": "69ecad90-1bda-476b-b86b-70789bf2c1c8",
+                              "key": "workerKey",
+                              "value": "<string>",
+                              "description": "(Required) Worker key identifier"
+                            }
+                          ]
+                        },
+                        "description": "Disables an active worker."
+                      },
+                      "response": [
+                        {
+                          "id": "28a7fe1e-cdbc-4ed7-9bb7-d3ab13258a48",
+                          "name": "Worker disabled",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/workers/:workerKey/disable",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "workers",
+                                ":workerKey",
+                                "disable"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:11.000Z",
+                          "updatedAt": "2026-06-05T13:05:11.000Z",
+                          "uid": "35240-28a7fe1e-cdbc-4ed7-9bb7-d3ab13258a48"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-33b306ea-18e7-4b2c-8393-66a2f76cae2a"
+                    }
+                  ],
+                  "id": "b044cea9-8f13-4a70-9bd1-83bffe1b4499",
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-b044cea9-8f13-4a70-9bd1-83bffe1b4499"
+                },
+                {
+                  "name": "test",
+                  "item": [
+                    {
+                      "name": "JFrog Test Worker",
+                      "id": "acff7563-4f18-4e4a-8ea8-97a38d781710",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"action\": \"<string>\",\n  \"data\": {\n    \"et_f\": 20528909.61823386\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey/test",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey",
+                            "test"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7332893f-3d73-43e5-a347-2a5193612804",
+                              "key": "workerKey",
+                              "value": "<string>",
+                              "description": "(Required) Worker key identifier"
+                            }
+                          ]
+                        },
+                        "description": "Executes a worker with a test payload to validate its behavior."
+                      },
+                      "response": [
+                        {
+                          "id": "d6feccf2-d8df-49b8-baa5-1156b2aa34b4",
+                          "name": "Test execution result",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"action\": \"<string>\",\n  \"data\": {\n    \"et_f\": 20528909.61823386\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/workers/:workerKey/test",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "workers",
+                                ":workerKey",
+                                "test"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"STATUS_OK\",\n  \"message\": \"<string>\",\n  \"execution_time_ms\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T13:05:11.000Z",
+                          "updatedAt": "2026-06-05T13:05:11.000Z",
+                          "uid": "35240-d6feccf2-d8df-49b8-baa5-1156b2aa34b4"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-acff7563-4f18-4e4a-8ea8-97a38d781710"
+                    }
+                  ],
+                  "id": "755247ad-d635-48f3-9e14-e50404da9970",
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-755247ad-d635-48f3-9e14-e50404da9970"
+                },
+                {
+                  "name": "logs",
+                  "item": [
+                    {
+                      "name": "JFrog Get Worker Logs",
+                      "id": "93c2c69c-7676-47f2-bff2-08bc67e8a0f7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey/logs?from=<dateTime>&to=<dateTime>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey",
+                            "logs"
+                          ],
+                          "query": [
+                            {
+                              "description": "Start time for log retrieval",
+                              "key": "from",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "End time for log retrieval",
+                              "key": "to",
+                              "value": "<dateTime>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "f70580cc-3c62-4b9f-9d3f-b55fe001d606",
+                              "key": "workerKey",
+                              "value": "<string>",
+                              "description": "(Required) Worker key identifier"
+                            }
+                          ]
+                        },
+                        "description": "Returns execution logs for a worker."
+                      },
+                      "response": [
+                        {
+                          "id": "8b4d48c2-6b55-4773-b4e1-3eadad247558",
+                          "name": "Worker logs retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/workers/:workerKey/logs?from=<dateTime>&to=<dateTime>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "workers",
+                                ":workerKey",
+                                "logs"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Start time for log retrieval",
+                                  "key": "from",
+                                  "value": "<dateTime>"
+                                },
+                                {
+                                  "description": "End time for log retrieval",
+                                  "key": "to",
+                                  "value": "<dateTime>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workerKey"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"logs\": [\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"level\": \"WARN\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"timestamp\": \"<dateTime>\",\n      \"level\": \"DEBUG\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:11.000Z",
+                          "updatedAt": "2026-06-05T13:05:11.000Z",
+                          "uid": "35240-8b4d48c2-6b55-4773-b4e1-3eadad247558"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-93c2c69c-7676-47f2-bff2-08bc67e8a0f7"
+                    }
+                  ],
+                  "id": "9e09a8b4-ba06-4535-aaef-e4d71093a879",
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-9e09a8b4-ba06-4535-aaef-e4d71093a879"
+                },
+                {
+                  "name": "JFrog Get Worker",
+                  "id": "6b2be7b2-b80c-47c5-84bf-7d4827fcb184",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/workers/:workerKey",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "workers",
+                        ":workerKey"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4a527261-ab77-4a45-a60a-11c2a063e294",
+                          "key": "workerKey",
+                          "value": "<string>",
+                          "description": "(Required) Worker key identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific worker."
+                  },
+                  "response": [
+                    {
+                      "id": "1e2c5f77-cb82-40c4-89a4-cec3b273ee41",
+                      "name": "Worker details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workerKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"AFTER_COPY\",\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-1e2c5f77-cb82-40c4-89a4-cec3b273ee41"
+                    },
+                    {
+                      "id": "5b9f4ca9-b59a-4ec6-bdf2-0e00808f8a5d",
+                      "name": "Worker not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workerKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-5b9f4ca9-b59a-4ec6-bdf2-0e00808f8a5d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-6b2be7b2-b80c-47c5-84bf-7d4827fcb184"
+                },
+                {
+                  "name": "JFrog Update Worker",
+                  "id": "4ceb87f7-7c2c-44fa-9801-a70ef5303250",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"BEFORE_DOWNLOAD\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/workers/:workerKey",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "workers",
+                        ":workerKey"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fb51154a-0473-4730-9a7c-a57290bceaec",
+                          "key": "workerKey",
+                          "value": "<string>",
+                          "description": "(Required) Worker key identifier"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing worker's code or configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "b2b30dfc-a79c-49ec-8d0d-1582377bc195",
+                      "name": "Worker updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"BEFORE_DOWNLOAD\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workerKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-b2b30dfc-a79c-49ec-8d0d-1582377bc195"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-4ceb87f7-7c2c-44fa-9801-a70ef5303250"
+                },
+                {
+                  "name": "JFrog Delete Worker",
+                  "id": "1e4972e4-6be5-44dc-b771-117098846eef",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/workers/:workerKey",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "workers",
+                        ":workerKey"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a71c0518-1aec-4e3a-82af-0c8a7a820c55",
+                          "key": "workerKey",
+                          "value": "<string>",
+                          "description": "(Required) Worker key identifier"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a worker."
+                  },
+                  "response": [
+                    {
+                      "id": "333057ef-68be-4373-b405-205bc36c77dd",
+                      "name": "Worker deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/workers/:workerKey",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "workers",
+                            ":workerKey"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workerKey"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:11.000Z",
+                      "updatedAt": "2026-06-05T13:05:11.000Z",
+                      "uid": "35240-333057ef-68be-4373-b405-205bc36c77dd"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-1e4972e4-6be5-44dc-b771-117098846eef"
+                }
+              ],
+              "id": "de8add3e-e4ba-4f8d-adf0-d86b362d44ce",
+              "createdAt": "2026-06-05T13:05:11.000Z",
+              "updatedAt": "2026-06-05T13:05:11.000Z",
+              "uid": "35240-de8add3e-e4ba-4f8d-adf0-d86b362d44ce"
+            },
+            {
+              "name": "JFrog List Workers",
+              "id": "f3fc0a6c-48b8-4a70-8f60-2fef46f4244a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/workers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "workers"
+                  ]
+                },
+                "description": "Returns a list of all registered workers."
+              },
+              "response": [
+                {
+                  "id": "428a9f40-03db-44bc-ac39-48515feedc99",
+                  "name": "Workers list retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/workers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "workers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"workers\": [\n    {\n      \"key\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"source_code\": \"<string>\",\n      \"action\": \"AFTER_DOWNLOAD\",\n      \"filter_criteria\": {\n        \"artifact_filter_criteria\": {\n          \"repo_keys\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"secrets\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"description\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"source_code\": \"<string>\",\n      \"action\": \"BEFORE_UPLOAD\",\n      \"filter_criteria\": {\n        \"artifact_filter_criteria\": {\n          \"repo_keys\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      },\n      \"secrets\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ],\n      \"created\": \"<dateTime>\",\n      \"modified\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-428a9f40-03db-44bc-ac39-48515feedc99"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:11.000Z",
+              "updatedAt": "2026-06-05T13:05:11.000Z",
+              "uid": "35240-f3fc0a6c-48b8-4a70-8f60-2fef46f4244a"
+            },
+            {
+              "name": "JFrog Create Worker",
+              "id": "62e1754a-47fc-456d-9136-5dd970d978a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"BEFORE_DOWNLOAD\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/workers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "workers"
+                  ]
+                },
+                "description": "Creates a new serverless worker with TypeScript code."
+              },
+              "response": [
+                {
+                  "id": "d1e24307-08a1-4d2e-8f7d-fe739bdd870d",
+                  "name": "Worker created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"BEFORE_DOWNLOAD\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/workers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "workers"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"AFTER_COPY\",\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"created\": \"<dateTime>\",\n  \"modified\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-d1e24307-08a1-4d2e-8f7d-fe739bdd870d"
+                },
+                {
+                  "id": "bd4ebd39-2266-408a-bb2b-a579e8c47d92",
+                  "name": "Invalid worker configuration",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"BEFORE_DOWNLOAD\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/workers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "workers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:11.000Z",
+                  "updatedAt": "2026-06-05T13:05:11.000Z",
+                  "uid": "35240-bd4ebd39-2266-408a-bb2b-a579e8c47d92"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:11.000Z",
+              "updatedAt": "2026-06-05T13:05:11.000Z",
+              "uid": "35240-62e1754a-47fc-456d-9136-5dd970d978a9"
+            }
+          ],
+          "id": "7ba7485f-f4a6-4703-ae87-b19117593a51",
+          "createdAt": "2026-06-05T13:05:11.000Z",
+          "updatedAt": "2026-06-05T13:05:11.000Z",
+          "uid": "35240-7ba7485f-f4a6-4703-ae87-b19117593a51"
+        }
+      ],
+      "id": "00cde57a-4e85-4166-a67b-b8430bc5ad20",
+      "createdAt": "2026-06-05T13:05:11.000Z",
+      "updatedAt": "2026-06-05T13:05:11.000Z",
+      "uid": "35240-00cde57a-4e85-4166-a67b-b8430bc5ad20"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/worker/api"
+    }
+  ]
+}

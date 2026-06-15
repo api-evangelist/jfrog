@@ -1,0 +1,1761 @@
+{
+  "info": {
+    "_postman_id": "1ba58860-18b0-4d55-9f54-93b7ad28da6c",
+    "name": "JFrog Catalog REST API",
+    "description": "API for querying and managing package metadata, searching for packages and CVEs, and managing custom labels for software components. JFrog Catalog provides a unified view of all packages across the JFrog Platform with enriched security and metadata information, primarily accessed through a GraphQL-based interface.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:05:42.000Z",
+    "updatedAt": "2026-06-05T13:05:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1ba58860-18b0-4d55-9f54-93b7ad28da6c"
+  },
+  "item": [
+    {
+      "name": "custom",
+      "item": [
+        {
+          "name": "graphql",
+          "item": [
+            {
+              "name": "JFrog Execute GraphQL Query",
+              "id": "b97fd9db-a781-435e-80b5-c317fe40d7d4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"id_d_8\": true\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/custom/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "custom",
+                    "graphql"
+                  ]
+                },
+                "description": "Executes a GraphQL query against the JFrog Catalog. Supports querying packages, package versions, CVE information, license data, and custom labels. This is the primary interface for interacting with the Catalog service."
+              },
+              "response": [
+                {
+                  "id": "e4438838-287a-4118-a86b-23636102d1d5",
+                  "name": "GraphQL query executed successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"id_d_8\": true\n  },\n  \"operationName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom/graphql",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom",
+                        "graphql"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"dolore5\": false,\n    \"ea2\": \"nisi in tempor\"\n  },\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"locations\": [\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        },\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        }\n      ],\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"message\": \"<string>\",\n      \"locations\": [\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        },\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        }\n      ],\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-e4438838-287a-4118-a86b-23636102d1d5"
+                },
+                {
+                  "id": "88c06c18-53d3-4a63-a656-d05906b03863",
+                  "name": "Invalid GraphQL query syntax",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"id_d_8\": true\n  },\n  \"operationName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom/graphql",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom",
+                        "graphql"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-88c06c18-53d3-4a63-a656-d05906b03863"
+                },
+                {
+                  "id": "f5fdc732-fc9b-46ba-ae99-c6c454652dc9",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"id_d_8\": true\n  },\n  \"operationName\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/custom/graphql",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "custom",
+                        "graphql"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-f5fdc732-fc9b-46ba-ae99-c6c454652dc9"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-b97fd9db-a781-435e-80b5-c317fe40d7d4"
+            }
+          ],
+          "id": "8b085bfd-4d45-44d4-9957-8f224e4ee186",
+          "createdAt": "2026-06-05T13:05:42.000Z",
+          "updatedAt": "2026-06-05T13:05:42.000Z",
+          "uid": "35240-8b085bfd-4d45-44d4-9957-8f224e4ee186"
+        }
+      ],
+      "id": "539e76a1-b1d5-448e-aea6-ef9f7136cea2",
+      "createdAt": "2026-06-05T13:05:42.000Z",
+      "updatedAt": "2026-06-05T13:05:42.000Z",
+      "uid": "35240-539e76a1-b1d5-448e-aea6-ef9f7136cea2"
+    },
+    {
+      "name": "packages",
+      "item": [
+        {
+          "name": "search",
+          "item": [
+            {
+              "name": "JFrog Search Packages",
+              "id": "4e20cae3-daa0-4d7c-b051-9a0ee2abcbcc",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"package_type\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_vulnerabilities\": \"<boolean>\",\n  \"min_severity\": \"Critical\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/packages/search",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "packages",
+                    "search"
+                  ]
+                },
+                "description": "Searches for packages across the catalog using various filter criteria including name, type, version, and labels."
+              },
+              "response": [
+                {
+                  "id": "3ce5c4af-1ffb-4e99-84b0-9de2d396d71a",
+                  "name": "Search results retrieved",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"package_type\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_vulnerabilities\": \"<boolean>\",\n  \"min_severity\": \"Critical\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/packages/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "packages",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"packages\": [\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\",\n      \"latest_version\": \"<string>\",\n      \"versions_count\": \"<integer>\",\n      \"vulnerabilities_count\": \"<integer>\",\n      \"labels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"license\": \"<string>\"\n    },\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\",\n      \"latest_version\": \"<string>\",\n      \"versions_count\": \"<integer>\",\n      \"vulnerabilities_count\": \"<integer>\",\n      \"labels\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"license\": \"<string>\"\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-3ce5c4af-1ffb-4e99-84b0-9de2d396d71a"
+                },
+                {
+                  "id": "797e4ed5-b51d-4824-826d-18c52eb16799",
+                  "name": "Invalid search criteria",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"package_type\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_vulnerabilities\": \"<boolean>\",\n  \"min_severity\": \"Critical\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/packages/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "packages",
+                        "search"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-797e4ed5-b51d-4824-826d-18c52eb16799"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-4e20cae3-daa0-4d7c-b051-9a0ee2abcbcc"
+            }
+          ],
+          "id": "7f95e3ce-a00d-4cd4-8450-6d0fd60327af",
+          "createdAt": "2026-06-05T13:05:42.000Z",
+          "updatedAt": "2026-06-05T13:05:42.000Z",
+          "uid": "35240-7f95e3ce-a00d-4cd4-8450-6d0fd60327af"
+        },
+        {
+          "name": "{packageType}",
+          "item": [
+            {
+              "name": "{packageName}",
+              "item": [
+                {
+                  "name": "versions",
+                  "item": [
+                    {
+                      "name": "{version}",
+                      "item": [
+                        {
+                          "name": "vulnerabilities",
+                          "item": [
+                            {
+                              "name": "JFrog Get Version Vulnerabilities",
+                              "id": "657699dc-5758-4564-ba4c-b87084385226",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/packages/:packageType/:packageName/versions/:version/vulnerabilities?severity=Low",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "packages",
+                                    ":packageType",
+                                    ":packageName",
+                                    "versions",
+                                    ":version",
+                                    "vulnerabilities"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Filter by minimum severity",
+                                      "key": "severity",
+                                      "value": "Low"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "88c72a71-66f4-44c1-a4a0-15db55afff96",
+                                      "key": "packageType",
+                                      "value": "<string>",
+                                      "description": "(Required) Package ecosystem type"
+                                    },
+                                    {
+                                      "id": "94130146-8344-4557-8a7c-94da3652d0dd",
+                                      "key": "packageName",
+                                      "value": "<string>",
+                                      "description": "(Required) Package name"
+                                    },
+                                    {
+                                      "id": "af1374e5-d666-4662-afb3-988b582d00c6",
+                                      "key": "version",
+                                      "value": "<string>",
+                                      "description": "(Required) Package version"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns all known CVEs affecting a specific package version, including both direct (non-transitive) and transitive vulnerabilities."
+                              },
+                              "response": [
+                                {
+                                  "id": "a72f5c88-e27d-4a7f-8e75-7a497d298271",
+                                  "name": "Vulnerabilities retrieved",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/packages/:packageType/:packageName/versions/:version/vulnerabilities?severity=Low",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "packages",
+                                        ":packageType",
+                                        ":packageName",
+                                        "versions",
+                                        ":version",
+                                        "vulnerabilities"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "Filter by minimum severity",
+                                          "key": "severity",
+                                          "value": "Low"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "packageType"
+                                        },
+                                        {
+                                          "key": "packageName"
+                                        },
+                                        {
+                                          "key": "version"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"<string>\",\n      \"severity\": \"Critical\",\n      \"cvss_v3_score\": \"<number>\",\n      \"summary\": \"<string>\",\n      \"is_transitive\": \"<boolean>\",\n      \"fixed_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"published\": \"<dateTime>\",\n      \"jfrog_research_severity\": \"<string>\",\n      \"jfrog_research_summary\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\",\n      \"severity\": \"Medium\",\n      \"cvss_v3_score\": \"<number>\",\n      \"summary\": \"<string>\",\n      \"is_transitive\": \"<boolean>\",\n      \"fixed_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"published\": \"<dateTime>\",\n      \"jfrog_research_severity\": \"<string>\",\n      \"jfrog_research_summary\": \"<string>\"\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                                  "createdAt": "2026-06-05T13:05:42.000Z",
+                                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                                  "uid": "35240-a72f5c88-e27d-4a7f-8e75-7a497d298271"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T13:05:42.000Z",
+                              "updatedAt": "2026-06-05T13:05:42.000Z",
+                              "uid": "35240-657699dc-5758-4564-ba4c-b87084385226"
+                            }
+                          ],
+                          "id": "930ee612-987b-42e4-ab00-db82b44f7543",
+                          "createdAt": "2026-06-05T13:05:42.000Z",
+                          "updatedAt": "2026-06-05T13:05:42.000Z",
+                          "uid": "35240-930ee612-987b-42e4-ab00-db82b44f7543"
+                        }
+                      ],
+                      "id": "4efbc325-2fe6-4fde-b873-a1a146ac1cbe",
+                      "createdAt": "2026-06-05T13:05:42.000Z",
+                      "updatedAt": "2026-06-05T13:05:42.000Z",
+                      "uid": "35240-4efbc325-2fe6-4fde-b873-a1a146ac1cbe"
+                    },
+                    {
+                      "name": "JFrog Get Package Versions",
+                      "id": "1795aed5-c8f0-4c12-ac96-e8dbd90a5d22",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/packages/:packageType/:packageName/versions?limit=25&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "packages",
+                            ":packageType",
+                            ":packageName",
+                            "versions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of results",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Pagination offset",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "8ce426da-5cda-44f9-b0b1-abb5e4ddae0c",
+                              "key": "packageType",
+                              "value": "<string>",
+                              "description": "(Required) Package ecosystem type"
+                            },
+                            {
+                              "id": "8a8aaa0e-829b-4cfc-91a0-b6a9d988f9da",
+                              "key": "packageName",
+                              "value": "<string>",
+                              "description": "(Required) Package name"
+                            }
+                          ]
+                        },
+                        "description": "Returns all known versions of a specific package with their associated metadata, vulnerability counts, and license information."
+                      },
+                      "response": [
+                        {
+                          "id": "b386d089-ca6e-4d53-a3cd-35ed552fed36",
+                          "name": "Package versions retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/packages/:packageType/:packageName/versions?limit=25&offset=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "packages",
+                                ":packageType",
+                                ":packageName",
+                                "versions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Maximum number of results",
+                                  "key": "limit",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Pagination offset",
+                                  "key": "offset",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "packageType"
+                                },
+                                {
+                                  "key": "packageName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"versions\": [\n    {\n      \"version\": \"<string>\",\n      \"published\": \"<dateTime>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"vulnerabilities_count\": \"<integer>\",\n      \"direct_vulnerabilities_count\": \"<integer>\",\n      \"transitive_vulnerabilities_count\": \"<integer>\",\n      \"labels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"version\": \"<string>\",\n      \"published\": \"<dateTime>\",\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"vulnerabilities_count\": \"<integer>\",\n      \"direct_vulnerabilities_count\": \"<integer>\",\n      \"transitive_vulnerabilities_count\": \"<integer>\",\n      \"labels\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T13:05:42.000Z",
+                          "updatedAt": "2026-06-05T13:05:42.000Z",
+                          "uid": "35240-b386d089-ca6e-4d53-a3cd-35ed552fed36"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:42.000Z",
+                      "updatedAt": "2026-06-05T13:05:42.000Z",
+                      "uid": "35240-1795aed5-c8f0-4c12-ac96-e8dbd90a5d22"
+                    }
+                  ],
+                  "id": "4ac82ac1-5142-45fd-97e1-a0e3d454047a",
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-4ac82ac1-5142-45fd-97e1-a0e3d454047a"
+                },
+                {
+                  "name": "JFrog Get Package Details",
+                  "id": "8330ed7c-823b-4410-ba26-8b0da6482395",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/packages/:packageType/:packageName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "packages",
+                        ":packageType",
+                        ":packageName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c9f5bf06-5230-4362-96cb-7c79cd1001f7",
+                          "key": "packageType",
+                          "value": "conan",
+                          "description": "(Required) Package ecosystem type"
+                        },
+                        {
+                          "id": "02dff200-bc74-4b32-8f0f-4a16a0f0eb59",
+                          "key": "packageName",
+                          "value": "<string>",
+                          "description": "(Required) Package name (URL-encoded if contains special characters)"
+                        }
+                      ]
+                    },
+                    "description": "Returns detailed metadata for a specific package, including versions, licenses, vulnerabilities, and custom labels."
+                  },
+                  "response": [
+                    {
+                      "id": "6a04008e-59d1-47e8-8af9-ede487eef28a",
+                      "name": "Package details retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/packages/:packageType/:packageName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "packages",
+                            ":packageType",
+                            ":packageName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "packageType"
+                            },
+                            {
+                              "key": "packageName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"package_type\": \"<string>\",\n  \"package_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"latest_version\": \"<string>\",\n  \"versions_count\": \"<integer>\",\n  \"licenses\": [\n    {\n      \"name\": \"<string>\",\n      \"full_name\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"full_name\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"vulnerabilities_summary\": {\n    \"critical\": \"<integer>\",\n    \"high\": \"<integer>\",\n    \"medium\": \"<integer>\",\n    \"low\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"repository_url\": \"<uri>\",\n  \"homepage\": \"<uri>\"\n}",
+                      "createdAt": "2026-06-05T13:05:42.000Z",
+                      "updatedAt": "2026-06-05T13:05:42.000Z",
+                      "uid": "35240-6a04008e-59d1-47e8-8af9-ede487eef28a"
+                    },
+                    {
+                      "id": "76b0f9ff-7a1b-4644-80ef-a5ebead88daa",
+                      "name": "Package not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/packages/:packageType/:packageName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "packages",
+                            ":packageType",
+                            ":packageName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "packageType"
+                            },
+                            {
+                              "key": "packageName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:42.000Z",
+                      "updatedAt": "2026-06-05T13:05:42.000Z",
+                      "uid": "35240-76b0f9ff-7a1b-4644-80ef-a5ebead88daa"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-8330ed7c-823b-4410-ba26-8b0da6482395"
+                }
+              ],
+              "id": "e8126373-781d-47f2-8606-84c4a5cd9894",
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-e8126373-781d-47f2-8606-84c4a5cd9894"
+            }
+          ],
+          "id": "46ec8df5-8cb9-454a-aa9d-c5d39b26fa25",
+          "createdAt": "2026-06-05T13:05:42.000Z",
+          "updatedAt": "2026-06-05T13:05:42.000Z",
+          "uid": "35240-46ec8df5-8cb9-454a-aa9d-c5d39b26fa25"
+        }
+      ],
+      "id": "c85d992f-f84d-4131-8255-c399b584c33b",
+      "createdAt": "2026-06-05T13:05:42.000Z",
+      "updatedAt": "2026-06-05T13:05:42.000Z",
+      "uid": "35240-c85d992f-f84d-4131-8255-c399b584c33b"
+    },
+    {
+      "name": "labels",
+      "item": [
+        {
+          "name": "{labelName}",
+          "item": [
+            {
+              "name": "packages",
+              "item": [
+                {
+                  "name": "JFrog Apply Label to Packages",
+                  "id": "6a50e865-0c4e-4bc9-834a-510a86001cc4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"packages\": [\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\",\n      \"package_version\": \"<string>\"\n    },\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\",\n      \"package_version\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName/packages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName",
+                        "packages"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ca82e454-5ae4-44d3-9a62-61070d5fdee5",
+                          "key": "labelName",
+                          "value": "<string>",
+                          "description": "(Required) Label name"
+                        }
+                      ]
+                    },
+                    "description": "Applies a label to one or more packages."
+                  },
+                  "response": [
+                    {
+                      "id": "f0999b15-0b97-4b25-a672-58b30cc898e9",
+                      "name": "Label applied to packages",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"packages\": [\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\",\n      \"package_version\": \"<string>\"\n    },\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\",\n      \"package_version\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:labelName/packages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":labelName",
+                            "packages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "labelName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:42.000Z",
+                      "updatedAt": "2026-06-05T13:05:42.000Z",
+                      "uid": "35240-f0999b15-0b97-4b25-a672-58b30cc898e9"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-6a50e865-0c4e-4bc9-834a-510a86001cc4"
+                },
+                {
+                  "name": "JFrog Remove Label from Packages",
+                  "id": "41e1aad3-fb9f-4a1a-95ff-c010c276cadf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"packages\": [\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\"\n    },\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName/packages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName",
+                        "packages"
+                      ],
+                      "variable": [
+                        {
+                          "id": "08140543-cc22-4577-8011-2ff5b115d091",
+                          "key": "labelName",
+                          "value": "<string>",
+                          "description": "(Required) Label name"
+                        }
+                      ]
+                    },
+                    "description": "Removes a label from one or more packages."
+                  },
+                  "response": [
+                    {
+                      "id": "b7b4a3c9-5422-4765-9c50-b4f2c0c1dd46",
+                      "name": "Label removed from packages",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"packages\": [\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\"\n    },\n    {\n      \"package_type\": \"<string>\",\n      \"package_name\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/labels/:labelName/packages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "labels",
+                            ":labelName",
+                            "packages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "labelName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:42.000Z",
+                      "updatedAt": "2026-06-05T13:05:42.000Z",
+                      "uid": "35240-b7b4a3c9-5422-4765-9c50-b4f2c0c1dd46"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-41e1aad3-fb9f-4a1a-95ff-c010c276cadf"
+                }
+              ],
+              "id": "65203e27-ecaf-4bcd-82f0-12f07a003645",
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-65203e27-ecaf-4bcd-82f0-12f07a003645"
+            },
+            {
+              "name": "JFrog Get Label",
+              "id": "7b8a7702-0573-4663-befb-4c57970f3530",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/labels/:labelName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels",
+                    ":labelName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e7edd84a-a294-4356-a241-7eb64116f45e",
+                      "key": "labelName",
+                      "value": "<string>",
+                      "description": "(Required) Label name"
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific label."
+              },
+              "response": [
+                {
+                  "id": "9343ebe2-82df-4c81-88a5-4595d5993a2a",
+                  "name": "Label details retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "labelName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"packages_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-9343ebe2-82df-4c81-88a5-4595d5993a2a"
+                },
+                {
+                  "id": "c6c18d39-72d7-484e-a20a-9c44424ee96b",
+                  "name": "Label not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "labelName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-c6c18d39-72d7-484e-a20a-9c44424ee96b"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-7b8a7702-0573-4663-befb-4c57970f3530"
+            },
+            {
+              "name": "JFrog Update Label",
+              "id": "682d0b89-6288-4a25-9814-5763c7b95fbf",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/labels/:labelName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels",
+                    ":labelName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "67f0fc93-c950-4c13-bb2d-fe047129513e",
+                      "key": "labelName",
+                      "value": "<string>",
+                      "description": "(Required) Label name"
+                    }
+                  ]
+                },
+                "description": "Updates an existing label configuration."
+              },
+              "response": [
+                {
+                  "id": "1e965e9e-deff-49d7-8f86-86f273c93702",
+                  "name": "Label updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "labelName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-1e965e9e-deff-49d7-8f86-86f273c93702"
+                },
+                {
+                  "id": "ecbdf9de-83d9-425c-8e14-e03ab8474458",
+                  "name": "Label not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "labelName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-ecbdf9de-83d9-425c-8e14-e03ab8474458"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-682d0b89-6288-4a25-9814-5763c7b95fbf"
+            },
+            {
+              "name": "JFrog Delete Label",
+              "id": "6035faca-9dc0-42ec-8358-a6a2790fcd3e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/labels/:labelName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels",
+                    ":labelName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "bd683192-8639-4120-bd1d-99502c9d5315",
+                      "key": "labelName",
+                      "value": "<string>",
+                      "description": "(Required) Label name"
+                    }
+                  ]
+                },
+                "description": "Removes a label from the Catalog and detaches it from all packages."
+              },
+              "response": [
+                {
+                  "id": "c7bdbd80-84bf-4be4-9a4c-47c2fa221d65",
+                  "name": "Label deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "labelName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-c7bdbd80-84bf-4be4-9a4c-47c2fa221d65"
+                },
+                {
+                  "id": "7657e817-8801-4283-b84a-0606b643ae60",
+                  "name": "Label not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/labels/:labelName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "labels",
+                        ":labelName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "labelName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:42.000Z",
+                  "updatedAt": "2026-06-05T13:05:42.000Z",
+                  "uid": "35240-7657e817-8801-4283-b84a-0606b643ae60"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-6035faca-9dc0-42ec-8358-a6a2790fcd3e"
+            }
+          ],
+          "id": "bf99d9ff-3f57-4a39-804c-5ca361f4773c",
+          "createdAt": "2026-06-05T13:05:42.000Z",
+          "updatedAt": "2026-06-05T13:05:42.000Z",
+          "uid": "35240-bf99d9ff-3f57-4a39-804c-5ca361f4773c"
+        },
+        {
+          "name": "JFrog List Labels",
+          "id": "b798af27-599b-46d8-ad4c-aeee685e688b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/labels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels"
+              ]
+            },
+            "description": "Returns a list of all custom labels configured in the Catalog. Labels can be attached to packages for organizational and policy purposes."
+          },
+          "response": [
+            {
+              "id": "582febce-9028-4abb-a2b7-df166346e21e",
+              "name": "Labels list retrieved",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/labels",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"labels\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\",\n      \"packages_count\": \"<integer>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"color\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\",\n      \"packages_count\": \"<integer>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-582febce-9028-4abb-a2b7-df166346e21e"
+            }
+          ],
+          "createdAt": "2026-06-05T13:05:42.000Z",
+          "updatedAt": "2026-06-05T13:05:42.000Z",
+          "uid": "35240-b798af27-599b-46d8-ad4c-aeee685e688b"
+        },
+        {
+          "name": "JFrog Create Label",
+          "id": "1eb394e9-f3d7-44aa-b9e6-7cec89170a64",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/labels",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "labels"
+              ]
+            },
+            "description": "Creates a new custom label that can be applied to packages in the Catalog. Requires administrator permissions."
+          },
+          "response": [
+            {
+              "id": "5ab6b5c1-09b1-40f7-a322-18cb26ef1a7d",
+              "name": "Label created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/labels",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"packages_count\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-5ab6b5c1-09b1-40f7-a322-18cb26ef1a7d"
+            },
+            {
+              "id": "beb73376-f313-4e0a-9d2d-060ca5b62838",
+              "name": "Invalid label configuration",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/labels",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-beb73376-f313-4e0a-9d2d-060ca5b62838"
+            },
+            {
+              "id": "0442c76f-f6b7-40c5-9673-51c91ba1fc27",
+              "name": "Label name already exists",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/labels",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "labels"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:05:42.000Z",
+              "updatedAt": "2026-06-05T13:05:42.000Z",
+              "uid": "35240-0442c76f-f6b7-40c5-9673-51c91ba1fc27"
+            }
+          ],
+          "createdAt": "2026-06-05T13:05:42.000Z",
+          "updatedAt": "2026-06-05T13:05:42.000Z",
+          "uid": "35240-1eb394e9-f3d7-44aa-b9e6-7cec89170a64"
+        }
+      ],
+      "id": "168faec1-dc9e-474a-b188-55ff258d90d4",
+      "createdAt": "2026-06-05T13:05:42.000Z",
+      "updatedAt": "2026-06-05T13:05:42.000Z",
+      "uid": "35240-168faec1-dc9e-474a-b188-55ff258d90d4"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/catalog/api/v1"
+    }
+  ]
+}

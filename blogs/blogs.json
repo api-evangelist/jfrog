@@ -5,18 +5,24 @@
       "source": "https://jfrog.com/blog/feed/",
       "feed_url": "https://jfrog.com/blog/feed/",
       "title": "",
-      "saved": 0,
+      "saved": 5,
       "method": "feed"
     },
     {
       "source": "https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis",
-      "error": "HTTPError"
+      "feed_url": "https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     },
     {
       "source": "https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens",
-      "error": "HTTPError"
+      "feed_url": "https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 22,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 31,
+  "fetched": "2026-06-14T20:42:17Z"
 }

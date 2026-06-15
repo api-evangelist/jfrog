@@ -1,0 +1,237 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Evidence REST API",
+    "version": "1.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Evidence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Create Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new evidence attestation and attaches it to a subject (artifact, build, package, or release bundle). The evidence is signed as an in-toto statement wrapped in a DSSE envelope, providing cryptographic verification of the attestation. Requires an Enterprise+ subscription and Artifactory 7.104.2 or above."
+        },
+        {
+          "info": {
+            "name": "JFrog Search Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches for evidence records matching specified criteria. Supports filtering by subject type, subject identifier, evidence type, and time range."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/:evidenceId",
+            "params": [
+              {
+                "name": "evidenceId",
+                "value": "",
+                "type": "path",
+                "description": "Evidence record identifier"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific evidence record, including its DSSE envelope and verification status."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/:evidenceId",
+            "params": [
+              {
+                "name": "evidenceId",
+                "value": "",
+                "type": "path",
+                "description": "Evidence record identifier"
+              }
+            ]
+          },
+          "docs": "Removes an evidence record from the platform."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Artifact Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/subject/artifact",
+            "params": [
+              {
+                "name": "repo_path",
+                "value": "",
+                "type": "query",
+                "description": "Full artifact repository path"
+              },
+              {
+                "name": "sha256",
+                "value": "",
+                "type": "query",
+                "description": "SHA-256 checksum of the artifact"
+              }
+            ]
+          },
+          "docs": "Returns all evidence records attached to a specific artifact identified by repository path and SHA-256."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Build Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/subject/build",
+            "params": [
+              {
+                "name": "build_name",
+                "value": "",
+                "type": "query",
+                "description": "Build name"
+              },
+              {
+                "name": "build_number",
+                "value": "",
+                "type": "query",
+                "description": "Build number"
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "Project key (if build is project-scoped)"
+              }
+            ]
+          },
+          "docs": "Returns all evidence records attached to a specific build."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Release Bundle Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/subject/release-bundle",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Release bundle version"
+              },
+              {
+                "name": "project",
+                "value": "",
+                "type": "query",
+                "description": "Project key"
+              }
+            ]
+          },
+          "docs": "Returns all evidence records attached to a specific release bundle version."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Package Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/subject/package",
+            "params": [
+              {
+                "name": "package_name",
+                "value": "",
+                "type": "query",
+                "description": "Package name"
+              },
+              {
+                "name": "package_version",
+                "value": "",
+                "type": "query",
+                "description": "Package version"
+              },
+              {
+                "name": "repo_key",
+                "value": "",
+                "type": "query",
+                "description": "Repository key containing the package"
+              }
+            ]
+          },
+          "docs": "Returns all evidence records attached to a specific package."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Verify Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/evidence/api/v1/evidence/:evidenceId/verify",
+            "params": [
+              {
+                "name": "evidenceId",
+                "value": "",
+                "type": "path",
+                "description": "Evidence record identifier"
+              }
+            ]
+          },
+          "docs": "Verifies the cryptographic signature of an evidence record against registered public keys. Returns the verification status and details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

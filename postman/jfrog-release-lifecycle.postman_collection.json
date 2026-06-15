@@ -1,0 +1,1265 @@
+{
+  "info": {
+    "_postman_id": "99b0445a-7ec1-4b03-9b81-e12795b9ba12",
+    "name": "JFrog Release Lifecycle Management REST API",
+    "description": "API for managing release bundles, promotion workflows, and evidence collection throughout the software release lifecycle from development to production. Provides capabilities for creating immutable release bundles, promoting them through environments, and collecting attestation evidence.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:05:00.000Z",
+    "updatedAt": "2026-06-05T13:05:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-99b0445a-7ec1-4b03-9b81-e12795b9ba12"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "release_bundle",
+          "item": [
+            {
+              "name": "records",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "{version}",
+                      "item": [
+                        {
+                          "name": "JFrog Get Release Bundle v2",
+                          "id": "7bb703d4-3831-4d40-a3f9-dfa17a57d96f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/release_bundle/records/:name/:version",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "release_bundle",
+                                "records",
+                                ":name",
+                                ":version"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "53bd83a5-3a77-4405-af71-eb3cfbc8115d",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle name"
+                                },
+                                {
+                                  "id": "80a65484-e87e-4f8b-a939-4edf5b587914",
+                                  "key": "version",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle version"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific release bundle version."
+                          },
+                          "response": [
+                            {
+                              "id": "c2f90286-3118-4c2b-a0fd-f21322962941",
+                              "name": "Release bundle details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/release_bundle/records/:name/:version",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "release_bundle",
+                                    "records",
+                                    ":name",
+                                    ":version"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "version"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"status\": \"CREATED\",\n  \"created\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"artifacts\": [\n    {\n      \"path\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"current_environment\": \"<string>\",\n  \"promotion_history\": [\n    {\n      \"environment\": \"<string>\",\n      \"promoted_at\": \"<dateTime>\",\n      \"promoted_by\": \"<string>\"\n    },\n    {\n      \"environment\": \"<string>\",\n      \"promoted_at\": \"<dateTime>\",\n      \"promoted_by\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T13:05:01.000Z",
+                              "updatedAt": "2026-06-05T13:05:01.000Z",
+                              "uid": "35240-c2f90286-3118-4c2b-a0fd-f21322962941"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:05:01.000Z",
+                          "updatedAt": "2026-06-05T13:05:01.000Z",
+                          "uid": "35240-7bb703d4-3831-4d40-a3f9-dfa17a57d96f"
+                        },
+                        {
+                          "name": "JFrog Delete Release Bundle v2",
+                          "id": "e72151fd-3f31-493d-8d0b-5375b617b53b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/release_bundle/records/:name/:version",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "release_bundle",
+                                "records",
+                                ":name",
+                                ":version"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "82ca7c22-ec85-48e8-8d02-d6d180e209da",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle name"
+                                },
+                                {
+                                  "id": "5c861fb4-6749-4143-9bae-89b2971674fb",
+                                  "key": "version",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle version"
+                                }
+                              ]
+                            },
+                            "description": "Deletes a release bundle version."
+                          },
+                          "response": [
+                            {
+                              "id": "6dadffb0-5a5c-48cb-b86b-b65c866ba5c5",
+                              "name": "Release bundle deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/release_bundle/records/:name/:version",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "release_bundle",
+                                    "records",
+                                    ":name",
+                                    ":version"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "version"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:05:01.000Z",
+                              "updatedAt": "2026-06-05T13:05:01.000Z",
+                              "uid": "35240-6dadffb0-5a5c-48cb-b86b-b65c866ba5c5"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:05:01.000Z",
+                          "updatedAt": "2026-06-05T13:05:01.000Z",
+                          "uid": "35240-e72151fd-3f31-493d-8d0b-5375b617b53b"
+                        }
+                      ],
+                      "id": "b31efdb7-c06e-46d2-afb3-f3764608737f",
+                      "createdAt": "2026-06-05T13:05:01.000Z",
+                      "updatedAt": "2026-06-05T13:05:01.000Z",
+                      "uid": "35240-b31efdb7-c06e-46d2-afb3-f3764608737f"
+                    }
+                  ],
+                  "id": "13056c23-4dab-4950-83d6-d9a38b328564",
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-13056c23-4dab-4950-83d6-d9a38b328564"
+                },
+                {
+                  "name": "JFrog List Release Bundles v2",
+                  "id": "d046c25b-2793-4002-a7bb-6d4e161fd4fc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/release_bundle/records?name=<string>&after=<string>&limit=25",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "release_bundle",
+                        "records"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by release bundle name",
+                          "key": "name",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Cursor for pagination",
+                          "key": "after",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results",
+                          "key": "limit",
+                          "value": "25"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of all release bundle v2 records."
+                  },
+                  "response": [
+                    {
+                      "id": "4e6a701d-6a9f-47f5-8624-abc78bc12591",
+                      "name": "Release bundles list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/release_bundle/records?name=<string>&after=<string>&limit=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "release_bundle",
+                            "records"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by release bundle name",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Cursor for pagination",
+                              "key": "after",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of results",
+                              "key": "limit",
+                              "value": "25"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"release_bundles\": [\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"artifacts_count\": \"<integer>\",\n      \"current_environment\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"artifacts_count\": \"<integer>\",\n      \"current_environment\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:05:01.000Z",
+                      "updatedAt": "2026-06-05T13:05:01.000Z",
+                      "uid": "35240-4e6a701d-6a9f-47f5-8624-abc78bc12591"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-d046c25b-2793-4002-a7bb-6d4e161fd4fc"
+                }
+              ],
+              "id": "f2be5980-8d00-4f8a-89ad-f591a4921404",
+              "createdAt": "2026-06-05T13:05:01.000Z",
+              "updatedAt": "2026-06-05T13:05:01.000Z",
+              "uid": "35240-f2be5980-8d00-4f8a-89ad-f591a4921404"
+            },
+            {
+              "name": "distribute",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "{version}",
+                      "item": [
+                        {
+                          "name": "status",
+                          "item": [
+                            {
+                              "name": "JFrog Get Distribution Status",
+                              "id": "d277c0dd-bfc9-4768-bb5c-950862dc77a2",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/release_bundle/distribute/:name/:version/status",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "release_bundle",
+                                    "distribute",
+                                    ":name",
+                                    ":version",
+                                    "status"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ba5ef080-ce8e-43c7-9d92-b32b980d408b",
+                                      "key": "name",
+                                      "value": "<string>",
+                                      "description": "(Required) Release bundle name"
+                                    },
+                                    {
+                                      "id": "b9e6d348-5438-4ddf-a269-43a5b3efea62",
+                                      "key": "version",
+                                      "value": "<string>",
+                                      "description": "(Required) Release bundle version"
+                                    }
+                                  ]
+                                },
+                                "description": "Returns distribution status for a release bundle."
+                              },
+                              "response": [
+                                {
+                                  "id": "d26d0655-d329-4104-9a63-7c065b832275",
+                                  "name": "Distribution status",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v2/release_bundle/distribute/:name/:version/status",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v2",
+                                        "release_bundle",
+                                        "distribute",
+                                        ":name",
+                                        ":version",
+                                        "status"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "name"
+                                        },
+                                        {
+                                          "key": "version"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"status\": \"<string>\",\n  \"sites\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-06-05T13:05:01.000Z",
+                                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                                  "uid": "35240-d26d0655-d329-4104-9a63-7c065b832275"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T13:05:01.000Z",
+                              "updatedAt": "2026-06-05T13:05:01.000Z",
+                              "uid": "35240-d277c0dd-bfc9-4768-bb5c-950862dc77a2"
+                            }
+                          ],
+                          "id": "dcf82c37-7d81-49c1-b91a-a48a4e5c95af",
+                          "createdAt": "2026-06-05T13:05:01.000Z",
+                          "updatedAt": "2026-06-05T13:05:01.000Z",
+                          "uid": "35240-dcf82c37-7d81-49c1-b91a-a48a4e5c95af"
+                        },
+                        {
+                          "name": "JFrog Distribute Release Bundle v2",
+                          "id": "b1ec42e3-d238-41f6-8115-4d0fb3a71f26",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"distribution_rules\": [\n    {\n      \"site_name\": \"<string>\"\n    },\n    {\n      \"site_name\": \"<string>\"\n    }\n  ],\n  \"auto_create_missing_repositories\": false\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/release_bundle/distribute/:name/:version",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "release_bundle",
+                                "distribute",
+                                ":name",
+                                ":version"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "8925d839-55ba-4935-a857-2ef20c857637",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle name"
+                                },
+                                {
+                                  "id": "36c88009-f369-4630-9445-0a174cac1f5d",
+                                  "key": "version",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle version"
+                                }
+                              ]
+                            },
+                            "description": "Distributes a release bundle to specified edge nodes."
+                          },
+                          "response": [
+                            {
+                              "id": "910759df-412f-4b48-b25d-58a6e0c63b20",
+                              "name": "Distribution initiated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"distribution_rules\": [\n    {\n      \"site_name\": \"<string>\"\n    },\n    {\n      \"site_name\": \"<string>\"\n    }\n  ],\n  \"auto_create_missing_repositories\": false\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/release_bundle/distribute/:name/:version",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "release_bundle",
+                                    "distribute",
+                                    ":name",
+                                    ":version"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "version"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:05:01.000Z",
+                              "updatedAt": "2026-06-05T13:05:01.000Z",
+                              "uid": "35240-910759df-412f-4b48-b25d-58a6e0c63b20"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:05:01.000Z",
+                          "updatedAt": "2026-06-05T13:05:01.000Z",
+                          "uid": "35240-b1ec42e3-d238-41f6-8115-4d0fb3a71f26"
+                        }
+                      ],
+                      "id": "c59058ee-fe7a-4694-bb2c-2e2747c8d558",
+                      "createdAt": "2026-06-05T13:05:01.000Z",
+                      "updatedAt": "2026-06-05T13:05:01.000Z",
+                      "uid": "35240-c59058ee-fe7a-4694-bb2c-2e2747c8d558"
+                    }
+                  ],
+                  "id": "72f1093b-1b6f-4236-b127-f61fc52b7a8a",
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-72f1093b-1b6f-4236-b127-f61fc52b7a8a"
+                }
+              ],
+              "id": "b75e3903-77db-4ca2-a463-5c01164382df",
+              "createdAt": "2026-06-05T13:05:01.000Z",
+              "updatedAt": "2026-06-05T13:05:01.000Z",
+              "uid": "35240-b75e3903-77db-4ca2-a463-5c01164382df"
+            },
+            {
+              "name": "JFrog Create Release Bundle v2",
+              "id": "0f71bc8c-07e5-414a-92e5-3d87f34d88fb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"source_type\": \"builds\",\n  \"source\": {\n    \"artifacts\": [\n      {\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\"\n      }\n    ],\n    \"builds\": [\n      {\n        \"name\": \"<string>\",\n        \"number\": \"<string>\",\n        \"project\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"number\": \"<string>\",\n        \"project\": \"<string>\"\n      }\n    ],\n    \"release_bundles\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"project_key\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"project_key\": \"<string>\"\n      }\n    ],\n    \"aql\": \"<string>\"\n  },\n  \"skip_docker_manifest_resolution\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/release_bundle",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "release_bundle"
+                  ]
+                },
+                "description": "Creates a new release bundle version 2 from specified artifacts."
+              },
+              "response": [
+                {
+                  "id": "85a573eb-cec7-4e9f-bb3f-724b411da19f",
+                  "name": "Release bundle created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"source_type\": \"builds\",\n  \"source\": {\n    \"artifacts\": [\n      {\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\"\n      }\n    ],\n    \"builds\": [\n      {\n        \"name\": \"<string>\",\n        \"number\": \"<string>\",\n        \"project\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"number\": \"<string>\",\n        \"project\": \"<string>\"\n      }\n    ],\n    \"release_bundles\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"project_key\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"project_key\": \"<string>\"\n      }\n    ],\n    \"aql\": \"<string>\"\n  },\n  \"skip_docker_manifest_resolution\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/release_bundle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "release_bundle"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"status\": \"CREATED\",\n  \"created\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"source_type\": \"<string>\",\n  \"artifacts\": [\n    {\n      \"path\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"size\": \"<integer>\"\n    },\n    {\n      \"path\": \"<string>\",\n      \"sha256\": \"<string>\",\n      \"size\": \"<integer>\"\n    }\n  ],\n  \"current_environment\": \"<string>\",\n  \"promotion_history\": [\n    {\n      \"environment\": \"<string>\",\n      \"promoted_at\": \"<dateTime>\",\n      \"promoted_by\": \"<string>\"\n    },\n    {\n      \"environment\": \"<string>\",\n      \"promoted_at\": \"<dateTime>\",\n      \"promoted_by\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-85a573eb-cec7-4e9f-bb3f-724b411da19f"
+                },
+                {
+                  "id": "54cc2ee3-d7de-466f-9906-815cf9d674a8",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"source_type\": \"builds\",\n  \"source\": {\n    \"artifacts\": [\n      {\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\"\n      },\n      {\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\"\n      }\n    ],\n    \"builds\": [\n      {\n        \"name\": \"<string>\",\n        \"number\": \"<string>\",\n        \"project\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"number\": \"<string>\",\n        \"project\": \"<string>\"\n      }\n    ],\n    \"release_bundles\": [\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"project_key\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"project_key\": \"<string>\"\n      }\n    ],\n    \"aql\": \"<string>\"\n  },\n  \"skip_docker_manifest_resolution\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/release_bundle",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "release_bundle"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-54cc2ee3-d7de-466f-9906-815cf9d674a8"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:01.000Z",
+              "updatedAt": "2026-06-05T13:05:01.000Z",
+              "uid": "35240-0f71bc8c-07e5-414a-92e5-3d87f34d88fb"
+            }
+          ],
+          "id": "d2d2104a-940e-48c3-bf9b-ee3c25636142",
+          "createdAt": "2026-06-05T13:05:01.000Z",
+          "updatedAt": "2026-06-05T13:05:01.000Z",
+          "uid": "35240-d2d2104a-940e-48c3-bf9b-ee3c25636142"
+        },
+        {
+          "name": "promotion",
+          "item": [
+            {
+              "name": "records",
+              "item": [
+                {
+                  "name": "{name}",
+                  "item": [
+                    {
+                      "name": "{version}",
+                      "item": [
+                        {
+                          "name": "JFrog Get Promotion Status",
+                          "id": "266817da-4172-463d-bd11-21a2755cda7d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/promotion/records/:name/:version",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "promotion",
+                                "records",
+                                ":name",
+                                ":version"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2d096856-c4b3-46d1-ac96-8c3b2d4bb92b",
+                                  "key": "name",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle name"
+                                },
+                                {
+                                  "id": "5f4ee678-bf58-4686-be30-2b6eb5d9a8cc",
+                                  "key": "version",
+                                  "value": "<string>",
+                                  "description": "(Required) Release bundle version"
+                                }
+                              ]
+                            },
+                            "description": "Returns the promotion status and history for a release bundle version."
+                          },
+                          "response": [
+                            {
+                              "id": "851aa763-e70e-45dc-9241-821a63f8ed9d",
+                              "name": "Promotion status retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/promotion/records/:name/:version",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "promotion",
+                                    "records",
+                                    ":name",
+                                    ":version"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "name"
+                                    },
+                                    {
+                                      "key": "version"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"current_environment\": \"<string>\",\n  \"promotions\": [\n    {\n      \"status\": \"FAILED\",\n      \"environment\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"status\": \"IN_PROGRESS\",\n      \"environment\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T13:05:01.000Z",
+                              "updatedAt": "2026-06-05T13:05:01.000Z",
+                              "uid": "35240-851aa763-e70e-45dc-9241-821a63f8ed9d"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:05:01.000Z",
+                          "updatedAt": "2026-06-05T13:05:01.000Z",
+                          "uid": "35240-266817da-4172-463d-bd11-21a2755cda7d"
+                        }
+                      ],
+                      "id": "b0334adf-7dfe-440a-a189-a9efc16dd468",
+                      "createdAt": "2026-06-05T13:05:01.000Z",
+                      "updatedAt": "2026-06-05T13:05:01.000Z",
+                      "uid": "35240-b0334adf-7dfe-440a-a189-a9efc16dd468"
+                    }
+                  ],
+                  "id": "bc61f2b8-3d67-4bee-94ce-53acbc0b0777",
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-bc61f2b8-3d67-4bee-94ce-53acbc0b0777"
+                }
+              ],
+              "id": "37c8ebf2-8378-4d74-9fd7-92f7768139fe",
+              "createdAt": "2026-06-05T13:05:01.000Z",
+              "updatedAt": "2026-06-05T13:05:01.000Z",
+              "uid": "35240-37c8ebf2-8378-4d74-9fd7-92f7768139fe"
+            },
+            {
+              "name": "JFrog Promote Release Bundle",
+              "id": "57a544e1-d0eb-4073-a208-a3835d373471",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"environment\": \"<string>\",\n  \"included_repository_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"overwrite_existing_artifacts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/promotion",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "promotion"
+                  ]
+                },
+                "description": "Promotes a release bundle to a target environment."
+              },
+              "response": [
+                {
+                  "id": "fb6bcc71-eed6-4c79-bb41-8d20c4ff594a",
+                  "name": "Promotion initiated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"environment\": \"<string>\",\n  \"included_repository_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"overwrite_existing_artifacts\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/promotion",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "promotion"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"promotion_id\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-fb6bcc71-eed6-4c79-bb41-8d20c4ff594a"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:01.000Z",
+              "updatedAt": "2026-06-05T13:05:01.000Z",
+              "uid": "35240-57a544e1-d0eb-4073-a208-a3835d373471"
+            }
+          ],
+          "id": "5c6dcc38-db40-4117-9230-cedb7d79bcfb",
+          "createdAt": "2026-06-05T13:05:01.000Z",
+          "updatedAt": "2026-06-05T13:05:01.000Z",
+          "uid": "35240-5c6dcc38-db40-4117-9230-cedb7d79bcfb"
+        },
+        {
+          "name": "evidence",
+          "item": [
+            {
+              "name": "{name}",
+              "item": [
+                {
+                  "name": "{version}",
+                  "item": [
+                    {
+                      "name": "JFrog Get Evidence",
+                      "id": "f5bddce7-f73c-4930-a381-c5cccf61862c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/evidence/:name/:version",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "evidence",
+                            ":name",
+                            ":version"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3d5eaa36-49a5-4f61-a239-482cd65cf624",
+                              "key": "name",
+                              "value": "<string>",
+                              "description": "(Required) Release bundle name"
+                            },
+                            {
+                              "id": "4863bf37-a065-4f71-b445-4f6c7ac5571c",
+                              "key": "version",
+                              "value": "<string>",
+                              "description": "(Required) Release bundle version"
+                            }
+                          ]
+                        },
+                        "description": "Returns all evidence records for a release bundle version."
+                      },
+                      "response": [
+                        {
+                          "id": "fe8a2816-ab7a-4fa1-93d1-54e833a27dc0",
+                          "name": "Evidence records retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/evidence/:name/:version",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "evidence",
+                                ":name",
+                                ":version"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "name"
+                                },
+                                {
+                                  "key": "version"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"<string>\",\n      \"release_bundle_name\": \"<string>\",\n      \"release_bundle_version\": \"<string>\",\n      \"environment\": \"<string>\",\n      \"evidence_type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\",\n      \"dsse_file_path\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"release_bundle_name\": \"<string>\",\n      \"release_bundle_version\": \"<string>\",\n      \"environment\": \"<string>\",\n      \"evidence_type\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\",\n      \"dsse_file_path\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:01.000Z",
+                          "updatedAt": "2026-06-05T13:05:01.000Z",
+                          "uid": "35240-fe8a2816-ab7a-4fa1-93d1-54e833a27dc0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:01.000Z",
+                      "updatedAt": "2026-06-05T13:05:01.000Z",
+                      "uid": "35240-f5bddce7-f73c-4930-a381-c5cccf61862c"
+                    }
+                  ],
+                  "id": "cd48fe84-d09e-4e84-bd6a-6e4b5446a774",
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-cd48fe84-d09e-4e84-bd6a-6e4b5446a774"
+                }
+              ],
+              "id": "15f7a70e-0f95-40c5-8404-41353477dbef",
+              "createdAt": "2026-06-05T13:05:01.000Z",
+              "updatedAt": "2026-06-05T13:05:01.000Z",
+              "uid": "35240-15f7a70e-0f95-40c5-8404-41353477dbef"
+            },
+            {
+              "name": "JFrog Create Evidence",
+              "id": "7dd76f91-c9cf-4750-ac6d-f1a5c32e2d76",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"environment\": \"<string>\",\n  \"evidence_type\": \"test_results\",\n  \"description\": \"<string>\",\n  \"dsse_file_path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/evidence",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "evidence"
+                  ]
+                },
+                "description": "Creates a new evidence record attached to a release bundle."
+              },
+              "response": [
+                {
+                  "id": "a91d000d-f611-41cf-a2ea-cdaa1889dcf1",
+                  "name": "Evidence created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"environment\": \"<string>\",\n  \"evidence_type\": \"test_results\",\n  \"description\": \"<string>\",\n  \"dsse_file_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/evidence",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "evidence"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"environment\": \"<string>\",\n  \"evidence_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"dsse_file_path\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:05:01.000Z",
+                  "updatedAt": "2026-06-05T13:05:01.000Z",
+                  "uid": "35240-a91d000d-f611-41cf-a2ea-cdaa1889dcf1"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:01.000Z",
+              "updatedAt": "2026-06-05T13:05:01.000Z",
+              "uid": "35240-7dd76f91-c9cf-4750-ac6d-f1a5c32e2d76"
+            }
+          ],
+          "id": "7f108fda-1492-4d5f-86a9-9909e1ddbf2e",
+          "createdAt": "2026-06-05T13:05:01.000Z",
+          "updatedAt": "2026-06-05T13:05:01.000Z",
+          "uid": "35240-7f108fda-1492-4d5f-86a9-9909e1ddbf2e"
+        }
+      ],
+      "id": "e11a8790-a6cb-4082-94d7-d26626b0dc66",
+      "createdAt": "2026-06-05T13:05:01.000Z",
+      "updatedAt": "2026-06-05T13:05:01.000Z",
+      "uid": "35240-e11a8790-a6cb-4082-94d7-d26626b0dc66"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/lifecycle/api"
+    }
+  ]
+}

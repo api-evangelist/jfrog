@@ -1,0 +1,1694 @@
+{
+  "info": {
+    "_postman_id": "5b9d0e1b-e7e6-431b-abca-0d5c2c706230",
+    "name": "JFrog ML REST API",
+    "description": "API for managing machine learning models, experiments, and deployments including model registry, versioning, and serving capabilities. JFrog ML (formerly Qwak) provides end-to-end MLOps features integrated with the JFrog Platform.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:05:20.000Z",
+    "updatedAt": "2026-06-05T13:05:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5b9d0e1b-e7e6-431b-abca-0d5c2c706230"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "models",
+          "item": [
+            {
+              "name": "{modelId}",
+              "item": [
+                {
+                  "name": "versions",
+                  "item": [
+                    {
+                      "name": "{versionId}",
+                      "item": [
+                        {
+                          "name": "JFrog Get Model Version",
+                          "id": "3ae52040-4817-4209-8620-806e378f4b1d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/models/:modelId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "models",
+                                ":modelId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "862114b0-0366-4914-86b1-bf6a69d10848",
+                                  "key": "modelId",
+                                  "value": "<string>",
+                                  "description": "(Required) Model ID"
+                                },
+                                {
+                                  "id": "02543729-6e0e-441f-9f15-587446bc23dd",
+                                  "key": "versionId",
+                                  "value": "<string>",
+                                  "description": "(Required) Version ID"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific model version."
+                          },
+                          "response": [
+                            {
+                              "id": "d56bf9b2-7e15-459f-be12-e406d248ab15",
+                              "name": "Model version details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/models/:modelId/versions/:versionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "models",
+                                    ":modelId",
+                                    "versions",
+                                    ":versionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "modelId"
+                                    },
+                                    {
+                                      "key": "versionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"staging\",\n  \"artifact_path\": \"<string>\",\n  \"metrics\": {\n    \"Lorem_35\": \"<number>\",\n    \"tempor2\": \"<number>\"\n  },\n  \"parameters\": {\n    \"nostrude7\": \"<string>\",\n    \"officia_45\": \"<string>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T13:05:20.000Z",
+                              "updatedAt": "2026-06-05T13:05:20.000Z",
+                              "uid": "35240-d56bf9b2-7e15-459f-be12-e406d248ab15"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:05:20.000Z",
+                          "updatedAt": "2026-06-05T13:05:20.000Z",
+                          "uid": "35240-3ae52040-4817-4209-8620-806e378f4b1d"
+                        },
+                        {
+                          "name": "JFrog Delete Model Version",
+                          "id": "e05c178a-0b89-468f-88e1-ab77f47a8f0c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/models/:modelId/versions/:versionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "models",
+                                ":modelId",
+                                "versions",
+                                ":versionId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2ca416d0-f67e-40f1-af17-a54643b66ff0",
+                                  "key": "modelId",
+                                  "value": "<string>",
+                                  "description": "(Required) Model ID"
+                                },
+                                {
+                                  "id": "445dd2fa-eedd-4bb0-9340-2fee1fe8f849",
+                                  "key": "versionId",
+                                  "value": "<string>",
+                                  "description": "(Required) Version ID"
+                                }
+                              ]
+                            },
+                            "description": "Deletes a specific model version."
+                          },
+                          "response": [
+                            {
+                              "id": "1cb554d9-47e9-48e4-89d0-a6a6fe7ebb6f",
+                              "name": "Model version deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/models/:modelId/versions/:versionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "models",
+                                    ":modelId",
+                                    "versions",
+                                    ":versionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "modelId"
+                                    },
+                                    {
+                                      "key": "versionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:05:20.000Z",
+                              "updatedAt": "2026-06-05T13:05:20.000Z",
+                              "uid": "35240-1cb554d9-47e9-48e4-89d0-a6a6fe7ebb6f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:05:20.000Z",
+                          "updatedAt": "2026-06-05T13:05:20.000Z",
+                          "uid": "35240-e05c178a-0b89-468f-88e1-ab77f47a8f0c"
+                        }
+                      ],
+                      "id": "42b9834c-a542-498a-9f6a-642c9d921092",
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-42b9834c-a542-498a-9f6a-642c9d921092"
+                    },
+                    {
+                      "name": "JFrog List Model Versions",
+                      "id": "17ae0dce-c9e9-494d-9bed-fa4c20671f0a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/models/:modelId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "models",
+                            ":modelId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2b9509f2-d231-4b82-a3d7-4a2609ddb1d1",
+                              "key": "modelId",
+                              "value": "<string>",
+                              "description": "(Required) Model ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns all versions for a specific model."
+                      },
+                      "response": [
+                        {
+                          "id": "d37ee861-33dd-4d39-b6cc-76a495427577",
+                          "name": "Model versions list",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/models/:modelId/versions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "models",
+                                ":modelId",
+                                "versions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"versions\": [\n    {\n      \"id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"version\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"archived\",\n      \"artifact_path\": \"<string>\",\n      \"metrics\": {\n        \"in85\": \"<number>\"\n      },\n      \"parameters\": {\n        \"Utc_\": \"<string>\",\n        \"minim8d8\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"version\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"draft\",\n      \"artifact_path\": \"<string>\",\n      \"metrics\": {\n        \"commodo_9d\": \"<number>\",\n        \"minim18\": \"<number>\"\n      },\n      \"parameters\": {\n        \"proident_0\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:20.000Z",
+                          "updatedAt": "2026-06-05T13:05:20.000Z",
+                          "uid": "35240-d37ee861-33dd-4d39-b6cc-76a495427577"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-17ae0dce-c9e9-494d-9bed-fa4c20671f0a"
+                    },
+                    {
+                      "name": "JFrog Create Model Version",
+                      "id": "c148fdb4-0642-4c7e-9327-045d40cb596e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"production\",\n  \"artifact_path\": \"<string>\",\n  \"metrics\": {\n    \"elit_7\": \"<number>\",\n    \"non7\": \"<number>\",\n    \"commodo_dfe\": \"<number>\"\n  },\n  \"parameters\": {\n    \"in_224\": \"<string>\",\n    \"irure_00b\": \"<string>\",\n    \"mollit_03\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/models/:modelId/versions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "models",
+                            ":modelId",
+                            "versions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "bfd452d3-c58b-4aff-a933-7dc04ad6f12d",
+                              "key": "modelId",
+                              "value": "<string>",
+                              "description": "(Required) Model ID"
+                            }
+                          ]
+                        },
+                        "description": "Creates a new version for a model."
+                      },
+                      "response": [
+                        {
+                          "id": "5f71951e-d852-46d9-9b1c-eb5b330c7696",
+                          "name": "Model version created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"production\",\n  \"artifact_path\": \"<string>\",\n  \"metrics\": {\n    \"elit_7\": \"<number>\",\n    \"non7\": \"<number>\",\n    \"commodo_dfe\": \"<number>\"\n  },\n  \"parameters\": {\n    \"in_224\": \"<string>\",\n    \"irure_00b\": \"<string>\",\n    \"mollit_03\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/models/:modelId/versions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "models",
+                                ":modelId",
+                                "versions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "modelId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"version\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"staging\",\n  \"artifact_path\": \"<string>\",\n  \"metrics\": {\n    \"Lorem_35\": \"<number>\",\n    \"tempor2\": \"<number>\"\n  },\n  \"parameters\": {\n    \"nostrude7\": \"<string>\",\n    \"officia_45\": \"<string>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T13:05:20.000Z",
+                          "updatedAt": "2026-06-05T13:05:20.000Z",
+                          "uid": "35240-5f71951e-d852-46d9-9b1c-eb5b330c7696"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-c148fdb4-0642-4c7e-9327-045d40cb596e"
+                    }
+                  ],
+                  "id": "2bc7039a-f12e-41c0-b8cc-703b31f6ded9",
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-2bc7039a-f12e-41c0-b8cc-703b31f6ded9"
+                },
+                {
+                  "name": "JFrog Get Model",
+                  "id": "d891478b-caab-496d-82be-7928f870d812",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/models/:modelId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "models",
+                        ":modelId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e98b9515-a210-45d2-acd5-188c967f913b",
+                          "key": "modelId",
+                          "value": "<string>",
+                          "description": "(Required) Model ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific model."
+                  },
+                  "response": [
+                    {
+                      "id": "755bb27b-96a4-493f-98a9-cd61c5df655d",
+                      "name": "Model details retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/models/:modelId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "models",
+                            ":modelId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"framework\": \"<string>\",\n  \"task_type\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"latest_version\": \"<string>\",\n  \"versions_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-755bb27b-96a4-493f-98a9-cd61c5df655d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-d891478b-caab-496d-82be-7928f870d812"
+                },
+                {
+                  "name": "JFrog Update Model",
+                  "id": "b1278af1-b97c-4c22-9ac1-f7850d774ffc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"framework\": \"<string>\",\n  \"task_type\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/models/:modelId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "models",
+                        ":modelId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "877c5ff8-7df4-4327-af6e-3b4382822e08",
+                          "key": "modelId",
+                          "value": "<string>",
+                          "description": "(Required) Model ID"
+                        }
+                      ]
+                    },
+                    "description": "Updates model metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "b1574a16-0387-4fce-b8ed-51922ccb437f",
+                      "name": "Model updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"framework\": \"<string>\",\n  \"task_type\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/models/:modelId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "models",
+                            ":modelId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-b1574a16-0387-4fce-b8ed-51922ccb437f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-b1278af1-b97c-4c22-9ac1-f7850d774ffc"
+                },
+                {
+                  "name": "JFrog Delete Model",
+                  "id": "627c8c00-183e-433c-9d3d-c609eb90376d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/models/:modelId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "models",
+                        ":modelId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e64ed4c1-c64c-4d20-9f19-880292cf20f3",
+                          "key": "modelId",
+                          "value": "<string>",
+                          "description": "(Required) Model ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a model and all its versions."
+                  },
+                  "response": [
+                    {
+                      "id": "6346a877-7bac-48f9-b881-c34e9c83b3c8",
+                      "name": "Model deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/models/:modelId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "models",
+                            ":modelId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "modelId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-6346a877-7bac-48f9-b881-c34e9c83b3c8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-627c8c00-183e-433c-9d3d-c609eb90376d"
+                }
+              ],
+              "id": "438987a0-dbff-4887-9c2e-c5d9440c0099",
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-438987a0-dbff-4887-9c2e-c5d9440c0099"
+            },
+            {
+              "name": "JFrog List Models",
+              "id": "00abc9ed-d987-4f5a-985a-2c7c7ee40960",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/models?limit=25&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "models"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of results",
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of all registered ML models."
+              },
+              "response": [
+                {
+                  "id": "fb04a71b-c0e8-4917-945a-1ddd929a1e2c",
+                  "name": "Models list retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/models?limit=25&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "models"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of results",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"models\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"framework\": \"<string>\",\n      \"task_type\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"latest_version\": \"<string>\",\n      \"versions_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"framework\": \"<string>\",\n      \"task_type\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"latest_version\": \"<string>\",\n      \"versions_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-fb04a71b-c0e8-4917-945a-1ddd929a1e2c"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-00abc9ed-d987-4f5a-985a-2c7c7ee40960"
+            },
+            {
+              "name": "JFrog Create Model",
+              "id": "9205c621-d511-4326-93fc-072095b1a70f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"framework\": \"<string>\",\n  \"task_type\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/models",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "models"
+                  ]
+                },
+                "description": "Registers a new ML model in the model registry."
+              },
+              "response": [
+                {
+                  "id": "63c097de-78ab-4bd4-a668-a54044ab5ce2",
+                  "name": "Model created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"framework\": \"<string>\",\n  \"task_type\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/models",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "models"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"framework\": \"<string>\",\n  \"task_type\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"latest_version\": \"<string>\",\n  \"versions_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-63c097de-78ab-4bd4-a668-a54044ab5ce2"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-9205c621-d511-4326-93fc-072095b1a70f"
+            }
+          ],
+          "id": "ce902ce4-58b7-467e-bda8-de9b9b65fc84",
+          "createdAt": "2026-06-05T13:05:20.000Z",
+          "updatedAt": "2026-06-05T13:05:20.000Z",
+          "uid": "35240-ce902ce4-58b7-467e-bda8-de9b9b65fc84"
+        },
+        {
+          "name": "experiments",
+          "item": [
+            {
+              "name": "{experimentId}",
+              "item": [
+                {
+                  "name": "JFrog Get Experiment",
+                  "id": "8c4067bb-03db-4258-b9ed-672519947515",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/experiments/:experimentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "experiments",
+                        ":experimentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "05e32477-1bd6-4839-aa09-c76f60ba8ab2",
+                          "key": "experimentId",
+                          "value": "<string>",
+                          "description": "(Required) Experiment ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific experiment."
+                  },
+                  "response": [
+                    {
+                      "id": "23596aa9-270f-4940-858f-7b69f3200c1d",
+                      "name": "Experiment details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/experiments/:experimentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "experiments",
+                            ":experimentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "experimentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"status\": \"failed\",\n  \"metrics\": {\n    \"ad557\": \"<number>\",\n    \"pariatur30d\": \"<number>\"\n  },\n  \"parameters\": {\n    \"in0ab\": \"<string>\",\n    \"occaecat_4\": \"<string>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-23596aa9-270f-4940-858f-7b69f3200c1d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-8c4067bb-03db-4258-b9ed-672519947515"
+                },
+                {
+                  "name": "JFrog Delete Experiment",
+                  "id": "916de0d9-ee15-45c2-8f48-4ac47385ddfe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/experiments/:experimentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "experiments",
+                        ":experimentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "04fd5b49-2c96-4d61-8b30-81f473f01ea8",
+                          "key": "experimentId",
+                          "value": "<string>",
+                          "description": "(Required) Experiment ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes an experiment."
+                  },
+                  "response": [
+                    {
+                      "id": "1328e491-7c3e-4a69-9998-208af2eadda7",
+                      "name": "Experiment deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/experiments/:experimentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "experiments",
+                            ":experimentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "experimentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-1328e491-7c3e-4a69-9998-208af2eadda7"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-916de0d9-ee15-45c2-8f48-4ac47385ddfe"
+                }
+              ],
+              "id": "78e5b03e-1a97-4c82-99f3-8e3bb03df554",
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-78e5b03e-1a97-4c82-99f3-8e3bb03df554"
+            },
+            {
+              "name": "JFrog List Experiments",
+              "id": "574f711e-d4a9-43f6-9129-14353b43406d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/experiments?model_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "experiments"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by model ID",
+                      "key": "model_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of all ML experiments."
+              },
+              "response": [
+                {
+                  "id": "823ea33c-807f-4c1e-872a-c730677f6532",
+                  "name": "Experiments list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/experiments?model_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "experiments"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by model ID",
+                          "key": "model_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"experiments\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"status\": \"running\",\n      \"metrics\": {\n        \"irure_6d3\": \"<number>\",\n        \"ullamco_2\": \"<number>\",\n        \"velit_08\": \"<number>\"\n      },\n      \"parameters\": {\n        \"exercitation_7\": \"<string>\",\n        \"magnab1b\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"status\": \"running\",\n      \"metrics\": {\n        \"ad_4\": \"<number>\"\n      },\n      \"parameters\": {\n        \"labore_bf\": \"<string>\",\n        \"voluptate_503\": \"<string>\",\n        \"fugiatfe\": \"<string>\",\n        \"tempore4\": \"<string>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-823ea33c-807f-4c1e-872a-c730677f6532"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-574f711e-d4a9-43f6-9129-14353b43406d"
+            },
+            {
+              "name": "JFrog Create Experiment",
+              "id": "6c4c4fa9-3ed1-4265-a112-e2caf342f2b9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"parameters\": {\n    \"Ut_c2a\": \"<string>\",\n    \"Duisc51\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/experiments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "experiments"
+                  ]
+                },
+                "description": "Creates a new ML experiment."
+              },
+              "response": [
+                {
+                  "id": "457f4b35-a0ef-410b-b6ff-88c0540afde3",
+                  "name": "Experiment created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"parameters\": {\n    \"Ut_c2a\": \"<string>\",\n    \"Duisc51\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/experiments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "experiments"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"status\": \"failed\",\n  \"metrics\": {\n    \"ad557\": \"<number>\",\n    \"pariatur30d\": \"<number>\"\n  },\n  \"parameters\": {\n    \"in0ab\": \"<string>\",\n    \"occaecat_4\": \"<string>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-457f4b35-a0ef-410b-b6ff-88c0540afde3"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-6c4c4fa9-3ed1-4265-a112-e2caf342f2b9"
+            }
+          ],
+          "id": "fce7f5e4-69e4-48c6-aa55-e2359a3e0ea6",
+          "createdAt": "2026-06-05T13:05:20.000Z",
+          "updatedAt": "2026-06-05T13:05:20.000Z",
+          "uid": "35240-fce7f5e4-69e4-48c6-aa55-e2359a3e0ea6"
+        },
+        {
+          "name": "deployments",
+          "item": [
+            {
+              "name": "{deploymentId}",
+              "item": [
+                {
+                  "name": "JFrog Get Deployment",
+                  "id": "7da228fb-a515-4937-bd26-4a6340fe6630",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deployments/:deploymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deployments",
+                        ":deploymentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c0d958ba-d09c-49f4-bf98-b45037169fdb",
+                          "key": "deploymentId",
+                          "value": "<string>",
+                          "description": "(Required) Deployment ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific deployment."
+                  },
+                  "response": [
+                    {
+                      "id": "ed605991-881f-481e-a753-baa8f3d9032d",
+                      "name": "Deployment details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/deployments/:deploymentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "deployments",
+                            ":deploymentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deploymentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"model_version_id\": \"<string>\",\n  \"status\": \"deploying\",\n  \"endpoint_url\": \"<uri>\",\n  \"replicas\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-ed605991-881f-481e-a753-baa8f3d9032d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-7da228fb-a515-4937-bd26-4a6340fe6630"
+                },
+                {
+                  "name": "JFrog Delete Deployment",
+                  "id": "b08c89ca-3106-4345-9194-d90f1a19e36f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deployments/:deploymentId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deployments",
+                        ":deploymentId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "b4538a8a-fdf2-451d-818f-87d234f62057",
+                          "key": "deploymentId",
+                          "value": "<string>",
+                          "description": "(Required) Deployment ID"
+                        }
+                      ]
+                    },
+                    "description": "Removes a model deployment."
+                  },
+                  "response": [
+                    {
+                      "id": "2ff5c546-ce21-4b43-a9d3-a10399574922",
+                      "name": "Deployment deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/deployments/:deploymentId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "deployments",
+                            ":deploymentId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "deploymentId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:20.000Z",
+                      "updatedAt": "2026-06-05T13:05:20.000Z",
+                      "uid": "35240-2ff5c546-ce21-4b43-a9d3-a10399574922"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-b08c89ca-3106-4345-9194-d90f1a19e36f"
+                }
+              ],
+              "id": "6f77f77a-8519-40c8-9f14-bf61dfafa39f",
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-6f77f77a-8519-40c8-9f14-bf61dfafa39f"
+            },
+            {
+              "name": "JFrog List Deployments",
+              "id": "3982da88-8916-44c0-bcc2-f5dd914298d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/deployments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "deployments"
+                  ]
+                },
+                "description": "Returns a list of all model deployments."
+              },
+              "response": [
+                {
+                  "id": "76bb3317-b1b9-4b65-a10c-e8e83dba0a8b",
+                  "name": "Deployments list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deployments"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"deployments\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"model_version_id\": \"<string>\",\n      \"status\": \"stopped\",\n      \"endpoint_url\": \"<uri>\",\n      \"replicas\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"model_id\": \"<string>\",\n      \"model_version_id\": \"<string>\",\n      \"status\": \"deploying\",\n      \"endpoint_url\": \"<uri>\",\n      \"replicas\": \"<integer>\",\n      \"created_at\": \"<dateTime>\",\n      \"updated_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-76bb3317-b1b9-4b65-a10c-e8e83dba0a8b"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-3982da88-8916-44c0-bcc2-f5dd914298d1"
+            },
+            {
+              "name": "JFrog Create Deployment",
+              "id": "4a9ce4b7-f93a-4168-934d-5bab4a9d1e46",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"model_version_id\": \"<string>\",\n  \"replicas\": 1,\n  \"resources\": {\n    \"cpu\": \"<string>\",\n    \"memory\": \"<string>\",\n    \"gpu\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/deployments",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "deployments"
+                  ]
+                },
+                "description": "Deploys a model version for serving predictions."
+              },
+              "response": [
+                {
+                  "id": "44401565-6ce2-49eb-9aaf-83680a1410fe",
+                  "name": "Deployment created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"model_version_id\": \"<string>\",\n  \"replicas\": 1,\n  \"resources\": {\n    \"cpu\": \"<string>\",\n    \"memory\": \"<string>\",\n    \"gpu\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/deployments",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "deployments"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"model_id\": \"<string>\",\n  \"model_version_id\": \"<string>\",\n  \"status\": \"deploying\",\n  \"endpoint_url\": \"<uri>\",\n  \"replicas\": \"<integer>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:05:20.000Z",
+                  "updatedAt": "2026-06-05T13:05:20.000Z",
+                  "uid": "35240-44401565-6ce2-49eb-9aaf-83680a1410fe"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:20.000Z",
+              "updatedAt": "2026-06-05T13:05:20.000Z",
+              "uid": "35240-4a9ce4b7-f93a-4168-934d-5bab4a9d1e46"
+            }
+          ],
+          "id": "e7044401-9f35-4c26-97e2-8e67ca369595",
+          "createdAt": "2026-06-05T13:05:20.000Z",
+          "updatedAt": "2026-06-05T13:05:20.000Z",
+          "uid": "35240-e7044401-9f35-4c26-97e2-8e67ca369595"
+        }
+      ],
+      "id": "41cd7e0c-e164-4beb-a82b-f1586b385ee0",
+      "createdAt": "2026-06-05T13:05:20.000Z",
+      "updatedAt": "2026-06-05T13:05:20.000Z",
+      "uid": "35240-41cd7e0c-e164-4beb-a82b-f1586b385ee0"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/ml/api"
+    }
+  ]
+}

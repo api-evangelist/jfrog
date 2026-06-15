@@ -1,0 +1,377 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog ML REST API",
+    "version": "1.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of all registered ML models."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers a new ML model in the model registry."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models/:modelId",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Model ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific model."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models/:modelId",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Model ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates model metadata."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models/:modelId",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Model ID"
+              }
+            ]
+          },
+          "docs": "Deletes a model and all its versions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Model Versions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Model Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models/:modelId/versions",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Model ID"
+              }
+            ]
+          },
+          "docs": "Returns all versions for a specific model."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Model Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models/:modelId/versions",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Model ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new version for a model."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Model Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models/:modelId/versions/:versionId",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Model ID"
+              },
+              {
+                "name": "versionId",
+                "value": "",
+                "type": "path",
+                "description": "Version ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific model version."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Model Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/ml/api/v1/models/:modelId/versions/:versionId",
+            "params": [
+              {
+                "name": "modelId",
+                "value": "",
+                "type": "path",
+                "description": "Model ID"
+              },
+              {
+                "name": "versionId",
+                "value": "",
+                "type": "path",
+                "description": "Version ID"
+              }
+            ]
+          },
+          "docs": "Deletes a specific model version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Experiments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Experiments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/experiments",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by model ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of all ML experiments."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/ml/api/v1/experiments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ML experiment."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/experiments/:experimentId",
+            "params": [
+              {
+                "name": "experimentId",
+                "value": "",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific experiment."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/ml/api/v1/experiments/:experimentId",
+            "params": [
+              {
+                "name": "experimentId",
+                "value": "",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Deletes an experiment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/deployments"
+          },
+          "docs": "Returns a list of all model deployments."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/ml/api/v1/deployments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deploys a model version for serving predictions."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/ml/api/v1/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path",
+                "description": "Deployment ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific deployment."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/ml/api/v1/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path",
+                "description": "Deployment ID"
+              }
+            ]
+          },
+          "docs": "Removes a model deployment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

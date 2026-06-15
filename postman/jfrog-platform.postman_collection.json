@@ -1,0 +1,3320 @@
+{
+  "info": {
+    "_postman_id": "368acca0-deb4-4e04-9686-83590aaf46d0",
+    "name": "JFrog Platform REST API",
+    "description": "Unified API for JFrog Platform services and administration. Provides centralized access management, project administration, and system configuration across all JFrog services.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:04:11.000Z",
+    "updatedAt": "2026-06-05T13:04:11.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-368acca0-deb4-4e04-9686-83590aaf46d0"
+  },
+  "item": [
+    {
+      "name": "router",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "system",
+                  "item": [
+                    {
+                      "name": "ping",
+                      "item": [
+                        {
+                          "name": "JFrog Platform Router Ping",
+                          "id": "6865ac7d-ee11-417a-968d-02e5c6c34c56",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/plain"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/router/api/v1/system/ping",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "router",
+                                "api",
+                                "v1",
+                                "system",
+                                "ping"
+                              ]
+                            },
+                            "description": "Returns a simple health check from the JFrog Platform router."
+                          },
+                          "response": [
+                            {
+                              "id": "d727b010-4bb2-4e76-bbc1-f1800f0039b0",
+                              "name": "Platform is accessible",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "text/plain"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/router/api/v1/system/ping",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "router",
+                                    "api",
+                                    "v1",
+                                    "system",
+                                    "ping"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "text/plain"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "<string>",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-d727b010-4bb2-4e76-bbc1-f1800f0039b0"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-6865ac7d-ee11-417a-968d-02e5c6c34c56"
+                        }
+                      ],
+                      "id": "73bea24e-f4dc-4bde-a2a3-6ec07aa975aa",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-73bea24e-f4dc-4bde-a2a3-6ec07aa975aa"
+                    },
+                    {
+                      "name": "health",
+                      "item": [
+                        {
+                          "name": "JFrog Get System Health",
+                          "id": "657350bb-0712-4373-84b0-7fd8b1f2779c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/router/api/v1/system/health",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "router",
+                                "api",
+                                "v1",
+                                "system",
+                                "health"
+                              ]
+                            },
+                            "description": "Returns health status of all JFrog services."
+                          },
+                          "response": [
+                            {
+                              "id": "0dd77224-97ab-45f0-a464-fcb9d2853c7d",
+                              "name": "System health retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/router/api/v1/system/health",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "router",
+                                    "api",
+                                    "v1",
+                                    "system",
+                                    "health"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"router\": {\n    \"node_id\": \"<string>\",\n    \"state\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  \"services\": [\n    {\n      \"service_id\": \"<string>\",\n      \"node_id\": \"<string>\",\n      \"state\": \"DEGRADED\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"service_id\": \"<string>\",\n      \"node_id\": \"<string>\",\n      \"state\": \"DEGRADED\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-0dd77224-97ab-45f0-a464-fcb9d2853c7d"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-657350bb-0712-4373-84b0-7fd8b1f2779c"
+                        }
+                      ],
+                      "id": "faf1350f-8518-410e-871d-1c41c89a11c0",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-faf1350f-8518-410e-871d-1c41c89a11c0"
+                    }
+                  ],
+                  "id": "5bacb90c-cda4-4ed9-a951-b88f25757f3c",
+                  "createdAt": "2026-06-05T13:04:11.000Z",
+                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                  "uid": "35240-5bacb90c-cda4-4ed9-a951-b88f25757f3c"
+                }
+              ],
+              "id": "c90c43a9-7878-4a37-bf89-a95731ac4dbb",
+              "createdAt": "2026-06-05T13:04:11.000Z",
+              "updatedAt": "2026-06-05T13:04:11.000Z",
+              "uid": "35240-c90c43a9-7878-4a37-bf89-a95731ac4dbb"
+            }
+          ],
+          "id": "97abbe27-70bd-4ae6-b25c-b060bf0f54b6",
+          "createdAt": "2026-06-05T13:04:11.000Z",
+          "updatedAt": "2026-06-05T13:04:11.000Z",
+          "uid": "35240-97abbe27-70bd-4ae6-b25c-b060bf0f54b6"
+        }
+      ],
+      "id": "28174964-ed0e-4d8b-9e6d-003d8ac30419",
+      "createdAt": "2026-06-05T13:04:11.000Z",
+      "updatedAt": "2026-06-05T13:04:11.000Z",
+      "uid": "35240-28174964-ed0e-4d8b-9e6d-003d8ac30419"
+    },
+    {
+      "name": "access",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "v2",
+              "item": [
+                {
+                  "name": "tokens",
+                  "item": [
+                    {
+                      "name": "{tokenId}",
+                      "item": [
+                        {
+                          "name": "JFrog Get Token Details",
+                          "id": "1a867841-a95b-4cba-966c-ddee07d703fb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/tokens/:tokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "tokens",
+                                ":tokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2ce48f69-9ffe-4eeb-a75c-98e2dd27abde",
+                                  "key": "tokenId",
+                                  "value": "<string>",
+                                  "description": "(Required) Token ID"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific access token."
+                          },
+                          "response": [
+                            {
+                              "id": "3750441b-795c-445c-8523-9557946af4b4",
+                              "name": "Token details retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/tokens/:tokenId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "tokens",
+                                    ":tokenId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tokenId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"token_id\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"expiry\": \"<integer>\",\n  \"issued_at\": \"<integer>\",\n  \"issuer\": \"<string>\",\n  \"description\": \"<string>\",\n  \"refreshable\": \"<boolean>\",\n  \"scope\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-3750441b-795c-445c-8523-9557946af4b4"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-1a867841-a95b-4cba-966c-ddee07d703fb"
+                        },
+                        {
+                          "name": "JFrog Revoke Access Token",
+                          "id": "42c24997-f0a0-4892-8bfe-6f289d6a6f01",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/tokens/:tokenId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "tokens",
+                                ":tokenId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0d0f5039-e925-4be8-873e-f32b4d621727",
+                                  "key": "tokenId",
+                                  "value": "<string>",
+                                  "description": "(Required) Token ID"
+                                }
+                              ]
+                            },
+                            "description": "Revokes an access token."
+                          },
+                          "response": [
+                            {
+                              "id": "62667c64-ad5f-48e4-a59a-42a362d6f51c",
+                              "name": "Token revoked",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/tokens/:tokenId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "tokens",
+                                    ":tokenId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "tokenId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-62667c64-ad5f-48e4-a59a-42a362d6f51c"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-42c24997-f0a0-4892-8bfe-6f289d6a6f01"
+                        }
+                      ],
+                      "id": "1719ead1-33a6-4414-bd31-ddc14caa9bcd",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-1719ead1-33a6-4414-bd31-ddc14caa9bcd"
+                    },
+                    {
+                      "name": "JFrog List Access Tokens",
+                      "id": "1c14900e-b101-4745-a938-855c42ee75f1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "tokens"
+                          ]
+                        },
+                        "description": "Returns a list of all access tokens."
+                      },
+                      "response": [
+                        {
+                          "id": "79379722-18fa-4a9c-910a-3ee01d7ba122",
+                          "name": "Tokens list retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "tokens"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"tokens\": [\n    {\n      \"token_id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"expiry\": \"<integer>\",\n      \"issued_at\": \"<integer>\",\n      \"issuer\": \"<string>\",\n      \"description\": \"<string>\",\n      \"refreshable\": \"<boolean>\",\n      \"scope\": \"<string>\"\n    },\n    {\n      \"token_id\": \"<string>\",\n      \"subject\": \"<string>\",\n      \"expiry\": \"<integer>\",\n      \"issued_at\": \"<integer>\",\n      \"issuer\": \"<string>\",\n      \"description\": \"<string>\",\n      \"refreshable\": \"<boolean>\",\n      \"scope\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-79379722-18fa-4a9c-910a-3ee01d7ba122"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-1c14900e-b101-4745-a938-855c42ee75f1"
+                    },
+                    {
+                      "name": "JFrog Create Access Token",
+                      "id": "f4ca3d56-676d-4a3d-b8fe-36446e36287f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"scope\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refreshable\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"audience\": \"<string>\",\n  \"include_reference_token\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "tokens"
+                          ]
+                        },
+                        "description": "Creates a new access token."
+                      },
+                      "response": [
+                        {
+                          "id": "35e7e3b6-4cba-4be9-97cb-746cbd5da791",
+                          "name": "Token created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"scope\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refreshable\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"audience\": \"<string>\",\n  \"include_reference_token\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "tokens"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"token_id\": \"<string>\",\n  \"access_token\": \"<string>\",\n  \"refresh_token\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"token_type\": \"<string>\",\n  \"reference_token\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-35e7e3b6-4cba-4be9-97cb-746cbd5da791"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-f4ca3d56-676d-4a3d-b8fe-36446e36287f"
+                    }
+                  ],
+                  "id": "0be9c06f-b9f2-4408-94b7-17c41ad57ebd",
+                  "createdAt": "2026-06-05T13:04:11.000Z",
+                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                  "uid": "35240-0be9c06f-b9f2-4408-94b7-17c41ad57ebd"
+                },
+                {
+                  "name": "users",
+                  "item": [
+                    {
+                      "name": "{username}",
+                      "item": [
+                        {
+                          "name": "JFrog Get User",
+                          "id": "18a02cd2-90df-4eb7-8dd7-19d88acaab48",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/users/:username",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "users",
+                                ":username"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "decc2372-b63a-4c4e-ad50-95929578985b",
+                                  "key": "username",
+                                  "value": "<string>",
+                                  "description": "(Required) Username"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific user."
+                          },
+                          "response": [
+                            {
+                              "id": "8970af94-7c25-45db-ae89-f4c0c7f4a522",
+                              "name": "User details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/users/:username",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "users",
+                                    ":username"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"disable_ui_access\": \"<boolean>\",\n  \"internal_password_disabled\": \"<boolean>\",\n  \"status\": \"enabled\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-8970af94-7c25-45db-ae89-f4c0c7f4a522"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-18a02cd2-90df-4eb7-8dd7-19d88acaab48"
+                        },
+                        {
+                          "name": "JFrog Update User",
+                          "id": "28d4a77a-cd2f-45c1-b759-6c6c63fa4a09",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/users/:username",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "users",
+                                ":username"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6295a72f-74c1-4fca-bd6d-c48a5b14e48e",
+                                  "key": "username",
+                                  "value": "<string>",
+                                  "description": "(Required) Username"
+                                }
+                              ]
+                            },
+                            "description": "Updates user details."
+                          },
+                          "response": [
+                            {
+                              "id": "c717c218-42af-4735-bb55-3cb4681d008d",
+                              "name": "User updated",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/users/:username",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "users",
+                                    ":username"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-c717c218-42af-4735-bb55-3cb4681d008d"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-28d4a77a-cd2f-45c1-b759-6c6c63fa4a09"
+                        },
+                        {
+                          "name": "JFrog Delete User",
+                          "id": "233ab14e-a7f5-464a-a8fd-9a99a8bec1e5",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/users/:username",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "users",
+                                ":username"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "85dbf991-5fe8-4463-94e5-3a0cefb22b64",
+                                  "key": "username",
+                                  "value": "<string>",
+                                  "description": "(Required) Username"
+                                }
+                              ]
+                            },
+                            "description": "Deletes a user."
+                          },
+                          "response": [
+                            {
+                              "id": "533b3f02-a974-4184-99aa-e2b95e4f03e9",
+                              "name": "User deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/users/:username",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "users",
+                                    ":username"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "username"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-533b3f02-a974-4184-99aa-e2b95e4f03e9"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-233ab14e-a7f5-464a-a8fd-9a99a8bec1e5"
+                        }
+                      ],
+                      "id": "b47be0cd-b5c9-4ca3-a13b-c1c035a9eb67",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-b47be0cd-b5c9-4ca3-a13b-c1c035a9eb67"
+                    },
+                    {
+                      "name": "JFrog List Users",
+                      "id": "b7c73b2d-1581-44ca-bbe8-1af1337a099b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "users"
+                          ]
+                        },
+                        "description": "Returns a list of all platform users."
+                      },
+                      "response": [
+                        {
+                          "id": "b0f81ba3-9451-4d3e-84c1-e77d2baaf8de",
+                          "name": "Users list retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "users"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"users\": [\n    {\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"admin\": \"<boolean>\",\n      \"profile_updatable\": \"<boolean>\",\n      \"disable_ui_access\": \"<boolean>\",\n      \"internal_password_disabled\": \"<boolean>\",\n      \"status\": \"enabled\",\n      \"groups\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"username\": \"<string>\",\n      \"email\": \"<email>\",\n      \"admin\": \"<boolean>\",\n      \"profile_updatable\": \"<boolean>\",\n      \"disable_ui_access\": \"<boolean>\",\n      \"internal_password_disabled\": \"<boolean>\",\n      \"status\": \"enabled\",\n      \"groups\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-b0f81ba3-9451-4d3e-84c1-e77d2baaf8de"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-b7c73b2d-1581-44ca-bbe8-1af1337a099b"
+                    },
+                    {
+                      "name": "JFrog Create User",
+                      "id": "e9b6e59a-2f22-4a3d-9cda-cd4fd92099fc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/users",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "users"
+                          ]
+                        },
+                        "description": "Creates a new platform user."
+                      },
+                      "response": [
+                        {
+                          "id": "028089b5-e228-41ff-b671-0b2db5d1b7a8",
+                          "name": "User created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/users",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "users"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"disable_ui_access\": \"<boolean>\",\n  \"internal_password_disabled\": \"<boolean>\",\n  \"status\": \"enabled\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-028089b5-e228-41ff-b671-0b2db5d1b7a8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-e9b6e59a-2f22-4a3d-9cda-cd4fd92099fc"
+                    }
+                  ],
+                  "id": "46816b38-7ebc-4e09-92ab-86454c350878",
+                  "createdAt": "2026-06-05T13:04:11.000Z",
+                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                  "uid": "35240-46816b38-7ebc-4e09-92ab-86454c350878"
+                },
+                {
+                  "name": "groups",
+                  "item": [
+                    {
+                      "name": "{groupName}",
+                      "item": [
+                        {
+                          "name": "JFrog Get Group",
+                          "id": "e6a2ee36-4467-41b6-a240-799f0dce18e7",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/groups/:groupName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "groups",
+                                ":groupName"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "152ee186-d4ca-4826-b7d5-e4da5b097020",
+                                  "key": "groupName",
+                                  "value": "<string>",
+                                  "description": "(Required) Group name"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific group."
+                          },
+                          "response": [
+                            {
+                              "id": "c202fc33-655b-4c92-b50f-604861159b55",
+                              "name": "Group details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/groups/:groupName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "groups",
+                                    ":groupName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "groupName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-c202fc33-655b-4c92-b50f-604861159b55"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-e6a2ee36-4467-41b6-a240-799f0dce18e7"
+                        },
+                        {
+                          "name": "JFrog Update Group",
+                          "id": "a3423e81-ad85-46b8-b08c-c4ec37b5cb84",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/groups/:groupName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "groups",
+                                ":groupName"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "049f43df-d2a9-4e75-b197-c2c4384d9aff",
+                                  "key": "groupName",
+                                  "value": "<string>",
+                                  "description": "(Required) Group name"
+                                }
+                              ]
+                            },
+                            "description": "Updates group details."
+                          },
+                          "response": [
+                            {
+                              "id": "646320e6-f893-4fc1-887a-420f6304d803",
+                              "name": "Group updated",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/groups/:groupName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "groups",
+                                    ":groupName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "groupName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-646320e6-f893-4fc1-887a-420f6304d803"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-a3423e81-ad85-46b8-b08c-c4ec37b5cb84"
+                        },
+                        {
+                          "name": "JFrog Delete Group",
+                          "id": "addb55df-6186-4fe7-8f76-44f6ffd3b827",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/groups/:groupName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "groups",
+                                ":groupName"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "e5f02948-34b2-4064-a831-69a4efa16c0d",
+                                  "key": "groupName",
+                                  "value": "<string>",
+                                  "description": "(Required) Group name"
+                                }
+                              ]
+                            },
+                            "description": "Deletes a group."
+                          },
+                          "response": [
+                            {
+                              "id": "c54c8a1f-22bf-46f7-9d74-6154b168d4ae",
+                              "name": "Group deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/groups/:groupName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "groups",
+                                    ":groupName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "groupName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-c54c8a1f-22bf-46f7-9d74-6154b168d4ae"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-addb55df-6186-4fe7-8f76-44f6ffd3b827"
+                        }
+                      ],
+                      "id": "2f3fe1c7-2d72-42ac-b824-8b4bbd026f40",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-2f3fe1c7-2d72-42ac-b824-8b4bbd026f40"
+                    },
+                    {
+                      "name": "JFrog List Groups",
+                      "id": "9e1242a3-0e82-4ba4-aaca-05ec178e05f7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "groups"
+                          ]
+                        },
+                        "description": "Returns a list of all platform groups."
+                      },
+                      "response": [
+                        {
+                          "id": "8bd5b9e7-daf4-40e1-afc5-31e6fcef3c08",
+                          "name": "Groups list",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/groups",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "groups"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"groups\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"auto_join\": \"<boolean>\",\n      \"admin_privileges\": \"<boolean>\",\n      \"realm\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"members\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"auto_join\": \"<boolean>\",\n      \"admin_privileges\": \"<boolean>\",\n      \"realm\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"members\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-8bd5b9e7-daf4-40e1-afc5-31e6fcef3c08"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-9e1242a3-0e82-4ba4-aaca-05ec178e05f7"
+                    },
+                    {
+                      "name": "JFrog Create Group",
+                      "id": "70896adb-7df8-466d-92d6-eda871ba4ef8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "groups"
+                          ]
+                        },
+                        "description": "Creates a new platform group."
+                      },
+                      "response": [
+                        {
+                          "id": "49cc60cb-2261-4eb3-8808-e02c2df5fa7a",
+                          "name": "Group created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/groups",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "groups"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-49cc60cb-2261-4eb3-8808-e02c2df5fa7a"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-70896adb-7df8-466d-92d6-eda871ba4ef8"
+                    }
+                  ],
+                  "id": "24828f32-7e47-4321-a60a-83e5e3d7ad0f",
+                  "createdAt": "2026-06-05T13:04:11.000Z",
+                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                  "uid": "35240-24828f32-7e47-4321-a60a-83e5e3d7ad0f"
+                },
+                {
+                  "name": "permissions",
+                  "item": [
+                    {
+                      "name": "{permissionName}",
+                      "item": [
+                        {
+                          "name": "JFrog Get Permission",
+                          "id": "dbe3d210-dddb-444f-96c4-7373e47742d2",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/permissions/:permissionName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "permissions",
+                                ":permissionName"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3e9ea630-eb68-43c6-b03c-8874634d33b9",
+                                  "key": "permissionName",
+                                  "value": "<string>",
+                                  "description": "(Required) Permission name"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific permission."
+                          },
+                          "response": [
+                            {
+                              "id": "f610e4db-a7c5-4620-954a-ac8d3859470e",
+                              "name": "Permission details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/permissions/:permissionName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "permissions",
+                                    ":permissionName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "permissionName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"ipsum_4\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_752\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"cillum_d\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"non414\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"officia_9\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"est_1c\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"incididunt2f9\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_031\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"in_76\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"exercitation_824\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"nulla24\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"exercitation_b\": {}\n    }\n  }\n}",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-f610e4db-a7c5-4620-954a-ac8d3859470e"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-dbe3d210-dddb-444f-96c4-7373e47742d2"
+                        },
+                        {
+                          "name": "JFrog Update Permission",
+                          "id": "763aa213-bcf8-4765-921d-1a302af07da4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"ipsum_4\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_752\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"cillum_d\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"non414\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"officia_9\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"est_1c\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"incididunt2f9\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_031\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"in_76\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"exercitation_824\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"nulla24\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"exercitation_b\": {}\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/permissions/:permissionName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "permissions",
+                                ":permissionName"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "2d2d5095-2a8c-43c4-a865-cfd3e4e0b4d2",
+                                  "key": "permissionName",
+                                  "value": "<string>",
+                                  "description": "(Required) Permission name"
+                                }
+                              ]
+                            },
+                            "description": "Updates a permission configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "1e9cf304-df52-45aa-a852-71ede88e288b",
+                              "name": "Permission updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"ipsum_4\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_752\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"cillum_d\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"non414\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"officia_9\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"est_1c\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"incididunt2f9\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_031\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"in_76\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"exercitation_824\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"nulla24\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"exercitation_b\": {}\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/permissions/:permissionName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "permissions",
+                                    ":permissionName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "permissionName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-1e9cf304-df52-45aa-a852-71ede88e288b"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-763aa213-bcf8-4765-921d-1a302af07da4"
+                        },
+                        {
+                          "name": "JFrog Delete Permission",
+                          "id": "98620c25-5845-4b50-9509-bacb62b6761d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/permissions/:permissionName",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "permissions",
+                                ":permissionName"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "81481763-e80d-427f-8faa-4b07eed6e17c",
+                                  "key": "permissionName",
+                                  "value": "<string>",
+                                  "description": "(Required) Permission name"
+                                }
+                              ]
+                            },
+                            "description": "Deletes a permission configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "b1c810d3-7228-4235-9746-3681bcbac907",
+                              "name": "Permission deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v2/permissions/:permissionName",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v2",
+                                    "permissions",
+                                    ":permissionName"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "permissionName"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-b1c810d3-7228-4235-9746-3681bcbac907"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-98620c25-5845-4b50-9509-bacb62b6761d"
+                        }
+                      ],
+                      "id": "d13526fa-a1fb-4d60-9679-99b42ca5e178",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-d13526fa-a1fb-4d60-9679-99b42ca5e178"
+                    },
+                    {
+                      "name": "JFrog List Permissions",
+                      "id": "e2d6e93c-d6fd-41f0-87a1-ba69884f1573",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "permissions"
+                          ]
+                        },
+                        "description": "Returns a list of all permission configurations."
+                      },
+                      "response": [
+                        {
+                          "id": "1b6f8d98-6fac-46fc-8514-5de2b66229b9",
+                          "name": "Permissions list",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/permissions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "permissions"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"permissions\": [\n    {\n      \"name\": \"<string>\",\n      \"resources\": {\n        \"repository\": {\n          \"mollite4\": {\n            \"include_patterns\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"exclude_patterns\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"do_65\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"occaecat_7e7\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"mollit_3e\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"nulla_b\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              \"groups\": {\n                \"ipsumc\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"laboris505\": {},\n          \"cillum7af\": {}\n        }\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"resources\": {\n        \"repository\": {\n          \"sitb\": {\n            \"include_patterns\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"exclude_patterns\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"Lorem_b1\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"eiusmod_fe5\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"non303\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              },\n              \"groups\": {\n                \"proident_f_9\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"nostrud_cb\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"exercitation_3d_\": [\n                  \"<string>\",\n                  \"<string>\"\n                ],\n                \"voluptate_ee6\": [\n                  \"<string>\",\n                  \"<string>\"\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"amet_5\": {},\n          \"dolor98\": {},\n          \"velitdc\": {},\n          \"aliqua6\": {}\n        }\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-1b6f8d98-6fac-46fc-8514-5de2b66229b9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-e2d6e93c-d6fd-41f0-87a1-ba69884f1573"
+                    },
+                    {
+                      "name": "JFrog Create Permission",
+                      "id": "76e487ce-9bf4-4901-8f1c-180a9d401246",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"ipsum_4\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_752\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"cillum_d\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"non414\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"officia_9\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"est_1c\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"incididunt2f9\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_031\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"in_76\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"exercitation_824\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"nulla24\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"exercitation_b\": {}\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v2/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v2",
+                            "permissions"
+                          ]
+                        },
+                        "description": "Creates a new permission configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "a7aefc0b-e530-4a84-80ab-3b1b418c841b",
+                          "name": "Permission created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"ipsum_4\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_752\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"cillum_d\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"non414\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"officia_9\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"est_1c\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"incididunt2f9\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"dolore_031\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"in_76\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"exercitation_824\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"nulla24\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"exercitation_b\": {}\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v2/permissions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v2",
+                                "permissions"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-a7aefc0b-e530-4a84-80ab-3b1b418c841b"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-76e487ce-9bf4-4901-8f1c-180a9d401246"
+                    }
+                  ],
+                  "id": "b3051825-d495-41ea-840f-952071f32f19",
+                  "createdAt": "2026-06-05T13:04:11.000Z",
+                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                  "uid": "35240-b3051825-d495-41ea-840f-952071f32f19"
+                }
+              ],
+              "id": "1502410e-da94-43a1-8689-8367a14e4f48",
+              "createdAt": "2026-06-05T13:04:11.000Z",
+              "updatedAt": "2026-06-05T13:04:11.000Z",
+              "uid": "35240-1502410e-da94-43a1-8689-8367a14e4f48"
+            },
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "projects",
+                  "item": [
+                    {
+                      "name": "{projectKey}",
+                      "item": [
+                        {
+                          "name": "users",
+                          "item": [
+                            {
+                              "name": "{username}",
+                              "item": [
+                                {
+                                  "name": "JFrog Add User to Project",
+                                  "id": "ac3d2014-7db6-4511-b969-a94fdd3d5d22",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey/users/:username",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "access",
+                                        "api",
+                                        "v1",
+                                        "projects",
+                                        ":projectKey",
+                                        "users",
+                                        ":username"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d3be9933-40e6-4049-9203-6e8acc096a0c",
+                                          "key": "projectKey",
+                                          "value": "<string>",
+                                          "description": "(Required) Project key"
+                                        },
+                                        {
+                                          "id": "61eece91-47c1-440d-acec-a711fdfb7296",
+                                          "key": "username",
+                                          "value": "<string>",
+                                          "description": "(Required) Username"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Adds a user to a project with specified roles."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "462130b3-5a22-417b-87b9-b6af3490261e",
+                                      "name": "User added to project",
+                                      "originalRequest": {
+                                        "method": "PUT",
+                                        "header": [
+                                          {
+                                            "key": "Content-Type",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "body": {
+                                          "mode": "raw",
+                                          "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                                          "options": {
+                                            "raw": {
+                                              "headerFamily": "json",
+                                              "language": "json"
+                                            }
+                                          }
+                                        },
+                                        "url": {
+                                          "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey/users/:username",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "access",
+                                            "api",
+                                            "v1",
+                                            "projects",
+                                            ":projectKey",
+                                            "users",
+                                            ":username"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "projectKey"
+                                            },
+                                            {
+                                              "key": "username"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:04:11.000Z",
+                                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                                      "uid": "35240-462130b3-5a22-417b-87b9-b6af3490261e"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T13:04:11.000Z",
+                                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                                  "uid": "35240-ac3d2014-7db6-4511-b969-a94fdd3d5d22"
+                                },
+                                {
+                                  "name": "JFrog Remove User from Project",
+                                  "id": "bb5970e2-895e-4512-ac9a-0592452ba7d5",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "method": "DELETE",
+                                    "header": [],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey/users/:username",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "access",
+                                        "api",
+                                        "v1",
+                                        "projects",
+                                        ":projectKey",
+                                        "users",
+                                        ":username"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "3f1f3190-8f83-45a5-90ad-c828101b5ce6",
+                                          "key": "projectKey",
+                                          "value": "<string>",
+                                          "description": "(Required) Project key"
+                                        },
+                                        {
+                                          "id": "b9a82968-54db-4d0d-b3b0-ea7d95e09fbe",
+                                          "key": "username",
+                                          "value": "<string>",
+                                          "description": "(Required) Username"
+                                        }
+                                      ]
+                                    },
+                                    "description": "Removes a user from a project."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "1ffabd95-8948-4228-bb6e-eaecc65a57f6",
+                                      "name": "User removed from project",
+                                      "originalRequest": {
+                                        "method": "DELETE",
+                                        "header": [
+                                          {
+                                            "description": "Added as a part of security scheme: bearer",
+                                            "key": "Authorization",
+                                            "value": "Bearer <token>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey/users/:username",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "access",
+                                            "api",
+                                            "v1",
+                                            "projects",
+                                            ":projectKey",
+                                            "users",
+                                            ":username"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "projectKey"
+                                            },
+                                            {
+                                              "key": "username"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "No Content",
+                                      "code": 204,
+                                      "_postman_previewlanguage": "text",
+                                      "header": [],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": null,
+                                      "createdAt": "2026-06-05T13:04:11.000Z",
+                                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                                      "uid": "35240-1ffabd95-8948-4228-bb6e-eaecc65a57f6"
+                                    }
+                                  ],
+                                  "createdAt": "2026-06-05T13:04:11.000Z",
+                                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                                  "uid": "35240-bb5970e2-895e-4512-ac9a-0592452ba7d5"
+                                }
+                              ],
+                              "id": "c746ed6b-8f6b-4024-8944-3f8fd91a339f",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-c746ed6b-8f6b-4024-8944-3f8fd91a339f"
+                            }
+                          ],
+                          "id": "7ad65692-d94e-406d-978b-1608fe3052bb",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-7ad65692-d94e-406d-978b-1608fe3052bb"
+                        },
+                        {
+                          "name": "JFrog Get Project",
+                          "id": "e004025f-9463-47f3-9f45-ed0c64a06e9e",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v1",
+                                "projects",
+                                ":projectKey"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ac1e66af-721f-49bf-a004-be8fa86cafaf",
+                                  "key": "projectKey",
+                                  "value": "<string>",
+                                  "description": "(Required) Project key"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific project."
+                          },
+                          "response": [
+                            {
+                              "id": "2972a2f0-aaf0-446e-a4ee-f7af137569d8",
+                              "name": "Project details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v1",
+                                    "projects",
+                                    ":projectKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\",\n  \"soft_limit\": \"<boolean>\",\n  \"storage_quota_bytes\": \"<integer>\",\n  \"storage_quota_email_notification\": \"<boolean>\"\n}",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-2972a2f0-aaf0-446e-a4ee-f7af137569d8"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-e004025f-9463-47f3-9f45-ed0c64a06e9e"
+                        },
+                        {
+                          "name": "JFrog Update Project",
+                          "id": "968a1dfc-277a-4b8c-bf3c-b5b1bc4dd294",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v1",
+                                "projects",
+                                ":projectKey"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "bfcf6447-7abc-4f8b-a6ec-708909c8e9ad",
+                                  "key": "projectKey",
+                                  "value": "<string>",
+                                  "description": "(Required) Project key"
+                                }
+                              ]
+                            },
+                            "description": "Updates project configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "e61d6a07-abb5-4f79-a424-88c01ce71f29",
+                              "name": "Project updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v1",
+                                    "projects",
+                                    ":projectKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-e61d6a07-abb5-4f79-a424-88c01ce71f29"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-968a1dfc-277a-4b8c-bf3c-b5b1bc4dd294"
+                        },
+                        {
+                          "name": "JFrog Delete Project",
+                          "id": "021e1503-51cb-465f-bfd9-5f0f27751197",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v1",
+                                "projects",
+                                ":projectKey"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "0f7b27f5-4303-415f-b20d-8579040908c6",
+                                  "key": "projectKey",
+                                  "value": "<string>",
+                                  "description": "(Required) Project key"
+                                }
+                              ]
+                            },
+                            "description": "Deletes a project."
+                          },
+                          "response": [
+                            {
+                              "id": "f99976a7-f70e-4621-b770-2a26dca1bba0",
+                              "name": "Project deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/access/api/v1/projects/:projectKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "access",
+                                    "api",
+                                    "v1",
+                                    "projects",
+                                    ":projectKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-f99976a7-f70e-4621-b770-2a26dca1bba0"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-021e1503-51cb-465f-bfd9-5f0f27751197"
+                        }
+                      ],
+                      "id": "6982c9a0-5446-480c-a218-15e67f097d5f",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-6982c9a0-5446-480c-a218-15e67f097d5f"
+                    },
+                    {
+                      "name": "JFrog List Projects",
+                      "id": "5f97b975-c1d6-4746-94b2-d85327387fe8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v1/projects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v1",
+                            "projects"
+                          ]
+                        },
+                        "description": "Returns a list of all projects."
+                      },
+                      "response": [
+                        {
+                          "id": "89de683a-dbff-4d98-8687-574a7ad99ebf",
+                          "name": "Projects list",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v1/projects",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v1",
+                                "projects"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"project_key\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"admin_privileges\": {\n      \"manage_members\": \"<boolean>\",\n      \"manage_resources\": \"<boolean>\",\n      \"manage_security_assets\": \"<boolean>\",\n      \"index_resources\": \"<boolean>\",\n      \"allow_ignore_rules\": \"<boolean>\"\n    },\n    \"max_storage_in_gibibytes\": \"<integer>\",\n    \"soft_limit\": \"<boolean>\",\n    \"storage_quota_bytes\": \"<integer>\",\n    \"storage_quota_email_notification\": \"<boolean>\"\n  },\n  {\n    \"project_key\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"admin_privileges\": {\n      \"manage_members\": \"<boolean>\",\n      \"manage_resources\": \"<boolean>\",\n      \"manage_security_assets\": \"<boolean>\",\n      \"index_resources\": \"<boolean>\",\n      \"allow_ignore_rules\": \"<boolean>\"\n    },\n    \"max_storage_in_gibibytes\": \"<integer>\",\n    \"soft_limit\": \"<boolean>\",\n    \"storage_quota_bytes\": \"<integer>\",\n    \"storage_quota_email_notification\": \"<boolean>\"\n  }\n]",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-89de683a-dbff-4d98-8687-574a7ad99ebf"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-5f97b975-c1d6-4746-94b2-d85327387fe8"
+                    },
+                    {
+                      "name": "JFrog Create Project",
+                      "id": "ceb3a10f-896a-4160-b6ca-da0cd6a73f2a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/access/api/v1/projects",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "access",
+                            "api",
+                            "v1",
+                            "projects"
+                          ]
+                        },
+                        "description": "Creates a new project."
+                      },
+                      "response": [
+                        {
+                          "id": "0b8a2b23-174f-4d0a-9df5-7c3466a1d174",
+                          "name": "Project created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/access/api/v1/projects",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "access",
+                                "api",
+                                "v1",
+                                "projects"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\",\n  \"soft_limit\": \"<boolean>\",\n  \"storage_quota_bytes\": \"<integer>\",\n  \"storage_quota_email_notification\": \"<boolean>\"\n}",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-0b8a2b23-174f-4d0a-9df5-7c3466a1d174"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-ceb3a10f-896a-4160-b6ca-da0cd6a73f2a"
+                    }
+                  ],
+                  "id": "2238b02d-d786-4b45-9047-3823be57cf87",
+                  "createdAt": "2026-06-05T13:04:11.000Z",
+                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                  "uid": "35240-2238b02d-d786-4b45-9047-3823be57cf87"
+                }
+              ],
+              "id": "c4c2141d-2eb2-40f1-920b-1d9bd955a517",
+              "createdAt": "2026-06-05T13:04:11.000Z",
+              "updatedAt": "2026-06-05T13:04:11.000Z",
+              "uid": "35240-c4c2141d-2eb2-40f1-920b-1d9bd955a517"
+            }
+          ],
+          "id": "503c906c-3b7b-4fdf-910c-ee884a75ebde",
+          "createdAt": "2026-06-05T13:04:11.000Z",
+          "updatedAt": "2026-06-05T13:04:11.000Z",
+          "uid": "35240-503c906c-3b7b-4fdf-910c-ee884a75ebde"
+        }
+      ],
+      "id": "545ca091-e8a7-43bc-9435-a086cd2ae569",
+      "createdAt": "2026-06-05T13:04:11.000Z",
+      "updatedAt": "2026-06-05T13:04:11.000Z",
+      "uid": "35240-545ca091-e8a7-43bc-9435-a086cd2ae569"
+    },
+    {
+      "name": "event",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "v1",
+              "item": [
+                {
+                  "name": "subscriptions",
+                  "item": [
+                    {
+                      "name": "{webhookKey}",
+                      "item": [
+                        {
+                          "name": "JFrog Get Webhook",
+                          "id": "0dc06312-d6a2-4a9c-ad2e-1e8e31cbe77d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/event/api/v1/subscriptions/:webhookKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "event",
+                                "api",
+                                "v1",
+                                "subscriptions",
+                                ":webhookKey"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "aa288b4d-569c-4327-9c7f-0102cb2d10e5",
+                                  "key": "webhookKey",
+                                  "value": "<string>",
+                                  "description": "(Required) Webhook key"
+                                }
+                              ]
+                            },
+                            "description": "Returns details for a specific webhook."
+                          },
+                          "response": [
+                            {
+                              "id": "fea154e3-9a53-48ed-81d4-a9c5612985cd",
+                              "name": "Webhook details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/event/api/v1/subscriptions/:webhookKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "event",
+                                    "api",
+                                    "v1",
+                                    "subscriptions",
+                                    ":webhookKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webhookKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"key\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"url\": \"<uri>\",\n  \"secret\": \"<string>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"criteria\": {\n    \"ea8\": -8232772,\n    \"irure_0\": 16786489.12895669\n  }\n}",
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-fea154e3-9a53-48ed-81d4-a9c5612985cd"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-0dc06312-d6a2-4a9c-ad2e-1e8e31cbe77d"
+                        },
+                        {
+                          "name": "JFrog Update Webhook",
+                          "id": "32bc804b-4d2f-4f54-a89d-e88c941addcc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"property_added\",\n    \"moved\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/event/api/v1/subscriptions/:webhookKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "event",
+                                "api",
+                                "v1",
+                                "subscriptions",
+                                ":webhookKey"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "870018a6-0cc9-4bdb-86af-318dc05d76a5",
+                                  "key": "webhookKey",
+                                  "value": "<string>",
+                                  "description": "(Required) Webhook key"
+                                }
+                              ]
+                            },
+                            "description": "Updates a webhook configuration."
+                          },
+                          "response": [
+                            {
+                              "id": "fbabea42-52f0-486b-b4d8-cb0efa7a2fd4",
+                              "name": "Webhook updated",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"property_added\",\n    \"moved\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/event/api/v1/subscriptions/:webhookKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "event",
+                                    "api",
+                                    "v1",
+                                    "subscriptions",
+                                    ":webhookKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webhookKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-fbabea42-52f0-486b-b4d8-cb0efa7a2fd4"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-32bc804b-4d2f-4f54-a89d-e88c941addcc"
+                        },
+                        {
+                          "name": "JFrog Delete Webhook",
+                          "id": "c4bb32cc-6121-4229-8414-b93b4413f683",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/event/api/v1/subscriptions/:webhookKey",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "event",
+                                "api",
+                                "v1",
+                                "subscriptions",
+                                ":webhookKey"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a3d1506f-592e-4e12-9391-262371ffe33b",
+                                  "key": "webhookKey",
+                                  "value": "<string>",
+                                  "description": "(Required) Webhook key"
+                                }
+                              ]
+                            },
+                            "description": "Deletes a webhook subscription."
+                          },
+                          "response": [
+                            {
+                              "id": "842e14a8-efde-4f74-a62d-7816e832e4f5",
+                              "name": "Webhook deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/event/api/v1/subscriptions/:webhookKey",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "event",
+                                    "api",
+                                    "v1",
+                                    "subscriptions",
+                                    ":webhookKey"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webhookKey"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:04:11.000Z",
+                              "updatedAt": "2026-06-05T13:04:11.000Z",
+                              "uid": "35240-842e14a8-efde-4f74-a62d-7816e832e4f5"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-c4bb32cc-6121-4229-8414-b93b4413f683"
+                        }
+                      ],
+                      "id": "83092dae-c9d1-4bc9-9fe2-561fcf8ada96",
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-83092dae-c9d1-4bc9-9fe2-561fcf8ada96"
+                    },
+                    {
+                      "name": "JFrog List Webhooks",
+                      "id": "cf61ad80-f759-4385-bce4-6896b35dd405",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event/api/v1/subscriptions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "api",
+                            "v1",
+                            "subscriptions"
+                          ]
+                        },
+                        "description": "Returns a list of all configured webhooks."
+                      },
+                      "response": [
+                        {
+                          "id": "e14b8198-b0ae-4e3a-b3ac-b6e68fffeb6c",
+                          "name": "Webhooks list",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/event/api/v1/subscriptions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "event",
+                                "api",
+                                "v1",
+                                "subscriptions"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"key\": \"<string>\",\n    \"description\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"url\": \"<uri>\",\n    \"secret\": \"<string>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"criteria\": {\n      \"Lorem_380\": \"irure officia\",\n      \"et_4c4\": false\n    }\n  },\n  {\n    \"key\": \"<string>\",\n    \"description\": \"<string>\",\n    \"enabled\": \"<boolean>\",\n    \"url\": \"<uri>\",\n    \"secret\": \"<string>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"criteria\": {\n      \"ea08\": -17403326,\n      \"aute_a7e\": true,\n      \"esseb83\": false\n    }\n  }\n]",
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-e14b8198-b0ae-4e3a-b3ac-b6e68fffeb6c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-cf61ad80-f759-4385-bce4-6896b35dd405"
+                    },
+                    {
+                      "name": "JFrog Create Webhook",
+                      "id": "84c1be3e-6804-48df-aa90-6283650f56b9",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"property_added\",\n    \"moved\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/event/api/v1/subscriptions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "api",
+                            "v1",
+                            "subscriptions"
+                          ]
+                        },
+                        "description": "Creates a new webhook subscription."
+                      },
+                      "response": [
+                        {
+                          "id": "4dfb24d2-35a4-4b44-94c9-8429355716f0",
+                          "name": "Webhook created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"property_added\",\n    \"moved\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/event/api/v1/subscriptions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "event",
+                                "api",
+                                "v1",
+                                "subscriptions"
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:04:11.000Z",
+                          "updatedAt": "2026-06-05T13:04:11.000Z",
+                          "uid": "35240-4dfb24d2-35a4-4b44-94c9-8429355716f0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:11.000Z",
+                      "updatedAt": "2026-06-05T13:04:11.000Z",
+                      "uid": "35240-84c1be3e-6804-48df-aa90-6283650f56b9"
+                    }
+                  ],
+                  "id": "fbc2f7e6-fc00-4658-a0d8-5c2b93e12abf",
+                  "createdAt": "2026-06-05T13:04:11.000Z",
+                  "updatedAt": "2026-06-05T13:04:11.000Z",
+                  "uid": "35240-fbc2f7e6-fc00-4658-a0d8-5c2b93e12abf"
+                }
+              ],
+              "id": "bbee50f3-010c-475b-90bf-56cf1b8115de",
+              "createdAt": "2026-06-05T13:04:11.000Z",
+              "updatedAt": "2026-06-05T13:04:11.000Z",
+              "uid": "35240-bbee50f3-010c-475b-90bf-56cf1b8115de"
+            }
+          ],
+          "id": "de2bd5d9-469e-414e-a9ec-26e6cd92e375",
+          "createdAt": "2026-06-05T13:04:11.000Z",
+          "updatedAt": "2026-06-05T13:04:11.000Z",
+          "uid": "35240-de2bd5d9-469e-414e-a9ec-26e6cd92e375"
+        }
+      ],
+      "id": "5a8ba63c-9eeb-4020-853d-d3be99189f84",
+      "createdAt": "2026-06-05T13:04:11.000Z",
+      "updatedAt": "2026-06-05T13:04:11.000Z",
+      "uid": "35240-5a8ba63c-9eeb-4020-853d-d3be99189f84"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io"
+    }
+  ]
+}

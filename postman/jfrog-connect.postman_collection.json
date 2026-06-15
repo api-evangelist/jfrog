@@ -1,0 +1,1811 @@
+{
+  "info": {
+    "_postman_id": "3f4f2f68-0e18-49d8-bdbc-d11595eb1a31",
+    "name": "JFrog Connect REST API",
+    "description": "API for managing IoT and edge devices, deploying over-the-air software updates, and monitoring device fleets at scale. JFrog Connect (formerly Upswift) provides a comprehensive platform for managing Linux-based IoT and edge devices.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:05:34.000Z",
+    "updatedAt": "2026-06-05T13:05:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3f4f2f68-0e18-49d8-bdbc-d11595eb1a31"
+  },
+  "item": [
+    {
+      "name": "projects",
+      "item": [
+        {
+          "name": "{projectId}",
+          "item": [
+            {
+              "name": "devices",
+              "item": [
+                {
+                  "name": "{deviceId}",
+                  "item": [
+                    {
+                      "name": "JFrog Get Device",
+                      "id": "78ef3941-be6c-4889-8f87-874195cbdfb6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/devices/:deviceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "devices",
+                            ":deviceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "22fe52df-bcb1-4290-a549-c15bbb2c448c",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) Project ID"
+                            },
+                            {
+                              "id": "f3b3adf2-0867-42b4-b79f-614d355d4406",
+                              "key": "deviceId",
+                              "value": "<string>",
+                              "description": "(Required) Device ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns details for a specific device."
+                      },
+                      "response": [
+                        {
+                          "id": "d68f2618-6442-4092-a081-66dd2204aa4f",
+                          "name": "Device details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/devices/:deviceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "devices",
+                                ":deviceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"offline\",\n  \"ip_address\": \"<string>\",\n  \"os\": \"<string>\",\n  \"os_version\": \"<string>\",\n  \"architecture\": \"<string>\",\n  \"agent_version\": \"<string>\",\n  \"group_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"last_seen\": \"<dateTime>\",\n  \"registered_at\": \"<dateTime>\",\n  \"system_info\": {\n    \"cpu_usage\": \"<number>\",\n    \"memory_total\": \"<integer>\",\n    \"memory_used\": \"<integer>\",\n    \"disk_total\": \"<integer>\",\n    \"disk_used\": \"<integer>\",\n    \"uptime_seconds\": \"<integer>\"\n  }\n}",
+                          "createdAt": "2026-06-05T13:05:34.000Z",
+                          "updatedAt": "2026-06-05T13:05:34.000Z",
+                          "uid": "35240-d68f2618-6442-4092-a081-66dd2204aa4f"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-78ef3941-be6c-4889-8f87-874195cbdfb6"
+                    },
+                    {
+                      "name": "JFrog Remove Device",
+                      "id": "6beae82d-dea3-421a-8a27-0c9b7be9ac00",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/devices/:deviceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "devices",
+                            ":deviceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a4fd068d-6d3c-4560-a6b7-684301a2f44b",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) Project ID"
+                            },
+                            {
+                              "id": "f236ded0-3c11-4baa-aa71-8123e883ee8b",
+                              "key": "deviceId",
+                              "value": "<string>",
+                              "description": "(Required) Device ID"
+                            }
+                          ]
+                        },
+                        "description": "Removes a device from the project."
+                      },
+                      "response": [
+                        {
+                          "id": "7e740284-6fcb-472c-9150-b1653cf424b5",
+                          "name": "Device removed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/devices/:deviceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "devices",
+                                ":deviceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "deviceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:34.000Z",
+                          "updatedAt": "2026-06-05T13:05:34.000Z",
+                          "uid": "35240-7e740284-6fcb-472c-9150-b1653cf424b5"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-6beae82d-dea3-421a-8a27-0c9b7be9ac00"
+                    }
+                  ],
+                  "id": "2860bbb8-d98e-4d77-b4d7-2a2c471851fa",
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-2860bbb8-d98e-4d77-b4d7-2a2c471851fa"
+                },
+                {
+                  "name": "JFrog List Devices",
+                  "id": "75b28b77-f036-409a-b74a-0aa44fda494c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/devices?status=updating&group_id=<string>&limit=25&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "devices"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by device status",
+                          "key": "status",
+                          "value": "updating"
+                        },
+                        {
+                          "description": "Filter by device group",
+                          "key": "group_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum results",
+                          "key": "limit",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "18ff7457-c431-4f5a-a30b-e3c1f1eef078",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) Project ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of all devices in a project."
+                  },
+                  "response": [
+                    {
+                      "id": "c6cb2b26-1f04-430a-b507-73e5f4b4bb87",
+                      "name": "Devices list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/devices?status=updating&group_id=<string>&limit=25&offset=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "devices"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by device status",
+                              "key": "status",
+                              "value": "updating"
+                            },
+                            {
+                              "description": "Filter by device group",
+                              "key": "group_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum results",
+                              "key": "limit",
+                              "value": "25"
+                            },
+                            {
+                              "description": "Pagination offset",
+                              "key": "offset",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"devices\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"offline\",\n      \"ip_address\": \"<string>\",\n      \"os\": \"<string>\",\n      \"os_version\": \"<string>\",\n      \"architecture\": \"<string>\",\n      \"agent_version\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_seen\": \"<dateTime>\",\n      \"registered_at\": \"<dateTime>\",\n      \"system_info\": {\n        \"cpu_usage\": \"<number>\",\n        \"memory_total\": \"<integer>\",\n        \"memory_used\": \"<integer>\",\n        \"disk_total\": \"<integer>\",\n        \"disk_used\": \"<integer>\",\n        \"uptime_seconds\": \"<integer>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"online\",\n      \"ip_address\": \"<string>\",\n      \"os\": \"<string>\",\n      \"os_version\": \"<string>\",\n      \"architecture\": \"<string>\",\n      \"agent_version\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"last_seen\": \"<dateTime>\",\n      \"registered_at\": \"<dateTime>\",\n      \"system_info\": {\n        \"cpu_usage\": \"<number>\",\n        \"memory_total\": \"<integer>\",\n        \"memory_used\": \"<integer>\",\n        \"disk_total\": \"<integer>\",\n        \"disk_used\": \"<integer>\",\n        \"uptime_seconds\": \"<integer>\"\n      }\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-c6cb2b26-1f04-430a-b507-73e5f4b4bb87"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-75b28b77-f036-409a-b74a-0aa44fda494c"
+                }
+              ],
+              "id": "5ebb430e-92ea-4621-b5c5-63fa88e9d868",
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-5ebb430e-92ea-4621-b5c5-63fa88e9d868"
+            },
+            {
+              "name": "device-groups",
+              "item": [
+                {
+                  "name": "{groupId}",
+                  "item": [
+                    {
+                      "name": "JFrog Get Device Group",
+                      "id": "0038c4b3-8c52-46aa-92ea-f24c2f277b85",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/device-groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "device-groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8bd74c57-f133-47f3-b44f-94737e38057a",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) Project ID"
+                            },
+                            {
+                              "id": "4cf856b9-c423-4db5-9416-2bbfae2e1539",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) Group ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns details for a specific device group."
+                      },
+                      "response": [
+                        {
+                          "id": "05acc161-8310-4603-9222-2fa3ba310bbd",
+                          "name": "Device group details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/device-groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "device-groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"devices_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T13:05:34.000Z",
+                          "updatedAt": "2026-06-05T13:05:34.000Z",
+                          "uid": "35240-05acc161-8310-4603-9222-2fa3ba310bbd"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-0038c4b3-8c52-46aa-92ea-f24c2f277b85"
+                    },
+                    {
+                      "name": "JFrog Delete Device Group",
+                      "id": "9152a95b-98a3-4a50-937e-d8803bb27eca",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/device-groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "device-groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0ec410c3-397c-423e-a20a-cc3598efb5f7",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) Project ID"
+                            },
+                            {
+                              "id": "04ff9adc-06f7-4dd9-b1c9-871c3e57a882",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) Group ID"
+                            }
+                          ]
+                        },
+                        "description": "Deletes a device group."
+                      },
+                      "response": [
+                        {
+                          "id": "27d0d2b5-7cb6-49c5-9233-ca6db52b06fc",
+                          "name": "Device group deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/device-groups/:groupId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "device-groups",
+                                ":groupId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:34.000Z",
+                          "updatedAt": "2026-06-05T13:05:34.000Z",
+                          "uid": "35240-27d0d2b5-7cb6-49c5-9233-ca6db52b06fc"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-9152a95b-98a3-4a50-937e-d8803bb27eca"
+                    }
+                  ],
+                  "id": "a2c41e99-5f8a-41f3-85ec-fc546464abdf",
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-a2c41e99-5f8a-41f3-85ec-fc546464abdf"
+                },
+                {
+                  "name": "JFrog List Device Groups",
+                  "id": "73302211-fbae-4f02-a712-b1dc23ec5280",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/device-groups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "device-groups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a01fbce9-bc47-41ac-934f-d94fa0f3b674",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) Project ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns all device groups in a project."
+                  },
+                  "response": [
+                    {
+                      "id": "7a2f63bd-7fe3-4c3b-af02-c7e81896e333",
+                      "name": "Device groups list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/device-groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "device-groups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"groups\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"devices_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"devices_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-7a2f63bd-7fe3-4c3b-af02-c7e81896e333"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-73302211-fbae-4f02-a712-b1dc23ec5280"
+                },
+                {
+                  "name": "JFrog Create Device Group",
+                  "id": "95586cb0-9994-4500-8dbd-e1448f9f9809",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/device-groups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "device-groups"
+                      ],
+                      "variable": [
+                        {
+                          "id": "59e304a5-f0be-4999-8c04-f3e29de72d01",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) Project ID"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new device group."
+                  },
+                  "response": [
+                    {
+                      "id": "a89ba898-049f-4eb9-b9e2-3b43382b307e",
+                      "name": "Device group created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/device-groups",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "device-groups"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-a89ba898-049f-4eb9-b9e2-3b43382b307e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-95586cb0-9994-4500-8dbd-e1448f9f9809"
+                }
+              ],
+              "id": "59cee63d-3d46-41bb-85a4-98d477328fd8",
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-59cee63d-3d46-41bb-85a4-98d477328fd8"
+            },
+            {
+              "name": "updates",
+              "item": [
+                {
+                  "name": "{updateId}",
+                  "item": [
+                    {
+                      "name": "cancel",
+                      "item": [
+                        {
+                          "name": "JFrog Cancel Update",
+                          "id": "8462e920-b9de-46ab-b46b-d6191cdcadbe",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/updates/:updateId/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "updates",
+                                ":updateId",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1833378c-21e3-48cb-b6bf-1c945825fef7",
+                                  "key": "projectId",
+                                  "value": "<string>",
+                                  "description": "(Required) Project ID"
+                                },
+                                {
+                                  "id": "749edccd-31b3-44ae-bf88-4e9d9193b224",
+                                  "key": "updateId",
+                                  "value": "<string>",
+                                  "description": "(Required) Update ID"
+                                }
+                              ]
+                            },
+                            "description": "Cancels a pending or in-progress update."
+                          },
+                          "response": [
+                            {
+                              "id": "1985be22-9f77-4968-a35d-73c0f254feb7",
+                              "name": "Update cancelled",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/projects/:projectId/updates/:updateId/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "projects",
+                                    ":projectId",
+                                    "updates",
+                                    ":updateId",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "projectId"
+                                    },
+                                    {
+                                      "key": "updateId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:05:34.000Z",
+                              "updatedAt": "2026-06-05T13:05:34.000Z",
+                              "uid": "35240-1985be22-9f77-4968-a35d-73c0f254feb7"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:05:34.000Z",
+                          "updatedAt": "2026-06-05T13:05:34.000Z",
+                          "uid": "35240-8462e920-b9de-46ab-b46b-d6191cdcadbe"
+                        }
+                      ],
+                      "id": "31963b9d-61bd-4821-b9ed-314f4b2d6e12",
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-31963b9d-61bd-4821-b9ed-314f4b2d6e12"
+                    },
+                    {
+                      "name": "JFrog Get Update",
+                      "id": "830b6639-a3f0-4c8a-8026-8236328ff21e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/updates/:updateId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "updates",
+                            ":updateId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b1872aee-9d5d-4e43-b8bb-24b93af50954",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) Project ID"
+                            },
+                            {
+                              "id": "920d3962-4b5a-47d7-88d6-ba36d8676621",
+                              "key": "updateId",
+                              "value": "<string>",
+                              "description": "(Required) Update ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns details and status for a specific update."
+                      },
+                      "response": [
+                        {
+                          "id": "14e0adee-a4c3-42b9-ad41-1d7e7943cc9e",
+                          "name": "Update details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/updates/:updateId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "updates",
+                                ":updateId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "updateId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"completed\",\n  \"update_type\": \"file\",\n  \"target_devices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"target_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"progress\": {\n    \"total_devices\": \"<integer>\",\n    \"completed\": \"<integer>\",\n    \"failed\": \"<integer>\",\n    \"pending\": \"<integer>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T13:05:34.000Z",
+                          "updatedAt": "2026-06-05T13:05:34.000Z",
+                          "uid": "35240-14e0adee-a4c3-42b9-ad41-1d7e7943cc9e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-830b6639-a3f0-4c8a-8026-8236328ff21e"
+                    }
+                  ],
+                  "id": "920bb24a-cd97-4161-aceb-f28ccc1df799",
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-920bb24a-cd97-4161-aceb-f28ccc1df799"
+                },
+                {
+                  "name": "JFrog List Updates",
+                  "id": "4831e97d-7cef-4d8d-a9eb-b488e50d1ba6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/updates?status=in_progress",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "updates"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by update status",
+                          "key": "status",
+                          "value": "in_progress"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "7ab7fc32-6a12-4f7a-9ebe-5df4eb62d5fb",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) Project ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of all OTA update deployments."
+                  },
+                  "response": [
+                    {
+                      "id": "6017be33-7c6a-4675-b0f8-3a1c399bf8ac",
+                      "name": "Updates list",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/updates?status=in_progress",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "updates"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filter by update status",
+                              "key": "status",
+                              "value": "in_progress"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"updates\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"failed\",\n      \"update_type\": \"package\",\n      \"target_devices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"target_groups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"progress\": {\n        \"total_devices\": \"<integer>\",\n        \"completed\": \"<integer>\",\n        \"failed\": \"<integer>\",\n        \"pending\": \"<integer>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"pending\",\n      \"update_type\": \"package\",\n      \"target_devices\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"target_groups\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"progress\": {\n        \"total_devices\": \"<integer>\",\n        \"completed\": \"<integer>\",\n        \"failed\": \"<integer>\",\n        \"pending\": \"<integer>\"\n      },\n      \"created_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-6017be33-7c6a-4675-b0f8-3a1c399bf8ac"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-4831e97d-7cef-4d8d-a9eb-b488e50d1ba6"
+                },
+                {
+                  "name": "JFrog Create Update",
+                  "id": "b4e17085-6f28-49a4-bc37-1e9e3f19cea5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"update_type\": \"docker_compose\",\n  \"description\": \"<string>\",\n  \"target_devices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"target_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_path\": \"<string>\",\n  \"destination_path\": \"<string>\",\n  \"script_content\": \"<string>\",\n  \"pre_install_script\": \"<string>\",\n  \"post_install_script\": \"<string>\",\n  \"rollback_on_failure\": false,\n  \"schedule\": {\n    \"start_at\": \"<dateTime>\",\n    \"batch_size\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/updates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "updates"
+                      ],
+                      "variable": [
+                        {
+                          "id": "acac1b81-02ee-4d94-a95b-a8271f4a84c5",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) Project ID"
+                        }
+                      ]
+                    },
+                    "description": "Creates a new OTA software update deployment."
+                  },
+                  "response": [
+                    {
+                      "id": "a27b94d0-1e5c-4ee5-a247-4d0154fbd74c",
+                      "name": "Update created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"update_type\": \"docker_compose\",\n  \"description\": \"<string>\",\n  \"target_devices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"target_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"file_path\": \"<string>\",\n  \"destination_path\": \"<string>\",\n  \"script_content\": \"<string>\",\n  \"pre_install_script\": \"<string>\",\n  \"post_install_script\": \"<string>\",\n  \"rollback_on_failure\": false,\n  \"schedule\": {\n    \"start_at\": \"<dateTime>\",\n    \"batch_size\": \"<integer>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/updates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "updates"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"completed\",\n  \"update_type\": \"file\",\n  \"target_devices\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"target_groups\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"progress\": {\n    \"total_devices\": \"<integer>\",\n    \"completed\": \"<integer>\",\n    \"failed\": \"<integer>\",\n    \"pending\": \"<integer>\"\n  },\n  \"created_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-a27b94d0-1e5c-4ee5-a247-4d0154fbd74c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-b4e17085-6f28-49a4-bc37-1e9e3f19cea5"
+                }
+              ],
+              "id": "7800ca19-d23a-42bf-99f2-cb8e20f126b6",
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-7800ca19-d23a-42bf-99f2-cb8e20f126b6"
+            },
+            {
+              "name": "commands",
+              "item": [
+                {
+                  "name": "{commandId}",
+                  "item": [
+                    {
+                      "name": "JFrog Get Command Status",
+                      "id": "f670fb98-351d-4816-8ddf-06b7834f976d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/commands/:commandId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "commands",
+                            ":commandId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "8add42f8-c4eb-44a7-b26e-e1454672a98c",
+                              "key": "projectId",
+                              "value": "<string>",
+                              "description": "(Required) Project ID"
+                            },
+                            {
+                              "id": "2d261bbc-d002-42c5-bd84-41e5f2801ad1",
+                              "key": "commandId",
+                              "value": "<string>",
+                              "description": "(Required) Command ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns the status and results of a remote command execution."
+                      },
+                      "response": [
+                        {
+                          "id": "95e00130-3441-4e4e-b1ee-2955e73005c1",
+                          "name": "Command status",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/projects/:projectId/commands/:commandId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "projects",
+                                ":projectId",
+                                "commands",
+                                ":commandId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "projectId"
+                                },
+                                {
+                                  "key": "commandId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"command_id\": \"<string>\",\n  \"status\": \"running\",\n  \"results\": [\n    {\n      \"device_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"output\": \"<string>\",\n      \"exit_code\": \"<integer>\"\n    },\n    {\n      \"device_id\": \"<string>\",\n      \"status\": \"<string>\",\n      \"output\": \"<string>\",\n      \"exit_code\": \"<integer>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:34.000Z",
+                          "updatedAt": "2026-06-05T13:05:34.000Z",
+                          "uid": "35240-95e00130-3441-4e4e-b1ee-2955e73005c1"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-f670fb98-351d-4816-8ddf-06b7834f976d"
+                    }
+                  ],
+                  "id": "b82549e2-ce13-43fb-a9aa-64bc79198a35",
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-b82549e2-ce13-43fb-a9aa-64bc79198a35"
+                },
+                {
+                  "name": "JFrog Execute Remote Command",
+                  "id": "8b4e6726-c9c4-490f-ab80-7ec37328d608",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"command\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeout_seconds\": 30\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId/commands",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId",
+                        "commands"
+                      ],
+                      "variable": [
+                        {
+                          "id": "464c7efa-2da4-46ee-9d62-ae6fd3cc7fb1",
+                          "key": "projectId",
+                          "value": "<string>",
+                          "description": "(Required) Project ID"
+                        }
+                      ]
+                    },
+                    "description": "Executes a command on specified devices."
+                  },
+                  "response": [
+                    {
+                      "id": "79741af2-566a-4821-9739-424f18167367",
+                      "name": "Command execution initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"command\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"group_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"timeout_seconds\": 30\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/projects/:projectId/commands",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "projects",
+                            ":projectId",
+                            "commands"
+                          ],
+                          "variable": [
+                            {
+                              "key": "projectId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"command_id\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:05:34.000Z",
+                      "updatedAt": "2026-06-05T13:05:34.000Z",
+                      "uid": "35240-79741af2-566a-4821-9739-424f18167367"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-8b4e6726-c9c4-490f-ab80-7ec37328d608"
+                }
+              ],
+              "id": "1d4dbded-cfb6-4b89-a28b-feebb6d1fd32",
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-1d4dbded-cfb6-4b89-a28b-feebb6d1fd32"
+            },
+            {
+              "name": "JFrog Get Project",
+              "id": "eb98fb0e-1fda-4dd8-8a34-62a726d1adb5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:projectId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "313e57fd-64a8-4142-b2d9-0b60dea3efed",
+                      "key": "projectId",
+                      "value": "<string>",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "description": "Returns details for a specific project."
+              },
+              "response": [
+                {
+                  "id": "56f6b86b-d49a-415d-910f-dc3d6edd9b05",
+                  "name": "Project details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"devices_count\": \"<integer>\",\n  \"online_devices_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-56f6b86b-d49a-415d-910f-dc3d6edd9b05"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-eb98fb0e-1fda-4dd8-8a34-62a726d1adb5"
+            },
+            {
+              "name": "JFrog Delete Project",
+              "id": "e3381b9e-9c77-4523-b86c-c7ff88c91085",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/projects/:projectId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "73002f81-6696-4812-afc5-98a14bf452b0",
+                      "key": "projectId",
+                      "value": "<string>",
+                      "description": "(Required) Project ID"
+                    }
+                  ]
+                },
+                "description": "Deletes a project."
+              },
+              "response": [
+                {
+                  "id": "0948c13e-8cbd-4ae4-9695-00f7a92f1f2c",
+                  "name": "Project deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/projects/:projectId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "projects",
+                        ":projectId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "projectId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:34.000Z",
+                  "updatedAt": "2026-06-05T13:05:34.000Z",
+                  "uid": "35240-0948c13e-8cbd-4ae4-9695-00f7a92f1f2c"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-e3381b9e-9c77-4523-b86c-c7ff88c91085"
+            }
+          ],
+          "id": "f1024ffc-9d01-4b89-90ed-9f246475a397",
+          "createdAt": "2026-06-05T13:05:34.000Z",
+          "updatedAt": "2026-06-05T13:05:34.000Z",
+          "uid": "35240-f1024ffc-9d01-4b89-90ed-9f246475a397"
+        },
+        {
+          "name": "JFrog List Projects",
+          "id": "b41d669f-24df-44b3-b90e-23dfe72102ac",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Returns a list of all projects in the account."
+          },
+          "response": [
+            {
+              "id": "0cfc9de0-a83c-44f1-b8d0-3a9ad519a04a",
+              "name": "Projects list",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"projects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"devices_count\": \"<integer>\",\n      \"online_devices_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"devices_count\": \"<integer>\",\n      \"online_devices_count\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-0cfc9de0-a83c-44f1-b8d0-3a9ad519a04a"
+            }
+          ],
+          "createdAt": "2026-06-05T13:05:34.000Z",
+          "updatedAt": "2026-06-05T13:05:34.000Z",
+          "uid": "35240-b41d669f-24df-44b3-b90e-23dfe72102ac"
+        },
+        {
+          "name": "JFrog Create Project",
+          "id": "96c863eb-7f45-40e1-802f-2eb3e71a208f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/projects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "projects"
+              ]
+            },
+            "description": "Creates a new project for organizing devices."
+          },
+          "response": [
+            {
+              "id": "cfe0ff2d-a6de-4647-b2a8-31cda2498458",
+              "name": "Project created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/projects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "projects"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"devices_count\": \"<integer>\",\n  \"online_devices_count\": \"<integer>\",\n  \"created_at\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T13:05:34.000Z",
+              "updatedAt": "2026-06-05T13:05:34.000Z",
+              "uid": "35240-cfe0ff2d-a6de-4647-b2a8-31cda2498458"
+            }
+          ],
+          "createdAt": "2026-06-05T13:05:34.000Z",
+          "updatedAt": "2026-06-05T13:05:34.000Z",
+          "uid": "35240-96c863eb-7f45-40e1-802f-2eb3e71a208f"
+        }
+      ],
+      "id": "645d1a9f-262d-4b9a-bf25-8c4bad5d6c47",
+      "createdAt": "2026-06-05T13:05:34.000Z",
+      "updatedAt": "2026-06-05T13:05:34.000Z",
+      "uid": "35240-645d1a9f-262d-4b9a-bf25-8c4bad5d6c47"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.connect.jfrog.io/v2"
+    }
+  ]
+}

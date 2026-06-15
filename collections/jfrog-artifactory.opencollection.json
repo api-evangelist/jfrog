@@ -1,0 +1,1124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Artifactory REST API",
+    "version": "7.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System & Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog System Health Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/system/ping"
+          },
+          "docs": "Returns a simple status response indicating whether Artifactory is accessible."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Version Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/system/version"
+          },
+          "docs": "Returns version and build information for the Artifactory instance."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/system/configuration"
+          },
+          "docs": "Returns the full system configuration as an XML descriptor."
+        },
+        {
+          "info": {
+            "name": "JFrog Update System Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{server}.jfrog.io/artifactory/api/system/configuration"
+          },
+          "docs": "Applies a partial update to the system configuration using a YAML payload."
+        },
+        {
+          "info": {
+            "name": "JFrog Get License Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/system/licenses"
+          },
+          "docs": "Returns the installed license details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Artifacts & Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get File or Folder Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/storage/:repoKey/:itemPath",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path to the item within the repository"
+              }
+            ]
+          },
+          "docs": "Returns storage information for a file or folder including size, checksums, and metadata."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Repository Storage Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/storage/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ]
+          },
+          "docs": "Returns storage summary for the specified repository."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Storage Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/storageinfo"
+          },
+          "docs": "Returns storage summary information about repositories, binaries, and file store."
+        },
+        {
+          "info": {
+            "name": "JFrog Retrieve Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/:repoKey/:itemPath",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path to the artifact"
+              }
+            ]
+          },
+          "docs": "Downloads an artifact or returns folder info from the specified repository path."
+        },
+        {
+          "info": {
+            "name": "JFrog Deploy Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/artifactory/:repoKey/:itemPath",
+            "headers": [
+              {
+                "name": "X-Checksum-Sha1",
+                "value": ""
+              },
+              {
+                "name": "X-Checksum-Sha256",
+                "value": ""
+              },
+              {
+                "name": "X-Checksum-Md5",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path for the artifact"
+              }
+            ]
+          },
+          "docs": "Deploys an artifact to the specified repository path."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/artifactory/:repoKey/:itemPath",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path to the artifact"
+              }
+            ]
+          },
+          "docs": "Deletes an artifact or folder from the specified repository path."
+        },
+        {
+          "info": {
+            "name": "JFrog Copy Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/artifactory/api/copy/:srcRepoKey/:srcItemPath",
+            "params": [
+              {
+                "name": "srcRepoKey",
+                "value": "",
+                "type": "path",
+                "description": "Source repository key"
+              },
+              {
+                "name": "srcItemPath",
+                "value": "",
+                "type": "path",
+                "description": "Source item path"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Target path in the format repoKey/path"
+              },
+              {
+                "name": "dry",
+                "value": "",
+                "type": "query",
+                "description": "Dry run mode (1=dry run, 0=execute)"
+              },
+              {
+                "name": "suppressLayouts",
+                "value": "",
+                "type": "query",
+                "description": "Suppress cross-layout translations"
+              },
+              {
+                "name": "failFast",
+                "value": "",
+                "type": "query",
+                "description": "Fail on first error"
+              }
+            ]
+          },
+          "docs": "Copies an artifact or folder to a new location."
+        },
+        {
+          "info": {
+            "name": "JFrog Move Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/artifactory/api/move/:srcRepoKey/:srcItemPath",
+            "params": [
+              {
+                "name": "srcRepoKey",
+                "value": "",
+                "type": "path",
+                "description": "Source repository key"
+              },
+              {
+                "name": "srcItemPath",
+                "value": "",
+                "type": "path",
+                "description": "Source item path"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Target path in the format repoKey/path"
+              },
+              {
+                "name": "dry",
+                "value": "",
+                "type": "query",
+                "description": "Dry run mode"
+              },
+              {
+                "name": "suppressLayouts",
+                "value": "",
+                "type": "query",
+                "description": "Suppress cross-layout translations"
+              },
+              {
+                "name": "failFast",
+                "value": "",
+                "type": "query",
+                "description": "Fail on first error"
+              }
+            ]
+          },
+          "docs": "Moves an artifact or folder to a new location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Repositories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List All Repositories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/repositories",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by repository type"
+              },
+              {
+                "name": "packageType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package type (e.g., maven, npm, docker)"
+              }
+            ]
+          },
+          "docs": "Returns a list of all repositories with minimal information."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Repository Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/repositories/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ]
+          },
+          "docs": "Returns the full configuration for a specific repository."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Repository Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/artifactory/api/repositories/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates configuration of an existing repository."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/artifactory/api/repositories/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new repository with the specified configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Repository",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/artifactory/api/repositories/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ]
+          },
+          "docs": "Removes a repository configuration and optionally deletes its content."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Searches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Execute AQL Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/artifactory/api/search/aql"
+          },
+          "docs": "Executes an Artifactory Query Language (AQL) search query."
+        },
+        {
+          "info": {
+            "name": "JFrog GAVC Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/search/gavc",
+            "params": [
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Group ID"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Artifact ID"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query",
+                "description": "Version"
+              },
+              {
+                "name": "c",
+                "value": "",
+                "type": "query",
+                "description": "Classifier"
+              },
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories to search"
+              }
+            ]
+          },
+          "docs": "Search for artifacts by Maven coordinates (GroupId, ArtifactId, Version, Classifier)."
+        },
+        {
+          "info": {
+            "name": "JFrog Property Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/search/prop",
+            "params": [
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories to search"
+              }
+            ]
+          },
+          "docs": "Search for artifacts by property values."
+        },
+        {
+          "info": {
+            "name": "JFrog Checksum Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/search/checksum",
+            "params": [
+              {
+                "name": "sha1",
+                "value": "",
+                "type": "query",
+                "description": "SHA1 checksum to search for"
+              },
+              {
+                "name": "sha256",
+                "value": "",
+                "type": "query",
+                "description": "SHA256 checksum to search for"
+              },
+              {
+                "name": "md5",
+                "value": "",
+                "type": "query",
+                "description": "MD5 checksum to search for"
+              },
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories to search"
+              }
+            ]
+          },
+          "docs": "Search for artifacts by their checksum values."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Latest Artifact Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/search/latestVersion",
+            "params": [
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Group ID"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Artifact ID"
+              },
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories"
+              }
+            ]
+          },
+          "docs": "Returns the latest version of an artifact by group and artifact ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/users"
+          },
+          "docs": "Returns a list of all users."
+        },
+        {
+          "info": {
+            "name": "JFrog Get User Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific user."
+        },
+        {
+          "info": {
+            "name": "JFrog Create or Replace User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user or replaces an existing user."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ]
+          },
+          "docs": "Removes a user."
+        },
+        {
+          "info": {
+            "name": "JFrog List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/groups"
+          },
+          "docs": "Returns a list of all groups."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Group Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific group."
+        },
+        {
+          "info": {
+            "name": "JFrog Create or Replace Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new group or replaces an existing group."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ]
+          },
+          "docs": "Removes a group."
+        },
+        {
+          "info": {
+            "name": "JFrog List Permission Targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/permissions"
+          },
+          "docs": "Returns a list of all permission targets."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Permission Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/permissions/:permissionTargetName",
+            "params": [
+              {
+                "name": "permissionTargetName",
+                "value": "",
+                "type": "path",
+                "description": "Permission target name"
+              }
+            ]
+          },
+          "docs": "Returns configuration details for a specific permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Create or Replace Permission Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/permissions/:permissionTargetName",
+            "params": [
+              {
+                "name": "permissionTargetName",
+                "value": "",
+                "type": "path",
+                "description": "Permission target name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new or replaces an existing permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Permission Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/permissions/:permissionTargetName",
+            "params": [
+              {
+                "name": "permissionTargetName",
+                "value": "",
+                "type": "path",
+                "description": "Permission target name"
+              }
+            ]
+          },
+          "docs": "Removes a permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/artifactory/api/security/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                },
+                {
+                  "name": "expires_in",
+                  "value": ""
+                },
+                {
+                  "name": "refreshable",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a new access token for authentication."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Builds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List All Builds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/build"
+          },
+          "docs": "Returns a list of all builds stored in Artifactory."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Build Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/build/:buildName",
+            "params": [
+              {
+                "name": "buildName",
+                "value": "",
+                "type": "path",
+                "description": "Build name"
+              }
+            ]
+          },
+          "docs": "Returns all runs for a specific build."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Build Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/build/:buildName/:buildNumber",
+            "params": [
+              {
+                "name": "buildName",
+                "value": "",
+                "type": "path",
+                "description": "Build name"
+              },
+              {
+                "name": "buildNumber",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ]
+          },
+          "docs": "Returns full build information for a specific build run."
+        },
+        {
+          "info": {
+            "name": "JFrog Promote Build",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/artifactory/api/build/promote/:buildName/:buildNumber",
+            "params": [
+              {
+                "name": "buildName",
+                "value": "",
+                "type": "path",
+                "description": "Build name"
+              },
+              {
+                "name": "buildNumber",
+                "value": "",
+                "type": "path",
+                "description": "Build number"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promotes a build by moving or copying artifacts to a target repository."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Replication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List All Replications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/replications"
+          },
+          "docs": "Returns a list of all replication configurations."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Replication Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/replications/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ]
+          },
+          "docs": "Returns replication configuration for a specific repository."
+        },
+        {
+          "info": {
+            "name": "JFrog Create or Replace Replication",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/artifactory/api/replications/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or replaces a replication configuration for a repository."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Replication",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/artifactory/api/replications/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ]
+          },
+          "docs": "Removes a replication configuration."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Item Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/artifactory/api/storage/:repoKey/:itemPath?properties",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Item path"
+              }
+            ]
+          },
+          "docs": "Returns properties set on an artifact or folder."
+        },
+        {
+          "info": {
+            "name": "JFrog Set Item Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/artifactory/api/storage/:repoKey/:itemPath?properties",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Item path"
+              },
+              {
+                "name": "properties",
+                "value": "",
+                "type": "query",
+                "description": "Properties in format: key1=value1;key2=value2"
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Apply recursively to sub-paths"
+              }
+            ]
+          },
+          "docs": "Sets properties on an artifact or folder."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Item Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/artifactory/api/storage/:repoKey/:itemPath?properties",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Item path"
+              },
+              {
+                "name": "properties",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of property keys to remove"
+              }
+            ]
+          },
+          "docs": "Removes properties from an artifact or folder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1184 @@
+{
+  "item": [
+    {
+      "id": "3d1e1e1f-2e7d-41f0-8d22-624e18dec35a",
+      "name": "Execution",
+      "description": {
+        "content": "Worker testing and execution",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a5b1ad9-a89e-4f67-b200-f048371f3fb4",
+          "name": "JFrog Test Worker",
+          "request": {
+            "name": "JFrog Test Worker",
+            "description": {
+              "content": "Executes a worker with a test payload to validate its behavior.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers",
+                ":workerKey",
+                "test"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workerKey",
+                  "description": "(Required) Worker key identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"<string>\",\n  \"data\": {\n    \"key_0\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "13856a09-e70c-41fd-b0b4-7c54d05c41e9",
+              "name": "Test execution result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey",
+                    "test"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"data\": {\n    \"key_0\": 2781.8136643433268,\n    \"key_1\": \"string\",\n    \"key_2\": true,\n    \"key_3\": 6145\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"STATUS_ERROR\",\n  \"message\": \"string\",\n  \"execution_time_ms\": 9083\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "16e56bb7-0088-4fdd-b396-a155786c85ce",
+          "name": "JFrog Get Worker Logs",
+          "request": {
+            "name": "JFrog Get Worker Logs",
+            "description": {
+              "content": "Returns execution logs for a worker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers",
+                ":workerKey",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Start time for log retrieval"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "End time for log retrieval"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workerKey",
+                  "description": "(Required) Worker key identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d11c8034-ff3b-42ea-839a-fd6ad40eef6f",
+              "name": "Worker logs retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": [\n    {\n      \"timestamp\": \"1968-07-31T03:31:36.143Z\",\n      \"level\": \"WARN\",\n      \"message\": \"string\"\n    },\n    {\n      \"timestamp\": \"1986-01-10T03:33:42.665Z\",\n      \"level\": \"INFO\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "161246b0-135b-456d-ad24-25ff92d744b7",
+      "name": "Workers",
+      "description": {
+        "content": "Worker lifecycle management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b9de8824-d75c-429d-85f4-c4929002d9ba",
+          "name": "JFrog List Workers",
+          "request": {
+            "name": "JFrog List Workers",
+            "description": {
+              "content": "Returns a list of all registered workers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7bc1244e-6334-486a-94e1-919bb1176127",
+              "name": "Workers list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workers\": [\n    {\n      \"key\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": false,\n      \"source_code\": \"string\",\n      \"action\": \"BEFORE_DOWNLOAD\",\n      \"filter_criteria\": {\n        \"artifact_filter_criteria\": {\n          \"repo_keys\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      },\n      \"secrets\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"created\": \"1986-02-07T15:16:56.076Z\",\n      \"modified\": \"1977-06-05T20:00:44.651Z\"\n    },\n    {\n      \"key\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": true,\n      \"source_code\": \"string\",\n      \"action\": \"AFTER_BUILD_INFO_SAVE\",\n      \"filter_criteria\": {\n        \"artifact_filter_criteria\": {\n          \"repo_keys\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      },\n      \"secrets\": [\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        },\n        {\n          \"key\": \"string\",\n          \"value\": \"string\"\n        }\n      ],\n      \"created\": \"1983-08-07T23:27:40.106Z\",\n      \"modified\": \"2016-03-28T10:56:11.651Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68f6290e-77ed-46e9-9f8b-b7860455a6da",
+          "name": "JFrog Create Worker",
+          "request": {
+            "name": "JFrog Create Worker",
+            "description": {
+              "content": "Creates a new serverless worker with TypeScript code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df5bf9e1-8663-48f0-b7e9-c37e88609c7b",
+              "name": "Worker created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": false,\n  \"source_code\": \"string\",\n  \"action\": \"AFTER_BUILD_INFO_SAVE\",\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"created\": \"1949-05-27T07:06:02.327Z\",\n  \"modified\": \"1975-11-04T20:10:56.421Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f6c3989-50e3-40bb-a9c4-cf1e44114a47",
+              "name": "Invalid worker configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed704bdb-5ef8-4fb3-9a87-4989fdaad198",
+          "name": "JFrog Get Worker",
+          "request": {
+            "name": "JFrog Get Worker",
+            "description": {
+              "content": "Returns details for a specific worker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers",
+                ":workerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workerKey",
+                  "description": "(Required) Worker key identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bfac0691-b942-4759-8a02-d2174cb6545e",
+              "name": "Worker details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": false,\n  \"source_code\": \"string\",\n  \"action\": \"AFTER_BUILD_INFO_SAVE\",\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"created\": \"1949-05-27T07:06:02.327Z\",\n  \"modified\": \"1975-11-04T20:10:56.421Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "676add32-ae04-4ab5-83a3-f5863b353211",
+              "name": "Worker not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b22df026-bad2-4475-ad30-59f256152b3d",
+          "name": "JFrog Update Worker",
+          "request": {
+            "name": "JFrog Update Worker",
+            "description": {
+              "content": "Updates an existing worker's code or configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers",
+                ":workerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workerKey",
+                  "description": "(Required) Worker key identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73ee1e24-c975-4a4e-873b-6ef70af82c7d",
+              "name": "Worker updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"source_code\": \"<string>\",\n  \"action\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": true,\n  \"filter_criteria\": {\n    \"artifact_filter_criteria\": {\n      \"repo_keys\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"secrets\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f15d2b45-6752-4bef-bf11-ae691037e530",
+          "name": "JFrog Delete Worker",
+          "request": {
+            "name": "JFrog Delete Worker",
+            "description": {
+              "content": "Deletes a worker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers",
+                ":workerKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workerKey",
+                  "description": "(Required) Worker key identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f65ee73d-c5d5-4dce-bf39-fc258f911e5d",
+              "name": "Worker deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fadb71f6-5871-4282-b75d-81305955ddad",
+          "name": "JFrog Enable Worker",
+          "request": {
+            "name": "JFrog Enable Worker",
+            "description": {
+              "content": "Enables a disabled worker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers",
+                ":workerKey",
+                "enable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workerKey",
+                  "description": "(Required) Worker key identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d750e4cf-b817-49bd-82fb-17949557d0ed",
+              "name": "Worker enabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey",
+                    "enable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a911dc0-16b4-42e7-932f-0d549891ff50",
+          "name": "JFrog Disable Worker",
+          "request": {
+            "name": "JFrog Disable Worker",
+            "description": {
+              "content": "Disables an active worker.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "workers",
+                ":workerKey",
+                "disable"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workerKey",
+                  "description": "(Required) Worker key identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32d258fd-33a8-4181-b819-6ede49597fca",
+              "name": "Worker disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "workers",
+                    ":workerKey",
+                    "disable"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workerKey",
+                      "description": "(Required) Worker key identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/worker/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21467c76-3426-4523-8074-9b441e045f97",
+    "name": "JFrog Workers REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for creating and managing custom serverless workers that extend JFrog Platform functionality through synchronized hooks and automation in a secure, isolated execution environment. Workers are TypeScript-based functions that can react to JFrog Platform events.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

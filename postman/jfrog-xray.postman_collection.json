@@ -1,0 +1,2593 @@
+{
+  "info": {
+    "_postman_id": "a5b2e7a5-4dc9-40e0-8c6e-555e301061f5",
+    "name": "JFrog Xray REST API",
+    "description": "API for vulnerability scanning, license compliance, and impact analysis. JFrog Xray provides universal software composition analysis (SCA) that natively integrates with Artifactory to scan artifacts for known vulnerabilities, license compliance violations, and operational risks.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:03:36.000Z",
+    "updatedAt": "2026-06-05T13:03:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a5b2e7a5-4dc9-40e0-8c6e-555e301061f5"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "system",
+          "item": [
+            {
+              "name": "ping",
+              "item": [
+                {
+                  "name": "JFrog System Ping",
+                  "id": "33b014b9-c767-4e8d-87aa-0cee127c4f52",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/system/ping",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "system",
+                        "ping"
+                      ]
+                    },
+                    "description": "Returns a simple ping response indicating Xray is accessible."
+                  },
+                  "response": [
+                    {
+                      "id": "f10fefe3-e5fd-4a9c-9610-5c72bce82013",
+                      "name": "Xray is accessible",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/system/ping",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "system",
+                            "ping"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-f10fefe3-e5fd-4a9c-9610-5c72bce82013"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-33b014b9-c767-4e8d-87aa-0cee127c4f52"
+                }
+              ],
+              "id": "026f4074-074d-447f-8a94-a769178a664c",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-026f4074-074d-447f-8a94-a769178a664c"
+            },
+            {
+              "name": "version",
+              "item": [
+                {
+                  "name": "JFrog Get System Version",
+                  "id": "6d65dbeb-a256-46ad-9a12-4cde395c16bf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/system/version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "system",
+                        "version"
+                      ]
+                    },
+                    "description": "Returns the Xray version and revision information."
+                  },
+                  "response": [
+                    {
+                      "id": "b6f31177-163c-43ea-8f29-061de675f80d",
+                      "name": "Version info retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/system/version",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "system",
+                            "version"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"xray_version\": \"<string>\",\n  \"xray_revision\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-b6f31177-163c-43ea-8f29-061de675f80d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-6d65dbeb-a256-46ad-9a12-4cde395c16bf"
+                }
+              ],
+              "id": "56aab8ea-7dff-46dd-9e7c-757377108a3b",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-56aab8ea-7dff-46dd-9e7c-757377108a3b"
+            }
+          ],
+          "id": "a1d37e5c-2b55-48ab-a6b0-5e96bce3e81b",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-a1d37e5c-2b55-48ab-a6b0-5e96bce3e81b"
+        },
+        {
+          "name": "component",
+          "item": [
+            {
+              "name": "JFrog Get Component Details",
+              "id": "85f464bf-4423-4f14-811e-ecff32c227ad",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"component_details\": [\n    {\n      \"component_id\": \"<string>\"\n    },\n    {\n      \"component_id\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/component",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "component"
+                  ]
+                },
+                "description": "Returns vulnerability and license information for specified components."
+              },
+              "response": [
+                {
+                  "id": "cd06c776-9924-4c51-97a5-eab4fad62f6b",
+                  "name": "Component details retrieved",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"component_details\": [\n    {\n      \"component_id\": \"<string>\"\n    },\n    {\n      \"component_id\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/component",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "component"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"component_id\": \"<string>\",\n    \"component_name\": \"<string>\",\n    \"package_type\": \"<string>\",\n    \"version\": \"<string>\",\n    \"licenses\": [\n      {\n        \"name\": \"<string>\",\n        \"full_name\": \"<string>\",\n        \"more_info_url\": [\n          \"<uri>\",\n          \"<uri>\"\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"full_name\": \"<string>\",\n        \"more_info_url\": [\n          \"<uri>\",\n          \"<uri>\"\n        ]\n      }\n    ],\n    \"vulnerabilities\": [\n      {\n        \"cve\": \"<string>\",\n        \"severity\": \"High\",\n        \"cvss_v2_score\": \"<string>\",\n        \"cvss_v3_score\": \"<string>\",\n        \"summary\": \"<string>\",\n        \"description\": \"<string>\",\n        \"fixed_versions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"references\": [\n          \"<uri>\",\n          \"<uri>\"\n        ],\n        \"published\": \"<dateTime>\"\n      },\n      {\n        \"cve\": \"<string>\",\n        \"severity\": \"Critical\",\n        \"cvss_v2_score\": \"<string>\",\n        \"cvss_v3_score\": \"<string>\",\n        \"summary\": \"<string>\",\n        \"description\": \"<string>\",\n        \"fixed_versions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"references\": [\n          \"<uri>\",\n          \"<uri>\"\n        ],\n        \"published\": \"<dateTime>\"\n      }\n    ]\n  },\n  {\n    \"component_id\": \"<string>\",\n    \"component_name\": \"<string>\",\n    \"package_type\": \"<string>\",\n    \"version\": \"<string>\",\n    \"licenses\": [\n      {\n        \"name\": \"<string>\",\n        \"full_name\": \"<string>\",\n        \"more_info_url\": [\n          \"<uri>\",\n          \"<uri>\"\n        ]\n      },\n      {\n        \"name\": \"<string>\",\n        \"full_name\": \"<string>\",\n        \"more_info_url\": [\n          \"<uri>\",\n          \"<uri>\"\n        ]\n      }\n    ],\n    \"vulnerabilities\": [\n      {\n        \"cve\": \"<string>\",\n        \"severity\": \"Medium\",\n        \"cvss_v2_score\": \"<string>\",\n        \"cvss_v3_score\": \"<string>\",\n        \"summary\": \"<string>\",\n        \"description\": \"<string>\",\n        \"fixed_versions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"references\": [\n          \"<uri>\",\n          \"<uri>\"\n        ],\n        \"published\": \"<dateTime>\"\n      },\n      {\n        \"cve\": \"<string>\",\n        \"severity\": \"Medium\",\n        \"cvss_v2_score\": \"<string>\",\n        \"cvss_v3_score\": \"<string>\",\n        \"summary\": \"<string>\",\n        \"description\": \"<string>\",\n        \"fixed_versions\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"references\": [\n          \"<uri>\",\n          \"<uri>\"\n        ],\n        \"published\": \"<dateTime>\"\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-cd06c776-9924-4c51-97a5-eab4fad62f6b"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-85f464bf-4423-4f14-811e-ecff32c227ad"
+            }
+          ],
+          "id": "0fc55b28-ca75-4082-91f6-7a409f34a746",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-0fc55b28-ca75-4082-91f6-7a409f34a746"
+        },
+        {
+          "name": "summary",
+          "item": [
+            {
+              "name": "artifact",
+              "item": [
+                {
+                  "name": "JFrog Get Artifact Summary",
+                  "id": "81b9df00-960e-4520-8264-048c34bbaf66",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/summary/artifact",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "summary",
+                        "artifact"
+                      ]
+                    },
+                    "description": "Returns a summary of security issues and license information for specified artifacts."
+                  },
+                  "response": [
+                    {
+                      "id": "06a21644-2fe7-480f-b954-b8fb0331888d",
+                      "name": "Artifact summary retrieved",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/summary/artifact",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "summary",
+                            "artifact"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"artifacts\": [\n    {\n      \"general\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\",\n        \"component_id\": \"<string>\"\n      },\n      \"issues\": [\n        {\n          \"issue_id\": \"<string>\",\n          \"severity\": \"Low\",\n          \"summary\": \"<string>\",\n          \"description\": \"<string>\",\n          \"issue_type\": \"<string>\",\n          \"provider\": \"<string>\",\n          \"cves\": [\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            },\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            }\n          ],\n          \"created\": \"<dateTime>\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"issue_id\": \"<string>\",\n          \"severity\": \"Critical\",\n          \"summary\": \"<string>\",\n          \"description\": \"<string>\",\n          \"issue_type\": \"<string>\",\n          \"provider\": \"<string>\",\n          \"cves\": [\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            },\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            }\n          ],\n          \"created\": \"<dateTime>\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"licenses\": [\n        {\n          \"name\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"components\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"components\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"general\": {\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"sha256\": \"<string>\",\n        \"component_id\": \"<string>\"\n      },\n      \"issues\": [\n        {\n          \"issue_id\": \"<string>\",\n          \"severity\": \"High\",\n          \"summary\": \"<string>\",\n          \"description\": \"<string>\",\n          \"issue_type\": \"<string>\",\n          \"provider\": \"<string>\",\n          \"cves\": [\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            },\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            }\n          ],\n          \"created\": \"<dateTime>\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"issue_id\": \"<string>\",\n          \"severity\": \"Medium\",\n          \"summary\": \"<string>\",\n          \"description\": \"<string>\",\n          \"issue_type\": \"<string>\",\n          \"provider\": \"<string>\",\n          \"cves\": [\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            },\n            {\n              \"cve\": \"<string>\",\n              \"cvss_v2_score\": \"<string>\",\n              \"cvss_v3_score\": \"<string>\"\n            }\n          ],\n          \"created\": \"<dateTime>\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"display_name\": \"<string>\",\n              \"path\": \"<string>\",\n              \"sha256\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"licenses\": [\n        {\n          \"name\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"components\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"full_name\": \"<string>\",\n          \"components\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-06a21644-2fe7-480f-b954-b8fb0331888d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-81b9df00-960e-4520-8264-048c34bbaf66"
+                }
+              ],
+              "id": "760f1637-b461-45ff-b747-c42040769376",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-760f1637-b461-45ff-b747-c42040769376"
+            },
+            {
+              "name": "build",
+              "item": [
+                {
+                  "name": "JFrog Get Build Summary",
+                  "id": "65698c4d-0853-42b8-b6ff-3ed40284ecbf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"build_name\": \"<string>\",\n  \"build_number\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/summary/build",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "summary",
+                        "build"
+                      ]
+                    },
+                    "description": "Returns a summary of security issues for specified build."
+                  },
+                  "response": [
+                    {
+                      "id": "98c0e090-66d2-4634-8335-d03c13b79278",
+                      "name": "Build summary retrieved",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"build_name\": \"<string>\",\n  \"build_number\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/summary/build",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "summary",
+                            "build"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"build\": {\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\"\n  },\n  \"issues\": [\n    {\n      \"issue_id\": \"<string>\",\n      \"severity\": \"Low\",\n      \"summary\": \"<string>\",\n      \"description\": \"<string>\",\n      \"issue_type\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"cves\": [\n        {\n          \"cve\": \"<string>\",\n          \"cvss_v2_score\": \"<string>\",\n          \"cvss_v3_score\": \"<string>\"\n        },\n        {\n          \"cve\": \"<string>\",\n          \"cvss_v2_score\": \"<string>\",\n          \"cvss_v3_score\": \"<string>\"\n        }\n      ],\n      \"created\": \"<dateTime>\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"sha256\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"sha256\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"issue_id\": \"<string>\",\n      \"severity\": \"High\",\n      \"summary\": \"<string>\",\n      \"description\": \"<string>\",\n      \"issue_type\": \"<string>\",\n      \"provider\": \"<string>\",\n      \"cves\": [\n        {\n          \"cve\": \"<string>\",\n          \"cvss_v2_score\": \"<string>\",\n          \"cvss_v3_score\": \"<string>\"\n        },\n        {\n          \"cve\": \"<string>\",\n          \"cvss_v2_score\": \"<string>\",\n          \"cvss_v3_score\": \"<string>\"\n        }\n      ],\n      \"created\": \"<dateTime>\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"sha256\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"sha256\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-98c0e090-66d2-4634-8335-d03c13b79278"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-65698c4d-0853-42b8-b6ff-3ed40284ecbf"
+                }
+              ],
+              "id": "5f37d5a5-7225-47fc-87f2-29ef69dece10",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-5f37d5a5-7225-47fc-87f2-29ef69dece10"
+            }
+          ],
+          "id": "48413038-612c-42da-900a-a8b47dac2a97",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-48413038-612c-42da-900a-a8b47dac2a97"
+        },
+        {
+          "name": "scanArtifact",
+          "item": [
+            {
+              "name": "JFrog Scan Artifact",
+              "id": "14b2e223-914c-4d0b-b1a7-61993eb64542",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"componentID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/scanArtifact",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "scanArtifact"
+                  ]
+                },
+                "description": "Triggers a scan for a specific artifact by its component ID."
+              },
+              "response": [
+                {
+                  "id": "694595fe-62be-4cd9-8025-caaa43877527",
+                  "name": "Scan initiated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"componentID\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scanArtifact",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scanArtifact"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"info\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-694595fe-62be-4cd9-8025-caaa43877527"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-14b2e223-914c-4d0b-b1a7-61993eb64542"
+            }
+          ],
+          "id": "41cf4408-76d0-4cd0-9543-a5327e96ffdb",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-41cf4408-76d0-4cd0-9543-a5327e96ffdb"
+        },
+        {
+          "name": "violations",
+          "item": [
+            {
+              "name": "JFrog Get Violations",
+              "id": "944a9765-3854-4024-b601-258c374ba7e5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"type\": \"license\",\n    \"watch_name\": \"<string>\",\n    \"min_severity\": \"Low\",\n    \"created_from\": \"<dateTime>\"\n  },\n  \"pagination\": {\n    \"order_by\": \"<string>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/violations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "violations"
+                  ]
+                },
+                "description": "Returns violations based on specified filters."
+              },
+              "response": [
+                {
+                  "id": "7f3fd0fb-4059-4920-add3-2b98a5f74a27",
+                  "name": "Violations retrieved",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"filters\": {\n    \"type\": \"license\",\n    \"watch_name\": \"<string>\",\n    \"min_severity\": \"Low\",\n    \"created_from\": \"<dateTime>\"\n  },\n  \"pagination\": {\n    \"order_by\": \"<string>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/violations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "violations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"total_violations\": \"<integer>\",\n  \"violations\": [\n    {\n      \"violation_type\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"watch_name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"matched_policies\": [\n        {\n          \"policy\": \"<string>\",\n          \"rule\": \"<string>\"\n        },\n        {\n          \"policy\": \"<string>\",\n          \"rule\": \"<string>\"\n        }\n      ],\n      \"created\": \"<dateTime>\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"violation_type\": \"<string>\",\n      \"severity\": \"<string>\",\n      \"watch_name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"matched_policies\": [\n        {\n          \"policy\": \"<string>\",\n          \"rule\": \"<string>\"\n        },\n        {\n          \"policy\": \"<string>\",\n          \"rule\": \"<string>\"\n        }\n      ],\n      \"created\": \"<dateTime>\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"display_name\": \"<string>\",\n          \"path\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-7f3fd0fb-4059-4920-add3-2b98a5f74a27"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-944a9765-3854-4024-b601-258c374ba7e5"
+            }
+          ],
+          "id": "de351caf-acac-449b-9f48-192c233d611b",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-de351caf-acac-449b-9f48-192c233d611b"
+        },
+        {
+          "name": "report",
+          "item": [
+            {
+              "name": "vulnerabilities",
+              "item": [
+                {
+                  "name": "JFrog Generate Vulnerability Report",
+                  "id": "9f92e336-2ea0-4840-9f8a-83f904635a6c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repositories\": [\n      {\n        \"name\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"filters\": {\n    \"severity\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"has_remediation\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/report/vulnerabilities",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "report",
+                        "vulnerabilities"
+                      ]
+                    },
+                    "description": "Generates a vulnerability report for specified scope."
+                  },
+                  "response": [
+                    {
+                      "id": "69ba497d-51a8-4d78-90d2-ab65deccbe56",
+                      "name": "Report generation started",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repositories\": [\n      {\n        \"name\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\"\n      }\n    ]\n  },\n  \"filters\": {\n    \"severity\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"has_remediation\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/report/vulnerabilities",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "report",
+                            "vulnerabilities"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"report_id\": \"<integer>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-69ba497d-51a8-4d78-90d2-ab65deccbe56"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-9f92e336-2ea0-4840-9f8a-83f904635a6c"
+                }
+              ],
+              "id": "af4fb9c7-69a3-44cb-b0c6-e7e286cdef91",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-af4fb9c7-69a3-44cb-b0c6-e7e286cdef91"
+            },
+            {
+              "name": "{reportId}",
+              "item": [
+                {
+                  "name": "JFrog Get Report Status",
+                  "id": "72e27a08-4fa0-47fb-ba51-7bd32dd29322",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/report/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "report",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2809c5b2-f1b4-40c4-8c00-54bc366bebe1",
+                          "key": "reportId",
+                          "value": "<integer>",
+                          "description": "(Required) Report ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns the status and details of a report."
+                  },
+                  "response": [
+                    {
+                      "id": "3c834d11-2192-4973-89c0-81dd6d72fe5e",
+                      "name": "Report status retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/report/:reportId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "report",
+                            ":reportId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"status\": \"failed\"\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-3c834d11-2192-4973-89c0-81dd6d72fe5e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-72e27a08-4fa0-47fb-ba51-7bd32dd29322"
+                },
+                {
+                  "name": "JFrog Delete Report",
+                  "id": "c5628e27-7005-42a0-949d-962f8108325f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/report/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "report",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4252c84b-597a-4e7c-b1b8-86e98413afd9",
+                          "key": "reportId",
+                          "value": "<integer>",
+                          "description": "(Required) Report ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a generated report."
+                  },
+                  "response": [
+                    {
+                      "id": "f67b0575-05d0-4403-9034-2d47c2b629a8",
+                      "name": "Report deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/report/:reportId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "report",
+                            ":reportId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-f67b0575-05d0-4403-9034-2d47c2b629a8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-c5628e27-7005-42a0-949d-962f8108325f"
+                }
+              ],
+              "id": "52a241f6-bd86-4ed8-945e-bef3acbcdde4",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-52a241f6-bd86-4ed8-945e-bef3acbcdde4"
+            }
+          ],
+          "id": "0496d911-0cd7-479f-964e-e2e78a97941b",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-0496d911-0cd7-479f-964e-e2e78a97941b"
+        },
+        {
+          "name": "ignore_rules",
+          "item": [
+            {
+              "name": "{ruleId}",
+              "item": [
+                {
+                  "name": "JFrog Get Ignore Rule",
+                  "id": "5a9ca898-cfd6-4b15-a947-beebfd17e0ca",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ignore_rules/:ruleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ignore_rules",
+                        ":ruleId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "99ea82d2-5048-4461-8c44-f6b8e822ea17",
+                          "key": "ruleId",
+                          "value": "<string>",
+                          "description": "(Required) Ignore rule ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns a specific ignore rule."
+                  },
+                  "response": [
+                    {
+                      "id": "6781f536-0bbc-44c7-8c01-defef016969b",
+                      "name": "Ignore rule retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ignore_rules/:ruleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ignore_rules",
+                            ":ruleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ruleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"expiration_date\": \"<dateTime>\",\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"cves\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"watches\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"component\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"artifact\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"path\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-6781f536-0bbc-44c7-8c01-defef016969b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-5a9ca898-cfd6-4b15-a947-beebfd17e0ca"
+                },
+                {
+                  "name": "JFrog Delete Ignore Rule",
+                  "id": "48f0aa36-ec65-4a5d-a4bf-3d449fb62472",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ignore_rules/:ruleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ignore_rules",
+                        ":ruleId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8fcdb7b9-d476-46a7-9fc0-899c8e3c4991",
+                          "key": "ruleId",
+                          "value": "<string>",
+                          "description": "(Required) Ignore rule ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes an ignore rule."
+                  },
+                  "response": [
+                    {
+                      "id": "ee957e28-3dc8-4ef8-979f-d01835056789",
+                      "name": "Ignore rule deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/ignore_rules/:ruleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "ignore_rules",
+                            ":ruleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "ruleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-ee957e28-3dc8-4ef8-979f-d01835056789"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-48f0aa36-ec65-4a5d-a4bf-3d449fb62472"
+                }
+              ],
+              "id": "85241069-8535-490d-9cdc-9456c1d09c3d",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-85241069-8535-490d-9cdc-9456c1d09c3d"
+            },
+            {
+              "name": "JFrog List Ignore Rules",
+              "id": "060b68bc-e3ea-4caa-a7fd-a1b5e07f51f6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ignore_rules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ignore_rules"
+                  ]
+                },
+                "description": "Returns all ignore rules configured in Xray."
+              },
+              "response": [
+                {
+                  "id": "237f5d4c-c590-4b03-84f2-616793e050a1",
+                  "name": "Ignore rules retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ignore_rules",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ignore_rules"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"expiration_date\": \"<dateTime>\",\n      \"vulnerabilities\": [\n        {\n          \"cve\": \"<string>\"\n        },\n        {\n          \"cve\": \"<string>\"\n        }\n      ],\n      \"cves\": [\n        {\n          \"cve\": \"<string>\"\n        },\n        {\n          \"cve\": \"<string>\"\n        }\n      ],\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"watches\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"component\": {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"artifact\": {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"path\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"notes\": \"<string>\",\n      \"expiration_date\": \"<dateTime>\",\n      \"vulnerabilities\": [\n        {\n          \"cve\": \"<string>\"\n        },\n        {\n          \"cve\": \"<string>\"\n        }\n      ],\n      \"cves\": [\n        {\n          \"cve\": \"<string>\"\n        },\n        {\n          \"cve\": \"<string>\"\n        }\n      ],\n      \"licenses\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"watches\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"policies\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"component\": {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\"\n      },\n      \"artifact\": {\n        \"name\": \"<string>\",\n        \"version\": \"<string>\",\n        \"path\": \"<string>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-237f5d4c-c590-4b03-84f2-616793e050a1"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-060b68bc-e3ea-4caa-a7fd-a1b5e07f51f6"
+            },
+            {
+              "name": "JFrog Create Ignore Rule",
+              "id": "f0db508d-aa0e-4616-b310-933d1289d2a8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"expiration_date\": \"<dateTime>\",\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"cves\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"watches\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"component\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"artifact\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"path\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/ignore_rules",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "ignore_rules"
+                  ]
+                },
+                "description": "Creates a new ignore rule for a specific vulnerability or license."
+              },
+              "response": [
+                {
+                  "id": "323b8e0a-6781-435e-b043-bc40538af189",
+                  "name": "Ignore rule created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"expiration_date\": \"<dateTime>\",\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"cves\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"watches\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"component\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"artifact\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"path\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/ignore_rules",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "ignore_rules"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-323b8e0a-6781-435e-b043-bc40538af189"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-f0db508d-aa0e-4616-b310-933d1289d2a8"
+            }
+          ],
+          "id": "feb192bb-cb72-4707-a213-03ad5410d5fe",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-feb192bb-cb72-4707-a213-03ad5410d5fe"
+        }
+      ],
+      "id": "81d50697-36e7-47d5-8719-fdc2ba98c940",
+      "createdAt": "2026-06-05T13:03:37.000Z",
+      "updatedAt": "2026-06-05T13:03:37.000Z",
+      "uid": "35240-81d50697-36e7-47d5-8719-fdc2ba98c940"
+    },
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "ci",
+          "item": [
+            {
+              "name": "scan",
+              "item": [
+                {
+                  "name": "JFrog Scan Build (v2)",
+                  "id": "4984b66e-0d26-4897-b483-68098ea6583c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"buildName\": \"<string>\",\n  \"buildNumber\": \"<string>\",\n  \"rescan\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/ci/scan",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "ci",
+                        "scan"
+                      ]
+                    },
+                    "description": "Triggers an on-demand scan for a build."
+                  },
+                  "response": [
+                    {
+                      "id": "6ae20c48-03ea-43b1-851f-7dc65888985a",
+                      "name": "Scan initiated",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"buildName\": \"<string>\",\n  \"buildNumber\": \"<string>\",\n  \"rescan\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/ci/scan",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "ci",
+                            "scan"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"info\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-6ae20c48-03ea-43b1-851f-7dc65888985a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-4984b66e-0d26-4897-b483-68098ea6583c"
+                }
+              ],
+              "id": "d9abd724-37a8-427d-bcf4-31b743e8c392",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-d9abd724-37a8-427d-bcf4-31b743e8c392"
+            }
+          ],
+          "id": "143e5e7a-2a79-4220-94dd-29e0f36981b4",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-143e5e7a-2a79-4220-94dd-29e0f36981b4"
+        },
+        {
+          "name": "watches",
+          "item": [
+            {
+              "name": "{watchName}",
+              "item": [
+                {
+                  "name": "JFrog Get Watch",
+                  "id": "ee471f07-e030-4def-8388-07e6c3e8e116",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/watches/:watchName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "watches",
+                        ":watchName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f9295943-d07a-44a9-bd77-fba34fd7e144",
+                          "key": "watchName",
+                          "value": "<string>",
+                          "description": "(Required) Watch name"
+                        }
+                      ]
+                    },
+                    "description": "Returns configuration for a specific watch."
+                  },
+                  "response": [
+                    {
+                      "id": "9eee3948-8e2e-41d8-a1db-cf62472591a2",
+                      "name": "Watch details retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/watches/:watchName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "watches",
+                            ":watchName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "watchName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"all-builds\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"all-repos\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"mime-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"security\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"license\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-9eee3948-8e2e-41d8-a1db-cf62472591a2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-ee471f07-e030-4def-8388-07e6c3e8e116"
+                },
+                {
+                  "name": "JFrog Update Watch",
+                  "id": "d618f3c4-83a1-47cd-b0af-f9cdbf773527",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"all-builds\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"all-repos\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"mime-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"security\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"license\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/watches/:watchName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "watches",
+                        ":watchName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "31f1201e-3bbd-4e1a-bd14-1eecc83bd366",
+                          "key": "watchName",
+                          "value": "<string>",
+                          "description": "(Required) Watch name"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing watch configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "fc44ff4c-133d-4b4d-b31c-eee9a44bb1e1",
+                      "name": "Watch updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"all-builds\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"all-repos\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"mime-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"security\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"license\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/watches/:watchName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "watches",
+                            ":watchName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "watchName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-fc44ff4c-133d-4b4d-b31c-eee9a44bb1e1"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-d618f3c4-83a1-47cd-b0af-f9cdbf773527"
+                },
+                {
+                  "name": "JFrog Delete Watch",
+                  "id": "c7148110-f87c-4b77-83cb-c52d65287aab",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/watches/:watchName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "watches",
+                        ":watchName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "60e5729e-3b58-45e3-b75e-6b465dec27e9",
+                          "key": "watchName",
+                          "value": "<string>",
+                          "description": "(Required) Watch name"
+                        }
+                      ]
+                    },
+                    "description": "Removes a watch configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "20d7243c-c4aa-4ca1-9bf9-f343deda3487",
+                      "name": "Watch deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/watches/:watchName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "watches",
+                            ":watchName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "watchName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-20d7243c-c4aa-4ca1-9bf9-f343deda3487"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-c7148110-f87c-4b77-83cb-c52d65287aab"
+                }
+              ],
+              "id": "622d3835-8a1a-4341-b7b2-abb8ca683f08",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-622d3835-8a1a-4341-b7b2-abb8ca683f08"
+            },
+            {
+              "name": "JFrog List Watches",
+              "id": "9089b04d-78d5-4664-9885-fb9d91ad9012",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/watches",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "watches"
+                  ]
+                },
+                "description": "Returns a list of all configured watches."
+              },
+              "response": [
+                {
+                  "id": "05a37051-d95b-4b9a-88b4-1e9be6f337ad",
+                  "name": "Watches list retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/watches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "watches"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"general_data\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"active\": \"<boolean>\"\n    },\n    \"project_resources\": {\n      \"resources\": [\n        {\n          \"type\": \"all-repos\",\n          \"name\": \"<string>\",\n          \"bin_mgr_id\": \"<string>\",\n          \"filters\": [\n            {\n              \"type\": \"mime-type\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"type\": \"mime-type\",\n              \"value\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"type\": \"all-repos\",\n          \"name\": \"<string>\",\n          \"bin_mgr_id\": \"<string>\",\n          \"filters\": [\n            {\n              \"type\": \"mime-type\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"type\": \"mime-type\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    \"assigned_policies\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"operational_risk\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"security\"\n      }\n    ]\n  },\n  {\n    \"general_data\": {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"active\": \"<boolean>\"\n    },\n    \"project_resources\": {\n      \"resources\": [\n        {\n          \"type\": \"all-builds\",\n          \"name\": \"<string>\",\n          \"bin_mgr_id\": \"<string>\",\n          \"filters\": [\n            {\n              \"type\": \"package-type\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"type\": \"regex\",\n              \"value\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"type\": \"all-repos\",\n          \"name\": \"<string>\",\n          \"bin_mgr_id\": \"<string>\",\n          \"filters\": [\n            {\n              \"type\": \"path-regex\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"type\": \"regex\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      ]\n    },\n    \"assigned_policies\": [\n      {\n        \"name\": \"<string>\",\n        \"type\": \"operational_risk\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"type\": \"operational_risk\"\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-05a37051-d95b-4b9a-88b4-1e9be6f337ad"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-9089b04d-78d5-4664-9885-fb9d91ad9012"
+            },
+            {
+              "name": "JFrog Create Watch",
+              "id": "6628827b-04c7-4cc9-bb70-44a6bd3f765d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"all-builds\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"all-repos\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"mime-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"security\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"license\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/watches",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "watches"
+                  ]
+                },
+                "description": "Creates a new watch for monitoring artifacts."
+              },
+              "response": [
+                {
+                  "id": "194afdd0-16c3-4bab-8c27-67c984e85999",
+                  "name": "Watch created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"all-builds\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"all-repos\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"mime-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"security\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"license\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/watches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "watches"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-194afdd0-16c3-4bab-8c27-67c984e85999"
+                },
+                {
+                  "id": "bcafb646-886c-4f46-8131-0a4e496e2fb1",
+                  "name": "Invalid watch configuration",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"all-builds\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"all-repos\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"package-type\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"mime-type\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"security\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"license\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/watches",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "watches"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-bcafb646-886c-4f46-8131-0a4e496e2fb1"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-6628827b-04c7-4cc9-bb70-44a6bd3f765d"
+            }
+          ],
+          "id": "9649ec34-673f-4673-9e1b-bf9ca0560057",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-9649ec34-673f-4673-9e1b-bf9ca0560057"
+        },
+        {
+          "name": "policies",
+          "item": [
+            {
+              "name": "{policyName}",
+              "item": [
+                {
+                  "name": "JFrog Get Policy",
+                  "id": "014fac64-12fc-4b7d-8569-395786f4db37",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/policies/:policyName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "policies",
+                        ":policyName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "dbfa6fc1-e332-4c73-bdf1-f4c9ff789095",
+                          "key": "policyName",
+                          "value": "<string>",
+                          "description": "(Required) Policy name"
+                        }
+                      ]
+                    },
+                    "description": "Returns details of a specific policy."
+                  },
+                  "response": [
+                    {
+                      "id": "a81e8f5f-cd8d-4377-ad58-8642825d09bf",
+                      "name": "Policy details retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/policies/:policyName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "policies",
+                            ":policyName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policyName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"type\": \"operational_risk\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"High\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"Critical\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-a81e8f5f-cd8d-4377-ad58-8642825d09bf"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-014fac64-12fc-4b7d-8569-395786f4db37"
+                },
+                {
+                  "name": "JFrog Update Policy",
+                  "id": "7bf1f348-3cee-4cf3-89f7-fa00284fdd45",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"operational_risk\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"High\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"Critical\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/policies/:policyName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "policies",
+                        ":policyName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7d79ee60-f7fc-4fa7-9f0b-fe80862d0515",
+                          "key": "policyName",
+                          "value": "<string>",
+                          "description": "(Required) Policy name"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing policy."
+                  },
+                  "response": [
+                    {
+                      "id": "49343acf-3a76-49ab-b5f2-2971623e316a",
+                      "name": "Policy updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"operational_risk\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"High\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"Critical\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/policies/:policyName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "policies",
+                            ":policyName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policyName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-49343acf-3a76-49ab-b5f2-2971623e316a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-7bf1f348-3cee-4cf3-89f7-fa00284fdd45"
+                },
+                {
+                  "name": "JFrog Delete Policy",
+                  "id": "489aedf4-a228-4c56-93b7-19ffdef8c3a2",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/policies/:policyName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "policies",
+                        ":policyName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "aeaadee0-e66c-4a59-aa5c-e58bc4ae160e",
+                          "key": "policyName",
+                          "value": "<string>",
+                          "description": "(Required) Policy name"
+                        }
+                      ]
+                    },
+                    "description": "Removes a policy."
+                  },
+                  "response": [
+                    {
+                      "id": "3a3202ae-b344-47e3-abc2-e1b365c3bcdb",
+                      "name": "Policy deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/policies/:policyName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "policies",
+                            ":policyName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "policyName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:37.000Z",
+                      "updatedAt": "2026-06-05T13:03:37.000Z",
+                      "uid": "35240-3a3202ae-b344-47e3-abc2-e1b365c3bcdb"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-489aedf4-a228-4c56-93b7-19ffdef8c3a2"
+                }
+              ],
+              "id": "fd14dfa5-d5c0-4019-87e9-b331cdb45053",
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-fd14dfa5-d5c0-4019-87e9-b331cdb45053"
+            },
+            {
+              "name": "JFrog List Policies",
+              "id": "ca02fdfb-d5a3-4ae6-8c38-507967f07c16",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "policies"
+                  ]
+                },
+                "description": "Returns a list of all security and license policies."
+              },
+              "response": [
+                {
+                  "id": "3a2371d7-9516-46df-a622-3265cb2f766d",
+                  "name": "Policies list retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "policies"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"name\": \"<string>\",\n    \"type\": \"operational_risk\",\n    \"rules\": [\n      {\n        \"name\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"criteria\": {\n          \"min_severity\": \"High\",\n          \"cvss_range\": {\n            \"from\": \"<number>\",\n            \"to\": \"<number>\"\n          },\n          \"allow_unknown\": \"<boolean>\",\n          \"banned_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"mails\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"block_download\": {\n            \"unscanned\": \"<boolean>\",\n            \"active\": \"<boolean>\"\n          },\n          \"block_release_bundle_distribution\": \"<boolean>\",\n          \"fail_build\": \"<boolean>\",\n          \"notify_deployer\": \"<boolean>\",\n          \"notify_watch_recipients\": \"<boolean>\",\n          \"create_ticket_enabled\": \"<boolean>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"criteria\": {\n          \"min_severity\": \"Critical\",\n          \"cvss_range\": {\n            \"from\": \"<number>\",\n            \"to\": \"<number>\"\n          },\n          \"allow_unknown\": \"<boolean>\",\n          \"banned_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"mails\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"block_download\": {\n            \"unscanned\": \"<boolean>\",\n            \"active\": \"<boolean>\"\n          },\n          \"block_release_bundle_distribution\": \"<boolean>\",\n          \"fail_build\": \"<boolean>\",\n          \"notify_deployer\": \"<boolean>\",\n          \"notify_watch_recipients\": \"<boolean>\",\n          \"create_ticket_enabled\": \"<boolean>\"\n        }\n      }\n    ],\n    \"description\": \"<string>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"type\": \"license\",\n    \"rules\": [\n      {\n        \"name\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"criteria\": {\n          \"min_severity\": \"High\",\n          \"cvss_range\": {\n            \"from\": \"<number>\",\n            \"to\": \"<number>\"\n          },\n          \"allow_unknown\": \"<boolean>\",\n          \"banned_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"mails\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"block_download\": {\n            \"unscanned\": \"<boolean>\",\n            \"active\": \"<boolean>\"\n          },\n          \"block_release_bundle_distribution\": \"<boolean>\",\n          \"fail_build\": \"<boolean>\",\n          \"notify_deployer\": \"<boolean>\",\n          \"notify_watch_recipients\": \"<boolean>\",\n          \"create_ticket_enabled\": \"<boolean>\"\n        }\n      },\n      {\n        \"name\": \"<string>\",\n        \"priority\": \"<integer>\",\n        \"criteria\": {\n          \"min_severity\": \"Low\",\n          \"cvss_range\": {\n            \"from\": \"<number>\",\n            \"to\": \"<number>\"\n          },\n          \"allow_unknown\": \"<boolean>\",\n          \"banned_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_licenses\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"mails\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"block_download\": {\n            \"unscanned\": \"<boolean>\",\n            \"active\": \"<boolean>\"\n          },\n          \"block_release_bundle_distribution\": \"<boolean>\",\n          \"fail_build\": \"<boolean>\",\n          \"notify_deployer\": \"<boolean>\",\n          \"notify_watch_recipients\": \"<boolean>\",\n          \"create_ticket_enabled\": \"<boolean>\"\n        }\n      }\n    ],\n    \"description\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-3a2371d7-9516-46df-a622-3265cb2f766d"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-ca02fdfb-d5a3-4ae6-8c38-507967f07c16"
+            },
+            {
+              "name": "JFrog Create Policy",
+              "id": "fd71bb2b-a6c8-44d4-bb65-14628af31b60",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"operational_risk\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"High\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"Critical\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/policies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "policies"
+                  ]
+                },
+                "description": "Creates a new security or license compliance policy."
+              },
+              "response": [
+                {
+                  "id": "36e1bff3-470e-43c7-a330-f298248ff4a7",
+                  "name": "Policy created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"operational_risk\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"High\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"Critical\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "policies"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-36e1bff3-470e-43c7-a330-f298248ff4a7"
+                },
+                {
+                  "id": "26509453-3ff1-46b1-a82f-c59d24cf6eaa",
+                  "name": "Invalid policy configuration",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"operational_risk\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"High\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"Critical\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/policies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "policies"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:03:37.000Z",
+                  "updatedAt": "2026-06-05T13:03:37.000Z",
+                  "uid": "35240-26509453-3ff1-46b1-a82f-c59d24cf6eaa"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:37.000Z",
+              "updatedAt": "2026-06-05T13:03:37.000Z",
+              "uid": "35240-fd71bb2b-a6c8-44d4-bb65-14628af31b60"
+            }
+          ],
+          "id": "f1bb56ad-7b99-42da-9384-98ab245c1238",
+          "createdAt": "2026-06-05T13:03:37.000Z",
+          "updatedAt": "2026-06-05T13:03:37.000Z",
+          "uid": "35240-f1bb56ad-7b99-42da-9384-98ab245c1238"
+        }
+      ],
+      "id": "346a840c-922a-4bd5-9ae8-c73cc9a3c6ea",
+      "createdAt": "2026-06-05T13:03:37.000Z",
+      "updatedAt": "2026-06-05T13:03:37.000Z",
+      "uid": "35240-346a840c-922a-4bd5-9ae8-c73cc9a3c6ea"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/xray/api"
+    }
+  ]
+}

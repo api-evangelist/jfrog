@@ -1,0 +1,1286 @@
+{
+  "info": {
+    "_postman_id": "a5329fdd-a6fc-4f45-a937-a53d937b79ee",
+    "name": "JFrog Mission Control REST API",
+    "description": "API for centralized management and monitoring of multiple JFrog Platform instances, including Artifactory servers, configurations, and cross-instance operations. Mission Control provides a single pane of glass for managing geographically distributed JFrog deployments.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:04:47.000Z",
+    "updatedAt": "2026-06-05T13:04:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a5329fdd-a6fc-4f45-a937-a53d937b79ee"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "system",
+          "item": [
+            {
+              "name": "ping",
+              "item": [
+                {
+                  "name": "JFrog System Ping",
+                  "id": "62a37816-fc35-4268-8885-59eed4759dd1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/system/ping",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "system",
+                        "ping"
+                      ]
+                    },
+                    "description": "Returns a health check status for Mission Control."
+                  },
+                  "response": [
+                    {
+                      "id": "77607ea5-f99d-4147-b4ba-c306d93aa9cc",
+                      "name": "Mission Control is accessible",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/system/ping",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "system",
+                            "ping"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-77607ea5-f99d-4147-b4ba-c306d93aa9cc"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-62a37816-fc35-4268-8885-59eed4759dd1"
+                }
+              ],
+              "id": "78d32f77-98bc-48a4-8c81-9956c73d77d1",
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-78d32f77-98bc-48a4-8c81-9956c73d77d1"
+            },
+            {
+              "name": "version",
+              "item": [
+                {
+                  "name": "JFrog Get System Version",
+                  "id": "780aed67-aa65-4682-981a-102f71de81d8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/system/version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "system",
+                        "version"
+                      ]
+                    },
+                    "description": "Returns Mission Control version information."
+                  },
+                  "response": [
+                    {
+                      "id": "770e6867-1ce4-4c79-8dca-8e65a52d5596",
+                      "name": "Version info retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/system/version",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "system",
+                            "version"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"version\": \"<string>\",\n  \"revision\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-770e6867-1ce4-4c79-8dca-8e65a52d5596"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-780aed67-aa65-4682-981a-102f71de81d8"
+                }
+              ],
+              "id": "1da05b61-2981-4272-a5aa-8d12d1d9eb93",
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-1da05b61-2981-4272-a5aa-8d12d1d9eb93"
+            }
+          ],
+          "id": "973abb30-3792-4513-b8d9-cfb83a708b99",
+          "createdAt": "2026-06-05T13:04:47.000Z",
+          "updatedAt": "2026-06-05T13:04:47.000Z",
+          "uid": "35240-973abb30-3792-4513-b8d9-cfb83a708b99"
+        },
+        {
+          "name": "scripts",
+          "item": [
+            {
+              "name": "{scriptName}",
+              "item": [
+                {
+                  "name": "execute",
+                  "item": [
+                    {
+                      "name": "JFrog Execute Script",
+                      "id": "a7741a07-7b1a-47de-868e-662730d18a8a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"jpd_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parameters\": {\n    \"do_bd\": \"<string>\",\n    \"cillum_7\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/scripts/:scriptName/execute",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "scripts",
+                            ":scriptName",
+                            "execute"
+                          ],
+                          "variable": [
+                            {
+                              "id": "34157b6b-bcb6-4503-9f51-0fc91c518bfb",
+                              "key": "scriptName",
+                              "value": "<string>",
+                              "description": "(Required) Script name"
+                            }
+                          ]
+                        },
+                        "description": "Executes a script on specified JPDs."
+                      },
+                      "response": [
+                        {
+                          "id": "dff5c595-253c-4c07-ab04-4db62d8bf21e",
+                          "name": "Script execution initiated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"jpd_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"parameters\": {\n    \"do_bd\": \"<string>\",\n    \"cillum_7\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/scripts/:scriptName/execute",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "scripts",
+                                ":scriptName",
+                                "execute"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "scriptName"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"execution_id\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T13:04:47.000Z",
+                          "updatedAt": "2026-06-05T13:04:47.000Z",
+                          "uid": "35240-dff5c595-253c-4c07-ab04-4db62d8bf21e"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-a7741a07-7b1a-47de-868e-662730d18a8a"
+                    }
+                  ],
+                  "id": "f45e91a2-b8a0-457a-a7b0-2441a8bb607d",
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-f45e91a2-b8a0-457a-a7b0-2441a8bb607d"
+                }
+              ],
+              "id": "c1ceae24-670e-4264-9405-393ec981864d",
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-c1ceae24-670e-4264-9405-393ec981864d"
+            },
+            {
+              "name": "JFrog List Scripts",
+              "id": "517dcf3e-e7eb-445b-b25e-d9de5d13a811",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/scripts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "scripts"
+                  ]
+                },
+                "description": "Returns a list of all available execution scripts."
+              },
+              "response": [
+                {
+                  "id": "08bb2e0e-3471-411f-97fe-41ec06ef0d77",
+                  "name": "Scripts list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scripts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scripts"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"content\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"modified\": \"<dateTime>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"content\": \"<string>\",\n    \"created\": \"<dateTime>\",\n    \"modified\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-08bb2e0e-3471-411f-97fe-41ec06ef0d77"
+                }
+              ],
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-517dcf3e-e7eb-445b-b25e-d9de5d13a811"
+            },
+            {
+              "name": "JFrog Create Script",
+              "id": "f26e7a15-45f4-44ba-b77f-517b24b131b0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"content\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/scripts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "scripts"
+                  ]
+                },
+                "description": "Creates a new execution script."
+              },
+              "response": [
+                {
+                  "id": "e8cca315-90d2-4d98-a3f1-6b06e99a74c4",
+                  "name": "Script created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"content\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/scripts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "scripts"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-e8cca315-90d2-4d98-a3f1-6b06e99a74c4"
+                }
+              ],
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-f26e7a15-45f4-44ba-b77f-517b24b131b0"
+            }
+          ],
+          "id": "b000d6df-b084-45bf-9612-740be02d1293",
+          "createdAt": "2026-06-05T13:04:47.000Z",
+          "updatedAt": "2026-06-05T13:04:47.000Z",
+          "uid": "35240-b000d6df-b084-45bf-9612-740be02d1293"
+        }
+      ],
+      "id": "4b062d87-c09d-431e-8d61-e5ccc7a38a31",
+      "createdAt": "2026-06-05T13:04:47.000Z",
+      "updatedAt": "2026-06-05T13:04:47.000Z",
+      "uid": "35240-4b062d87-c09d-431e-8d61-e5ccc7a38a31"
+    },
+    {
+      "name": "v3",
+      "item": [
+        {
+          "name": "jpds",
+          "item": [
+            {
+              "name": "{jpdId}",
+              "item": [
+                {
+                  "name": "JFrog Get JPD",
+                  "id": "4ba04209-e9e0-47fe-a5e3-17578049f05a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/jpds/:jpdId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "jpds",
+                        ":jpdId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9e6ed589-168e-463c-b099-cac301c1acef",
+                          "key": "jpdId",
+                          "value": "<string>",
+                          "description": "(Required) JPD ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific JPD."
+                  },
+                  "response": [
+                    {
+                      "id": "04d50425-0207-45d3-8efb-a91a3243e45a",
+                      "name": "JPD details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/jpds/:jpdId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "jpds",
+                            ":jpdId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jpdId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"location\": {\n    \"city_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"status\": \"unavailable\",\n  \"services\": [\n    {\n      \"service_type\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"service_type\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"created\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-04d50425-0207-45d3-8efb-a91a3243e45a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-4ba04209-e9e0-47fe-a5e3-17578049f05a"
+                },
+                {
+                  "name": "JFrog Update JPD",
+                  "id": "c944a34c-2a2e-464c-b100-796af1638115",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"token\": \"<string>\",\n  \"location\": {\n    \"city_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/jpds/:jpdId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "jpds",
+                        ":jpdId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f0b46599-00a1-4186-b20c-6e3ada98a894",
+                          "key": "jpdId",
+                          "value": "<string>",
+                          "description": "(Required) JPD ID"
+                        }
+                      ]
+                    },
+                    "description": "Updates JPD configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "5de188d5-babc-4a2e-8fe1-5826d63e2570",
+                      "name": "JPD updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"token\": \"<string>\",\n  \"location\": {\n    \"city_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/jpds/:jpdId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "jpds",
+                            ":jpdId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jpdId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-5de188d5-babc-4a2e-8fe1-5826d63e2570"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-c944a34c-2a2e-464c-b100-796af1638115"
+                },
+                {
+                  "name": "JFrog Remove JPD",
+                  "id": "bd7eae33-917b-4760-816e-d058bce7ed3d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/jpds/:jpdId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "jpds",
+                        ":jpdId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e7f65e18-fe99-49d8-a386-0d6a910b0877",
+                          "key": "jpdId",
+                          "value": "<string>",
+                          "description": "(Required) JPD ID"
+                        }
+                      ]
+                    },
+                    "description": "Removes a JPD from Mission Control management."
+                  },
+                  "response": [
+                    {
+                      "id": "2317b734-4e8e-4dde-9b5d-fe015c8653f7",
+                      "name": "JPD removed",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/jpds/:jpdId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "jpds",
+                            ":jpdId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jpdId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-2317b734-4e8e-4dde-9b5d-fe015c8653f7"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-bd7eae33-917b-4760-816e-d058bce7ed3d"
+                }
+              ],
+              "id": "40b439ad-5a57-4301-b45c-7ee8e4cd48fb",
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-40b439ad-5a57-4301-b45c-7ee8e4cd48fb"
+            },
+            {
+              "name": "JFrog List JPDs",
+              "id": "329f8676-33e4-4454-9b06-4cac23676f6b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v3/jpds",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "jpds"
+                  ]
+                },
+                "description": "Returns a list of all managed JFrog Platform Deployments."
+              },
+              "response": [
+                {
+                  "id": "e995b66a-fbb5-4230-a9c3-fd4a8fd618d3",
+                  "name": "JPDs list retrieved",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/jpds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "jpds"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"location\": {\n      \"city_name\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"status\": \"unavailable\",\n    \"services\": [\n      {\n        \"service_type\": \"<string>\",\n        \"version\": \"<string>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"service_type\": \"<string>\",\n        \"version\": \"<string>\",\n        \"status\": \"<string>\"\n      }\n    ],\n    \"created\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"location\": {\n      \"city_name\": \"<string>\",\n      \"country_code\": \"<string>\",\n      \"latitude\": \"<number>\",\n      \"longitude\": \"<number>\"\n    },\n    \"status\": \"online\",\n    \"services\": [\n      {\n        \"service_type\": \"<string>\",\n        \"version\": \"<string>\",\n        \"status\": \"<string>\"\n      },\n      {\n        \"service_type\": \"<string>\",\n        \"version\": \"<string>\",\n        \"status\": \"<string>\"\n      }\n    ],\n    \"created\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-e995b66a-fbb5-4230-a9c3-fd4a8fd618d3"
+                }
+              ],
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-329f8676-33e4-4454-9b06-4cac23676f6b"
+            },
+            {
+              "name": "JFrog Add JPD",
+              "id": "3f814210-396d-478e-97fc-cd44a1c9a368",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"token\": \"<string>\",\n  \"location\": {\n    \"city_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v3/jpds",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v3",
+                    "jpds"
+                  ]
+                },
+                "description": "Adds a new JFrog Platform Deployment to Mission Control."
+              },
+              "response": [
+                {
+                  "id": "6faf1bfd-d2cc-4d7e-82a6-be86e165dad3",
+                  "name": "JPD added",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"token\": \"<string>\",\n  \"location\": {\n    \"city_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/jpds",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "jpds"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"location\": {\n    \"city_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"latitude\": \"<number>\",\n    \"longitude\": \"<number>\"\n  },\n  \"status\": \"unavailable\",\n  \"services\": [\n    {\n      \"service_type\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"service_type\": \"<string>\",\n      \"version\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-6faf1bfd-d2cc-4d7e-82a6-be86e165dad3"
+                }
+              ],
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-3f814210-396d-478e-97fc-cd44a1c9a368"
+            }
+          ],
+          "id": "b044bf49-a49b-49ff-b731-6d600ff30a1f",
+          "createdAt": "2026-06-05T13:04:47.000Z",
+          "updatedAt": "2026-06-05T13:04:47.000Z",
+          "uid": "35240-b044bf49-a49b-49ff-b731-6d600ff30a1f"
+        },
+        {
+          "name": "attach_lic",
+          "item": [
+            {
+              "name": "buckets",
+              "item": [
+                {
+                  "name": "{bucketId}",
+                  "item": [
+                    {
+                      "name": "JFrog Delete License Bucket",
+                      "id": "5ca4ba07-04b2-4fab-aa08-96fb121d72c3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/attach_lic/buckets/:bucketId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "attach_lic",
+                            "buckets",
+                            ":bucketId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2833c8e4-3311-446d-b9f5-a970a3c75feb",
+                              "key": "bucketId",
+                              "value": "<string>",
+                              "description": "(Required) License bucket ID"
+                            }
+                          ]
+                        },
+                        "description": "Removes a license bucket."
+                      },
+                      "response": [
+                        {
+                          "id": "53228c9d-1dff-4fff-9bd1-d7dd69c8672c",
+                          "name": "License bucket deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/attach_lic/buckets/:bucketId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "attach_lic",
+                                "buckets",
+                                ":bucketId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "bucketId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:04:47.000Z",
+                          "updatedAt": "2026-06-05T13:04:47.000Z",
+                          "uid": "35240-53228c9d-1dff-4fff-9bd1-d7dd69c8672c"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-5ca4ba07-04b2-4fab-aa08-96fb121d72c3"
+                    }
+                  ],
+                  "id": "d6f0addc-5383-4290-90e6-1e3b349764ec",
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-d6f0addc-5383-4290-90e6-1e3b349764ec"
+                },
+                {
+                  "name": "JFrog List License Buckets",
+                  "id": "21ab53e5-729a-42c5-9d8b-dab5191abb46",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/attach_lic/buckets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "attach_lic",
+                        "buckets"
+                      ]
+                    },
+                    "description": "Returns a list of all license buckets."
+                  },
+                  "response": [
+                    {
+                      "id": "9aa4415b-238b-447b-a140-3f9871da8e4e",
+                      "name": "License buckets retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/attach_lic/buckets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "attach_lic",
+                            "buckets"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"total_licenses\": \"<integer>\",\n    \"used_licenses\": \"<integer>\",\n    \"available_licenses\": \"<integer>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<uri>\",\n    \"total_licenses\": \"<integer>\",\n    \"used_licenses\": \"<integer>\",\n    \"available_licenses\": \"<integer>\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-9aa4415b-238b-447b-a140-3f9871da8e4e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-21ab53e5-729a-42c5-9d8b-dab5191abb46"
+                },
+                {
+                  "name": "JFrog Add License Bucket",
+                  "id": "1c474ac4-cb8e-4b0c-8e8b-f2f27c4710bf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"key\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/attach_lic/buckets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "attach_lic",
+                        "buckets"
+                      ]
+                    },
+                    "description": "Adds a new license bucket."
+                  },
+                  "response": [
+                    {
+                      "id": "4841026b-2f18-47e7-9619-684b76b3e09b",
+                      "name": "License bucket added",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"key\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/attach_lic/buckets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "attach_lic",
+                            "buckets"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:04:47.000Z",
+                      "updatedAt": "2026-06-05T13:04:47.000Z",
+                      "uid": "35240-4841026b-2f18-47e7-9619-684b76b3e09b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:04:47.000Z",
+                  "updatedAt": "2026-06-05T13:04:47.000Z",
+                  "uid": "35240-1c474ac4-cb8e-4b0c-8e8b-f2f27c4710bf"
+                }
+              ],
+              "id": "6bbc54bf-4516-4dec-a821-d40a4c913f82",
+              "createdAt": "2026-06-05T13:04:47.000Z",
+              "updatedAt": "2026-06-05T13:04:47.000Z",
+              "uid": "35240-6bbc54bf-4516-4dec-a821-d40a4c913f82"
+            }
+          ],
+          "id": "c81179b9-9f22-4d3c-81ff-b9ea81061491",
+          "createdAt": "2026-06-05T13:04:47.000Z",
+          "updatedAt": "2026-06-05T13:04:47.000Z",
+          "uid": "35240-c81179b9-9f22-4d3c-81ff-b9ea81061491"
+        }
+      ],
+      "id": "ecb30ff6-0e1a-4cc7-9d7a-5cad28565c4c",
+      "createdAt": "2026-06-05T13:04:47.000Z",
+      "updatedAt": "2026-06-05T13:04:47.000Z",
+      "uid": "35240-ecb30ff6-0e1a-4cc7-9d7a-5cad28565c4c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/mc/api"
+    }
+  ]
+}

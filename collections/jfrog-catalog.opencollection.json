@@ -1,0 +1,302 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Catalog REST API",
+    "version": "1.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Execute GraphQL Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/custom/graphql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a GraphQL query against the JFrog Catalog. Supports querying packages, package versions, CVE information, license data, and custom labels. This is the primary interface for interacting with the Catalog service."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Search Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/packages/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Searches for packages across the catalog using various filter criteria including name, type, version, and labels."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Package Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/packages/:packageType/:packageName",
+            "params": [
+              {
+                "name": "packageType",
+                "value": "",
+                "type": "path",
+                "description": "Package ecosystem type"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name (URL-encoded if contains special characters)"
+              }
+            ]
+          },
+          "docs": "Returns detailed metadata for a specific package, including versions, licenses, vulnerabilities, and custom labels."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Package Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/packages/:packageType/:packageName/versions",
+            "params": [
+              {
+                "name": "packageType",
+                "value": "",
+                "type": "path",
+                "description": "Package ecosystem type"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ]
+          },
+          "docs": "Returns all known versions of a specific package with their associated metadata, vulnerability counts, and license information."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Version Vulnerabilities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/packages/:packageType/:packageName/versions/:version/vulnerabilities",
+            "params": [
+              {
+                "name": "packageType",
+                "value": "",
+                "type": "path",
+                "description": "Package ecosystem type"
+              },
+              {
+                "name": "packageName",
+                "value": "",
+                "type": "path",
+                "description": "Package name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Package version"
+              },
+              {
+                "name": "severity",
+                "value": "",
+                "type": "query",
+                "description": "Filter by minimum severity"
+              }
+            ]
+          },
+          "docs": "Returns all known CVEs affecting a specific package version, including both direct (non-transitive) and transitive vulnerabilities."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Labels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/labels"
+          },
+          "docs": "Returns a list of all custom labels configured in the Catalog. Labels can be attached to packages for organizational and policy purposes."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/labels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom label that can be applied to packages in the Catalog. Requires administrator permissions."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/labels/:labelName",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific label."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/labels/:labelName",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing label configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/labels/:labelName",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ]
+          },
+          "docs": "Removes a label from the Catalog and detaches it from all packages."
+        },
+        {
+          "info": {
+            "name": "JFrog Apply Label to Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/labels/:labelName/packages",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies a label to one or more packages."
+        },
+        {
+          "info": {
+            "name": "JFrog Remove Label from Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/catalog/api/v1/labels/:labelName/packages",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a label from one or more packages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

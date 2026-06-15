@@ -1,0 +1,278 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Release Lifecycle Management REST API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Release Bundles V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Create Release Bundle v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/release_bundle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new release bundle version 2 from specified artifacts."
+        },
+        {
+          "info": {
+            "name": "JFrog List Release Bundles v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/release_bundle/records",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by release bundle name"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              }
+            ]
+          },
+          "docs": "Returns a list of all release bundle v2 records."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Release Bundle v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/release_bundle/records/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific release bundle version."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Release Bundle v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/release_bundle/records/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Deletes a release bundle version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Promotion",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Promotion Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/promotion/records/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Returns the promotion status and history for a release bundle version."
+        },
+        {
+          "info": {
+            "name": "JFrog Promote Release Bundle",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/promotion",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Promotes a release bundle to a target environment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Distribution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Distribute Release Bundle v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/release_bundle/distribute/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Distributes a release bundle to specified edge nodes."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Distribution Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/release_bundle/distribute/:name/:version/status",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Returns distribution status for a release bundle."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Evidence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Create Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/evidence",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new evidence record attached to a release bundle."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/lifecycle/api/v2/evidence/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Returns all evidence records for a release bundle version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

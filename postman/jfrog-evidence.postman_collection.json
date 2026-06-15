@@ -1,0 +1,1553 @@
+{
+  "info": {
+    "_postman_id": "896c92c3-575c-4fa7-8acc-55b5536d3f5f",
+    "name": "JFrog Evidence REST API",
+    "description": "API for creating and attaching cryptographically signed evidence to artifacts, builds, packages, and release bundles. Evidence files act as attestations providing verified records of external processes such as test results, vulnerability scans, and official approvals. Evidence is created as in-toto statements wrapped in DSSE (Dead Simple Signing Envelope) format.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:05:57.000Z",
+    "updatedAt": "2026-06-05T13:05:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-896c92c3-575c-4fa7-8acc-55b5536d3f5f"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "evidence",
+          "item": [
+            {
+              "name": "search",
+              "item": [
+                {
+                  "name": "JFrog Search Evidence",
+                  "id": "f46ea392-2675-4cf3-9835-3c12f75c297e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subject_type\": \"package\",\n  \"predicate_type\": \"<uri>\",\n  \"created_from\": \"<dateTime>\",\n  \"created_to\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/evidence/search",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "evidence",
+                        "search"
+                      ]
+                    },
+                    "description": "Searches for evidence records matching specified criteria. Supports filtering by subject type, subject identifier, evidence type, and time range."
+                  },
+                  "response": [
+                    {
+                      "id": "16a461e9-970a-431d-92ea-f05646245f98",
+                      "name": "Evidence search results retrieved",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"subject_type\": \"package\",\n  \"predicate_type\": \"<uri>\",\n  \"created_from\": \"<dateTime>\",\n  \"created_to\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/search",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            "search"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"ullamco__d\": 94440568\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"ipsumfe_\": 64104873.61819267\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"RSA\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"package\",\n      \"subject\": {\n        \"incididunt_b\": true,\n        \"nostrud2c\": 99940093.39115569,\n        \"do_6\": 65205205.8307901\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"commodo_2a1\": false,\n        \"fugiata2\": true\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"ECDSA\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ],\n  \"total_count\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-16a461e9-970a-431d-92ea-f05646245f98"
+                    },
+                    {
+                      "id": "42b35e3d-7502-466c-9ca7-a981902eb60f",
+                      "name": "Invalid search criteria",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"subject_type\": \"package\",\n  \"predicate_type\": \"<uri>\",\n  \"created_from\": \"<dateTime>\",\n  \"created_to\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/search",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            "search"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-42b35e3d-7502-466c-9ca7-a981902eb60f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-f46ea392-2675-4cf3-9835-3c12f75c297e"
+                }
+              ],
+              "id": "859c2cfa-6d52-41a2-a9a6-12a51aef25df",
+              "createdAt": "2026-06-05T13:05:58.000Z",
+              "updatedAt": "2026-06-05T13:05:58.000Z",
+              "uid": "35240-859c2cfa-6d52-41a2-a9a6-12a51aef25df"
+            },
+            {
+              "name": "{evidenceId}",
+              "item": [
+                {
+                  "name": "verify",
+                  "item": [
+                    {
+                      "name": "JFrog Verify Evidence",
+                      "id": "83127776-4543-4504-9b4e-7acc859a21ca",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/:evidenceId/verify",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            ":evidenceId",
+                            "verify"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6d2b652b-13dd-41b9-b360-21b392e28d43",
+                              "key": "evidenceId",
+                              "value": "<string>",
+                              "description": "(Required) Evidence record identifier"
+                            }
+                          ]
+                        },
+                        "description": "Verifies the cryptographic signature of an evidence record against registered public keys. Returns the verification status and details."
+                      },
+                      "response": [
+                        {
+                          "id": "ff6e38e8-9a08-4c5d-9e85-a46e6f82069b",
+                          "name": "Verification result returned",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/:evidenceId/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                ":evidenceId",
+                                "verify"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "evidenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"evidence_id\": \"<string>\",\n  \"verified\": \"<boolean>\",\n  \"verification_timestamp\": \"<dateTime>\",\n  \"key_alias\": \"<string>\",\n  \"signature_algorithm\": \"ECDSA\",\n  \"errors\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-ff6e38e8-9a08-4c5d-9e85-a46e6f82069b"
+                        },
+                        {
+                          "id": "19c39996-8eeb-45c6-aa60-c3bcf8cc3800",
+                          "name": "Evidence not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/:evidenceId/verify",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                ":evidenceId",
+                                "verify"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "evidenceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-19c39996-8eeb-45c6-aa60-c3bcf8cc3800"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-83127776-4543-4504-9b4e-7acc859a21ca"
+                    }
+                  ],
+                  "id": "eaa279c9-5ffa-4dc1-b53e-587b0cc39c10",
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-eaa279c9-5ffa-4dc1-b53e-587b0cc39c10"
+                },
+                {
+                  "name": "JFrog Get Evidence",
+                  "id": "fd8878cc-c639-4b9b-8f2e-e1a455f2fc7f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/evidence/:evidenceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "evidence",
+                        ":evidenceId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5e6c8487-e5fe-4f08-b1c2-3de8cfa7d23f",
+                          "key": "evidenceId",
+                          "value": "<string>",
+                          "description": "(Required) Evidence record identifier"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific evidence record, including its DSSE envelope and verification status."
+                  },
+                  "response": [
+                    {
+                      "id": "3b36368b-815b-443c-a07f-f352e784a812",
+                      "name": "Evidence details retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/:evidenceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            ":evidenceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "evidenceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"subject_type\": \"artifact\",\n  \"subject\": {\n    \"sedbeb\": \"laborum sit aliqua\"\n  },\n  \"predicate_type\": \"<uri>\",\n  \"predicate\": {\n    \"Lorema3\": -79870607,\n    \"dolor_15\": \"anim aute dolore\"\n  },\n  \"dsse_envelope_path\": \"<string>\",\n  \"signature_algorithm\": \"RSA\",\n  \"key_alias\": \"<string>\",\n  \"verified\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-3b36368b-815b-443c-a07f-f352e784a812"
+                    },
+                    {
+                      "id": "cb3b0870-c20a-435c-a54c-4e860ae6caa2",
+                      "name": "Evidence not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/:evidenceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            ":evidenceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "evidenceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-cb3b0870-c20a-435c-a54c-4e860ae6caa2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-fd8878cc-c639-4b9b-8f2e-e1a455f2fc7f"
+                },
+                {
+                  "name": "JFrog Delete Evidence",
+                  "id": "59a15e02-bbec-4d77-a351-b99381366c15",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/evidence/:evidenceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "evidence",
+                        ":evidenceId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "78efe4c3-fe33-47e3-a1e4-a4f747fe17d1",
+                          "key": "evidenceId",
+                          "value": "<string>",
+                          "description": "(Required) Evidence record identifier"
+                        }
+                      ]
+                    },
+                    "description": "Removes an evidence record from the platform."
+                  },
+                  "response": [
+                    {
+                      "id": "8b8eef42-da44-45f3-a7df-223a26b53dae",
+                      "name": "Evidence deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/:evidenceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            ":evidenceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "evidenceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-8b8eef42-da44-45f3-a7df-223a26b53dae"
+                    },
+                    {
+                      "id": "f87e994a-5cbf-45a4-9644-0c5db888521e",
+                      "name": "Evidence not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/:evidenceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            ":evidenceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "evidenceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-f87e994a-5cbf-45a4-9644-0c5db888521e"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-59a15e02-bbec-4d77-a351-b99381366c15"
+                }
+              ],
+              "id": "81792c5b-19bd-464d-b62e-03ef2fa358ec",
+              "createdAt": "2026-06-05T13:05:58.000Z",
+              "updatedAt": "2026-06-05T13:05:58.000Z",
+              "uid": "35240-81792c5b-19bd-464d-b62e-03ef2fa358ec"
+            },
+            {
+              "name": "subject",
+              "item": [
+                {
+                  "name": "artifact",
+                  "item": [
+                    {
+                      "name": "JFrog Get Artifact Evidence",
+                      "id": "8f207d92-38d9-4fa2-b165-80c881fe73ae",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/subject/artifact?repo_path=<string>&sha256=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            "subject",
+                            "artifact"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Full artifact repository path",
+                              "key": "repo_path",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "SHA-256 checksum of the artifact",
+                              "key": "sha256",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns all evidence records attached to a specific artifact identified by repository path and SHA-256."
+                      },
+                      "response": [
+                        {
+                          "id": "cec1c789-6e5f-4cac-b5cf-669fec8adc9b",
+                          "name": "Artifact evidence retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/artifact?repo_path=<string>&sha256=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "artifact"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Full artifact repository path",
+                                  "key": "repo_path",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "SHA-256 checksum of the artifact",
+                                  "key": "sha256",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in__f\": false\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"eae\": 83350021,\n        \"in_0\": 86979509.45379457,\n        \"aliquipb6c\": 7396938\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"RSA\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in40\": \"veniam sit cul\"\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"in_c27\": -52641477.326731235,\n        \"consequat_a\": \"enim Lorem consequat irure\",\n        \"est5\": -79502845.24614318\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-cec1c789-6e5f-4cac-b5cf-669fec8adc9b"
+                        },
+                        {
+                          "id": "094f1aa8-25a3-472e-8954-e3447b467e47",
+                          "name": "Artifact not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/artifact?repo_path=<string>&sha256=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "artifact"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Full artifact repository path",
+                                  "key": "repo_path",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "SHA-256 checksum of the artifact",
+                                  "key": "sha256",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-094f1aa8-25a3-472e-8954-e3447b467e47"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-8f207d92-38d9-4fa2-b165-80c881fe73ae"
+                    }
+                  ],
+                  "id": "7c230a03-5d87-4757-b78c-b0190d53a944",
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-7c230a03-5d87-4757-b78c-b0190d53a944"
+                },
+                {
+                  "name": "build",
+                  "item": [
+                    {
+                      "name": "JFrog Get Build Evidence",
+                      "id": "d5ea9e51-4dad-4b6d-ad6e-57fb2e736612",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/subject/build?build_name=<string>&build_number=<string>&project=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            "subject",
+                            "build"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Build name",
+                              "key": "build_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Build number",
+                              "key": "build_number",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Project key (if build is project-scoped)",
+                              "key": "project",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns all evidence records attached to a specific build."
+                      },
+                      "response": [
+                        {
+                          "id": "249465ee-b1e9-434b-aaee-042ab5063c1c",
+                          "name": "Build evidence retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/build?build_name=<string>&build_number=<string>&project=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "build"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Build name",
+                                  "key": "build_name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Build number",
+                                  "key": "build_number",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Project key (if build is project-scoped)",
+                                  "key": "project",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in__f\": false\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"eae\": 83350021,\n        \"in_0\": 86979509.45379457,\n        \"aliquipb6c\": 7396938\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"RSA\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in40\": \"veniam sit cul\"\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"in_c27\": -52641477.326731235,\n        \"consequat_a\": \"enim Lorem consequat irure\",\n        \"est5\": -79502845.24614318\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-249465ee-b1e9-434b-aaee-042ab5063c1c"
+                        },
+                        {
+                          "id": "1c2d0410-07d5-402a-9ce0-38754e9a1ca9",
+                          "name": "Build not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/build?build_name=<string>&build_number=<string>&project=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "build"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Build name",
+                                  "key": "build_name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Build number",
+                                  "key": "build_number",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Project key (if build is project-scoped)",
+                                  "key": "project",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-1c2d0410-07d5-402a-9ce0-38754e9a1ca9"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-d5ea9e51-4dad-4b6d-ad6e-57fb2e736612"
+                    }
+                  ],
+                  "id": "49206062-6d36-4897-b744-967e42941b71",
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-49206062-6d36-4897-b744-967e42941b71"
+                },
+                {
+                  "name": "release-bundle",
+                  "item": [
+                    {
+                      "name": "JFrog Get Release Bundle Evidence",
+                      "id": "7af80e03-8b94-47ae-8f52-ed8813836582",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/subject/release-bundle?name=<string>&version=<string>&project=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            "subject",
+                            "release-bundle"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Release bundle name",
+                              "key": "name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Release bundle version",
+                              "key": "version",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Project key",
+                              "key": "project",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns all evidence records attached to a specific release bundle version."
+                      },
+                      "response": [
+                        {
+                          "id": "db2763f0-92d2-4b40-99ee-1a82d5f9300a",
+                          "name": "Release bundle evidence retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/release-bundle?name=<string>&version=<string>&project=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "release-bundle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Release bundle name",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Release bundle version",
+                                  "key": "version",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Project key",
+                                  "key": "project",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in__f\": false\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"eae\": 83350021,\n        \"in_0\": 86979509.45379457,\n        \"aliquipb6c\": 7396938\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"RSA\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in40\": \"veniam sit cul\"\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"in_c27\": -52641477.326731235,\n        \"consequat_a\": \"enim Lorem consequat irure\",\n        \"est5\": -79502845.24614318\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-db2763f0-92d2-4b40-99ee-1a82d5f9300a"
+                        },
+                        {
+                          "id": "1c1dd5f1-5d70-429e-85f9-a8912b2174cb",
+                          "name": "Release bundle not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/release-bundle?name=<string>&version=<string>&project=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "release-bundle"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Release bundle name",
+                                  "key": "name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Release bundle version",
+                                  "key": "version",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Project key",
+                                  "key": "project",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-1c1dd5f1-5d70-429e-85f9-a8912b2174cb"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-7af80e03-8b94-47ae-8f52-ed8813836582"
+                    }
+                  ],
+                  "id": "d6915e5b-3af8-4949-86cd-255923147ff2",
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-d6915e5b-3af8-4949-86cd-255923147ff2"
+                },
+                {
+                  "name": "package",
+                  "item": [
+                    {
+                      "name": "JFrog Get Package Evidence",
+                      "id": "39697123-35f2-4dd0-9c21-da8107d8d234",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/evidence/subject/package?package_name=<string>&package_version=<string>&repo_key=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "evidence",
+                            "subject",
+                            "package"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Package name",
+                              "key": "package_name",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Package version",
+                              "key": "package_version",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Repository key containing the package",
+                              "key": "repo_key",
+                              "value": "<string>"
+                            }
+                          ]
+                        },
+                        "description": "Returns all evidence records attached to a specific package."
+                      },
+                      "response": [
+                        {
+                          "id": "9901cb9d-11a9-4df6-a89e-28edea569124",
+                          "name": "Package evidence retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/package?package_name=<string>&package_version=<string>&repo_key=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "package"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Package name",
+                                  "key": "package_name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Package version",
+                                  "key": "package_version",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Repository key containing the package",
+                                  "key": "repo_key",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in__f\": false\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"eae\": 83350021,\n        \"in_0\": 86979509.45379457,\n        \"aliquipb6c\": 7396938\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"RSA\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"subject_type\": \"release_bundle\",\n      \"subject\": {\n        \"in40\": \"veniam sit cul\"\n      },\n      \"predicate_type\": \"<uri>\",\n      \"predicate\": {\n        \"in_c27\": -52641477.326731235,\n        \"consequat_a\": \"enim Lorem consequat irure\",\n        \"est5\": -79502845.24614318\n      },\n      \"dsse_envelope_path\": \"<string>\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"<string>\",\n      \"verified\": \"<boolean>\",\n      \"created\": \"<dateTime>\",\n      \"created_by\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-9901cb9d-11a9-4df6-a89e-28edea569124"
+                        },
+                        {
+                          "id": "66e4b3dc-2904-40d3-b81d-ca765a73d9f2",
+                          "name": "Package not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/evidence/subject/package?package_name=<string>&package_version=<string>&repo_key=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "evidence",
+                                "subject",
+                                "package"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Package name",
+                                  "key": "package_name",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Package version",
+                                  "key": "package_version",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "(Required) Repository key containing the package",
+                                  "key": "repo_key",
+                                  "value": "<string>"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:05:58.000Z",
+                          "updatedAt": "2026-06-05T13:05:58.000Z",
+                          "uid": "35240-66e4b3dc-2904-40d3-b81d-ca765a73d9f2"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:05:58.000Z",
+                      "updatedAt": "2026-06-05T13:05:58.000Z",
+                      "uid": "35240-39697123-35f2-4dd0-9c21-da8107d8d234"
+                    }
+                  ],
+                  "id": "54f876c9-0667-4781-b935-f88d8668277f",
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-54f876c9-0667-4781-b935-f88d8668277f"
+                }
+              ],
+              "id": "2958e9f2-8f0d-4eac-a34a-f12c15d32cad",
+              "createdAt": "2026-06-05T13:05:58.000Z",
+              "updatedAt": "2026-06-05T13:05:58.000Z",
+              "uid": "35240-2958e9f2-8f0d-4eac-a34a-f12c15d32cad"
+            },
+            {
+              "name": "JFrog Create Evidence",
+              "id": "2001f011-e158-4291-92b8-af0eba81e702",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject_type\": \"package\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"culpa_f\": \"sunt reprehenderit eiusmod\",\n    \"aliqua7\": \"incididunt ullamco enim\"\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/evidence",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "evidence"
+                  ]
+                },
+                "description": "Creates a new evidence attestation and attaches it to a subject (artifact, build, package, or release bundle). The evidence is signed as an in-toto statement wrapped in a DSSE envelope, providing cryptographic verification of the attestation. Requires an Enterprise+ subscription and Artifactory 7.104.2 or above."
+              },
+              "response": [
+                {
+                  "id": "67812d03-176c-4808-a1d5-4f890e168e01",
+                  "name": "Evidence created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subject_type\": \"package\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"culpa_f\": \"sunt reprehenderit eiusmod\",\n    \"aliqua7\": \"incididunt ullamco enim\"\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/evidence",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "evidence"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"subject_type\": \"artifact\",\n  \"subject\": {\n    \"sedbeb\": \"laborum sit aliqua\"\n  },\n  \"predicate_type\": \"<uri>\",\n  \"predicate\": {\n    \"Lorema3\": -79870607,\n    \"dolor_15\": \"anim aute dolore\"\n  },\n  \"dsse_envelope_path\": \"<string>\",\n  \"signature_algorithm\": \"RSA\",\n  \"key_alias\": \"<string>\",\n  \"verified\": \"<boolean>\",\n  \"created\": \"<dateTime>\",\n  \"created_by\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-67812d03-176c-4808-a1d5-4f890e168e01"
+                },
+                {
+                  "id": "88c7d6a4-8855-477b-bdab-163ba3b694e1",
+                  "name": "Invalid evidence configuration or missing required fields",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subject_type\": \"package\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"culpa_f\": \"sunt reprehenderit eiusmod\",\n    \"aliqua7\": \"incididunt ullamco enim\"\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/evidence",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "evidence"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-88c7d6a4-8855-477b-bdab-163ba3b694e1"
+                },
+                {
+                  "id": "6aa0a5cf-9f90-47e8-a604-c483e687ffd7",
+                  "name": "Unauthorized - access token required (basic auth not supported)",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subject_type\": \"package\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"culpa_f\": \"sunt reprehenderit eiusmod\",\n    \"aliqua7\": \"incididunt ullamco enim\"\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/evidence",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "evidence"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-6aa0a5cf-9f90-47e8-a604-c483e687ffd7"
+                },
+                {
+                  "id": "f6e17701-62d3-40bc-ac17-efa759387950",
+                  "name": "Subject not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"subject_type\": \"package\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"culpa_f\": \"sunt reprehenderit eiusmod\",\n    \"aliqua7\": \"incididunt ullamco enim\"\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/evidence",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "evidence"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:05:58.000Z",
+                  "updatedAt": "2026-06-05T13:05:58.000Z",
+                  "uid": "35240-f6e17701-62d3-40bc-ac17-efa759387950"
+                }
+              ],
+              "createdAt": "2026-06-05T13:05:58.000Z",
+              "updatedAt": "2026-06-05T13:05:58.000Z",
+              "uid": "35240-2001f011-e158-4291-92b8-af0eba81e702"
+            }
+          ],
+          "id": "281a13c6-d615-43a2-8abc-ed8292d06727",
+          "createdAt": "2026-06-05T13:05:58.000Z",
+          "updatedAt": "2026-06-05T13:05:58.000Z",
+          "uid": "35240-281a13c6-d615-43a2-8abc-ed8292d06727"
+        }
+      ],
+      "id": "e9849d3e-adf9-4e30-8d74-5704c96df4ee",
+      "createdAt": "2026-06-05T13:05:58.000Z",
+      "updatedAt": "2026-06-05T13:05:58.000Z",
+      "uid": "35240-e9849d3e-adf9-4e30-8d74-5704c96df4ee"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/evidence/api"
+    }
+  ]
+}

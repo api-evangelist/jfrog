@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Curation REST API",
+    "version": "1.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Curation Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/curation/api/v1/policies"
+          },
+          "docs": "Returns a list of all curation policies."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/curation/api/v1/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new curation policy for blocking or allowing packages."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/curation/api/v1/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific curation policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/curation/api/v1/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing curation policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/curation/api/v1/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Deletes a curation policy."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Audit",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Curation Audit Log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/curation/api/v1/audit",
+            "params": [
+              {
+                "name": "from_date",
+                "value": "",
+                "type": "query",
+                "description": "Start date for the audit log query"
+              },
+              {
+                "name": "to_date",
+                "value": "",
+                "type": "query",
+                "description": "End date for the audit log query"
+              },
+              {
+                "name": "package_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by package type (npm, maven, pypi, etc.)"
+              },
+              {
+                "name": "policy_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by policy name"
+              },
+              {
+                "name": "action_taken",
+                "value": "",
+                "type": "query",
+                "description": "Filter by action taken"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              }
+            ]
+          },
+          "docs": "Returns the curation audit log showing blocked and allowed packages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

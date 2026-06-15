@@ -1,0 +1,2149 @@
+{
+  "info": {
+    "_postman_id": "5e94a9c0-07fa-45c7-b99d-cbb19a70ba7d",
+    "name": "JFrog Pipelines REST API",
+    "description": "API for managing CI/CD pipelines and automation workflows. JFrog Pipelines provides continuous integration and delivery automation natively integrated with the JFrog Platform for building, testing, and deploying software.\n\nContact Support:\n Name: JFrog",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:03:55.000Z",
+    "updatedAt": "2026-06-05T13:03:56.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5e94a9c0-07fa-45c7-b99d-cbb19a70ba7d"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "system",
+          "item": [
+            {
+              "name": "info",
+              "item": [
+                {
+                  "name": "JFrog Get System Info",
+                  "id": "7ab92d11-a0a7-4c66-95d0-1b3c818911e1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/system/info",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "system",
+                        "info"
+                      ]
+                    },
+                    "description": "Returns Pipelines system information and version."
+                  },
+                  "response": [
+                    {
+                      "id": "3d1facd9-10a1-4843-9577-600d5cefcfbe",
+                      "name": "System info retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/system/info",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "system",
+                            "info"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"version\": \"<string>\",\n  \"serviceId\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-3d1facd9-10a1-4843-9577-600d5cefcfbe"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-7ab92d11-a0a7-4c66-95d0-1b3c818911e1"
+                }
+              ],
+              "id": "65286c0d-d62a-4087-b433-5283348a55f5",
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-65286c0d-d62a-4087-b433-5283348a55f5"
+            }
+          ],
+          "id": "35f9d94d-d299-4537-a411-afadf13c331d",
+          "createdAt": "2026-06-05T13:03:56.000Z",
+          "updatedAt": "2026-06-05T13:03:56.000Z",
+          "uid": "35240-35f9d94d-d299-4537-a411-afadf13c331d"
+        },
+        {
+          "name": "pipelineSources",
+          "item": [
+            {
+              "name": "{pipelineSourceId}",
+              "item": [
+                {
+                  "name": "JFrog Get Pipeline Source",
+                  "id": "dca04fe2-9a2d-4b48-b343-56adbf16d8e5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pipelineSources/:pipelineSourceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pipelineSources",
+                        ":pipelineSourceId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "13cf280b-8c7d-45f4-8c01-7ca1cd2f7d0b",
+                          "key": "pipelineSourceId",
+                          "value": "<integer>",
+                          "description": "(Required) Pipeline source ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific pipeline source."
+                  },
+                  "response": [
+                    {
+                      "id": "ea1aa431-6ef4-4641-b5b9-7dc215c0822a",
+                      "name": "Pipeline source details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/pipelineSources/:pipelineSourceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "pipelineSources",
+                            ":pipelineSourceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pipelineSourceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"repositoryFullName\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"fileFilter\": \"<string>\",\n  \"integrationId\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-ea1aa431-6ef4-4641-b5b9-7dc215c0822a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-dca04fe2-9a2d-4b48-b343-56adbf16d8e5"
+                },
+                {
+                  "name": "JFrog Delete Pipeline Source",
+                  "id": "2dd6972d-e432-4520-810a-8b575403a894",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pipelineSources/:pipelineSourceId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pipelineSources",
+                        ":pipelineSourceId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "612b5906-a33d-4009-9c7b-2c0b78a108e7",
+                          "key": "pipelineSourceId",
+                          "value": "<integer>",
+                          "description": "(Required) Pipeline source ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a pipeline source configuration."
+                  },
+                  "response": [
+                    {
+                      "id": "c768b4e8-b1f8-4a88-a8c3-c3d98b1172dc",
+                      "name": "Pipeline source deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/pipelineSources/:pipelineSourceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "pipelineSources",
+                            ":pipelineSourceId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pipelineSourceId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-c768b4e8-b1f8-4a88-a8c3-c3d98b1172dc"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-2dd6972d-e432-4520-810a-8b575403a894"
+                }
+              ],
+              "id": "9b3b367b-1164-42ef-b23e-2620b066b183",
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-9b3b367b-1164-42ef-b23e-2620b066b183"
+            },
+            {
+              "name": "JFrog List Pipeline Sources",
+              "id": "bd644060-db1d-4d14-9540-879ac8e50d59",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/pipelineSources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "pipelineSources"
+                  ]
+                },
+                "description": "Returns a list of all pipeline source configurations."
+              },
+              "response": [
+                {
+                  "id": "1ba90d11-6a61-489a-9246-37718c0678f9",
+                  "name": "Pipeline sources list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pipelineSources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pipelineSources"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"projectId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"repositoryFullName\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"fileFilter\": \"<string>\",\n    \"integrationId\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"projectId\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"repositoryFullName\": \"<string>\",\n    \"branch\": \"<string>\",\n    \"fileFilter\": \"<string>\",\n    \"integrationId\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-1ba90d11-6a61-489a-9246-37718c0678f9"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-bd644060-db1d-4d14-9540-879ac8e50d59"
+            },
+            {
+              "name": "JFrog Create Pipeline Source",
+              "id": "18414581-b441-4fe2-ae9a-9590c6b44614",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repositoryFullName\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"integrationId\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"fileFilter\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/pipelineSources",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "pipelineSources"
+                  ]
+                },
+                "description": "Creates a new pipeline source pointing to a repository with pipeline definitions."
+              },
+              "response": [
+                {
+                  "id": "a0f258d6-ddab-4e07-a21e-12c3a7431275",
+                  "name": "Pipeline source created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"repositoryFullName\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"integrationId\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"fileFilter\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pipelineSources",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pipelineSources"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"repositoryFullName\": \"<string>\",\n  \"branch\": \"<string>\",\n  \"fileFilter\": \"<string>\",\n  \"integrationId\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-a0f258d6-ddab-4e07-a21e-12c3a7431275"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-18414581-b441-4fe2-ae9a-9590c6b44614"
+            }
+          ],
+          "id": "9c78ee98-7abf-414e-9110-b347f9467f20",
+          "createdAt": "2026-06-05T13:03:56.000Z",
+          "updatedAt": "2026-06-05T13:03:56.000Z",
+          "uid": "35240-9c78ee98-7abf-414e-9110-b347f9467f20"
+        },
+        {
+          "name": "pipelines",
+          "item": [
+            {
+              "name": "{pipelineId}",
+              "item": [
+                {
+                  "name": "trigger",
+                  "item": [
+                    {
+                      "name": "JFrog Trigger Pipeline",
+                      "id": "d06017fb-3c45-45ba-9c5b-b5dc19dd2ae5",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"branchName\": \"<string>\",\n  \"environmentVariables\": {\n    \"velit_5\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/pipelines/:pipelineId/trigger",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "pipelines",
+                            ":pipelineId",
+                            "trigger"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fb4e4a9b-c20b-4db8-a4d6-9fe9c66ecedb",
+                              "key": "pipelineId",
+                              "value": "<integer>",
+                              "description": "(Required) Pipeline ID"
+                            }
+                          ]
+                        },
+                        "description": "Triggers a new run of the specified pipeline."
+                      },
+                      "response": [
+                        {
+                          "id": "62ae7cbc-f340-4e43-9b6b-5a3afd19d1bd",
+                          "name": "Pipeline triggered",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"branchName\": \"<string>\",\n  \"environmentVariables\": {\n    \"velit_5\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/pipelines/:pipelineId/trigger",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "pipelines",
+                                ":pipelineId",
+                                "trigger"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "pipelineId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:03:56.000Z",
+                          "updatedAt": "2026-06-05T13:03:56.000Z",
+                          "uid": "35240-62ae7cbc-f340-4e43-9b6b-5a3afd19d1bd"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-d06017fb-3c45-45ba-9c5b-b5dc19dd2ae5"
+                    }
+                  ],
+                  "id": "5ccaf40e-4aaa-4730-b30e-6e99e4814811",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-5ccaf40e-4aaa-4730-b30e-6e99e4814811"
+                },
+                {
+                  "name": "JFrog Get Pipeline",
+                  "id": "873aba65-c1ed-4f74-b37d-658b5b779597",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pipelines/:pipelineId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pipelines",
+                        ":pipelineId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9d4c169b-7c5e-4b54-826a-f3f63971cfb7",
+                          "key": "pipelineId",
+                          "value": "<integer>",
+                          "description": "(Required) Pipeline ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific pipeline."
+                  },
+                  "response": [
+                    {
+                      "id": "1e37354b-426a-480b-b48d-789e45dfc23b",
+                      "name": "Pipeline details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/pipelines/:pipelineId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "pipelines",
+                            ":pipelineId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "pipelineId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"pipelineSourceId\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"latestRunId\": \"<integer>\",\n  \"latestCompletedRunId\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-1e37354b-426a-480b-b48d-789e45dfc23b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-873aba65-c1ed-4f74-b37d-658b5b779597"
+                }
+              ],
+              "id": "39c357d3-10b4-4682-ade6-fdca542308e8",
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-39c357d3-10b4-4682-ade6-fdca542308e8"
+            },
+            {
+              "name": "JFrog List Pipelines",
+              "id": "22ca4299-e8d3-417b-9f8e-ad47a771c029",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/pipelines?pipelineSourceIds=<string>&names=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "pipelines"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated list of pipeline source IDs to filter by",
+                      "key": "pipelineSourceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated pipeline names filter",
+                      "key": "names",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of all pipelines."
+              },
+              "response": [
+                {
+                  "id": "908803cd-2e18-4fb4-ae46-3ff20d58baa9",
+                  "name": "Pipelines list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/pipelines?pipelineSourceIds=<string>&names=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "pipelines"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated list of pipeline source IDs to filter by",
+                          "key": "pipelineSourceIds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated pipeline names filter",
+                          "key": "names",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"pipelineSourceId\": \"<integer>\",\n    \"projectId\": \"<integer>\",\n    \"latestRunId\": \"<integer>\",\n    \"latestCompletedRunId\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"pipelineSourceId\": \"<integer>\",\n    \"projectId\": \"<integer>\",\n    \"latestRunId\": \"<integer>\",\n    \"latestCompletedRunId\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-908803cd-2e18-4fb4-ae46-3ff20d58baa9"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-22ca4299-e8d3-417b-9f8e-ad47a771c029"
+            }
+          ],
+          "id": "fd2a5288-907d-441d-81bb-3bbb48c9a980",
+          "createdAt": "2026-06-05T13:03:56.000Z",
+          "updatedAt": "2026-06-05T13:03:56.000Z",
+          "uid": "35240-fd2a5288-907d-441d-81bb-3bbb48c9a980"
+        },
+        {
+          "name": "runs",
+          "item": [
+            {
+              "name": "{runId}",
+              "item": [
+                {
+                  "name": "cancel",
+                  "item": [
+                    {
+                      "name": "JFrog Cancel Pipeline Run",
+                      "id": "b63f5d48-0ac4-4f54-aa37-494fab500a4f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/runs/:runId/cancel",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "runs",
+                            ":runId",
+                            "cancel"
+                          ],
+                          "variable": [
+                            {
+                              "id": "492fe16a-19f3-4ec1-8e5c-5a21fae469cb",
+                              "key": "runId",
+                              "value": "<integer>",
+                              "description": "(Required) Run ID"
+                            }
+                          ]
+                        },
+                        "description": "Cancels a running pipeline execution."
+                      },
+                      "response": [
+                        {
+                          "id": "de1ced13-c017-4ef2-b2ff-656e28a4bd12",
+                          "name": "Run cancelled",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/runs/:runId/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "runs",
+                                ":runId",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "runId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T13:03:56.000Z",
+                          "updatedAt": "2026-06-05T13:03:56.000Z",
+                          "uid": "35240-de1ced13-c017-4ef2-b2ff-656e28a4bd12"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-b63f5d48-0ac4-4f54-aa37-494fab500a4f"
+                    }
+                  ],
+                  "id": "0236d172-e820-4446-94bd-77f231a07e7c",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-0236d172-e820-4446-94bd-77f231a07e7c"
+                },
+                {
+                  "name": "JFrog Get Pipeline Run",
+                  "id": "04b57458-93cb-4e5d-88d9-1f4775a1f64b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/runs/:runId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "runs",
+                        ":runId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "82e89f51-0ee7-407b-8e1a-ac401afba07a",
+                          "key": "runId",
+                          "value": "<integer>",
+                          "description": "(Required) Run ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific pipeline run."
+                  },
+                  "response": [
+                    {
+                      "id": "ed5ec477-5f65-4a4b-98f6-0f5d4022e76d",
+                      "name": "Run details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/runs/:runId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "runs",
+                            ":runId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "runId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"pipelineId\": \"<integer>\",\n  \"pipelineSourceId\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"runNumber\": \"<integer>\",\n  \"branchName\": \"<string>\",\n  \"startedAt\": \"<dateTime>\",\n  \"endedAt\": \"<dateTime>\",\n  \"durationSeconds\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-ed5ec477-5f65-4a4b-98f6-0f5d4022e76d"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-04b57458-93cb-4e5d-88d9-1f4775a1f64b"
+                }
+              ],
+              "id": "31fb5e66-48e1-46b4-a647-8ffc039a7277",
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-31fb5e66-48e1-46b4-a647-8ffc039a7277"
+            },
+            {
+              "name": "JFrog List Pipeline Runs",
+              "id": "21080971-15a6-40f3-b97e-898638e33e0c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/runs?pipelineIds=<string>&statusCodes=<string>&limit=10&offset=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "runs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Comma-separated pipeline IDs to filter by",
+                      "key": "pipelineIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Comma-separated status codes to filter by",
+                      "key": "statusCodes",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of results",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Offset for pagination",
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of pipeline runs."
+              },
+              "response": [
+                {
+                  "id": "a64db737-4e84-4e57-9df4-4258a835fd42",
+                  "name": "Pipeline runs list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/runs?pipelineIds=<string>&statusCodes=<string>&limit=10&offset=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "runs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Comma-separated pipeline IDs to filter by",
+                          "key": "pipelineIds",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Comma-separated status codes to filter by",
+                          "key": "statusCodes",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of results",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Offset for pagination",
+                          "key": "offset",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"pipelineId\": \"<integer>\",\n    \"pipelineSourceId\": \"<integer>\",\n    \"statusCode\": \"<integer>\",\n    \"runNumber\": \"<integer>\",\n    \"branchName\": \"<string>\",\n    \"startedAt\": \"<dateTime>\",\n    \"endedAt\": \"<dateTime>\",\n    \"durationSeconds\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"pipelineId\": \"<integer>\",\n    \"pipelineSourceId\": \"<integer>\",\n    \"statusCode\": \"<integer>\",\n    \"runNumber\": \"<integer>\",\n    \"branchName\": \"<string>\",\n    \"startedAt\": \"<dateTime>\",\n    \"endedAt\": \"<dateTime>\",\n    \"durationSeconds\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-a64db737-4e84-4e57-9df4-4258a835fd42"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-21080971-15a6-40f3-b97e-898638e33e0c"
+            }
+          ],
+          "id": "be5fa7ea-d4f4-4002-b3db-6cf00530fa50",
+          "createdAt": "2026-06-05T13:03:56.000Z",
+          "updatedAt": "2026-06-05T13:03:56.000Z",
+          "uid": "35240-be5fa7ea-d4f4-4002-b3db-6cf00530fa50"
+        },
+        {
+          "name": "steps",
+          "item": [
+            {
+              "name": "{stepId}",
+              "item": [
+                {
+                  "name": "logs",
+                  "item": [
+                    {
+                      "name": "JFrog Get Step Logs",
+                      "id": "3a9f53cc-3477-4a33-9cbb-e4563c3c282d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/steps/:stepId/logs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "steps",
+                            ":stepId",
+                            "logs"
+                          ],
+                          "variable": [
+                            {
+                              "id": "812f1ce7-02f2-4400-b63a-49e2fadd587f",
+                              "key": "stepId",
+                              "value": "<integer>",
+                              "description": "(Required) Step ID"
+                            }
+                          ]
+                        },
+                        "description": "Returns console logs for a specific step execution."
+                      },
+                      "response": [
+                        {
+                          "id": "cc3f7299-2b86-468d-8ee9-83400295957d",
+                          "name": "Step logs retrieved",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/steps/:stepId/logs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "steps",
+                                ":stepId",
+                                "logs"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "stepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"timestamp\": \"<dateTime>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T13:03:56.000Z",
+                          "updatedAt": "2026-06-05T13:03:56.000Z",
+                          "uid": "35240-cc3f7299-2b86-468d-8ee9-83400295957d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-3a9f53cc-3477-4a33-9cbb-e4563c3c282d"
+                    }
+                  ],
+                  "id": "153dedd8-0217-4777-aaa8-d7988f954987",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-153dedd8-0217-4777-aaa8-d7988f954987"
+                },
+                {
+                  "name": "JFrog Get Step Details",
+                  "id": "8dc0a34c-6313-4e97-8e1a-0536d155979d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/steps/:stepId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "steps",
+                        ":stepId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8f173f3c-d73f-4581-8fd2-a063cd4f2d3c",
+                          "key": "stepId",
+                          "value": "<integer>",
+                          "description": "(Required) Step ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific step execution."
+                  },
+                  "response": [
+                    {
+                      "id": "4b3578c6-0272-4ad1-bbf8-6355ad773323",
+                      "name": "Step details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/steps/:stepId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "steps",
+                            ":stepId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "stepId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"pipelineId\": \"<integer>\",\n  \"runId\": \"<integer>\",\n  \"typeCode\": \"<integer>\",\n  \"statusCode\": \"<integer>\",\n  \"startedAt\": \"<dateTime>\",\n  \"endedAt\": \"<dateTime>\",\n  \"durationSeconds\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-4b3578c6-0272-4ad1-bbf8-6355ad773323"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-8dc0a34c-6313-4e97-8e1a-0536d155979d"
+                }
+              ],
+              "id": "56beb800-e88f-42e6-9fc7-b59a5c6aa761",
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-56beb800-e88f-42e6-9fc7-b59a5c6aa761"
+            }
+          ],
+          "id": "01f7c2d0-ad05-4a2f-8f32-ca8a3c94558b",
+          "createdAt": "2026-06-05T13:03:56.000Z",
+          "updatedAt": "2026-06-05T13:03:56.000Z",
+          "uid": "35240-01f7c2d0-ad05-4a2f-8f32-ca8a3c94558b"
+        },
+        {
+          "name": "integrations",
+          "item": [
+            {
+              "name": "{integrationId}",
+              "item": [
+                {
+                  "name": "JFrog Get Integration",
+                  "id": "fc48d78e-dc00-4e17-bbf8-c35131d07d16",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/integrations/:integrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "integrations",
+                        ":integrationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "863ba70b-3a78-4570-9ce0-fd054f5c0a84",
+                          "key": "integrationId",
+                          "value": "<integer>",
+                          "description": "(Required) Integration ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific integration."
+                  },
+                  "response": [
+                    {
+                      "id": "cc6ed8f3-b82e-4acf-be1f-6bb1f7c73026",
+                      "name": "Integration details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/integrations/:integrationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "integrations",
+                            ":integrationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"masterIntegrationId\": \"<integer>\",\n  \"masterIntegrationName\": \"<string>\",\n  \"projectId\": \"<integer>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-cc6ed8f3-b82e-4acf-be1f-6bb1f7c73026"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-fc48d78e-dc00-4e17-bbf8-c35131d07d16"
+                },
+                {
+                  "name": "JFrog Update Integration",
+                  "id": "bc97381b-28bd-41b6-8ba3-2f2cf5d079d5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"masterIntegrationName\": \"<string>\",\n  \"masterIntegrationId\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"formJSONValues\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/integrations/:integrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "integrations",
+                        ":integrationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "663225c3-5d16-4e2f-b1eb-b20d7ab790e1",
+                          "key": "integrationId",
+                          "value": "<integer>",
+                          "description": "(Required) Integration ID"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing integration."
+                  },
+                  "response": [
+                    {
+                      "id": "c304ddff-2cd2-4554-ab6e-c49bd0300e52",
+                      "name": "Integration updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"masterIntegrationName\": \"<string>\",\n  \"masterIntegrationId\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"formJSONValues\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/integrations/:integrationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "integrations",
+                            ":integrationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-c304ddff-2cd2-4554-ab6e-c49bd0300e52"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-bc97381b-28bd-41b6-8ba3-2f2cf5d079d5"
+                },
+                {
+                  "name": "JFrog Delete Integration",
+                  "id": "b7b53de0-5432-4f3e-a352-adc45b78bd75",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/integrations/:integrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "integrations",
+                        ":integrationId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9dc66216-549e-45d1-a94c-361faaa37757",
+                          "key": "integrationId",
+                          "value": "<integer>",
+                          "description": "(Required) Integration ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes an integration."
+                  },
+                  "response": [
+                    {
+                      "id": "12729004-31bb-4a1b-99a7-971170b86f14",
+                      "name": "Integration deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/integrations/:integrationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "integrations",
+                            ":integrationId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "integrationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-12729004-31bb-4a1b-99a7-971170b86f14"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-b7b53de0-5432-4f3e-a352-adc45b78bd75"
+                }
+              ],
+              "id": "93c3ab6d-d00a-42ab-9639-a550d6913c56",
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-93c3ab6d-d00a-42ab-9639-a550d6913c56"
+            },
+            {
+              "name": "JFrog List Integrations",
+              "id": "bb66ecbf-56d5-4bcf-be63-bf5bc12c14b7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/integrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "integrations"
+                  ]
+                },
+                "description": "Returns a list of all configured integrations."
+              },
+              "response": [
+                {
+                  "id": "4a4fd649-24c2-4dce-b999-588b4a841fd0",
+                  "name": "Integrations list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"masterIntegrationId\": \"<integer>\",\n    \"masterIntegrationName\": \"<string>\",\n    \"projectId\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"masterIntegrationId\": \"<integer>\",\n    \"masterIntegrationName\": \"<string>\",\n    \"projectId\": \"<integer>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-4a4fd649-24c2-4dce-b999-588b4a841fd0"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-bb66ecbf-56d5-4bcf-be63-bf5bc12c14b7"
+            },
+            {
+              "name": "JFrog Create Integration",
+              "id": "002e2cc7-3cc5-4a61-8d58-88a6dc5b0f7a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"masterIntegrationName\": \"<string>\",\n  \"masterIntegrationId\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"formJSONValues\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/integrations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "integrations"
+                  ]
+                },
+                "description": "Creates a new external service integration."
+              },
+              "response": [
+                {
+                  "id": "a6b636d8-6148-4d9c-9ae6-dfb921fdb446",
+                  "name": "Integration created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"masterIntegrationName\": \"<string>\",\n  \"masterIntegrationId\": \"<integer>\",\n  \"projectId\": \"<integer>\",\n  \"formJSONValues\": [\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"label\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/integrations",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "integrations"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-a6b636d8-6148-4d9c-9ae6-dfb921fdb446"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-002e2cc7-3cc5-4a61-8d58-88a6dc5b0f7a"
+            }
+          ],
+          "id": "3d003261-4ef4-4f90-8409-2e7c924becb5",
+          "createdAt": "2026-06-05T13:03:56.000Z",
+          "updatedAt": "2026-06-05T13:03:56.000Z",
+          "uid": "35240-3d003261-4ef4-4f90-8409-2e7c924becb5"
+        },
+        {
+          "name": "nodePools",
+          "item": [
+            {
+              "name": "{nodePoolId}",
+              "item": [
+                {
+                  "name": "JFrog Get Node Pool",
+                  "id": "774cc731-f7e6-4019-9d12-a17fc191d318",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/nodePools/:nodePoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "nodePools",
+                        ":nodePoolId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c520ceb1-5739-4a8d-bd0e-6c4c84d3c7c3",
+                          "key": "nodePoolId",
+                          "value": "<integer>",
+                          "description": "(Required) Node pool ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns details for a specific node pool."
+                  },
+                  "response": [
+                    {
+                      "id": "68bddc41-117a-46e9-be33-533563e5b694",
+                      "name": "Node pool details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/nodePools/:nodePoolId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "nodePools",
+                            ":nodePoolId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "nodePoolId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"projectId\": \"<integer>\",\n  \"numberOfNodes\": \"<integer>\",\n  \"isOnDemand\": \"<boolean>\",\n  \"architecture\": \"<string>\",\n  \"operatingSystem\": \"<string>\",\n  \"createdAt\": \"<dateTime>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-68bddc41-117a-46e9-be33-533563e5b694"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-774cc731-f7e6-4019-9d12-a17fc191d318"
+                },
+                {
+                  "name": "JFrog Delete Node Pool",
+                  "id": "679de34d-5dd7-4914-849b-1584f787ffe0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/nodePools/:nodePoolId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "nodePools",
+                        ":nodePoolId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6d8fd339-ae0e-431a-af49-59df847868c6",
+                          "key": "nodePoolId",
+                          "value": "<integer>",
+                          "description": "(Required) Node pool ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a node pool."
+                  },
+                  "response": [
+                    {
+                      "id": "55d0e788-61c2-45e6-8ff5-100472651349",
+                      "name": "Node pool deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/nodePools/:nodePoolId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "nodePools",
+                            ":nodePoolId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "nodePoolId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:03:56.000Z",
+                      "updatedAt": "2026-06-05T13:03:56.000Z",
+                      "uid": "35240-55d0e788-61c2-45e6-8ff5-100472651349"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-679de34d-5dd7-4914-849b-1584f787ffe0"
+                }
+              ],
+              "id": "1cafcc09-f9ff-4442-baca-8d27e5e77d35",
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-1cafcc09-f9ff-4442-baca-8d27e5e77d35"
+            },
+            {
+              "name": "JFrog List Node Pools",
+              "id": "d8a479ce-38a7-4e3d-84c6-195092a68480",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/nodePools",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "nodePools"
+                  ]
+                },
+                "description": "Returns a list of all build node pools."
+              },
+              "response": [
+                {
+                  "id": "67676e7a-4dcf-4a4c-9419-bdcb6e3cc4d8",
+                  "name": "Node pools list",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/nodePools",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "nodePools"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"projectId\": \"<integer>\",\n    \"numberOfNodes\": \"<integer>\",\n    \"isOnDemand\": \"<boolean>\",\n    \"architecture\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"projectId\": \"<integer>\",\n    \"numberOfNodes\": \"<integer>\",\n    \"isOnDemand\": \"<boolean>\",\n    \"architecture\": \"<string>\",\n    \"operatingSystem\": \"<string>\",\n    \"createdAt\": \"<dateTime>\",\n    \"updatedAt\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-67676e7a-4dcf-4a4c-9419-bdcb6e3cc4d8"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-d8a479ce-38a7-4e3d-84c6-195092a68480"
+            },
+            {
+              "name": "JFrog Create Node Pool",
+              "id": "fdc722a5-e26f-4722-8d27-823073af507c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"projectId\": \"<integer>\",\n  \"numberOfNodes\": \"<integer>\",\n  \"isOnDemand\": \"<boolean>\",\n  \"architecture\": \"<string>\",\n  \"operatingSystem\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/nodePools",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "nodePools"
+                  ]
+                },
+                "description": "Creates a new build node pool."
+              },
+              "response": [
+                {
+                  "id": "39177b38-dbf5-4bf7-8a08-e7fd5581e5bb",
+                  "name": "Node pool created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"projectId\": \"<integer>\",\n  \"numberOfNodes\": \"<integer>\",\n  \"isOnDemand\": \"<boolean>\",\n  \"architecture\": \"<string>\",\n  \"operatingSystem\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/nodePools",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "nodePools"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:03:56.000Z",
+                  "updatedAt": "2026-06-05T13:03:56.000Z",
+                  "uid": "35240-39177b38-dbf5-4bf7-8a08-e7fd5581e5bb"
+                }
+              ],
+              "createdAt": "2026-06-05T13:03:56.000Z",
+              "updatedAt": "2026-06-05T13:03:56.000Z",
+              "uid": "35240-fdc722a5-e26f-4722-8d27-823073af507c"
+            }
+          ],
+          "id": "75e5ddef-011a-45c3-8ecb-b00dcb8490c8",
+          "createdAt": "2026-06-05T13:03:56.000Z",
+          "updatedAt": "2026-06-05T13:03:56.000Z",
+          "uid": "35240-75e5ddef-011a-45c3-8ecb-b00dcb8490c8"
+        }
+      ],
+      "id": "ac570e1a-91dc-40e5-8f39-6da269dbdc3d",
+      "createdAt": "2026-06-05T13:03:56.000Z",
+      "updatedAt": "2026-06-05T13:03:56.000Z",
+      "uid": "35240-ac570e1a-91dc-40e5-8f39-6da269dbdc3d"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "server",
+      "value": "myserver"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{server}}.jfrog.io/pipelines/api"
+    }
+  ]
+}

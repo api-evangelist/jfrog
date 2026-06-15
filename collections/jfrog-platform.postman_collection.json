@@ -1,0 +1,3804 @@
+{
+  "item": [
+    {
+      "id": "aae6674b-1dca-4cc5-8dcc-c1178dcd24fa",
+      "name": "Access Tokens",
+      "description": {
+        "content": "Token creation and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ceeaeca7-8846-4b93-9331-a4e0156fa972",
+          "name": "JFrog List Access Tokens",
+          "request": {
+            "name": "JFrog List Access Tokens",
+            "description": {
+              "content": "Returns a list of all access tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "019189f9-d51d-4dbd-a3a2-9802702e93f2",
+              "name": "Tokens list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tokens\": [\n    {\n      \"token_id\": \"string\",\n      \"subject\": \"string\",\n      \"expiry\": 6077,\n      \"issued_at\": 7590,\n      \"issuer\": \"string\",\n      \"description\": \"string\",\n      \"refreshable\": true,\n      \"scope\": \"string\"\n    },\n    {\n      \"token_id\": \"string\",\n      \"subject\": \"string\",\n      \"expiry\": 8348,\n      \"issued_at\": 6920,\n      \"issuer\": \"string\",\n      \"description\": \"string\",\n      \"refreshable\": false,\n      \"scope\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f19d1bf1-54ba-4a01-9334-934238be45e3",
+          "name": "JFrog Create Access Token",
+          "request": {
+            "name": "JFrog Create Access Token",
+            "description": {
+              "content": "Creates a new access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scope\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refreshable\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"audience\": \"<string>\",\n  \"include_reference_token\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78ec6c31-7f5f-4e52-b397-6755b3fc6bf0",
+              "name": "Token created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"scope\": \"<string>\",\n  \"subject\": \"<string>\",\n  \"expires_in\": \"<integer>\",\n  \"refreshable\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"audience\": \"<string>\",\n  \"include_reference_token\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token_id\": \"string\",\n  \"access_token\": \"string\",\n  \"refresh_token\": \"string\",\n  \"expires_in\": 3357,\n  \"scope\": \"string\",\n  \"token_type\": \"Bearer\",\n  \"reference_token\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d6dcfa8-ce0c-4150-816b-7e64da5b4560",
+          "name": "JFrog Get Token Details",
+          "request": {
+            "name": "JFrog Get Token Details",
+            "description": {
+              "content": "Returns details for a specific access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "tokens",
+                ":tokenId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenId",
+                  "description": "(Required) Token ID"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7556265b-d323-4254-95a9-25e559cefadd",
+              "name": "Token details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "tokens",
+                    ":tokenId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) Token ID"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token_id\": \"string\",\n  \"subject\": \"string\",\n  \"expiry\": 297,\n  \"issued_at\": 8162,\n  \"issuer\": \"string\",\n  \"description\": \"string\",\n  \"refreshable\": false,\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a906650-3c4d-4dee-98fd-93dc9728b25d",
+          "name": "JFrog Revoke Access Token",
+          "request": {
+            "name": "JFrog Revoke Access Token",
+            "description": {
+              "content": "Revokes an access token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "tokens",
+                ":tokenId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "tokenId",
+                  "description": "(Required) Token ID"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e8eb5675-d92b-483c-8568-3bcb1c373a40",
+              "name": "Token revoked",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "tokens",
+                    ":tokenId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "tokenId",
+                      "description": "(Required) Token ID"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d830c92b-8698-4682-9a91-c33b97cbd5e5",
+      "name": "Groups",
+      "description": {
+        "content": "Group management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b6378a2f-6812-4e17-9266-11e1a68bf741",
+          "name": "JFrog List Groups",
+          "request": {
+            "name": "JFrog List Groups",
+            "description": {
+              "content": "Returns a list of all platform groups.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7dade9e2-abf2-4462-9e91-e0592bf3fed6",
+              "name": "Groups list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"auto_join\": true,\n      \"admin_privileges\": false,\n      \"realm\": \"string\",\n      \"external_id\": \"string\",\n      \"members\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"auto_join\": true,\n      \"admin_privileges\": true,\n      \"realm\": \"string\",\n      \"external_id\": \"string\",\n      \"members\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9d87a1f-7930-48eb-a21b-bc8e1c28a6cd",
+          "name": "JFrog Create Group",
+          "request": {
+            "name": "JFrog Create Group",
+            "description": {
+              "content": "Creates a new platform group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a108929-d67d-4fb7-88c5-0f14c834880c",
+              "name": "Group created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05b42d7a-329f-4930-93eb-cbf065ae1673",
+          "name": "JFrog Get Group",
+          "request": {
+            "name": "JFrog Get Group",
+            "description": {
+              "content": "Returns details for a specific group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "groups",
+                ":groupName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupName",
+                  "description": "(Required) Group name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3cf629e6-c7b2-4a99-831b-f39cf09e9d57",
+              "name": "Group details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "groups",
+                    ":groupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupName",
+                      "description": "(Required) Group name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"auto_join\": false,\n  \"admin_privileges\": true,\n  \"realm\": \"string\",\n  \"external_id\": \"string\",\n  \"members\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3726ba58-8221-450d-a5da-815fe7580b41",
+          "name": "JFrog Update Group",
+          "request": {
+            "name": "JFrog Update Group",
+            "description": {
+              "content": "Updates group details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "groups",
+                ":groupName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupName",
+                  "description": "(Required) Group name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "99f7869a-8222-4e1c-81b3-d87bbb22ff25",
+              "name": "Group updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "groups",
+                    ":groupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupName",
+                      "description": "(Required) Group name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"auto_join\": \"<boolean>\",\n  \"admin_privileges\": \"<boolean>\",\n  \"realm\": \"<string>\",\n  \"external_id\": \"<string>\",\n  \"members\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ceef3254-af9d-4d7d-9c41-5c09f4097aa0",
+          "name": "JFrog Delete Group",
+          "request": {
+            "name": "JFrog Delete Group",
+            "description": {
+              "content": "Deletes a group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "groups",
+                ":groupName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "groupName",
+                  "description": "(Required) Group name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5f4207d-1d22-4168-85b5-11e184349bfc",
+              "name": "Group deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "groups",
+                    ":groupName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "groupName",
+                      "description": "(Required) Group name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "dee6b73b-fc92-448f-bcd6-279b0da2de9b",
+      "name": "Permissions",
+      "description": {
+        "content": "Permission management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be678faa-e644-4379-9f95-0cd5ff270e06",
+          "name": "JFrog List Permissions",
+          "request": {
+            "name": "JFrog List Permissions",
+            "description": {
+              "content": "Returns a list of all permission configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0fc683e-5668-4a65-ac73-20764d1f57e4",
+              "name": "Permissions list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissions\": [\n    {\n      \"name\": \"string\",\n      \"resources\": {\n        \"repository\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_1\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_2\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"resources\": {\n        \"repository\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"key_0\": {}\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63cded1b-aada-432b-8f98-87418beb3ce9",
+          "name": "JFrog Create Permission",
+          "request": {
+            "name": "JFrog Create Permission",
+            "description": {
+              "content": "Creates a new permission configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2dd05035-3e51-4993-9ab4-677e1aff3389",
+              "name": "Permission created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_4\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\",\n      \"key_2\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e9122b4-ce7f-4de8-9975-2c50f9ef2b95",
+          "name": "JFrog Get Permission",
+          "request": {
+            "name": "JFrog Get Permission",
+            "description": {
+              "content": "Returns details for a specific permission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4e242130-ec4d-4e9c-ab1d-40af8b5e6776",
+              "name": "Permission details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"exclude_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_1\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"exclude_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7f00dd7-7721-4765-b4e7-6c06e648c1c2",
+          "name": "JFrog Update Permission",
+          "request": {
+            "name": "JFrog Update Permission",
+            "description": {
+              "content": "Updates a permission configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "677ce5ab-c063-4953-9fb3-ff2a1cbaeff9",
+              "name": "Permission updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_4\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\",\n      \"key_2\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f8c6128-77a5-4afa-958d-de720ffffd50",
+          "name": "JFrog Delete Permission",
+          "request": {
+            "name": "JFrog Delete Permission",
+            "description": {
+              "content": "Deletes a permission configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "378ec244-adae-41fe-9df5-768522ed79cb",
+              "name": "Permission deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "de3a28db-aba4-47ba-87e6-99647e801af2",
+      "name": "Projects",
+      "description": {
+        "content": "Project management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8f8a81b-9193-475d-bea6-fcb120281959",
+          "name": "JFrog List Projects",
+          "request": {
+            "name": "JFrog List Projects",
+            "description": {
+              "content": "Returns a list of all projects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v1",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "56fd6454-f261-4b20-9a23-c65d02b4fcf7",
+              "name": "Projects list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"project_key\": \"string\",\n    \"display_name\": \"string\",\n    \"description\": \"string\",\n    \"admin_privileges\": {\n      \"manage_members\": true,\n      \"manage_resources\": false,\n      \"manage_security_assets\": false,\n      \"index_resources\": false,\n      \"allow_ignore_rules\": false\n    },\n    \"max_storage_in_gibibytes\": 6501,\n    \"soft_limit\": false,\n    \"storage_quota_bytes\": 3996,\n    \"storage_quota_email_notification\": true\n  },\n  {\n    \"project_key\": \"string\",\n    \"display_name\": \"string\",\n    \"description\": \"string\",\n    \"admin_privileges\": {\n      \"manage_members\": true,\n      \"manage_resources\": true,\n      \"manage_security_assets\": false,\n      \"index_resources\": true,\n      \"allow_ignore_rules\": true\n    },\n    \"max_storage_in_gibibytes\": 9854,\n    \"soft_limit\": false,\n    \"storage_quota_bytes\": 5513,\n    \"storage_quota_email_notification\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b608a71c-3b32-410b-aea9-772f205a00a5",
+          "name": "JFrog Create Project",
+          "request": {
+            "name": "JFrog Create Project",
+            "description": {
+              "content": "Creates a new project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v1",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d99550b7-08fd-470d-88fb-e224ea125b79",
+              "name": "Project created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"project_key\": \"string\",\n  \"display_name\": \"string\",\n  \"description\": \"string\",\n  \"admin_privileges\": {\n    \"manage_members\": false,\n    \"manage_resources\": false,\n    \"manage_security_assets\": true,\n    \"index_resources\": true,\n    \"allow_ignore_rules\": true\n  },\n  \"max_storage_in_gibibytes\": 4153,\n  \"soft_limit\": true,\n  \"storage_quota_bytes\": 542,\n  \"storage_quota_email_notification\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67c8daa0-445d-4c3a-8fb2-28c39b4b79d9",
+          "name": "JFrog Get Project",
+          "request": {
+            "name": "JFrog Get Project",
+            "description": {
+              "content": "Returns details for a specific project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v1",
+                "projects",
+                ":projectKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e94b4bea-3073-41a5-aad6-47205da63955",
+              "name": "Project details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) Project key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"project_key\": \"string\",\n  \"display_name\": \"string\",\n  \"description\": \"string\",\n  \"admin_privileges\": {\n    \"manage_members\": false,\n    \"manage_resources\": false,\n    \"manage_security_assets\": true,\n    \"index_resources\": true,\n    \"allow_ignore_rules\": true\n  },\n  \"max_storage_in_gibibytes\": 4153,\n  \"soft_limit\": true,\n  \"storage_quota_bytes\": 542,\n  \"storage_quota_email_notification\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c74a579e-e956-4bc9-a674-a7468943bbd1",
+          "name": "JFrog Update Project",
+          "request": {
+            "name": "JFrog Update Project",
+            "description": {
+              "content": "Updates project configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v1",
+                "projects",
+                ":projectKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3234eb6e-cbcc-4ec9-a61e-457905a89c79",
+              "name": "Project updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) Project key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"project_key\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"admin_privileges\": {\n    \"manage_members\": \"<boolean>\",\n    \"manage_resources\": \"<boolean>\",\n    \"manage_security_assets\": \"<boolean>\",\n    \"index_resources\": \"<boolean>\",\n    \"allow_ignore_rules\": \"<boolean>\"\n  },\n  \"max_storage_in_gibibytes\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af9849ec-4552-457e-b335-d472bc35f0f7",
+          "name": "JFrog Delete Project",
+          "request": {
+            "name": "JFrog Delete Project",
+            "description": {
+              "content": "Deletes a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v1",
+                "projects",
+                ":projectKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f67bf4e8-9d44-48b0-8d5f-db22cbf84216",
+              "name": "Project deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) Project key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2656eab-d867-43f2-a1cd-464dd24faf14",
+          "name": "JFrog Add User to Project",
+          "request": {
+            "name": "JFrog Add User to Project",
+            "description": {
+              "content": "Adds a user to a project with specified roles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v1",
+                "projects",
+                ":projectKey",
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "deb35adf-be10-4555-87a5-a4aa843335ec",
+              "name": "User added to project",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectKey",
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) Project key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roles\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ebe948cc-9bd7-4ce8-9796-faeab62fdae3",
+          "name": "JFrog Remove User from Project",
+          "request": {
+            "name": "JFrog Remove User from Project",
+            "description": {
+              "content": "Removes a user from a project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v1",
+                "projects",
+                ":projectKey",
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectKey",
+                  "description": "(Required) Project key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "296d15ec-a373-4b0b-9052-8793f781cffa",
+              "name": "User removed from project",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v1",
+                    "projects",
+                    ":projectKey",
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectKey",
+                      "description": "(Required) Project key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0370f7c6-7d13-4cd4-94ec-191ab3cbe387",
+      "name": "System",
+      "description": {
+        "content": "Platform system health and configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e0af99e7-6e62-4d78-82e6-ae70b637f33f",
+          "name": "JFrog Platform Router Ping",
+          "request": {
+            "name": "JFrog Platform Router Ping",
+            "description": {
+              "content": "Returns a simple health check from the JFrog Platform router.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "router",
+                "api",
+                "v1",
+                "system",
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b28243a-bc50-4d67-8d61-521dfcbef830",
+              "name": "Platform is accessible",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "router",
+                    "api",
+                    "v1",
+                    "system",
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b92f4b51-53be-45f1-83ea-b2855de026db",
+          "name": "JFrog Get System Health",
+          "request": {
+            "name": "JFrog Get System Health",
+            "description": {
+              "content": "Returns health status of all JFrog services.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "router",
+                "api",
+                "v1",
+                "system",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58c02594-b957-47dc-9d07-e7f7738796f4",
+              "name": "System health retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "router",
+                    "api",
+                    "v1",
+                    "system",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"router\": {\n    \"node_id\": \"string\",\n    \"state\": \"string\",\n    \"message\": \"string\"\n  },\n  \"services\": [\n    {\n      \"service_id\": \"string\",\n      \"node_id\": \"string\",\n      \"state\": \"HEALTHY\",\n      \"message\": \"string\"\n    },\n    {\n      \"service_id\": \"string\",\n      \"node_id\": \"string\",\n      \"state\": \"HEALTHY\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "36843570-f1b7-4a75-a425-756bd3078151",
+      "name": "Users",
+      "description": {
+        "content": "Platform user management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "790d6e40-6618-457a-8bdf-a8c5c2d0e2b8",
+          "name": "JFrog List Users",
+          "request": {
+            "name": "JFrog List Users",
+            "description": {
+              "content": "Returns a list of all platform users.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4b5c6646-f2b9-4874-a52a-23597f35a8ae",
+              "name": "Users list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"users\": [\n    {\n      \"username\": \"string\",\n      \"email\": \"QSfVqau@ATujjMcidXuTsIoba.ipzw\",\n      \"admin\": false,\n      \"profile_updatable\": true,\n      \"disable_ui_access\": true,\n      \"internal_password_disabled\": true,\n      \"status\": \"disabled\",\n      \"groups\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"username\": \"string\",\n      \"email\": \"1Wur0DYjM@KIvcxSgjqAqbCcTQkXZRMonUSIjOT.vqt\",\n      \"admin\": false,\n      \"profile_updatable\": false,\n      \"disable_ui_access\": true,\n      \"internal_password_disabled\": true,\n      \"status\": \"disabled\",\n      \"groups\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0744ea12-1a4d-4dd8-9dab-3e8cbb07e44f",
+          "name": "JFrog Create User",
+          "request": {
+            "name": "JFrog Create User",
+            "description": {
+              "content": "Creates a new platform user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c91253b-0097-431e-8ad5-a84d25480061",
+              "name": "User created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"email\": \"ZCoipiKDWTDA@pbhyoVDFNvbVE.zmc\",\n  \"admin\": false,\n  \"profile_updatable\": true,\n  \"disable_ui_access\": true,\n  \"internal_password_disabled\": false,\n  \"status\": \"disabled\",\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95612e76-cf3a-406e-85ee-d6a331ac8f75",
+          "name": "JFrog Get User",
+          "request": {
+            "name": "JFrog Get User",
+            "description": {
+              "content": "Returns details for a specific user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "003595fd-a7cb-43e3-a727-648f6aa755e1",
+              "name": "User details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"username\": \"string\",\n  \"email\": \"ZCoipiKDWTDA@pbhyoVDFNvbVE.zmc\",\n  \"admin\": false,\n  \"profile_updatable\": true,\n  \"disable_ui_access\": true,\n  \"internal_password_disabled\": false,\n  \"status\": \"disabled\",\n  \"groups\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "214de805-5b62-45a3-ab77-aa9b9ab83a7f",
+          "name": "JFrog Update User",
+          "request": {
+            "name": "JFrog Update User",
+            "description": {
+              "content": "Updates user details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a5c1cc9-4157-490f-a8ff-1ecc281a16cb",
+              "name": "User updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<email>\",\n  \"password\": \"<string>\",\n  \"admin\": \"<boolean>\",\n  \"profile_updatable\": \"<boolean>\",\n  \"groups\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2616cc3f-1184-42ec-8c46-905077ea653a",
+          "name": "JFrog Delete User",
+          "request": {
+            "name": "JFrog Delete User",
+            "description": {
+              "content": "Deletes a user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "users",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required) Username"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02c0950e-7944-4e41-a990-b625f01eb18e",
+              "name": "User deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "users",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required) Username"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aa39cfc9-172e-4d36-ad35-2b0cf44dd0b4",
+      "name": "Webhooks",
+      "description": {
+        "content": "Webhook configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5e8beeec-606b-4523-8258-34621327dae3",
+          "name": "JFrog List Webhooks",
+          "request": {
+            "name": "JFrog List Webhooks",
+            "description": {
+              "content": "Returns a list of all configured webhooks.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                "api",
+                "v1",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5a1e4362-8fd8-49d2-9c0b-e5d659b8c023",
+              "name": "Webhooks list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    "api",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key\": \"string\",\n    \"description\": \"string\",\n    \"enabled\": false,\n    \"url\": \"http://MNVphdSzuJwCsHK.mnscBSYdFmls.,Qo3tCPbKrTi8iXpixwQQ+W\",\n    \"secret\": \"string\",\n    \"events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"criteria\": {\n      \"key_0\": 8359.510913182183,\n      \"key_1\": \"string\",\n      \"key_2\": false\n    }\n  },\n  {\n    \"key\": \"string\",\n    \"description\": \"string\",\n    \"enabled\": true,\n    \"url\": \"https://YGnbi.bmvpzHvNaTcZ4jJxkeKbO6cx-G+XyVlmrg\",\n    \"secret\": \"string\",\n    \"events\": [\n      \"string\",\n      \"string\"\n    ],\n    \"criteria\": {\n      \"key_0\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7cb6eff-4670-4a69-af22-6267b35ebcf5",
+          "name": "JFrog Create Webhook",
+          "request": {
+            "name": "JFrog Create Webhook",
+            "description": {
+              "content": "Creates a new webhook subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                "api",
+                "v1",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c3ae2ead-77c0-484c-ae9a-0dd7c1912e78",
+              "name": "Webhook created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    "api",
+                    "v1",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e282c71d-11e3-4c8d-b33b-d59640fe855c",
+          "name": "JFrog Get Webhook",
+          "request": {
+            "name": "JFrog Get Webhook",
+            "description": {
+              "content": "Returns details for a specific webhook.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                "api",
+                "v1",
+                "subscriptions",
+                ":webhookKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookKey",
+                  "description": "(Required) Webhook key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "36e3f622-beba-451e-92b5-889c22249674",
+              "name": "Webhook details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    "api",
+                    "v1",
+                    "subscriptions",
+                    ":webhookKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookKey",
+                      "description": "(Required) Webhook key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": false,\n  \"url\": \"https://byutuaNteCYnaFBna.woxspmWmZ-lO1QlEHtCqfkytocNlYsvUiy.5LF2ZjEbKCHQ3kOXZOTt\",\n  \"secret\": \"string\",\n  \"events\": [\n    \"string\",\n    \"string\"\n  ],\n  \"criteria\": {\n    \"key_0\": false,\n    \"key_1\": false,\n    \"key_2\": 2991.5703600415122\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5591322c-27fd-4b7e-9ae9-a036788a41f2",
+          "name": "JFrog Update Webhook",
+          "request": {
+            "name": "JFrog Update Webhook",
+            "description": {
+              "content": "Updates a webhook configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                "api",
+                "v1",
+                "subscriptions",
+                ":webhookKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookKey",
+                  "description": "(Required) Webhook key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "db8d73f5-9e8f-4e3a-a791-bdbea45261d1",
+              "name": "Webhook updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    "api",
+                    "v1",
+                    "subscriptions",
+                    ":webhookKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookKey",
+                      "description": "(Required) Webhook key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"secret\": \"<string>\",\n  \"criteria\": {\n    \"anyLocal\": \"<boolean>\",\n    \"anyRemote\": \"<boolean>\",\n    \"anyFederated\": \"<boolean>\",\n    \"repoKeys\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"includePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"excludePatterns\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9994b5a1-8d51-4a7d-a335-70e92f6bea93",
+          "name": "JFrog Delete Webhook",
+          "request": {
+            "name": "JFrog Delete Webhook",
+            "description": {
+              "content": "Deletes a webhook subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "event",
+                "api",
+                "v1",
+                "subscriptions",
+                ":webhookKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "webhookKey",
+                  "description": "(Required) Webhook key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1700cc5-e1fb-43f5-9083-f29785ca45fa",
+              "name": "Webhook deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "event",
+                    "api",
+                    "v1",
+                    "subscriptions",
+                    ":webhookKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "webhookKey",
+                      "description": "(Required) Webhook key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0729a141-251a-49e3-9b56-24db7cbb1305",
+    "name": "JFrog Platform REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Unified API for JFrog Platform services and administration. Provides centralized access management, project administration, and system configuration across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

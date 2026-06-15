@@ -1,0 +1,1756 @@
+{
+  "item": [
+    {
+      "id": "419660b4-7522-4261-a675-1149d691fc42",
+      "name": "Evidence",
+      "description": {
+        "content": "Create and manage evidence attestations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8a6dd6b8-8e17-4b64-ac86-ebd865b0ccb8",
+          "name": "JFrog Create Evidence",
+          "request": {
+            "name": "JFrog Create Evidence",
+            "description": {
+              "content": "Creates a new evidence attestation and attaches it to a subject (artifact, build, package, or release bundle). The evidence is signed as an in-toto statement wrapped in a DSSE envelope, providing cryptographic verification of the attestation. Requires an Enterprise+ subscription and Artifactory 7.104.2 or above.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject_type\": \"<string>\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"key_0\": 1770,\n    \"key_1\": \"string\",\n    \"key_2\": true\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7516760c-cca1-4ef5-bc3d-5796d4f384b4",
+              "name": "Evidence created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject_type\": \"<string>\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"key_0\": 957.399385347224,\n    \"key_1\": 8435,\n    \"key_2\": 9942.961081296786\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"subject_type\": \"build\",\n  \"subject\": {\n    \"key_0\": false\n  },\n  \"predicate_type\": \"https://pLrIqUGLFvvSWTORLWI.zqyhTol3bBnvutUcqcjLpqwzxcLknJ,qyTbSJU6SN-0z4,O1y5\",\n  \"predicate\": {\n    \"key_0\": 1517\n  },\n  \"dsse_envelope_path\": \"string\",\n  \"signature_algorithm\": \"RSA\",\n  \"key_alias\": \"string\",\n  \"verified\": true,\n  \"created\": \"1951-02-19T07:08:19.593Z\",\n  \"created_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf57ca1f-a1fe-4129-bd3f-cc3140543143",
+              "name": "Invalid evidence configuration or missing required fields",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject_type\": \"<string>\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"key_0\": 957.399385347224,\n    \"key_1\": 8435,\n    \"key_2\": 9942.961081296786\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cbf2c306-23aa-4ad7-91c1-bcc84afc75d3",
+              "name": "Unauthorized - access token required (basic auth not supported)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject_type\": \"<string>\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"key_0\": 957.399385347224,\n    \"key_1\": 8435,\n    \"key_2\": 9942.961081296786\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f096b94-5a24-4842-b696-9397d09f10bf",
+              "name": "Subject not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject_type\": \"<string>\",\n  \"subject\": {\n    \"repo_path\": \"<string>\",\n    \"sha256\": \"<string>\",\n    \"build_name\": \"<string>\",\n    \"build_number\": \"<string>\",\n    \"package_name\": \"<string>\",\n    \"package_version\": \"<string>\",\n    \"repo_key\": \"<string>\",\n    \"release_bundle_name\": \"<string>\",\n    \"release_bundle_version\": \"<string>\",\n    \"project\": \"<string>\"\n  },\n  \"predicate\": {\n    \"key_0\": 957.399385347224,\n    \"key_1\": 8435,\n    \"key_2\": 9942.961081296786\n  },\n  \"predicate_type\": \"<uri>\",\n  \"key_alias\": \"<string>\",\n  \"dsse_envelope\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4ffdcf6-052b-44fc-bdd2-ff56ecdddaba",
+          "name": "JFrog Search Evidence",
+          "request": {
+            "name": "JFrog Search Evidence",
+            "description": {
+              "content": "Searches for evidence records matching specified criteria. Supports filtering by subject type, subject identifier, evidence type, and time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"subject_type\": \"<string>\",\n  \"predicate_type\": \"<uri>\",\n  \"created_from\": \"<dateTime>\",\n  \"created_to\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a7af8dc-a6c2-48b1-a4f7-97b43df20483",
+              "name": "Evidence search results retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject_type\": \"<string>\",\n  \"predicate_type\": \"<uri>\",\n  \"created_from\": \"<dateTime>\",\n  \"created_to\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"package\",\n      \"subject\": {\n        \"key_0\": 4724.329789503026,\n        \"key_1\": 3399,\n        \"key_2\": 9774\n      },\n      \"predicate_type\": \"https://sbsqQwgBPpFuzB.lpenQ.dBtbhquka4PAtJt9ZnjlHoJDFUgEzQsffs3t8iet26Ajt2Pg\",\n      \"predicate\": {\n        \"key_0\": 2978\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"string\",\n      \"verified\": false,\n      \"created\": \"1991-03-30T20:21:26.253Z\",\n      \"created_by\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"package\",\n      \"subject\": {\n        \"key_0\": \"string\"\n      },\n      \"predicate_type\": \"https://OSrzWaMNQgXiwqyxBxQGWnOX.gnflx+4uHGhOMOXtqXOd+PWX\",\n      \"predicate\": {\n        \"key_0\": 6509.013425953709\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"RSA\",\n      \"key_alias\": \"string\",\n      \"verified\": true,\n      \"created\": \"1964-01-08T03:18:45.740Z\",\n      \"created_by\": \"string\"\n    }\n  ],\n  \"total_count\": 9467\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14e8eb02-774b-4049-9165-9ba23631aa39",
+              "name": "Invalid search criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"subject_type\": \"<string>\",\n  \"predicate_type\": \"<uri>\",\n  \"created_from\": \"<dateTime>\",\n  \"created_to\": \"<dateTime>\",\n  \"created_by\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a1cbd3fd-6b67-404a-ac34-0f89516d2ddc",
+          "name": "JFrog Get Evidence",
+          "request": {
+            "name": "JFrog Get Evidence",
+            "description": {
+              "content": "Returns details for a specific evidence record, including its DSSE envelope and verification status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                ":evidenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "evidenceId",
+                  "description": "(Required) Evidence record identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "81f15f17-33f0-4028-a613-cc368d94b1e0",
+              "name": "Evidence details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    ":evidenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evidenceId",
+                      "description": "(Required) Evidence record identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"subject_type\": \"build\",\n  \"subject\": {\n    \"key_0\": false\n  },\n  \"predicate_type\": \"https://pLrIqUGLFvvSWTORLWI.zqyhTol3bBnvutUcqcjLpqwzxcLknJ,qyTbSJU6SN-0z4,O1y5\",\n  \"predicate\": {\n    \"key_0\": 1517\n  },\n  \"dsse_envelope_path\": \"string\",\n  \"signature_algorithm\": \"RSA\",\n  \"key_alias\": \"string\",\n  \"verified\": true,\n  \"created\": \"1951-02-19T07:08:19.593Z\",\n  \"created_by\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4582bb9-a119-479b-a3e3-bf7db75d3d1f",
+              "name": "Evidence not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    ":evidenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evidenceId",
+                      "description": "(Required) Evidence record identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dbb36009-9f2d-4fd3-9427-b13623e21603",
+          "name": "JFrog Delete Evidence",
+          "request": {
+            "name": "JFrog Delete Evidence",
+            "description": {
+              "content": "Removes an evidence record from the platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                ":evidenceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "evidenceId",
+                  "description": "(Required) Evidence record identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2f7b827-5ace-4f06-bba0-74150ba7779c",
+              "name": "Evidence deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    ":evidenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evidenceId",
+                      "description": "(Required) Evidence record identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "47746771-336d-4f5c-a9fc-3ae7179ae226",
+              "name": "Evidence not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    ":evidenceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evidenceId",
+                      "description": "(Required) Evidence record identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a741bdca-59a5-4ba8-9b14-46ce58556f91",
+          "name": "JFrog Get Artifact Evidence",
+          "request": {
+            "name": "JFrog Get Artifact Evidence",
+            "description": {
+              "content": "Returns all evidence records attached to a specific artifact identified by repository path and SHA-256.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                "subject",
+                "artifact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "repo_path",
+                  "value": "<string>",
+                  "description": "(Required) Full artifact repository path"
+                },
+                {
+                  "disabled": false,
+                  "key": "sha256",
+                  "value": "<string>",
+                  "description": "SHA-256 checksum of the artifact"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ea01cde-7c18-421b-b480-a5ef5dda7323",
+              "name": "Artifact evidence retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "artifact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"artifact\",\n      \"subject\": {\n        \"key_0\": \"string\",\n        \"key_1\": 2840.846199204734\n      },\n      \"predicate_type\": \"http://xPGXQdImBzCMxpTc.nacqbbePBHqoi\",\n      \"predicate\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ECDSA\",\n      \"key_alias\": \"string\",\n      \"verified\": false,\n      \"created\": \"1962-02-12T13:27:45.838Z\",\n      \"created_by\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"package\",\n      \"subject\": {\n        \"key_0\": true\n      },\n      \"predicate_type\": \"http://NzFLtFz.fgT7Strh\",\n      \"predicate\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": true\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"string\",\n      \"verified\": true,\n      \"created\": \"1946-10-14T23:00:16.324Z\",\n      \"created_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "342e4433-03cc-4a23-adbd-6bd71687a31c",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "artifact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "repo_path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sha256",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d10afc59-423a-439c-a719-ee7131e01f8e",
+          "name": "JFrog Get Build Evidence",
+          "request": {
+            "name": "JFrog Get Build Evidence",
+            "description": {
+              "content": "Returns all evidence records attached to a specific build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                "subject",
+                "build"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "build_name",
+                  "value": "<string>",
+                  "description": "(Required) Build name"
+                },
+                {
+                  "disabled": false,
+                  "key": "build_number",
+                  "value": "<string>",
+                  "description": "(Required) Build number"
+                },
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "<string>",
+                  "description": "Project key (if build is project-scoped)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b03187e-5ce8-4d0c-a8ff-ef7a0ff59dd3",
+              "name": "Build evidence retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "build_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "build_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"artifact\",\n      \"subject\": {\n        \"key_0\": \"string\",\n        \"key_1\": 2840.846199204734\n      },\n      \"predicate_type\": \"http://xPGXQdImBzCMxpTc.nacqbbePBHqoi\",\n      \"predicate\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ECDSA\",\n      \"key_alias\": \"string\",\n      \"verified\": false,\n      \"created\": \"1962-02-12T13:27:45.838Z\",\n      \"created_by\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"package\",\n      \"subject\": {\n        \"key_0\": true\n      },\n      \"predicate_type\": \"http://NzFLtFz.fgT7Strh\",\n      \"predicate\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": true\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"string\",\n      \"verified\": true,\n      \"created\": \"1946-10-14T23:00:16.324Z\",\n      \"created_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8565e9e1-9a2e-4024-9854-4f0a921649de",
+              "name": "Build not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "build_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "build_number",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd330352-6b6e-401b-9288-f5fbc4849f2d",
+          "name": "JFrog Get Release Bundle Evidence",
+          "request": {
+            "name": "JFrog Get Release Bundle Evidence",
+            "description": {
+              "content": "Returns all evidence records attached to a specific release bundle version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                "subject",
+                "release-bundle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) Release bundle name"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "(Required) Release bundle version"
+                },
+                {
+                  "disabled": false,
+                  "key": "project",
+                  "value": "<string>",
+                  "description": "Project key"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05ab53e0-303c-456b-b1b9-8d81fb711b36",
+              "name": "Release bundle evidence retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "release-bundle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"artifact\",\n      \"subject\": {\n        \"key_0\": \"string\",\n        \"key_1\": 2840.846199204734\n      },\n      \"predicate_type\": \"http://xPGXQdImBzCMxpTc.nacqbbePBHqoi\",\n      \"predicate\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ECDSA\",\n      \"key_alias\": \"string\",\n      \"verified\": false,\n      \"created\": \"1962-02-12T13:27:45.838Z\",\n      \"created_by\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"package\",\n      \"subject\": {\n        \"key_0\": true\n      },\n      \"predicate_type\": \"http://NzFLtFz.fgT7Strh\",\n      \"predicate\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": true\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"string\",\n      \"verified\": true,\n      \"created\": \"1946-10-14T23:00:16.324Z\",\n      \"created_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c478fc4-f3e5-46b4-b615-0d93d3c19149",
+              "name": "Release bundle not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "release-bundle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65abb5c3-38df-4aab-984c-7e0cafb39159",
+          "name": "JFrog Get Package Evidence",
+          "request": {
+            "name": "JFrog Get Package Evidence",
+            "description": {
+              "content": "Returns all evidence records attached to a specific package.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                "subject",
+                "package"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "package_name",
+                  "value": "<string>",
+                  "description": "(Required) Package name"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_version",
+                  "value": "<string>",
+                  "description": "(Required) Package version"
+                },
+                {
+                  "disabled": false,
+                  "key": "repo_key",
+                  "value": "<string>",
+                  "description": "(Required) Repository key containing the package"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "79b7b7ef-c301-47e3-972d-4c08889c84f5",
+              "name": "Package evidence retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "package"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evidence\": [\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"artifact\",\n      \"subject\": {\n        \"key_0\": \"string\",\n        \"key_1\": 2840.846199204734\n      },\n      \"predicate_type\": \"http://xPGXQdImBzCMxpTc.nacqbbePBHqoi\",\n      \"predicate\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ECDSA\",\n      \"key_alias\": \"string\",\n      \"verified\": false,\n      \"created\": \"1962-02-12T13:27:45.838Z\",\n      \"created_by\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"subject_type\": \"package\",\n      \"subject\": {\n        \"key_0\": true\n      },\n      \"predicate_type\": \"http://NzFLtFz.fgT7Strh\",\n      \"predicate\": {\n        \"key_0\": true,\n        \"key_1\": \"string\",\n        \"key_2\": true\n      },\n      \"dsse_envelope_path\": \"string\",\n      \"signature_algorithm\": \"ED25519\",\n      \"key_alias\": \"string\",\n      \"verified\": true,\n      \"created\": \"1946-10-14T23:00:16.324Z\",\n      \"created_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7511e4ef-bd9c-48e1-8b24-fdbf7fe9dbaf",
+              "name": "Package not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    "subject",
+                    "package"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "package_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "package_version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "repo_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "1fdbed01-8374-4fe6-b104-c61486547168",
+      "name": "Verification",
+      "description": {
+        "content": "Verify evidence and retrieve verification status",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6999c927-a5d3-4d62-804e-7a1f9f1080e9",
+          "name": "JFrog Verify Evidence",
+          "request": {
+            "name": "JFrog Verify Evidence",
+            "description": {
+              "content": "Verifies the cryptographic signature of an evidence record against registered public keys. Returns the verification status and details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "evidence",
+                ":evidenceId",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "evidenceId",
+                  "description": "(Required) Evidence record identifier"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "44a72ac0-4595-4251-8291-6bf3065ddfb7",
+              "name": "Verification result returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    ":evidenceId",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evidenceId",
+                      "description": "(Required) Evidence record identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"evidence_id\": \"string\",\n  \"verified\": false,\n  \"verification_timestamp\": \"2020-04-11T23:22:11.687Z\",\n  \"key_alias\": \"string\",\n  \"signature_algorithm\": \"RSA\",\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4843b68b-6239-49fb-8ac9-f084ada04e1e",
+              "name": "Evidence not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "evidence",
+                    ":evidenceId",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "evidenceId",
+                      "description": "(Required) Evidence record identifier"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/evidence/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a8e7d37-d850-4cd0-88be-7d6965a8c49e",
+    "name": "JFrog Evidence REST API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for creating and attaching cryptographically signed evidence to artifacts, builds, packages, and release bundles. Evidence files act as attestations providing verified records of external processes such as test results, vulnerability scans, and official approvals. Evidence is created as in-toto statements wrapped in DSSE (Dead Simple Signing Envelope) format.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}
