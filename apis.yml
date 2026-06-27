@@ -334,84 +334,81 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/jfrog/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/jfrog-access-create-user-with-group-workflow.yml
-    name: JFrog Access Create User With Group
-    summary: Create a group then a user in that group via the Access service.
-  - url: arazzo/jfrog-access-provision-project-workflow.yml
-    name: JFrog Access Provision Project
-    summary: Create a project, add a user to it, and confirm the project.
-  - url: arazzo/jfrog-attach-build-evidence-workflow.yml
-    name: JFrog Attach Build Evidence
-    summary: Create signed evidence for a build then verify its signature.
-  - url: arazzo/jfrog-cleanup-stale-artifacts-workflow.yml
-    name: JFrog Cleanup Stale Artifacts
-    summary: Run an AQL search for stale artifacts and delete the first match.
-  - url: arazzo/jfrog-configure-repository-replication-workflow.yml
-    name: JFrog Configure Repository Replication
-    summary: Confirm a repository exists then configure push replication for it.
-  - url: arazzo/jfrog-curation-policy-setup-workflow.yml
-    name: JFrog Curation Policy Setup
-    summary: Create a curation policy then review its audit log.
-  - url: arazzo/jfrog-deploy-and-verify-artifact-workflow.yml
-    name: JFrog Deploy and Verify Artifact
-    summary: Deploy an artifact to a repository and confirm its storage metadata.
-  - url: arazzo/jfrog-distribution-release-bundle-workflow.yml
-    name: JFrog Distribution Release Bundle
-    summary: Create a release bundle, sign it, distribute it, and poll for status.
-  - url: arazzo/jfrog-grant-repository-permission-workflow.yml
-    name: JFrog Grant Repository Permission
-    summary: Create a permission target granting a group access to a repository.
-  - url: arazzo/jfrog-ml-register-model-version-workflow.yml
-    name: JFrog ML Register Model Version
-    summary: Register an ML model then publish a version of it.
-  - url: arazzo/jfrog-pipelines-trigger-and-monitor-workflow.yml
-    name: JFrog Pipelines Trigger and Monitor
-    summary: Trigger a pipeline run, find the new run, and poll until it finishes.
-  - url: arazzo/jfrog-platform-register-webhook-workflow.yml
-    name: JFrog Platform Register Webhook
-    summary: Create a platform webhook subscription and confirm it.
-  - url: arazzo/jfrog-platform-rotate-access-token-workflow.yml
-    name: JFrog Platform Rotate Access Token
-    summary: Issue a fresh platform token then revoke a superseded one.
-  - url: arazzo/jfrog-promote-artifact-by-checksum-workflow.yml
-    name: JFrog Promote Artifact by Checksum
-    summary: Find an artifact by its checksum and copy it to a release repository.
-  - url: arazzo/jfrog-promote-build-workflow.yml
-    name: JFrog Promote Build
-    summary: Resolve a build run and promote it to a target repository.
-  - url: arazzo/jfrog-provision-local-repository-workflow.yml
-    name: JFrog Provision Local Repository
-    summary: Create a local Artifactory repository and confirm its configuration.
-  - url: arazzo/jfrog-release-bundle-v2-promote-workflow.yml
-    name: JFrog Release Bundle v2 Promote
-    summary: Create a v2 release bundle from a build and promote it to an environment.
-  - url: arazzo/jfrog-secure-publish-artifact-workflow.yml
-    name: JFrog Secure Publish Artifact
-    summary: Deploy an artifact then immediately scan it with Xray for issues.
-  - url: arazzo/jfrog-worker-deploy-and-test-workflow.yml
-    name: JFrog Worker Deploy and Test
-    summary: Create a worker, run a test payload, then enable it on success.
-  - url: arazzo/jfrog-xray-component-license-check-workflow.yml
-    name: JFrog Xray Component License Check
-    summary: Look up component details then confirm via the catalog version data.
-  - url: arazzo/jfrog-xray-policy-and-watch-workflow.yml
-    name: JFrog Xray Policy and Watch
-    summary: Create a security policy then a watch that assigns it to a repository.
-  - url: arazzo/jfrog-xray-scan-artifact-workflow.yml
-    name: JFrog Xray Scan Artifact
-    summary: Trigger an Xray scan for an artifact then pull its security summary.
-  - url: arazzo/jfrog-xray-scan-build-workflow.yml
-    name: JFrog Xray Scan Build
-    summary: Trigger an Xray CI build scan then read the build security summary.
-  - url: arazzo/jfrog-xray-triage-violation-workflow.yml
-    name: JFrog Xray Triage Violation
-    summary: Query Xray violations and create an ignore rule when any are found.
-  - url: arazzo/jfrog-xray-vulnerability-report-workflow.yml
-    name: JFrog Xray Vulnerability Report
-    summary: Generate a vulnerability report and poll until it completes.
+- type: Arazzo
+  url: arazzo/jfrog-access-create-user-with-group-workflow.yml
+  name: JFrog Access Create User With Group
+- type: Arazzo
+  url: arazzo/jfrog-access-provision-project-workflow.yml
+  name: JFrog Access Provision Project
+- type: Arazzo
+  url: arazzo/jfrog-attach-build-evidence-workflow.yml
+  name: JFrog Attach Build Evidence
+- type: Arazzo
+  url: arazzo/jfrog-cleanup-stale-artifacts-workflow.yml
+  name: JFrog Cleanup Stale Artifacts
+- type: Arazzo
+  url: arazzo/jfrog-configure-repository-replication-workflow.yml
+  name: JFrog Configure Repository Replication
+- type: Arazzo
+  url: arazzo/jfrog-curation-policy-setup-workflow.yml
+  name: JFrog Curation Policy Setup
+- type: Arazzo
+  url: arazzo/jfrog-deploy-and-verify-artifact-workflow.yml
+  name: JFrog Deploy and Verify Artifact
+- type: Arazzo
+  url: arazzo/jfrog-distribution-release-bundle-workflow.yml
+  name: JFrog Distribution Release Bundle
+- type: Arazzo
+  url: arazzo/jfrog-grant-repository-permission-workflow.yml
+  name: JFrog Grant Repository Permission
+- type: Arazzo
+  url: arazzo/jfrog-ml-register-model-version-workflow.yml
+  name: JFrog ML Register Model Version
+- type: Arazzo
+  url: arazzo/jfrog-pipelines-trigger-and-monitor-workflow.yml
+  name: JFrog Pipelines Trigger and Monitor
+- type: Arazzo
+  url: arazzo/jfrog-platform-register-webhook-workflow.yml
+  name: JFrog Platform Register Webhook
+- type: Arazzo
+  url: arazzo/jfrog-platform-rotate-access-token-workflow.yml
+  name: JFrog Platform Rotate Access Token
+- type: Arazzo
+  url: arazzo/jfrog-promote-artifact-by-checksum-workflow.yml
+  name: JFrog Promote Artifact by Checksum
+- type: Arazzo
+  url: arazzo/jfrog-promote-build-workflow.yml
+  name: JFrog Promote Build
+- type: Arazzo
+  url: arazzo/jfrog-provision-local-repository-workflow.yml
+  name: JFrog Provision Local Repository
+- type: Arazzo
+  url: arazzo/jfrog-release-bundle-v2-promote-workflow.yml
+  name: JFrog Release Bundle v2 Promote
+- type: Arazzo
+  url: arazzo/jfrog-secure-publish-artifact-workflow.yml
+  name: JFrog Secure Publish Artifact
+- type: Arazzo
+  url: arazzo/jfrog-worker-deploy-and-test-workflow.yml
+  name: JFrog Worker Deploy and Test
+- type: Arazzo
+  url: arazzo/jfrog-xray-component-license-check-workflow.yml
+  name: JFrog Xray Component License Check
+- type: Arazzo
+  url: arazzo/jfrog-xray-policy-and-watch-workflow.yml
+  name: JFrog Xray Policy and Watch
+- type: Arazzo
+  url: arazzo/jfrog-xray-scan-artifact-workflow.yml
+  name: JFrog Xray Scan Artifact
+- type: Arazzo
+  url: arazzo/jfrog-xray-scan-build-workflow.yml
+  name: JFrog Xray Scan Build
+- type: Arazzo
+  url: arazzo/jfrog-xray-triage-violation-workflow.yml
+  name: JFrog Xray Triage Violation
+- type: Arazzo
+  url: arazzo/jfrog-xray-vulnerability-report-workflow.yml
+  name: JFrog Xray Vulnerability Report
 - type: Portal
   url: https://jfrog.com/developers/
 - type: Documentation
@@ -438,7 +435,7 @@ common:
   url: https://jfrog.com/
 - type: Login
   url: https://my.jfrog.com/login/
-- type: SignUp
+- type: Signup
   url: https://jfrog.com/start-free/
 - type: Pricing
   url: https://jfrog.com/pricing/
@@ -464,11 +461,11 @@ common:
   url: https://stackoverflow.com/questions/tagged/jfrog
 - type: RateLimits
   url: https://jfrog.com/help/r/jfrog-rest-apis/usage-and-rate-limits
-- type: Postman Collection
+- type: PostmanCollection
   url: https://www.postman.com/api-evangelist/jfrog/documentation/zgmorin/jfrog-rest-api
 - type: LinkedIn
   url: https://www.linkedin.com/company/jfrog-ltd
-- type: JSON-LD Context
+- type: JSONLDContext
   url: json-ld/jfrog-context.jsonld
 - type: JSON Schema - Artifact
   url: json-schema/jfrog-artifact-schema.json
@@ -499,8 +496,8 @@ common:
   type: MCPServer
 - name: Agent Skills
   url: https://github.com/jfrog/jfrog-skills
-  type: AgentSkill
-- type: LLMsTxt
+  type: AgentSkills
+- type: LlmsText
   url: https://docs.connect.jfrog.io/llms.txt
 integrations:
 - name: Docker
