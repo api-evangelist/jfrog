@@ -1,0 +1,63 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/jfrog-access-openapi.yml, openapi/jfrog-artifactory-openapi.yml, openapi/jfrog-catalog-openapi.yml,
+  openapi/jfrog-connect-openapi.yml, openapi/jfrog-curation-openapi.yml, openapi/jfrog-distribution-openapi.yml,
+  openapi/jfrog-evidence-openapi.yml, openapi/jfrog-mission-control-openapi.yml, openapi/jfrog-ml-openapi.yml,
+  openapi/jfrog-pipelines-openapi.yml, openapi/jfrog-platform-openapi.yml, openapi/jfrog-release-lifecycle-openapi.yml
+  ...
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Access token authentication
+  sources:
+  - openapi/jfrog-access-openapi.yml
+  - openapi/jfrog-artifactory-openapi.yml
+  - openapi/jfrog-catalog-openapi.yml
+  - openapi/jfrog-curation-openapi.yml
+  - openapi/jfrog-distribution-openapi.yml
+  - openapi/jfrog-evidence-openapi.yml
+  - openapi/jfrog-mission-control-openapi.yml
+  - openapi/jfrog-ml-openapi.yml
+  - openapi/jfrog-pipelines-openapi.yml
+  - openapi/jfrog-platform-openapi.yml
+  - openapi/jfrog-release-lifecycle-openapi.yml
+  - openapi/jfrog-workers-openapi.yml
+  - openapi/jfrog-xray-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Basic username/password authentication
+  sources:
+  - openapi/jfrog-access-openapi.yml
+  - openapi/jfrog-artifactory-openapi.yml
+  - openapi/jfrog-catalog-openapi.yml
+  - openapi/jfrog-curation-openapi.yml
+  - openapi/jfrog-distribution-openapi.yml
+  - openapi/jfrog-mission-control-openapi.yml
+  - openapi/jfrog-ml-openapi.yml
+  - openapi/jfrog-pipelines-openapi.yml
+  - openapi/jfrog-platform-openapi.yml
+  - openapi/jfrog-release-lifecycle-openapi.yml
+  - openapi/jfrog-workers-openapi.yml
+  - openapi/jfrog-xray-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-JFrog-Art-Api
+  description: API key authentication
+  sources:
+  - openapi/jfrog-artifactory-openapi.yml
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: API key authentication using Bearer token format
+  sources:
+  - openapi/jfrog-connect-openapi.yml

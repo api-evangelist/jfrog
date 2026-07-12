@@ -332,6 +332,12 @@ apis:
   - type: Authentication
     url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
 common:
+- type: VulnerabilityDisclosure
+  url: security/jfrog-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/jfrog-domain-security.yml
+- type: Authentication
+  url: authentication/jfrog-authentication.yml
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/jfrog/overview
 - type: Arazzo
