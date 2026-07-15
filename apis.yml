@@ -332,6 +332,8 @@ apis:
   - type: Authentication
     url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
 common:
+- type: AgenticAccess
+  url: agentic-access/jfrog-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/jfrog-vulnerability-disclosure.yml
 - type: DomainSecurity
