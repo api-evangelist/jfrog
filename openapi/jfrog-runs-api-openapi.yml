@@ -1,0 +1,178 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Runs API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Runs
+  description: Pipeline run execution and monitoring
+paths:
+  /v1/runs:
+    get:
+      operationId: listRuns
+      summary: JFrog List Pipeline Runs
+      description: Returns a list of pipeline runs.
+      tags:
+      - Runs
+      parameters:
+      - name: pipelineIds
+        in: query
+        schema:
+          type: string
+        description: Comma-separated pipeline IDs to filter by
+      - name: statusCodes
+        in: query
+        schema:
+          type: string
+        description: Comma-separated status codes to filter by
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+        description: Maximum number of results
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        description: Offset for pagination
+      responses:
+        '200':
+          description: Pipeline runs list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Run'
+  /v1/runs/{runId}:
+    get:
+      operationId: getRun
+      summary: JFrog Get Pipeline Run
+      description: Returns details for a specific pipeline run.
+      tags:
+      - Runs
+      parameters:
+      - name: runId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Run ID
+      responses:
+        '200':
+          description: Run details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Run'
+  /v1/runs/{runId}/cancel:
+    post:
+      operationId: cancelRun
+      summary: JFrog Cancel Pipeline Run
+      description: Cancels a running pipeline execution.
+      tags:
+      - Runs
+      parameters:
+      - name: runId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Run ID
+      responses:
+        '200':
+          description: Run cancelled
+  /v1/pipelines/{pipelineId}/trigger:
+    post:
+      operationId: triggerPipeline
+      summary: JFrog Trigger Pipeline
+      description: Triggers a new run of the specified pipeline.
+      tags:
+      - Runs
+      parameters:
+      - name: pipelineId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Pipeline ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                branchName:
+                  type: string
+                environmentVariables:
+                  type: object
+                  additionalProperties:
+                    type: string
+      responses:
+        '200':
+          description: Pipeline triggered
+components:
+  schemas:
+    Run:
+      type: object
+      properties:
+        id:
+          type: integer
+        pipelineId:
+          type: integer
+        pipelineSourceId:
+          type: integer
+        statusCode:
+          type: integer
+          description: 4001=queued, 4002=processing, 4003=success, 4004=error, 4005=cancelled, 4006=timeout, 4007=skipped
+        runNumber:
+          type: integer
+        branchName:
+          type: string
+        startedAt:
+          type: string
+          format: date-time
+        endedAt:
+          type: string
+          format: date-time
+        durationSeconds:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

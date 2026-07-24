@@ -1,13 +1,8 @@
 openapi: 3.1.0
 info:
-  title: JFrog Evidence REST API
-  description: >-
-    API for creating and attaching cryptographically signed evidence to artifacts,
-    builds, packages, and release bundles. Evidence files act as attestations
-    providing verified records of external processes such as test results,
-    vulnerability scans, and official approvals. Evidence is created as in-toto
-    statements wrapped in DSSE (Dead Simple Signing Envelope) format.
-  version: 1.x
+  title: JFrog Access REST Access Tokens Evidence API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
   contact:
     name: JFrog
     url: https://jfrog.com
@@ -15,42 +10,33 @@ info:
     name: Proprietary
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
-externalDocs:
-  description: JFrog Evidence Documentation
-  url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
 servers:
-  - url: https://{server}.jfrog.io/evidence/api
-    description: JFrog Cloud
-    variables:
-      server:
-        default: myserver
-        description: Your JFrog server name
-  - url: https://{host}/evidence/api
-    description: Self-hosted JFrog instance
-    variables:
-      host:
-        default: localhost:8082
-        description: Your self-hosted JFrog server host
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
 security:
-  - bearerAuth: []
+- bearerAuth: []
+- basicAuth: []
 tags:
-  - name: Evidence
-    description: Create and manage evidence attestations
-  - name: Verification
-    description: Verify evidence and retrieve verification status
+- name: Evidence
+  description: Create and manage evidence attestations
 paths:
   /v1/evidence:
     post:
       operationId: createEvidence
       summary: JFrog Create Evidence
-      description: >-
-        Creates a new evidence attestation and attaches it to a subject (artifact,
-        build, package, or release bundle). The evidence is signed as an in-toto
-        statement wrapped in a DSSE envelope, providing cryptographic verification
-        of the attestation. Requires an Enterprise+ subscription and Artifactory
-        7.104.2 or above.
+      description: Creates a new evidence attestation and attaches it to a subject (artifact, build, package, or release bundle). The evidence is signed as an in-toto statement wrapped in a DSSE envelope, providing cryptographic verification of the attestation. Requires an Enterprise+ subscription and Artifactory 7.104.2 or above.
       tags:
-        - Evidence
+      - Evidence
       requestBody:
         required: true
         content:
@@ -74,12 +60,9 @@ paths:
     post:
       operationId: searchEvidence
       summary: JFrog Search Evidence
-      description: >-
-        Searches for evidence records matching specified criteria. Supports
-        filtering by subject type, subject identifier, evidence type, and
-        time range.
+      description: Searches for evidence records matching specified criteria. Supports filtering by subject type, subject identifier, evidence type, and time range.
       tags:
-        - Evidence
+      - Evidence
       requestBody:
         required: true
         content:
@@ -108,14 +91,14 @@ paths:
       summary: JFrog Get Evidence
       description: Returns details for a specific evidence record, including its DSSE envelope and verification status.
       tags:
-        - Evidence
+      - Evidence
       parameters:
-        - name: evidenceId
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Evidence record identifier
+      - name: evidenceId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Evidence record identifier
       responses:
         '200':
           description: Evidence details retrieved
@@ -130,14 +113,14 @@ paths:
       summary: JFrog Delete Evidence
       description: Removes an evidence record from the platform.
       tags:
-        - Evidence
+      - Evidence
       parameters:
-        - name: evidenceId
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Evidence record identifier
+      - name: evidenceId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Evidence record identifier
       responses:
         '204':
           description: Evidence deleted
@@ -149,19 +132,19 @@ paths:
       summary: JFrog Get Artifact Evidence
       description: Returns all evidence records attached to a specific artifact identified by repository path and SHA-256.
       tags:
-        - Evidence
+      - Evidence
       parameters:
-        - name: repo_path
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Full artifact repository path
-        - name: sha256
-          in: query
-          schema:
-            type: string
-          description: SHA-256 checksum of the artifact
+      - name: repo_path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Full artifact repository path
+      - name: sha256
+        in: query
+        schema:
+          type: string
+        description: SHA-256 checksum of the artifact
       responses:
         '200':
           description: Artifact evidence retrieved
@@ -182,25 +165,25 @@ paths:
       summary: JFrog Get Build Evidence
       description: Returns all evidence records attached to a specific build.
       tags:
-        - Evidence
+      - Evidence
       parameters:
-        - name: build_name
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Build name
-        - name: build_number
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Build number
-        - name: project
-          in: query
-          schema:
-            type: string
-          description: Project key (if build is project-scoped)
+      - name: build_name
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Build name
+      - name: build_number
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Build number
+      - name: project
+        in: query
+        schema:
+          type: string
+        description: Project key (if build is project-scoped)
       responses:
         '200':
           description: Build evidence retrieved
@@ -221,25 +204,25 @@ paths:
       summary: JFrog Get Release Bundle Evidence
       description: Returns all evidence records attached to a specific release bundle version.
       tags:
-        - Evidence
+      - Evidence
       parameters:
-        - name: name
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Release bundle name
-        - name: version
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Release bundle version
-        - name: project
-          in: query
-          schema:
-            type: string
-          description: Project key
+      - name: name
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Release bundle name
+      - name: version
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Release bundle version
+      - name: project
+        in: query
+        schema:
+          type: string
+        description: Project key
       responses:
         '200':
           description: Release bundle evidence retrieved
@@ -260,26 +243,26 @@ paths:
       summary: JFrog Get Package Evidence
       description: Returns all evidence records attached to a specific package.
       tags:
-        - Evidence
+      - Evidence
       parameters:
-        - name: package_name
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Package name
-        - name: package_version
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Package version
-        - name: repo_key
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Repository key containing the package
+      - name: package_name
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Package name
+      - name: package_version
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Package version
+      - name: repo_key
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Repository key containing the package
       responses:
         '200':
           description: Package evidence retrieved
@@ -294,40 +277,86 @@ paths:
                       $ref: '#/components/schemas/Evidence'
         '404':
           description: Package not found
-  /v1/evidence/{evidenceId}/verify:
-    get:
-      operationId: verifyEvidence
-      summary: JFrog Verify Evidence
-      description: >-
-        Verifies the cryptographic signature of an evidence record against
-        registered public keys. Returns the verification status and details.
+  /v2/evidence:
+    post:
+      operationId: createEvidence
+      summary: JFrog Create Evidence
+      description: Creates a new evidence record attached to a release bundle.
       tags:
-        - Verification
-      parameters:
-        - name: evidenceId
-          in: path
-          required: true
-          schema:
-            type: string
-          description: Evidence record identifier
+      - Evidence
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EvidenceRequest'
       responses:
-        '200':
-          description: Verification result returned
+        '201':
+          description: Evidence created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/VerificationResult'
-        '404':
-          description: Evidence not found
+                $ref: '#/components/schemas/Evidence_2'
+  /v2/evidence/{name}/{version}:
+    get:
+      operationId: getEvidence
+      summary: JFrog Get Evidence
+      description: Returns all evidence records for a release bundle version.
+      tags:
+      - Evidence
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle name
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle version
+      responses:
+        '200':
+          description: Evidence records retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  evidence:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Evidence_2'
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      description: >-
-        Access token authentication. Note that basic authentication (username
-        and password) is not supported for the Evidence API.
   schemas:
+    EvidenceSearchRequest:
+      type: object
+      properties:
+        subject_type:
+          type: string
+          enum:
+          - artifact
+          - build
+          - package
+          - release_bundle
+        predicate_type:
+          type: string
+          format: uri
+        created_from:
+          type: string
+          format: date-time
+        created_to:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        limit:
+          type: integer
+          default: 25
+        offset:
+          type: integer
     CreateEvidenceRequest:
       type: object
       properties:
@@ -335,10 +364,10 @@ components:
           type: string
           description: Type of the subject to attach evidence to
           enum:
-            - artifact
-            - build
-            - package
-            - release_bundle
+          - artifact
+          - build
+          - package
+          - release_bundle
         subject:
           type: object
           description: Subject identifier (fields depend on subject_type)
@@ -388,30 +417,55 @@ components:
           type: string
           description: Pre-signed DSSE envelope (alternative to providing predicate and key)
       required:
-        - subject_type
-        - subject
-    EvidenceSearchRequest:
+      - subject_type
+      - subject
+    EvidenceRequest:
       type: object
       properties:
-        subject_type:
+        release_bundle_name:
           type: string
-          enum: [artifact, build, package, release_bundle]
-        predicate_type:
+        release_bundle_version:
           type: string
-          format: uri
-        created_from:
+        environment:
           type: string
-          format: date-time
-        created_to:
+        evidence_type:
+          type: string
+          enum:
+          - test_results
+          - approval
+          - scan_results
+          - build_info
+          - custom
+        description:
+          type: string
+        dsse_file_path:
+          type: string
+          description: Path to a DSSE signed envelope file in Artifactory
+      required:
+      - release_bundle_name
+      - release_bundle_version
+    Evidence_2:
+      type: object
+      properties:
+        id:
+          type: string
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+        evidence_type:
+          type: string
+        description:
+          type: string
+        created:
           type: string
           format: date-time
         created_by:
           type: string
-        limit:
-          type: integer
-          default: 25
-        offset:
-          type: integer
+        dsse_file_path:
+          type: string
     Evidence:
       type: object
       properties:
@@ -420,7 +474,11 @@ components:
           description: Unique evidence record identifier
         subject_type:
           type: string
-          enum: [artifact, build, package, release_bundle]
+          enum:
+          - artifact
+          - build
+          - package
+          - release_bundle
         subject:
           type: object
           additionalProperties: true
@@ -439,7 +497,10 @@ components:
         signature_algorithm:
           type: string
           description: Cryptographic algorithm used for signing
-          enum: [ECDSA, RSA, ED25519]
+          enum:
+          - ECDSA
+          - RSA
+          - ED25519
         key_alias:
           type: string
           description: Alias of the signing key
@@ -451,25 +512,15 @@ components:
           format: date-time
         created_by:
           type: string
-    VerificationResult:
-      type: object
-      properties:
-        evidence_id:
-          type: string
-        verified:
-          type: boolean
-          description: Whether the signature is valid
-        verification_timestamp:
-          type: string
-          format: date-time
-        key_alias:
-          type: string
-          description: Alias of the public key used for verification
-        signature_algorithm:
-          type: string
-          enum: [ECDSA, RSA, ED25519]
-        errors:
-          type: array
-          items:
-            type: string
-          description: Verification errors, if any
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,499 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Artifacts & Storage API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Artifacts & Storage
+  description: Deploy, retrieve, copy, move, and delete artifacts
+paths:
+  /api/storage/{repoKey}/{itemPath}:
+    get:
+      operationId: getStorageInfo
+      summary: JFrog Get File or Folder Info
+      description: Returns storage information for a file or folder including size, checksums, and metadata.
+      tags:
+      - Artifacts & Storage
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      - name: itemPath
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path to the item within the repository
+      responses:
+        '200':
+          description: Item info retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileInfo'
+        '404':
+          description: Item not found
+  /api/storage/{repoKey}:
+    get:
+      operationId: getRepositoryStorageInfo
+      summary: JFrog Get Repository Storage Summary
+      description: Returns storage summary for the specified repository.
+      tags:
+      - Artifacts & Storage
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      responses:
+        '200':
+          description: Repository storage info retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FolderInfo'
+  /api/storageinfo:
+    get:
+      operationId: getStorageSummaryInfo
+      summary: JFrog Get Storage Summary
+      description: Returns storage summary information about repositories, binaries, and file store.
+      tags:
+      - Artifacts & Storage
+      responses:
+        '200':
+          description: Storage summary retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StorageSummary'
+  /{repoKey}/{itemPath}:
+    get:
+      operationId: retrieveArtifact
+      summary: JFrog Retrieve Artifact
+      description: Downloads an artifact or returns folder info from the specified repository path.
+      tags:
+      - Artifacts & Storage
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      - name: itemPath
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path to the artifact
+      responses:
+        '200':
+          description: Artifact retrieved
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Artifact not found
+    put:
+      operationId: deployArtifact
+      summary: JFrog Deploy Artifact
+      description: Deploys an artifact to the specified repository path.
+      tags:
+      - Artifacts & Storage
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      - name: itemPath
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path for the artifact
+      - name: X-Checksum-Sha1
+        in: header
+        schema:
+          type: string
+        description: SHA1 checksum of the artifact
+      - name: X-Checksum-Sha256
+        in: header
+        schema:
+          type: string
+        description: SHA256 checksum of the artifact
+      - name: X-Checksum-Md5
+        in: header
+        schema:
+          type: string
+        description: MD5 checksum of the artifact
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '201':
+          description: Artifact deployed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeployResponse'
+        '403':
+          description: Forbidden
+        '409':
+          description: Conflict - artifact already exists
+    delete:
+      operationId: deleteArtifact
+      summary: JFrog Delete Artifact
+      description: Deletes an artifact or folder from the specified repository path.
+      tags:
+      - Artifacts & Storage
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      - name: itemPath
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Path to the artifact
+      responses:
+        '204':
+          description: Artifact deleted successfully
+        '404':
+          description: Artifact not found
+  /api/copy/{srcRepoKey}/{srcItemPath}:
+    post:
+      operationId: copyArtifact
+      summary: JFrog Copy Artifact
+      description: Copies an artifact or folder to a new location.
+      tags:
+      - Artifacts & Storage
+      parameters:
+      - name: srcRepoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Source repository key
+      - name: srcItemPath
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Source item path
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Target path in the format repoKey/path
+      - name: dry
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+        description: Dry run mode (1=dry run, 0=execute)
+      - name: suppressLayouts
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+        description: Suppress cross-layout translations
+      - name: failFast
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+        description: Fail on first error
+      responses:
+        '200':
+          description: Copy completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoveOrCopyResponse'
+  /api/move/{srcRepoKey}/{srcItemPath}:
+    post:
+      operationId: moveArtifact
+      summary: JFrog Move Artifact
+      description: Moves an artifact or folder to a new location.
+      tags:
+      - Artifacts & Storage
+      parameters:
+      - name: srcRepoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Source repository key
+      - name: srcItemPath
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Source item path
+      - name: to
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Target path in the format repoKey/path
+      - name: dry
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+        description: Dry run mode
+      - name: suppressLayouts
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+        description: Suppress cross-layout translations
+      - name: failFast
+        in: query
+        schema:
+          type: integer
+          enum:
+          - 0
+          - 1
+          default: 0
+        description: Fail on first error
+      responses:
+        '200':
+          description: Move completed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MoveOrCopyResponse'
+components:
+  schemas:
+    MoveOrCopyResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: string
+              message:
+                type: string
+    StorageSummary:
+      type: object
+      properties:
+        binariesSummary:
+          type: object
+          properties:
+            binariesCount:
+              type: string
+            binariesSize:
+              type: string
+            artifactsSize:
+              type: string
+            optimization:
+              type: string
+            itemsCount:
+              type: string
+        fileStoreSummary:
+          type: object
+          properties:
+            storageType:
+              type: string
+            storageDirectory:
+              type: string
+            totalSpace:
+              type: string
+            usedSpace:
+              type: string
+            freeSpace:
+              type: string
+        repositoriesSummaryList:
+          type: array
+          items:
+            type: object
+            properties:
+              repoKey:
+                type: string
+              repoType:
+                type: string
+              foldersCount:
+                type: integer
+              filesCount:
+                type: integer
+              usedSpace:
+                type: string
+              itemsCount:
+                type: integer
+              packageType:
+                type: string
+              percentage:
+                type: string
+    FileInfo:
+      type: object
+      properties:
+        repo:
+          type: string
+        path:
+          type: string
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+        downloadUri:
+          type: string
+          format: uri
+        mimeType:
+          type: string
+        size:
+          type: string
+        checksums:
+          $ref: '#/components/schemas/Checksums'
+        originalChecksums:
+          $ref: '#/components/schemas/Checksums'
+        uri:
+          type: string
+          format: uri
+    FolderInfo:
+      type: object
+      properties:
+        repo:
+          type: string
+        path:
+          type: string
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+        children:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              folder:
+                type: boolean
+        uri:
+          type: string
+          format: uri
+    Checksums:
+      type: object
+      properties:
+        sha1:
+          type: string
+        sha256:
+          type: string
+        md5:
+          type: string
+    DeployResponse:
+      type: object
+      properties:
+        repo:
+          type: string
+        path:
+          type: string
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        downloadUri:
+          type: string
+          format: uri
+        mimeType:
+          type: string
+        size:
+          type: integer
+        checksums:
+          $ref: '#/components/schemas/Checksums'
+        originalChecksums:
+          $ref: '#/components/schemas/Checksums'
+        uri:
+          type: string
+          format: uri
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

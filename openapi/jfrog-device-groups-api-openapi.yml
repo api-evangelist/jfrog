@@ -1,0 +1,170 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Device Groups API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Device Groups
+  description: Logical grouping of devices
+paths:
+  /projects/{projectId}/device-groups:
+    get:
+      operationId: listDeviceGroups
+      summary: JFrog List Device Groups
+      description: Returns all device groups in a project.
+      tags:
+      - Device Groups
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      responses:
+        '200':
+          description: Device groups list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DeviceGroup'
+    post:
+      operationId: createDeviceGroup
+      summary: JFrog Create Device Group
+      description: Creates a new device group.
+      tags:
+      - Device Groups
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceGroupRequest'
+      responses:
+        '201':
+          description: Device group created
+  /projects/{projectId}/device-groups/{groupId}:
+    get:
+      operationId: getDeviceGroup
+      summary: JFrog Get Device Group
+      description: Returns details for a specific device group.
+      tags:
+      - Device Groups
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group ID
+      responses:
+        '200':
+          description: Device group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceGroup'
+    delete:
+      operationId: deleteDeviceGroup
+      summary: JFrog Delete Device Group
+      description: Deletes a device group.
+      tags:
+      - Device Groups
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      - name: groupId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group ID
+      responses:
+        '204':
+          description: Device group deleted
+components:
+  schemas:
+    DeviceGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        devices_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    DeviceGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        device_ids:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

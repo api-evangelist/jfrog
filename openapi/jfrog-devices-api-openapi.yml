@@ -1,0 +1,198 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Devices API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Devices
+  description: Device management and monitoring
+paths:
+  /projects/{projectId}/devices:
+    get:
+      operationId: listDevices
+      summary: JFrog List Devices
+      description: Returns a list of all devices in a project.
+      tags:
+      - Devices
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - online
+          - offline
+          - updating
+        description: Filter by device status
+      - name: group_id
+        in: query
+        schema:
+          type: string
+        description: Filter by device group
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+        description: Maximum results
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        description: Pagination offset
+      responses:
+        '200':
+          description: Devices list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  devices:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Device'
+                  total_count:
+                    type: integer
+  /projects/{projectId}/devices/{deviceId}:
+    get:
+      operationId: getDevice
+      summary: JFrog Get Device
+      description: Returns details for a specific device.
+      tags:
+      - Devices
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      - name: deviceId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Device ID
+      responses:
+        '200':
+          description: Device details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Device'
+    delete:
+      operationId: removeDevice
+      summary: JFrog Remove Device
+      description: Removes a device from the project.
+      tags:
+      - Devices
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      - name: deviceId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Device ID
+      responses:
+        '204':
+          description: Device removed
+components:
+  schemas:
+    Device:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - updating
+        ip_address:
+          type: string
+        os:
+          type: string
+        os_version:
+          type: string
+        architecture:
+          type: string
+        agent_version:
+          type: string
+        group_id:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+        last_seen:
+          type: string
+          format: date-time
+        registered_at:
+          type: string
+          format: date-time
+        system_info:
+          type: object
+          properties:
+            cpu_usage:
+              type: number
+            memory_total:
+              type: integer
+            memory_used:
+              type: integer
+            disk_total:
+              type: integer
+            disk_used:
+              type: integer
+            uptime_seconds:
+              type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Components API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Components
+  description: Component details and vulnerability information
+paths:
+  /v1/component:
+    post:
+      operationId: getComponentDetails
+      summary: JFrog Get Component Details
+      description: Returns vulnerability and license information for specified components.
+      tags:
+      - Components
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                component_details:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      component_id:
+                        type: string
+                        description: Component ID in format type://name:version
+                        example: npm://lodash:4.17.21
+              required:
+              - component_details
+      responses:
+        '200':
+          description: Component details retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ComponentDetail'
+components:
+  schemas:
+    ComponentDetail:
+      type: object
+      properties:
+        component_id:
+          type: string
+        component_name:
+          type: string
+        package_type:
+          type: string
+        version:
+          type: string
+        licenses:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              full_name:
+                type: string
+              more_info_url:
+                type: array
+                items:
+                  type: string
+                  format: uri
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+    Vulnerability:
+      type: object
+      properties:
+        cve:
+          type: string
+        severity:
+          type: string
+          enum:
+          - Low
+          - Medium
+          - High
+          - Critical
+        cvss_v2_score:
+          type: string
+        cvss_v3_score:
+          type: string
+        summary:
+          type: string
+        description:
+          type: string
+        fixed_versions:
+          type: array
+          items:
+            type: string
+        references:
+          type: array
+          items:
+            type: string
+            format: uri
+        published:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

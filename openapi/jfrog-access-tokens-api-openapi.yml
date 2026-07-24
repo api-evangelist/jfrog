@@ -1,0 +1,178 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Access Tokens
+  description: Token creation and management
+paths:
+  /access/api/v2/tokens:
+    get:
+      operationId: listTokens
+      summary: JFrog List Access Tokens
+      description: Returns a list of all access tokens.
+      tags:
+      - Access Tokens
+      responses:
+        '200':
+          description: Tokens list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenInfo'
+    post:
+      operationId: createToken
+      summary: JFrog Create Access Token
+      description: Creates a new access token.
+      tags:
+      - Access Tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenRequest'
+      responses:
+        '200':
+          description: Token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+  /access/api/v2/tokens/{tokenId}:
+    get:
+      operationId: getToken
+      summary: JFrog Get Token Details
+      description: Returns details for a specific access token.
+      tags:
+      - Access Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Token ID
+      responses:
+        '200':
+          description: Token details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+    delete:
+      operationId: revokeToken
+      summary: JFrog Revoke Access Token
+      description: Revokes an access token.
+      tags:
+      - Access Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Token ID
+      responses:
+        '200':
+          description: Token revoked
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        token_id:
+          type: string
+        access_token:
+          type: string
+        refresh_token:
+          type: string
+        expires_in:
+          type: integer
+        scope:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        reference_token:
+          type: string
+    CreateTokenRequest:
+      type: object
+      properties:
+        subject:
+          type: string
+        scope:
+          type: string
+        expires_in:
+          type: integer
+          description: Token expiry in seconds (0 for non-expiring)
+        refreshable:
+          type: boolean
+        description:
+          type: string
+        audience:
+          type: string
+        include_reference_token:
+          type: boolean
+      required:
+      - scope
+    TokenInfo:
+      type: object
+      properties:
+        token_id:
+          type: string
+        subject:
+          type: string
+        expiry:
+          type: integer
+        issued_at:
+          type: integer
+        issuer:
+          type: string
+        description:
+          type: string
+        refreshable:
+          type: boolean
+        scope:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

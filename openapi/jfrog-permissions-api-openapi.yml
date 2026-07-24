@@ -1,0 +1,367 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Permissions API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Permissions
+  description: Permission target management
+paths:
+  /api/v2/permissions:
+    get:
+      operationId: listPermissions
+      summary: JFrog List Permissions
+      description: Returns a list of all permission targets configured in the platform.
+      tags:
+      - Permissions
+      responses:
+        '200':
+          description: Permissions list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Permission'
+    post:
+      operationId: createPermission
+      summary: JFrog Create Permission
+      description: Creates a new permission target defining access control rules for repositories, builds, and release bundles.
+      tags:
+      - Permissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission'
+      responses:
+        '201':
+          description: Permission created
+        '400':
+          description: Invalid permission configuration
+        '409':
+          description: Permission already exists
+  /api/v2/permissions/{permissionName}:
+    get:
+      operationId: getPermission
+      summary: JFrog Get Permission
+      description: Returns the full configuration of a specific permission target.
+      tags:
+      - Permissions
+      parameters:
+      - name: permissionName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission name
+      responses:
+        '200':
+          description: Permission details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission'
+        '404':
+          description: Permission not found
+    put:
+      operationId: updatePermission
+      summary: JFrog Update Permission
+      description: Replaces the full configuration of an existing permission target.
+      tags:
+      - Permissions
+      parameters:
+      - name: permissionName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission'
+      responses:
+        '200':
+          description: Permission updated
+        '404':
+          description: Permission not found
+    delete:
+      operationId: deletePermission
+      summary: JFrog Delete Permission
+      description: Removes a permission target and all its access control rules.
+      tags:
+      - Permissions
+      parameters:
+      - name: permissionName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission name
+      responses:
+        '204':
+          description: Permission deleted
+        '404':
+          description: Permission not found
+  /access/api/v2/permissions:
+    get:
+      operationId: listPermissions
+      summary: JFrog List Permissions
+      description: Returns a list of all permission configurations.
+      tags:
+      - Permissions
+      responses:
+        '200':
+          description: Permissions list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  permissions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Permission_2'
+    post:
+      operationId: createPermission
+      summary: JFrog Create Permission
+      description: Creates a new permission configuration.
+      tags:
+      - Permissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission_2'
+      responses:
+        '201':
+          description: Permission created
+  /access/api/v2/permissions/{permissionName}:
+    get:
+      operationId: getPermission
+      summary: JFrog Get Permission
+      description: Returns details for a specific permission.
+      tags:
+      - Permissions
+      parameters:
+      - name: permissionName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission name
+      responses:
+        '200':
+          description: Permission details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permission_2'
+    put:
+      operationId: updatePermission
+      summary: JFrog Update Permission
+      description: Updates a permission configuration.
+      tags:
+      - Permissions
+      parameters:
+      - name: permissionName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Permission_2'
+      responses:
+        '200':
+          description: Permission updated
+    delete:
+      operationId: deletePermission
+      summary: JFrog Delete Permission
+      description: Deletes a permission configuration.
+      tags:
+      - Permissions
+      parameters:
+      - name: permissionName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission name
+      responses:
+        '204':
+          description: Permission deleted
+components:
+  schemas:
+    Permission_2:
+      type: object
+      properties:
+        name:
+          type: string
+        resources:
+          type: object
+          properties:
+            repository:
+              type: object
+              additionalProperties:
+                type: object
+                properties:
+                  include_patterns:
+                    type: array
+                    items:
+                      type: string
+                  exclude_patterns:
+                    type: array
+                    items:
+                      type: string
+                  actions:
+                    type: object
+                    properties:
+                      users:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+                      groups:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+            build:
+              type: object
+              additionalProperties:
+                type: object
+      required:
+      - name
+    Permission:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique permission target name
+        resources:
+          type: object
+          description: Resource-level access control definitions
+          properties:
+            repository:
+              type: object
+              description: Repository-level permissions
+              additionalProperties:
+                type: object
+                properties:
+                  include_patterns:
+                    type: array
+                    items:
+                      type: string
+                  exclude_patterns:
+                    type: array
+                    items:
+                      type: string
+                  actions:
+                    type: object
+                    properties:
+                      users:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+                            enum:
+                            - read
+                            - write
+                            - annotate
+                            - delete
+                            - manage
+                            - managedXrayMeta
+                            - distribute
+                      groups:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+            build:
+              type: object
+              description: Build-level permissions
+              additionalProperties:
+                type: object
+                properties:
+                  include_patterns:
+                    type: array
+                    items:
+                      type: string
+                  exclude_patterns:
+                    type: array
+                    items:
+                      type: string
+                  actions:
+                    type: object
+                    properties:
+                      users:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+                      groups:
+                        type: object
+                        additionalProperties:
+                          type: array
+                          items:
+                            type: string
+            releaseBundle:
+              type: object
+              description: Release bundle-level permissions
+              additionalProperties:
+                type: object
+      required:
+      - name
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

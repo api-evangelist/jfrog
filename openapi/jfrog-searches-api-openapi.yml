@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Searches API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Searches
+  description: Search for artifacts using various criteria
+paths:
+  /api/search/aql:
+    post:
+      operationId: executeAqlSearch
+      summary: JFrog Execute AQL Search
+      description: Executes an Artifactory Query Language (AQL) search query.
+      tags:
+      - Searches
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+              example: items.find({"repo":"my-repo","path":{"$match":"*"}})
+      responses:
+        '200':
+          description: Search results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AqlSearchResult'
+  /api/search/gavc:
+    get:
+      operationId: searchByGAVC
+      summary: JFrog GAVC Search
+      description: Search for artifacts by Maven coordinates (GroupId, ArtifactId, Version, Classifier).
+      tags:
+      - Searches
+      parameters:
+      - name: g
+        in: query
+        schema:
+          type: string
+        description: Group ID
+      - name: a
+        in: query
+        schema:
+          type: string
+        description: Artifact ID
+      - name: v
+        in: query
+        schema:
+          type: string
+        description: Version
+      - name: c
+        in: query
+        schema:
+          type: string
+        description: Classifier
+      - name: repos
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of repositories to search
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+  /api/search/prop:
+    get:
+      operationId: searchByProperties
+      summary: JFrog Property Search
+      description: Search for artifacts by property values.
+      tags:
+      - Searches
+      parameters:
+      - name: repos
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of repositories to search
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+  /api/search/checksum:
+    get:
+      operationId: searchByChecksum
+      summary: JFrog Checksum Search
+      description: Search for artifacts by their checksum values.
+      tags:
+      - Searches
+      parameters:
+      - name: sha1
+        in: query
+        schema:
+          type: string
+        description: SHA1 checksum to search for
+      - name: sha256
+        in: query
+        schema:
+          type: string
+        description: SHA256 checksum to search for
+      - name: md5
+        in: query
+        schema:
+          type: string
+        description: MD5 checksum to search for
+      - name: repos
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of repositories to search
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+  /api/search/latestVersion:
+    get:
+      operationId: getLatestVersion
+      summary: JFrog Get Latest Artifact Version
+      description: Returns the latest version of an artifact by group and artifact ID.
+      tags:
+      - Searches
+      parameters:
+      - name: g
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Group ID
+      - name: a
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Artifact ID
+      - name: repos
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of repositories
+      responses:
+        '200':
+          description: Latest version string
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    SearchResult:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+                format: uri
+    AqlSearchResult:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              repo:
+                type: string
+              path:
+                type: string
+              name:
+                type: string
+              type:
+                type: string
+              size:
+                type: integer
+              created:
+                type: string
+                format: date-time
+              modified:
+                type: string
+                format: date-time
+        range:
+          type: object
+          properties:
+            start_pos:
+              type: integer
+            end_pos:
+              type: integer
+            total:
+              type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

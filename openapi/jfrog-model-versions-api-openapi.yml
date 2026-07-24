@@ -1,0 +1,209 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Model Versions API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Model Versions
+  description: Model version management
+paths:
+  /v1/models/{modelId}/versions:
+    get:
+      operationId: listModelVersions
+      summary: JFrog List Model Versions
+      description: Returns all versions for a specific model.
+      tags:
+      - Model Versions
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Model ID
+      responses:
+        '200':
+          description: Model versions list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  versions:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ModelVersion'
+    post:
+      operationId: createModelVersion
+      summary: JFrog Create Model Version
+      description: Creates a new version for a model.
+      tags:
+      - Model Versions
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Model ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelVersionRequest'
+      responses:
+        '201':
+          description: Model version created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelVersion'
+  /v1/models/{modelId}/versions/{versionId}:
+    get:
+      operationId: getModelVersion
+      summary: JFrog Get Model Version
+      description: Returns details for a specific model version.
+      tags:
+      - Model Versions
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Model ID
+      - name: versionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Version ID
+      responses:
+        '200':
+          description: Model version details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ModelVersion'
+    delete:
+      operationId: deleteModelVersion
+      summary: JFrog Delete Model Version
+      description: Deletes a specific model version.
+      tags:
+      - Model Versions
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Model ID
+      - name: versionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Version ID
+      responses:
+        '204':
+          description: Model version deleted
+components:
+  schemas:
+    ModelVersionRequest:
+      type: object
+      properties:
+        version:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - staging
+          - production
+          - archived
+        artifact_path:
+          type: string
+        metrics:
+          type: object
+          additionalProperties:
+            type: number
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - version
+    ModelVersion:
+      type: object
+      properties:
+        id:
+          type: string
+        model_id:
+          type: string
+        version:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - staging
+          - production
+          - archived
+        artifact_path:
+          type: string
+          description: Path to the model artifact in Artifactory
+        metrics:
+          type: object
+          additionalProperties:
+            type: number
+          description: Key-value pairs of model metrics (accuracy, loss, etc.)
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+          description: Hyperparameters used for training
+        created_at:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

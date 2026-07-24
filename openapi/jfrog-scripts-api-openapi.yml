@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Scripts API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Scripts
+  description: Remote execution scripts
+paths:
+  /v1/scripts:
+    get:
+      operationId: listScripts
+      summary: JFrog List Scripts
+      description: Returns a list of all available execution scripts.
+      tags:
+      - Scripts
+      responses:
+        '200':
+          description: Scripts list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Script'
+    post:
+      operationId: createScript
+      summary: JFrog Create Script
+      description: Creates a new execution script.
+      tags:
+      - Scripts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScriptRequest'
+      responses:
+        '201':
+          description: Script created
+  /v1/scripts/{scriptName}/execute:
+    post:
+      operationId: executeScript
+      summary: JFrog Execute Script
+      description: Executes a script on specified JPDs.
+      tags:
+      - Scripts
+      parameters:
+      - name: scriptName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Script name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                jpd_ids:
+                  type: array
+                  items:
+                    type: string
+                parameters:
+                  type: object
+                  additionalProperties:
+                    type: string
+              required:
+              - jpd_ids
+      responses:
+        '200':
+          description: Script execution initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  execution_id:
+                    type: string
+components:
+  schemas:
+    ScriptRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+      required:
+      - name
+      - content
+    Script:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

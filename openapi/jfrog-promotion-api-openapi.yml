@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Promotion API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Promotion
+  description: Promote release bundles through environments
+paths:
+  /v2/promotion/records/{name}/{version}:
+    get:
+      operationId: getPromotionStatus
+      summary: JFrog Get Promotion Status
+      description: Returns the promotion status and history for a release bundle version.
+      tags:
+      - Promotion
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle name
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle version
+      responses:
+        '200':
+          description: Promotion status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PromotionStatus'
+  /v2/promotion:
+    post:
+      operationId: promoteReleaseBundle
+      summary: JFrog Promote Release Bundle
+      description: Promotes a release bundle to a target environment.
+      tags:
+      - Promotion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PromotionRequest'
+      responses:
+        '200':
+          description: Promotion initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  promotion_id:
+                    type: string
+components:
+  schemas:
+    PromotionStatus:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        current_environment:
+          type: string
+        promotions:
+          type: array
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                enum:
+                - COMPLETED
+                - IN_PROGRESS
+                - FAILED
+              environment:
+                type: string
+              created:
+                type: string
+                format: date-time
+              created_by:
+                type: string
+    PromotionRequest:
+      type: object
+      properties:
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+          description: Target environment name (e.g., DEV, STAGING, PROD)
+        included_repository_keys:
+          type: array
+          items:
+            type: string
+        overwrite_existing_artifacts:
+          type: boolean
+          default: false
+      required:
+      - release_bundle_name
+      - release_bundle_version
+      - environment
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

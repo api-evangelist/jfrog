@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Licenses API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Licenses
+  description: License management across instances
+paths:
+  /v3/attach_lic/buckets:
+    get:
+      operationId: listLicenseBuckets
+      summary: JFrog List License Buckets
+      description: Returns a list of all license buckets.
+      tags:
+      - Licenses
+      responses:
+        '200':
+          description: License buckets retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LicenseBucket'
+    post:
+      operationId: addLicenseBucket
+      summary: JFrog Add License Bucket
+      description: Adds a new license bucket.
+      tags:
+      - Licenses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                url:
+                  type: string
+                  format: uri
+                key:
+                  type: string
+              required:
+              - name
+              - url
+              - key
+      responses:
+        '201':
+          description: License bucket added
+  /v3/attach_lic/buckets/{bucketId}:
+    delete:
+      operationId: deleteLicenseBucket
+      summary: JFrog Delete License Bucket
+      description: Removes a license bucket.
+      tags:
+      - Licenses
+      parameters:
+      - name: bucketId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: License bucket ID
+      responses:
+        '204':
+          description: License bucket deleted
+components:
+  schemas:
+    LicenseBucket:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        total_licenses:
+          type: integer
+        used_licenses:
+          type: integer
+        available_licenses:
+          type: integer
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

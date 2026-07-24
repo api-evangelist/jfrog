@@ -1,0 +1,178 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Integrations API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Integrations
+  description: External service integrations
+paths:
+  /v1/integrations:
+    get:
+      operationId: listIntegrations
+      summary: JFrog List Integrations
+      description: Returns a list of all configured integrations.
+      tags:
+      - Integrations
+      responses:
+        '200':
+          description: Integrations list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Integration'
+    post:
+      operationId: createIntegration
+      summary: JFrog Create Integration
+      description: Creates a new external service integration.
+      tags:
+      - Integrations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationRequest'
+      responses:
+        '200':
+          description: Integration created
+  /v1/integrations/{integrationId}:
+    get:
+      operationId: getIntegration
+      summary: JFrog Get Integration
+      description: Returns details for a specific integration.
+      tags:
+      - Integrations
+      parameters:
+      - name: integrationId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Integration ID
+      responses:
+        '200':
+          description: Integration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+    put:
+      operationId: updateIntegration
+      summary: JFrog Update Integration
+      description: Updates an existing integration.
+      tags:
+      - Integrations
+      parameters:
+      - name: integrationId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Integration ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationRequest'
+      responses:
+        '200':
+          description: Integration updated
+    delete:
+      operationId: deleteIntegration
+      summary: JFrog Delete Integration
+      description: Deletes an integration.
+      tags:
+      - Integrations
+      parameters:
+      - name: integrationId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Integration ID
+      responses:
+        '200':
+          description: Integration deleted
+components:
+  schemas:
+    Integration:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        masterIntegrationId:
+          type: integer
+        masterIntegrationName:
+          type: string
+        projectId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+    IntegrationRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        masterIntegrationId:
+          type: integer
+        masterIntegrationName:
+          type: string
+        projectId:
+          type: integer
+        formJSONValues:
+          type: array
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+              value:
+                type: string
+      required:
+      - name
+      - masterIntegrationName
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

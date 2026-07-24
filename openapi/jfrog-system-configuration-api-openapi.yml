@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens System & Configuration API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: System & Configuration
+  description: System health, configuration, and version information
+paths:
+  /api/system/ping:
+    get:
+      operationId: systemPing
+      summary: JFrog System Health Ping
+      description: Returns a simple status response indicating whether Artifactory is accessible.
+      tags:
+      - System & Configuration
+      responses:
+        '200':
+          description: Artifactory is accessible
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+  /api/system/version:
+    get:
+      operationId: getSystemVersion
+      summary: JFrog Get Version Information
+      description: Returns version and build information for the Artifactory instance.
+      tags:
+      - System & Configuration
+      responses:
+        '200':
+          description: Version information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemVersion'
+  /api/system/configuration:
+    get:
+      operationId: getSystemConfiguration
+      summary: JFrog Get System Configuration
+      description: Returns the full system configuration as an XML descriptor.
+      tags:
+      - System & Configuration
+      responses:
+        '200':
+          description: System configuration retrieved
+          content:
+            application/xml:
+              schema:
+                type: string
+    patch:
+      operationId: updateSystemConfiguration
+      summary: JFrog Update System Configuration
+      description: Applies a partial update to the system configuration using a YAML payload.
+      tags:
+      - System & Configuration
+      requestBody:
+        required: true
+        content:
+          application/yaml:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Configuration updated successfully
+  /api/system/licenses:
+    get:
+      operationId: getSystemLicenses
+      summary: JFrog Get License Information
+      description: Returns the installed license details.
+      tags:
+      - System & Configuration
+      responses:
+        '200':
+          description: License information retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LicenseInfo'
+components:
+  schemas:
+    LicenseInfo:
+      type: object
+      properties:
+        type:
+          type: string
+        validThrough:
+          type: string
+        licensedTo:
+          type: string
+    SystemVersion:
+      type: object
+      properties:
+        version:
+          type: string
+          example: 7.77.5
+        revision:
+          type: string
+          example: '77700900'
+        addons:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
+          example: Enterprise+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

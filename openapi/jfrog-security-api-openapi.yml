@@ -1,0 +1,458 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Security API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Security
+  description: Users, groups, permissions, and access tokens
+paths:
+  /api/security/users:
+    get:
+      operationId: listUsers
+      summary: JFrog List Users
+      description: Returns a list of all users.
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Users list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSummary'
+  /api/security/users/{username}:
+    get:
+      operationId: getUser
+      summary: JFrog Get User Details
+      description: Returns details for a specific user.
+      tags:
+      - Security
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      responses:
+        '200':
+          description: User details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    put:
+      operationId: createOrReplaceUser
+      summary: JFrog Create or Replace User
+      description: Creates a new user or replaces an existing user.
+      tags:
+      - Security
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created
+        '200':
+          description: User replaced
+    delete:
+      operationId: deleteUser
+      summary: JFrog Delete User
+      description: Removes a user.
+      tags:
+      - Security
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      responses:
+        '200':
+          description: User deleted
+        '404':
+          description: User not found
+  /api/security/groups:
+    get:
+      operationId: listGroups
+      summary: JFrog List Groups
+      description: Returns a list of all groups.
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Groups list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GroupSummary'
+  /api/security/groups/{groupName}:
+    get:
+      operationId: getGroup
+      summary: JFrog Get Group Details
+      description: Returns details for a specific group.
+      tags:
+      - Security
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      responses:
+        '200':
+          description: Group details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+    put:
+      operationId: createOrReplaceGroup
+      summary: JFrog Create or Replace Group
+      description: Creates a new group or replaces an existing group.
+      tags:
+      - Security
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          description: Group created
+        '200':
+          description: Group replaced
+    delete:
+      operationId: deleteGroup
+      summary: JFrog Delete Group
+      description: Removes a group.
+      tags:
+      - Security
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      responses:
+        '200':
+          description: Group deleted
+  /api/security/permissions:
+    get:
+      operationId: listPermissionTargets
+      summary: JFrog List Permission Targets
+      description: Returns a list of all permission targets.
+      tags:
+      - Security
+      responses:
+        '200':
+          description: Permission targets list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PermissionTargetSummary'
+  /api/security/permissions/{permissionTargetName}:
+    get:
+      operationId: getPermissionTarget
+      summary: JFrog Get Permission Target
+      description: Returns configuration details for a specific permission target.
+      tags:
+      - Security
+      parameters:
+      - name: permissionTargetName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission target name
+      responses:
+        '200':
+          description: Permission target details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionTarget'
+    put:
+      operationId: createOrReplacePermissionTarget
+      summary: JFrog Create or Replace Permission Target
+      description: Creates a new or replaces an existing permission target.
+      tags:
+      - Security
+      parameters:
+      - name: permissionTargetName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission target name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PermissionTarget'
+      responses:
+        '200':
+          description: Permission target created/replaced
+    delete:
+      operationId: deletePermissionTarget
+      summary: JFrog Delete Permission Target
+      description: Removes a permission target.
+      tags:
+      - Security
+      parameters:
+      - name: permissionTargetName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Permission target name
+      responses:
+        '200':
+          description: Permission target deleted
+  /api/security/token:
+    post:
+      operationId: createToken
+      summary: JFrog Create Access Token
+      description: Creates a new access token for authentication.
+      tags:
+      - Security
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: The user to create the token for
+                scope:
+                  type: string
+                  description: The scope of the token
+                expires_in:
+                  type: integer
+                  description: Token expiry in seconds (0 for non-expiring)
+                refreshable:
+                  type: boolean
+                  description: Whether the token is refreshable
+      responses:
+        '200':
+          description: Token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+components:
+  schemas:
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        autoJoin:
+          type: boolean
+        adminPrivileges:
+          type: boolean
+        realm:
+          type: string
+        realmAttributes:
+          type: string
+        userNames:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+        scope:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        refresh_token:
+          type: string
+    PermissionTargetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+    GroupSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+    PermissionTarget:
+      type: object
+      properties:
+        name:
+          type: string
+        repo:
+          type: object
+          properties:
+            repositories:
+              type: array
+              items:
+                type: string
+            actions:
+              type: object
+              properties:
+                users:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+                groups:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+            includePatterns:
+              type: array
+              items:
+                type: string
+            excludePatterns:
+              type: array
+              items:
+                type: string
+        build:
+          type: object
+          properties:
+            repositories:
+              type: array
+              items:
+                type: string
+            actions:
+              type: object
+              properties:
+                users:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+                groups:
+                  type: object
+                  additionalProperties:
+                    type: array
+                    items:
+                      type: string
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profileUpdatable:
+          type: boolean
+        disableUIAccess:
+          type: boolean
+        internalPasswordDisabled:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - email
+      - password
+    UserSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+        realm:
+          type: string
+        status:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,290 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Groups API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Groups
+  description: User group management
+paths:
+  /api/v2/groups:
+    get:
+      operationId: listGroups
+      summary: JFrog List Groups
+      description: Returns a list of all groups configured in the Access service.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Groups list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Group'
+    post:
+      operationId: createGroup
+      summary: JFrog Create Group
+      description: Creates a new group in the Access service for organizing users and assigning permissions.
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '201':
+          description: Group created
+        '400':
+          description: Invalid group configuration
+        '409':
+          description: Group already exists
+  /api/v2/groups/{groupName}:
+    get:
+      operationId: getGroup
+      summary: JFrog Get Group
+      description: Returns details for a specific group, including its members.
+      tags:
+      - Groups
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      responses:
+        '200':
+          description: Group details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Group'
+        '404':
+          description: Group not found
+    patch:
+      operationId: updateGroup
+      summary: JFrog Update Group
+      description: Updates group properties. Only provided fields are modified.
+      tags:
+      - Groups
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Group'
+      responses:
+        '200':
+          description: Group updated
+        '404':
+          description: Group not found
+    delete:
+      operationId: deleteGroup
+      summary: JFrog Delete Group
+      description: Deletes a group and removes all user associations.
+      tags:
+      - Groups
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      responses:
+        '204':
+          description: Group deleted
+        '404':
+          description: Group not found
+  /access/api/v2/groups:
+    get:
+      operationId: listGroups
+      summary: JFrog List Groups
+      description: Returns a list of all platform groups.
+      tags:
+      - Groups
+      responses:
+        '200':
+          description: Groups list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlatformGroup'
+    post:
+      operationId: createGroup
+      summary: JFrog Create Group
+      description: Creates a new platform group.
+      tags:
+      - Groups
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlatformGroup'
+      responses:
+        '201':
+          description: Group created
+  /access/api/v2/groups/{groupName}:
+    get:
+      operationId: getGroup
+      summary: JFrog Get Group
+      description: Returns details for a specific group.
+      tags:
+      - Groups
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      responses:
+        '200':
+          description: Group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformGroup'
+    patch:
+      operationId: updateGroup
+      summary: JFrog Update Group
+      description: Updates group details.
+      tags:
+      - Groups
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlatformGroup'
+      responses:
+        '200':
+          description: Group updated
+    delete:
+      operationId: deleteGroup
+      summary: JFrog Delete Group
+      description: Deletes a group.
+      tags:
+      - Groups
+      parameters:
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      responses:
+        '204':
+          description: Group deleted
+components:
+  schemas:
+    PlatformGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        auto_join:
+          type: boolean
+        admin_privileges:
+          type: boolean
+        realm:
+          type: string
+        external_id:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique group name
+        description:
+          type: string
+        auto_join:
+          type: boolean
+          description: Whether new users automatically join this group
+        admin_privileges:
+          type: boolean
+          description: Whether group members receive admin privileges
+        realm:
+          type: string
+          description: Authentication realm for external groups
+        external_id:
+          type: string
+          description: External identity provider group identifier
+        members:
+          type: array
+          items:
+            type: string
+          description: List of usernames in the group
+      required:
+      - name
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

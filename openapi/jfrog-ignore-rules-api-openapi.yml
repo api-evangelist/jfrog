@@ -1,0 +1,176 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Ignore Rules API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Ignore Rules
+  description: Rules for ignoring specific vulnerabilities
+paths:
+  /v1/ignore_rules:
+    get:
+      operationId: listIgnoreRules
+      summary: JFrog List Ignore Rules
+      description: Returns all ignore rules configured in Xray.
+      tags:
+      - Ignore Rules
+      responses:
+        '200':
+          description: Ignore rules retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IgnoreRule'
+    post:
+      operationId: createIgnoreRule
+      summary: JFrog Create Ignore Rule
+      description: Creates a new ignore rule for a specific vulnerability or license.
+      tags:
+      - Ignore Rules
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IgnoreRule'
+      responses:
+        '201':
+          description: Ignore rule created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+  /v1/ignore_rules/{ruleId}:
+    get:
+      operationId: getIgnoreRule
+      summary: JFrog Get Ignore Rule
+      description: Returns a specific ignore rule.
+      tags:
+      - Ignore Rules
+      parameters:
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Ignore rule ID
+      responses:
+        '200':
+          description: Ignore rule retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IgnoreRule'
+    delete:
+      operationId: deleteIgnoreRule
+      summary: JFrog Delete Ignore Rule
+      description: Deletes an ignore rule.
+      tags:
+      - Ignore Rules
+      parameters:
+      - name: ruleId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Ignore rule ID
+      responses:
+        '200':
+          description: Ignore rule deleted
+components:
+  schemas:
+    IgnoreRule:
+      type: object
+      properties:
+        id:
+          type: string
+        notes:
+          type: string
+        expiration_date:
+          type: string
+          format: date-time
+        vulnerabilities:
+          type: array
+          items:
+            type: object
+            properties:
+              cve:
+                type: string
+        cves:
+          type: array
+          items:
+            type: object
+            properties:
+              cve:
+                type: string
+        licenses:
+          type: array
+          items:
+            type: string
+        watches:
+          type: array
+          items:
+            type: string
+        policies:
+          type: array
+          items:
+            type: string
+        component:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+        artifact:
+          type: object
+          properties:
+            name:
+              type: string
+            version:
+              type: string
+            path:
+              type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

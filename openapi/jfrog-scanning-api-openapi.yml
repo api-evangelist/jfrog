@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Scanning API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Scanning
+  description: On-demand scanning operations
+paths:
+  /v2/ci/scan:
+    post:
+      operationId: scanBuild
+      summary: JFrog Scan Build (v2)
+      description: Triggers an on-demand scan for a build.
+      tags:
+      - Scanning
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                buildName:
+                  type: string
+                buildNumber:
+                  type: string
+                rescan:
+                  type: boolean
+                  default: false
+              required:
+              - buildName
+              - buildNumber
+      responses:
+        '200':
+          description: Scan initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+  /v1/scanArtifact:
+    post:
+      operationId: scanArtifact
+      summary: JFrog Scan Artifact
+      description: Triggers a scan for a specific artifact by its component ID.
+      tags:
+      - Scanning
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                componentID:
+                  type: string
+                  description: Component identifier in package type format
+      responses:
+        '200':
+          description: Scan initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  info:
+                    type: string
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

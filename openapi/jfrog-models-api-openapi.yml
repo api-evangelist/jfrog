@@ -1,0 +1,205 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Models API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Models
+  description: ML model registry and management
+paths:
+  /v1/models:
+    get:
+      operationId: listModels
+      summary: JFrog List Models
+      description: Returns a list of all registered ML models.
+      tags:
+      - Models
+      parameters:
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+        description: Maximum number of results
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        description: Offset for pagination
+      responses:
+        '200':
+          description: Models list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  models:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Model'
+                  total_count:
+                    type: integer
+    post:
+      operationId: createModel
+      summary: JFrog Create Model
+      description: Registers a new ML model in the model registry.
+      tags:
+      - Models
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelRequest'
+      responses:
+        '201':
+          description: Model created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+  /v1/models/{modelId}:
+    get:
+      operationId: getModel
+      summary: JFrog Get Model
+      description: Returns details for a specific model.
+      tags:
+      - Models
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Model ID
+      responses:
+        '200':
+          description: Model details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Model'
+    put:
+      operationId: updateModel
+      summary: JFrog Update Model
+      description: Updates model metadata.
+      tags:
+      - Models
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Model ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ModelRequest'
+      responses:
+        '200':
+          description: Model updated
+    delete:
+      operationId: deleteModel
+      summary: JFrog Delete Model
+      description: Deletes a model and all its versions.
+      tags:
+      - Models
+      parameters:
+      - name: modelId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Model ID
+      responses:
+        '204':
+          description: Model deleted
+components:
+  schemas:
+    ModelRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        framework:
+          type: string
+        task_type:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    Model:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        framework:
+          type: string
+          description: ML framework (e.g., tensorflow, pytorch, sklearn)
+        task_type:
+          type: string
+          description: Type of ML task (e.g., classification, regression, nlp)
+        tags:
+          type: array
+          items:
+            type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,200 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Watches API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Watches
+  description: Watch policies for monitoring artifacts
+paths:
+  /v2/watches:
+    get:
+      operationId: listWatches
+      summary: JFrog List Watches
+      description: Returns a list of all configured watches.
+      tags:
+      - Watches
+      responses:
+        '200':
+          description: Watches list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Watch'
+    post:
+      operationId: createWatch
+      summary: JFrog Create Watch
+      description: Creates a new watch for monitoring artifacts.
+      tags:
+      - Watches
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watch'
+      responses:
+        '201':
+          description: Watch created
+        '400':
+          description: Invalid watch configuration
+  /v2/watches/{watchName}:
+    get:
+      operationId: getWatch
+      summary: JFrog Get Watch
+      description: Returns configuration for a specific watch.
+      tags:
+      - Watches
+      parameters:
+      - name: watchName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Watch name
+      responses:
+        '200':
+          description: Watch details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watch'
+    put:
+      operationId: updateWatch
+      summary: JFrog Update Watch
+      description: Updates an existing watch configuration.
+      tags:
+      - Watches
+      parameters:
+      - name: watchName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Watch name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Watch'
+      responses:
+        '200':
+          description: Watch updated
+    delete:
+      operationId: deleteWatch
+      summary: JFrog Delete Watch
+      description: Removes a watch configuration.
+      tags:
+      - Watches
+      parameters:
+      - name: watchName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Watch name
+      responses:
+        '200':
+          description: Watch deleted
+components:
+  schemas:
+    Watch:
+      type: object
+      properties:
+        general_data:
+          type: object
+          properties:
+            name:
+              type: string
+            description:
+              type: string
+            active:
+              type: boolean
+        project_resources:
+          type: object
+          properties:
+            resources:
+              type: array
+              items:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    enum:
+                    - repository
+                    - build
+                    - all-repos
+                    - all-builds
+                  name:
+                    type: string
+                  bin_mgr_id:
+                    type: string
+                  filters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                          - regex
+                          - package-type
+                          - path-regex
+                          - mime-type
+                        value:
+                          type: string
+        assigned_policies:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                - security
+                - license
+                - operational_risk
+      required:
+      - general_data
+      - project_resources
+      - assigned_policies
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,149 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Replication API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Replication
+  description: Push and pull replication configuration
+paths:
+  /api/replications:
+    get:
+      operationId: listReplications
+      summary: JFrog List All Replications
+      description: Returns a list of all replication configurations.
+      tags:
+      - Replication
+      responses:
+        '200':
+          description: Replication list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReplicationConfig'
+  /api/replications/{repoKey}:
+    get:
+      operationId: getReplication
+      summary: JFrog Get Replication Configuration
+      description: Returns replication configuration for a specific repository.
+      tags:
+      - Replication
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      responses:
+        '200':
+          description: Replication config retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReplicationConfig'
+    put:
+      operationId: createOrReplaceReplication
+      summary: JFrog Create or Replace Replication
+      description: Creates or replaces a replication configuration for a repository.
+      tags:
+      - Replication
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReplicationConfig'
+      responses:
+        '200':
+          description: Replication config created/replaced
+    delete:
+      operationId: deleteReplication
+      summary: JFrog Delete Replication
+      description: Removes a replication configuration.
+      tags:
+      - Replication
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      responses:
+        '200':
+          description: Replication config deleted
+components:
+  schemas:
+    ReplicationConfig:
+      type: object
+      properties:
+        repoKey:
+          type: string
+        url:
+          type: string
+          format: uri
+        socketTimeoutMillis:
+          type: integer
+        username:
+          type: string
+        password:
+          type: string
+        enableEventReplication:
+          type: boolean
+        enabled:
+          type: boolean
+        cronExp:
+          type: string
+        syncDeletes:
+          type: boolean
+        syncProperties:
+          type: boolean
+        syncStatistics:
+          type: boolean
+        pathPrefix:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,136 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Audit API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Audit
+  description: Curation audit and activity logs
+paths:
+  /v1/audit:
+    get:
+      operationId: getAuditLog
+      summary: JFrog Get Curation Audit Log
+      description: Returns the curation audit log showing blocked and allowed packages.
+      tags:
+      - Audit
+      parameters:
+      - name: from_date
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: Start date for the audit log query
+      - name: to_date
+        in: query
+        schema:
+          type: string
+          format: date-time
+        description: End date for the audit log query
+      - name: package_type
+        in: query
+        schema:
+          type: string
+        description: Filter by package type (npm, maven, pypi, etc.)
+      - name: policy_name
+        in: query
+        schema:
+          type: string
+        description: Filter by policy name
+      - name: action_taken
+        in: query
+        schema:
+          type: string
+          enum:
+          - blocked
+          - allowed
+          - warned
+        description: Filter by action taken
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 25
+        description: Maximum number of results
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        description: Offset for pagination
+      responses:
+        '200':
+          description: Audit log retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_count:
+                    type: integer
+                  audit_entries:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/AuditEntry'
+components:
+  schemas:
+    AuditEntry:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        package_name:
+          type: string
+        package_version:
+          type: string
+        package_type:
+          type: string
+        repository:
+          type: string
+        policy_name:
+          type: string
+        action_taken:
+          type: string
+          enum:
+          - blocked
+          - allowed
+          - warned
+        reason:
+          type: string
+        requesting_user:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

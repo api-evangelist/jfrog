@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens GraphQL API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: GraphQL
+  description: GraphQL query interface for package and CVE data
+paths:
+  /custom/graphql:
+    post:
+      operationId: executeGraphQLQuery
+      summary: JFrog Execute GraphQL Query
+      description: Executes a GraphQL query against the JFrog Catalog. Supports querying packages, package versions, CVE information, license data, and custom labels. This is the primary interface for interacting with the Catalog service.
+      tags:
+      - GraphQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+      responses:
+        '200':
+          description: GraphQL query executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '400':
+          description: Invalid GraphQL query syntax
+        '401':
+          description: Unauthorized
+components:
+  schemas:
+    GraphQLRequest:
+      type: object
+      properties:
+        query:
+          type: string
+          description: GraphQL query string
+        variables:
+          type: object
+          additionalProperties: true
+          description: GraphQL query variables
+        operationName:
+          type: string
+          description: Named operation to execute when query contains multiple operations
+      required:
+      - query
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          description: Query result data
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              locations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line:
+                      type: integer
+                    column:
+                      type: integer
+              path:
+                type: array
+                items:
+                  type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

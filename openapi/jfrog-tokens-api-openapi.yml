@@ -1,0 +1,225 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Tokens
+  description: Access token creation, management, and revocation
+paths:
+  /api/v2/tokens:
+    get:
+      operationId: listTokens
+      summary: JFrog List Access Tokens
+      description: Returns a list of all access tokens. Admin users see all tokens while non-admin users see only their own tokens.
+      tags:
+      - Tokens
+      parameters:
+      - name: subject
+        in: query
+        schema:
+          type: string
+        description: Filter tokens by subject
+      - name: token_id
+        in: query
+        schema:
+          type: string
+        description: Filter by specific token ID
+      responses:
+        '200':
+          description: Tokens list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tokens:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/TokenInfo'
+        '401':
+          description: Unauthorized
+    post:
+      operationId: createToken
+      summary: JFrog Create Access Token
+      description: Creates a new scoped access token. Tokens can be scoped to specific resources, groups, and permissions. Supports creating user tokens, admin tokens, and project-scoped tokens.
+      tags:
+      - Tokens
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTokenRequest'
+      responses:
+        '200':
+          description: Token created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid token configuration
+        '401':
+          description: Unauthorized
+  /api/v2/tokens/{tokenId}:
+    get:
+      operationId: getToken
+      summary: JFrog Get Token Details
+      description: Returns metadata for a specific access token, not including the token value itself.
+      tags:
+      - Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Token ID
+      responses:
+        '200':
+          description: Token details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenInfo'
+        '404':
+          description: Token not found
+    delete:
+      operationId: revokeToken
+      summary: JFrog Revoke Access Token
+      description: Revokes an existing access token, immediately invalidating it across all services.
+      tags:
+      - Tokens
+      parameters:
+      - name: tokenId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Token ID
+      responses:
+        '200':
+          description: Token revoked successfully
+        '404':
+          description: Token not found
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        token_id:
+          type: string
+        access_token:
+          type: string
+          description: The access token value (JWT)
+        refresh_token:
+          type: string
+          description: Refresh token (if requested)
+        expires_in:
+          type: integer
+          description: Token lifetime in seconds
+        scope:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        reference_token:
+          type: string
+          description: Reference token (if requested)
+    CreateTokenRequest:
+      type: object
+      properties:
+        subject:
+          type: string
+          description: 'Token subject in format: user/username or service/name'
+        scope:
+          type: string
+          description: Space-separated scopes (e.g., "applied-permissions/user", "applied-permissions/admin", "applied-permissions/groups:readers,developers")
+        expires_in:
+          type: integer
+          description: Token expiry in seconds (0 for non-expiring)
+        refreshable:
+          type: boolean
+          description: Whether the token supports refresh
+          default: false
+        description:
+          type: string
+          description: Token description for management purposes
+        audience:
+          type: string
+          description: Intended token audience
+        include_reference_token:
+          type: boolean
+          description: Whether to include a reference token
+          default: false
+        project_key:
+          type: string
+          description: Project key to scope the token to a specific project
+      required:
+      - scope
+    TokenInfo:
+      type: object
+      properties:
+        token_id:
+          type: string
+          description: Unique token identifier
+        subject:
+          type: string
+          description: Token subject (user or service)
+        expiry:
+          type: integer
+          description: Token expiry timestamp (epoch seconds)
+        issued_at:
+          type: integer
+          description: Token issuance timestamp (epoch seconds)
+        issuer:
+          type: string
+          description: Token issuer service identifier
+        description:
+          type: string
+          description: Human-readable token description
+        refreshable:
+          type: boolean
+          description: Whether the token can be refreshed
+        scope:
+          type: string
+          description: Token scope defining permissions
+        audience:
+          type: string
+          description: Token audience
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

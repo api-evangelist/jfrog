@@ -1,0 +1,422 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Users API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Users
+  description: Platform user management
+paths:
+  /api/v2/users:
+    get:
+      operationId: listUsers
+      summary: JFrog List Users
+      description: Returns a list of all platform users managed by the Access service.
+      tags:
+      - Users
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        description: Filter by user status
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+        description: Maximum number of results
+      - name: offset
+        in: query
+        schema:
+          type: integer
+        description: Offset for pagination
+      responses:
+        '200':
+          description: Users list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+    post:
+      operationId: createUser
+      summary: JFrog Create User
+      description: Creates a new platform user in the Access service identity store.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid user configuration
+        '409':
+          description: User already exists
+  /api/v2/users/{username}:
+    get:
+      operationId: getUser
+      summary: JFrog Get User
+      description: Returns details for a specific user identified by username.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      responses:
+        '200':
+          description: User details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    patch:
+      operationId: updateUser
+      summary: JFrog Update User
+      description: Updates properties of an existing user. Only provided fields are updated.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated
+        '404':
+          description: User not found
+    delete:
+      operationId: deleteUser
+      summary: JFrog Delete User
+      description: Permanently deletes a user from the platform.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      responses:
+        '204':
+          description: User deleted
+        '404':
+          description: User not found
+  /access/api/v2/users:
+    get:
+      operationId: listUsers
+      summary: JFrog List Users
+      description: Returns a list of all platform users.
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Users list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PlatformUser'
+    post:
+      operationId: createUser
+      summary: JFrog Create User
+      description: Creates a new platform user.
+      tags:
+      - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest_2'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformUser'
+  /access/api/v2/users/{username}:
+    get:
+      operationId: getUser
+      summary: JFrog Get User
+      description: Returns details for a specific user.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      responses:
+        '200':
+          description: User details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatformUser'
+    patch:
+      operationId: updateUser
+      summary: JFrog Update User
+      description: Updates user details.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest_2'
+      responses:
+        '200':
+          description: User updated
+    delete:
+      operationId: deleteUser
+      summary: JFrog Delete User
+      description: Deletes a user.
+      tags:
+      - Users
+      parameters:
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      responses:
+        '204':
+          description: User deleted
+components:
+  schemas:
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        disable_ui_access:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        groups:
+          type: array
+          items:
+            type: string
+    CreateUserRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+          default: false
+        profile_updatable:
+          type: boolean
+          default: true
+        disable_ui_access:
+          type: boolean
+          default: false
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - username
+      - email
+      - password
+    PlatformUser:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        disable_ui_access:
+          type: boolean
+        internal_password_disabled:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        groups:
+          type: array
+          items:
+            type: string
+    CreateUserRequest_2:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - username
+      - email
+      - password
+    UpdateUserRequest_2:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        admin:
+          type: boolean
+          description: Whether the user has admin privileges
+        profile_updatable:
+          type: boolean
+          description: Whether the user can update their own profile
+        disable_ui_access:
+          type: boolean
+          description: Whether UI access is disabled for this user
+        internal_password_disabled:
+          type: boolean
+          description: Whether internal password authentication is disabled
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        groups:
+          type: array
+          items:
+            type: string
+          description: Groups the user belongs to
+        realm:
+          type: string
+          description: Authentication realm (internal, ldap, saml, etc.)
+        last_logged_in:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

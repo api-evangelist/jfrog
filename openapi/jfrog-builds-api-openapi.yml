@@ -1,0 +1,251 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Builds API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Builds
+  description: Build information and promotion
+paths:
+  /api/build:
+    get:
+      operationId: listBuilds
+      summary: JFrog List All Builds
+      description: Returns a list of all builds stored in Artifactory.
+      tags:
+      - Builds
+      responses:
+        '200':
+          description: Builds list retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildsList'
+  /api/build/{buildName}:
+    get:
+      operationId: getBuildRuns
+      summary: JFrog Get Build Runs
+      description: Returns all runs for a specific build.
+      tags:
+      - Builds
+      parameters:
+      - name: buildName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Build name
+      responses:
+        '200':
+          description: Build runs retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildRuns'
+  /api/build/{buildName}/{buildNumber}:
+    get:
+      operationId: getBuildInfo
+      summary: JFrog Get Build Information
+      description: Returns full build information for a specific build run.
+      tags:
+      - Builds
+      parameters:
+      - name: buildName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Build name
+      - name: buildNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Build number
+      responses:
+        '200':
+          description: Build info retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildInfo'
+  /api/build/promote/{buildName}/{buildNumber}:
+    post:
+      operationId: promoteBuild
+      summary: JFrog Promote Build
+      description: Promotes a build by moving or copying artifacts to a target repository.
+      tags:
+      - Builds
+      parameters:
+      - name: buildName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Build name
+      - name: buildNumber
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Build number
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildPromotion'
+      responses:
+        '200':
+          description: Build promoted successfully
+components:
+  schemas:
+    BuildPromotion:
+      type: object
+      properties:
+        status:
+          type: string
+        comment:
+          type: string
+        ciUser:
+          type: string
+        timestamp:
+          type: string
+        properties:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        sourceRepo:
+          type: string
+        targetRepo:
+          type: string
+        copy:
+          type: boolean
+        artifacts:
+          type: boolean
+        dependencies:
+          type: boolean
+        failFast:
+          type: boolean
+      required:
+      - targetRepo
+    BuildRuns:
+      type: object
+      properties:
+        uri:
+          type: string
+        buildsNumbers:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              started:
+                type: string
+                format: date-time
+    BuildInfo:
+      type: object
+      properties:
+        buildInfo:
+          type: object
+          properties:
+            version:
+              type: string
+            name:
+              type: string
+            number:
+              type: string
+            type:
+              type: string
+            buildAgent:
+              type: object
+              properties:
+                name:
+                  type: string
+                version:
+                  type: string
+            agent:
+              type: object
+              properties:
+                name:
+                  type: string
+                version:
+                  type: string
+            started:
+              type: string
+              format: date-time
+            durationMillis:
+              type: integer
+            modules:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  artifacts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                        sha1:
+                          type: string
+                        sha256:
+                          type: string
+                        md5:
+                          type: string
+                        name:
+                          type: string
+    BuildsList:
+      type: object
+      properties:
+        builds:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              lastStarted:
+                type: string
+                format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

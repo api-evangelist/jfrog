@@ -1,0 +1,307 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Release Bundles V1 API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Release Bundles V1
+  description: Create and manage release bundles (v1)
+paths:
+  /v1/release_bundle:
+    get:
+      operationId: listReleaseBundles
+      summary: JFrog List Release Bundles
+      description: Returns a list of all release bundles.
+      tags:
+      - Release Bundles V1
+      responses:
+        '200':
+          description: Release bundles list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    version:
+                      type: string
+                    state:
+                      type: string
+                    created:
+                      type: string
+                      format: date-time
+    post:
+      operationId: createReleaseBundle
+      summary: JFrog Create Release Bundle
+      description: Creates a new release bundle with specified artifacts.
+      tags:
+      - Release Bundles V1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseBundleRequest'
+      responses:
+        '201':
+          description: Release bundle created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseBundle'
+        '400':
+          description: Invalid request
+  /v1/release_bundle/{name}/{version}:
+    get:
+      operationId: getReleaseBundle
+      summary: JFrog Get Release Bundle
+      description: Returns details for a specific release bundle version.
+      tags:
+      - Release Bundles V1
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle name
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle version
+      responses:
+        '200':
+          description: Release bundle details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReleaseBundle'
+        '404':
+          description: Release bundle not found
+    put:
+      operationId: updateReleaseBundle
+      summary: JFrog Update Release Bundle
+      description: Updates an existing release bundle.
+      tags:
+      - Release Bundles V1
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle name
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle version
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReleaseBundleRequest'
+      responses:
+        '200':
+          description: Release bundle updated
+    delete:
+      operationId: deleteReleaseBundle
+      summary: JFrog Delete Release Bundle
+      description: Deletes a release bundle version.
+      tags:
+      - Release Bundles V1
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle name
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle version
+      responses:
+        '200':
+          description: Release bundle deleted
+  /v1/release_bundle/{name}/{version}/sign:
+    post:
+      operationId: signReleaseBundle
+      summary: JFrog Sign Release Bundle
+      description: Signs a release bundle, making it immutable and ready for distribution.
+      tags:
+      - Release Bundles V1
+      parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle name
+      - name: version
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Release bundle version
+      responses:
+        '200':
+          description: Release bundle signed
+components:
+  schemas:
+    ReleaseBundle:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        state:
+          type: string
+          enum:
+          - OPEN
+          - SIGNED
+          - STORED
+          - READY_FOR_DISTRIBUTION
+        description:
+          type: string
+        release_notes:
+          type: object
+          properties:
+            syntax:
+              type: string
+            content:
+              type: string
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              source_repo_path:
+                type: string
+              target_repo_path:
+                type: string
+              checksum:
+                type: string
+              props:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                    values:
+                      type: array
+                      items:
+                        type: string
+    ReleaseBundleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        dry_run:
+          type: boolean
+          default: false
+        sign_immediately:
+          type: boolean
+          default: false
+        description:
+          type: string
+        release_notes:
+          type: object
+          properties:
+            syntax:
+              type: string
+              enum:
+              - plain_text
+              - markdown
+              - asciidoc
+            content:
+              type: string
+        spec:
+          type: object
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                properties:
+                  aql:
+                    type: string
+                  query_name:
+                    type: string
+                  mappings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        input:
+                          type: string
+                        output:
+                          type: string
+                  added_props:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        values:
+                          type: array
+                          items:
+                            type: string
+      required:
+      - name
+      - version
+      - spec
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

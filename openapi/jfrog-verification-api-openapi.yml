@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Verification API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Verification
+  description: Verify evidence and retrieve verification status
+paths:
+  /v1/evidence/{evidenceId}/verify:
+    get:
+      operationId: verifyEvidence
+      summary: JFrog Verify Evidence
+      description: Verifies the cryptographic signature of an evidence record against registered public keys. Returns the verification status and details.
+      tags:
+      - Verification
+      parameters:
+      - name: evidenceId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Evidence record identifier
+      responses:
+        '200':
+          description: Verification result returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VerificationResult'
+        '404':
+          description: Evidence not found
+components:
+  schemas:
+    VerificationResult:
+      type: object
+      properties:
+        evidence_id:
+          type: string
+        verified:
+          type: boolean
+          description: Whether the signature is valid
+        verification_timestamp:
+          type: string
+          format: date-time
+        key_alias:
+          type: string
+          description: Alias of the public key used for verification
+        signature_algorithm:
+          type: string
+          enum:
+          - ECDSA
+          - RSA
+          - ED25519
+        errors:
+          type: array
+          items:
+            type: string
+          description: Verification errors, if any
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

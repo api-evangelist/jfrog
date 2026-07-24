@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Violations API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Violations
+  description: Policy violations management
+paths:
+  /v1/violations:
+    post:
+      operationId: getViolations
+      summary: JFrog Get Violations
+      description: Returns violations based on specified filters.
+      tags:
+      - Violations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filters:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      enum:
+                      - security
+                      - license
+                      - operational_risk
+                    watch_name:
+                      type: string
+                    min_severity:
+                      type: string
+                      enum:
+                      - Low
+                      - Medium
+                      - High
+                      - Critical
+                    created_from:
+                      type: string
+                      format: date-time
+                pagination:
+                  type: object
+                  properties:
+                    order_by:
+                      type: string
+                    limit:
+                      type: integer
+                    offset:
+                      type: integer
+      responses:
+        '200':
+          description: Violations retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ViolationsResponse'
+components:
+  schemas:
+    ViolationsResponse:
+      type: object
+      properties:
+        total_violations:
+          type: integer
+        violations:
+          type: array
+          items:
+            type: object
+            properties:
+              violation_type:
+                type: string
+              severity:
+                type: string
+              watch_name:
+                type: string
+              description:
+                type: string
+              matched_policies:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    policy:
+                      type: string
+                    rule:
+                      type: string
+              created:
+                type: string
+                format: date-time
+              impacted_artifacts:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    display_name:
+                      type: string
+                    path:
+                      type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Webhooks API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Webhooks
+  description: Webhook configuration
+paths:
+  /event/api/v1/subscriptions:
+    get:
+      operationId: listWebhooks
+      summary: JFrog List Webhooks
+      description: Returns a list of all configured webhooks.
+      tags:
+      - Webhooks
+      responses:
+        '200':
+          description: Webhooks list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Webhook'
+    post:
+      operationId: createWebhook
+      summary: JFrog Create Webhook
+      description: Creates a new webhook subscription.
+      tags:
+      - Webhooks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '201':
+          description: Webhook created
+  /event/api/v1/subscriptions/{webhookKey}:
+    get:
+      operationId: getWebhook
+      summary: JFrog Get Webhook
+      description: Returns details for a specific webhook.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhookKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Webhook key
+      responses:
+        '200':
+          description: Webhook details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    put:
+      operationId: updateWebhook
+      summary: JFrog Update Webhook
+      description: Updates a webhook configuration.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhookKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Webhook key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WebhookRequest'
+      responses:
+        '200':
+          description: Webhook updated
+    delete:
+      operationId: deleteWebhook
+      summary: JFrog Delete Webhook
+      description: Deletes a webhook subscription.
+      tags:
+      - Webhooks
+      parameters:
+      - name: webhookKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Webhook key
+      responses:
+        '204':
+          description: Webhook deleted
+components:
+  schemas:
+    WebhookRequest:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        url:
+          type: string
+          format: uri
+        secret:
+          type: string
+        events:
+          type: array
+          items:
+            type: string
+            enum:
+            - deployed
+            - deleted
+            - moved
+            - copied
+            - cached
+            - property_added
+            - property_deleted
+            - docker_pushed
+            - docker_deleted
+            - build_published
+            - build_promotion
+            - build_deleted
+            - release_bundle_created
+            - release_bundle_signed
+            - release_bundle_deleted
+        criteria:
+          type: object
+          properties:
+            anyLocal:
+              type: boolean
+            anyRemote:
+              type: boolean
+            anyFederated:
+              type: boolean
+            repoKeys:
+              type: array
+              items:
+                type: string
+            includePatterns:
+              type: array
+              items:
+                type: string
+            excludePatterns:
+              type: array
+              items:
+                type: string
+      required:
+      - key
+      - url
+      - events
+    Webhook:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        url:
+          type: string
+          format: uri
+        secret:
+          type: string
+        events:
+          type: array
+          items:
+            type: string
+        criteria:
+          type: object
+          additionalProperties: true
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,607 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Projects API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Projects
+  description: Project administration
+paths:
+  /api/v1/projects:
+    get:
+      operationId: listProjects
+      summary: JFrog List Projects
+      description: Returns a list of all projects in the platform.
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: Projects list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+    post:
+      operationId: createProject
+      summary: JFrog Create Project
+      description: Creates a new project with its own isolated resource scope and administration.
+      tags:
+      - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          description: Invalid project configuration
+        '409':
+          description: Project key already exists
+  /api/v1/projects/{projectKey}:
+    get:
+      operationId: getProject
+      summary: JFrog Get Project
+      description: Returns details for a specific project identified by its key.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      responses:
+        '200':
+          description: Project details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          description: Project not found
+    put:
+      operationId: updateProject
+      summary: JFrog Update Project
+      description: Updates project configuration and settings.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '200':
+          description: Project updated
+        '404':
+          description: Project not found
+    delete:
+      operationId: deleteProject
+      summary: JFrog Delete Project
+      description: Permanently deletes a project and disassociates all its resources.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      responses:
+        '204':
+          description: Project deleted
+        '404':
+          description: Project not found
+  /api/v1/projects/{projectKey}/users/{username}:
+    put:
+      operationId: addUserToProject
+      summary: JFrog Add User to Project
+      description: Adds a user to a project with specified role assignments.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username to add
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+                  description: Roles to assign (e.g., Project Admin, Developer, Viewer)
+      responses:
+        '200':
+          description: User added to project
+        '404':
+          description: Project or user not found
+    delete:
+      operationId: removeUserFromProject
+      summary: JFrog Remove User from Project
+      description: Removes a user from a project, revoking all project-specific roles.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username to remove
+      responses:
+        '204':
+          description: User removed from project
+        '404':
+          description: Project or user not found
+  /api/v1/projects/{projectKey}/groups/{groupName}:
+    put:
+      operationId: addGroupToProject
+      summary: JFrog Add Group to Project
+      description: Adds a group to a project with specified role assignments.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: Group added to project
+    delete:
+      operationId: removeGroupFromProject
+      summary: JFrog Remove Group from Project
+      description: Removes a group from a project.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      - name: groupName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Group name
+      responses:
+        '204':
+          description: Group removed from project
+  /projects:
+    get:
+      operationId: listProjects
+      summary: JFrog List Projects
+      description: Returns a list of all projects in the account.
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: Projects list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Project_2'
+    post:
+      operationId: createProject
+      summary: JFrog Create Project
+      description: Creates a new project for organizing devices.
+      tags:
+      - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest_2'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project_2'
+  /projects/{projectId}:
+    get:
+      operationId: getProject
+      summary: JFrog Get Project
+      description: Returns details for a specific project.
+      tags:
+      - Projects
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project_2'
+    delete:
+      operationId: deleteProject
+      summary: JFrog Delete Project
+      description: Deletes a project.
+      tags:
+      - Projects
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      responses:
+        '204':
+          description: Project deleted
+  /access/api/v1/projects:
+    get:
+      operationId: listProjects
+      summary: JFrog List Projects
+      description: Returns a list of all projects.
+      tags:
+      - Projects
+      responses:
+        '200':
+          description: Projects list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project_3'
+    post:
+      operationId: createProject
+      summary: JFrog Create Project
+      description: Creates a new project.
+      tags:
+      - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project_3'
+  /access/api/v1/projects/{projectKey}:
+    get:
+      operationId: getProject
+      summary: JFrog Get Project
+      description: Returns details for a specific project.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project_3'
+    put:
+      operationId: updateProject
+      summary: JFrog Update Project
+      description: Updates project configuration.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '200':
+          description: Project updated
+    delete:
+      operationId: deleteProject
+      summary: JFrog Delete Project
+      description: Deletes a project.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      responses:
+        '204':
+          description: Project deleted
+  /access/api/v1/projects/{projectKey}/users/{username}:
+    put:
+      operationId: addUserToProject
+      summary: JFrog Add User to Project
+      description: Adds a user to a project with specified roles.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                roles:
+                  type: array
+                  items:
+                    type: string
+      responses:
+        '200':
+          description: User added to project
+    delete:
+      operationId: removeUserFromProject
+      summary: JFrog Remove User from Project
+      description: Removes a user from a project.
+      tags:
+      - Projects
+      parameters:
+      - name: projectKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project key
+      - name: username
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Username
+      responses:
+        '204':
+          description: User removed from project
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        project_key:
+          type: string
+          description: Unique project key (max 32 chars)
+          maxLength: 32
+        display_name:
+          type: string
+        description:
+          type: string
+        admin_privileges:
+          type: object
+          properties:
+            manage_members:
+              type: boolean
+            manage_resources:
+              type: boolean
+            manage_security_assets:
+              type: boolean
+            index_resources:
+              type: boolean
+            allow_ignore_rules:
+              type: boolean
+        max_storage_in_gibibytes:
+          type: integer
+        soft_limit:
+          type: boolean
+        storage_quota_bytes:
+          type: integer
+        storage_quota_email_notification:
+          type: boolean
+    ProjectRequest:
+      type: object
+      properties:
+        project_key:
+          type: string
+          maxLength: 32
+        display_name:
+          type: string
+        description:
+          type: string
+        admin_privileges:
+          type: object
+          properties:
+            manage_members:
+              type: boolean
+            manage_resources:
+              type: boolean
+            manage_security_assets:
+              type: boolean
+            index_resources:
+              type: boolean
+            allow_ignore_rules:
+              type: boolean
+        max_storage_in_gibibytes:
+          type: integer
+      required:
+      - project_key
+      - display_name
+    ProjectRequest_2:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+      - name
+    Project_2:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        devices_count:
+          type: integer
+        online_devices_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    Project_3:
+      type: object
+      properties:
+        project_key:
+          type: string
+        display_name:
+          type: string
+        description:
+          type: string
+        admin_privileges:
+          type: object
+          properties:
+            manage_members:
+              type: boolean
+            manage_resources:
+              type: boolean
+            manage_security_assets:
+              type: boolean
+            index_resources:
+              type: boolean
+            allow_ignore_rules:
+              type: boolean
+        max_storage_in_gibibytes:
+          type: integer
+        soft_limit:
+          type: boolean
+        storage_quota_bytes:
+          type: integer
+        storage_quota_email_notification:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

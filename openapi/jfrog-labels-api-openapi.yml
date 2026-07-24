@@ -1,0 +1,260 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Labels API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Labels
+  description: Custom label management for packages
+paths:
+  /labels:
+    get:
+      operationId: listLabels
+      summary: JFrog List Labels
+      description: Returns a list of all custom labels configured in the Catalog. Labels can be attached to packages for organizational and policy purposes.
+      tags:
+      - Labels
+      responses:
+        '200':
+          description: Labels list retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  labels:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Label'
+    post:
+      operationId: createLabel
+      summary: JFrog Create Label
+      description: Creates a new custom label that can be applied to packages in the Catalog. Requires administrator permissions.
+      tags:
+      - Labels
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelRequest'
+      responses:
+        '201':
+          description: Label created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+        '400':
+          description: Invalid label configuration
+        '409':
+          description: Label name already exists
+  /labels/{labelName}:
+    get:
+      operationId: getLabel
+      summary: JFrog Get Label
+      description: Returns details for a specific label.
+      tags:
+      - Labels
+      parameters:
+      - name: labelName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Label name
+      responses:
+        '200':
+          description: Label details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Label'
+        '404':
+          description: Label not found
+    put:
+      operationId: updateLabel
+      summary: JFrog Update Label
+      description: Updates an existing label configuration.
+      tags:
+      - Labels
+      parameters:
+      - name: labelName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Label name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LabelRequest'
+      responses:
+        '200':
+          description: Label updated
+        '404':
+          description: Label not found
+    delete:
+      operationId: deleteLabel
+      summary: JFrog Delete Label
+      description: Removes a label from the Catalog and detaches it from all packages.
+      tags:
+      - Labels
+      parameters:
+      - name: labelName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Label name
+      responses:
+        '204':
+          description: Label deleted
+        '404':
+          description: Label not found
+  /labels/{labelName}/packages:
+    post:
+      operationId: applyLabelToPackages
+      summary: JFrog Apply Label to Packages
+      description: Applies a label to one or more packages.
+      tags:
+      - Labels
+      parameters:
+      - name: labelName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Label name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                packages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      package_type:
+                        type: string
+                      package_name:
+                        type: string
+                      package_version:
+                        type: string
+                    required:
+                    - package_type
+                    - package_name
+              required:
+              - packages
+      responses:
+        '200':
+          description: Label applied to packages
+    delete:
+      operationId: removeLabelFromPackages
+      summary: JFrog Remove Label from Packages
+      description: Removes a label from one or more packages.
+      tags:
+      - Labels
+      parameters:
+      - name: labelName
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Label name
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                packages:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      package_type:
+                        type: string
+                      package_name:
+                        type: string
+                    required:
+                    - package_type
+                    - package_name
+              required:
+              - packages
+      responses:
+        '200':
+          description: Label removed from packages
+components:
+  schemas:
+    LabelRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+      required:
+      - name
+    Label:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Unique label name
+        description:
+          type: string
+        color:
+          type: string
+          description: Label display color (hex)
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        packages_count:
+          type: integer
+          description: Number of packages with this label applied
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

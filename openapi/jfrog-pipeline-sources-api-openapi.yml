@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Pipeline Sources API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Pipeline Sources
+  description: Manage pipeline source configurations
+paths:
+  /v1/pipelineSources:
+    get:
+      operationId: listPipelineSources
+      summary: JFrog List Pipeline Sources
+      description: Returns a list of all pipeline source configurations.
+      tags:
+      - Pipeline Sources
+      responses:
+        '200':
+          description: Pipeline sources list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PipelineSource'
+    post:
+      operationId: createPipelineSource
+      summary: JFrog Create Pipeline Source
+      description: Creates a new pipeline source pointing to a repository with pipeline definitions.
+      tags:
+      - Pipeline Sources
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PipelineSourceRequest'
+      responses:
+        '200':
+          description: Pipeline source created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineSource'
+  /v1/pipelineSources/{pipelineSourceId}:
+    get:
+      operationId: getPipelineSource
+      summary: JFrog Get Pipeline Source
+      description: Returns details for a specific pipeline source.
+      tags:
+      - Pipeline Sources
+      parameters:
+      - name: pipelineSourceId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Pipeline source ID
+      responses:
+        '200':
+          description: Pipeline source details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PipelineSource'
+    delete:
+      operationId: deletePipelineSource
+      summary: JFrog Delete Pipeline Source
+      description: Deletes a pipeline source configuration.
+      tags:
+      - Pipeline Sources
+      parameters:
+      - name: pipelineSourceId
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Pipeline source ID
+      responses:
+        '200':
+          description: Pipeline source deleted
+components:
+  schemas:
+    PipelineSourceRequest:
+      type: object
+      properties:
+        projectId:
+          type: integer
+        name:
+          type: string
+        repositoryFullName:
+          type: string
+        branch:
+          type: string
+        fileFilter:
+          type: string
+        integrationId:
+          type: integer
+      required:
+      - repositoryFullName
+      - branch
+      - integrationId
+    PipelineSource:
+      type: object
+      properties:
+        id:
+          type: integer
+        projectId:
+          type: integer
+        name:
+          type: string
+        repositoryFullName:
+          type: string
+        branch:
+          type: string
+        fileFilter:
+          type: string
+        integrationId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

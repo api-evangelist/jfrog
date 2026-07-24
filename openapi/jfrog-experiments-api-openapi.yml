@@ -1,0 +1,176 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Experiments API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Experiments
+  description: ML experiment tracking
+paths:
+  /v1/experiments:
+    get:
+      operationId: listExperiments
+      summary: JFrog List Experiments
+      description: Returns a list of all ML experiments.
+      tags:
+      - Experiments
+      parameters:
+      - name: model_id
+        in: query
+        schema:
+          type: string
+        description: Filter by model ID
+      responses:
+        '200':
+          description: Experiments list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  experiments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Experiment'
+    post:
+      operationId: createExperiment
+      summary: JFrog Create Experiment
+      description: Creates a new ML experiment.
+      tags:
+      - Experiments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExperimentRequest'
+      responses:
+        '201':
+          description: Experiment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+  /v1/experiments/{experimentId}:
+    get:
+      operationId: getExperiment
+      summary: JFrog Get Experiment
+      description: Returns details for a specific experiment.
+      tags:
+      - Experiments
+      parameters:
+      - name: experimentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Experiment ID
+      responses:
+        '200':
+          description: Experiment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Experiment'
+    delete:
+      operationId: deleteExperiment
+      summary: JFrog Delete Experiment
+      description: Deletes an experiment.
+      tags:
+      - Experiments
+      parameters:
+      - name: experimentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Experiment ID
+      responses:
+        '204':
+          description: Experiment deleted
+components:
+  schemas:
+    ExperimentRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        model_id:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - name
+    Experiment:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        model_id:
+          type: string
+        status:
+          type: string
+          enum:
+          - running
+          - completed
+          - failed
+          - cancelled
+        metrics:
+          type: object
+          additionalProperties:
+            type: number
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

@@ -1,0 +1,229 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Repositories API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Repositories
+  description: Create, read, update, and delete repositories
+paths:
+  /api/repositories:
+    get:
+      operationId: listRepositories
+      summary: JFrog List All Repositories
+      description: Returns a list of all repositories with minimal information.
+      tags:
+      - Repositories
+      parameters:
+      - name: type
+        in: query
+        schema:
+          type: string
+          enum:
+          - local
+          - remote
+          - virtual
+          - federated
+          - distribution
+        description: Filter by repository type
+      - name: packageType
+        in: query
+        schema:
+          type: string
+        description: Filter by package type (e.g., maven, npm, docker)
+      responses:
+        '200':
+          description: Repository list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RepositoryListItem'
+  /api/repositories/{repoKey}:
+    get:
+      operationId: getRepository
+      summary: JFrog Get Repository Configuration
+      description: Returns the full configuration for a specific repository.
+      tags:
+      - Repositories
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      responses:
+        '200':
+          description: Repository configuration retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RepositoryConfiguration'
+        '404':
+          description: Repository not found
+    put:
+      operationId: createRepository
+      summary: JFrog Create Repository
+      description: Creates a new repository with the specified configuration.
+      tags:
+      - Repositories
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryConfiguration'
+      responses:
+        '200':
+          description: Repository created successfully
+        '400':
+          description: Bad request
+        '409':
+          description: Repository already exists
+    post:
+      operationId: updateRepository
+      summary: JFrog Update Repository Configuration
+      description: Updates configuration of an existing repository.
+      tags:
+      - Repositories
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RepositoryConfiguration'
+      responses:
+        '200':
+          description: Repository updated successfully
+        '404':
+          description: Repository not found
+    delete:
+      operationId: deleteRepository
+      summary: JFrog Delete Repository
+      description: Removes a repository configuration and optionally deletes its content.
+      tags:
+      - Repositories
+      parameters:
+      - name: repoKey
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Repository key
+      responses:
+        '200':
+          description: Repository deleted
+        '404':
+          description: Repository not found
+components:
+  schemas:
+    RepositoryConfiguration:
+      type: object
+      properties:
+        key:
+          type: string
+        rclass:
+          type: string
+          enum:
+          - local
+          - remote
+          - virtual
+          - federated
+        packageType:
+          type: string
+        description:
+          type: string
+        notes:
+          type: string
+        includesPattern:
+          type: string
+          default: '**/*'
+        excludesPattern:
+          type: string
+        repoLayoutRef:
+          type: string
+        handleReleases:
+          type: boolean
+        handleSnapshots:
+          type: boolean
+        maxUniqueSnapshots:
+          type: integer
+        suppressPomConsistencyChecks:
+          type: boolean
+        blackedOut:
+          type: boolean
+        propertySets:
+          type: array
+          items:
+            type: string
+        xrayIndex:
+          type: boolean
+      required:
+      - key
+      - rclass
+      - packageType
+    RepositoryListItem:
+      type: object
+      properties:
+        key:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        packageType:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

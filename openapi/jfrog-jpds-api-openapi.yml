@@ -1,0 +1,207 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens JPDs API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: JPDs
+  description: JFrog Platform Deployment management
+paths:
+  /v3/jpds:
+    get:
+      operationId: listJPDs
+      summary: JFrog List JPDs
+      description: Returns a list of all managed JFrog Platform Deployments.
+      tags:
+      - JPDs
+      responses:
+        '200':
+          description: JPDs list retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/JPD'
+    post:
+      operationId: addJPD
+      summary: JFrog Add JPD
+      description: Adds a new JFrog Platform Deployment to Mission Control.
+      tags:
+      - JPDs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JPDRequest'
+      responses:
+        '201':
+          description: JPD added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JPD'
+  /v3/jpds/{jpdId}:
+    get:
+      operationId: getJPD
+      summary: JFrog Get JPD
+      description: Returns details for a specific JPD.
+      tags:
+      - JPDs
+      parameters:
+      - name: jpdId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: JPD ID
+      responses:
+        '200':
+          description: JPD details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JPD'
+    put:
+      operationId: updateJPD
+      summary: JFrog Update JPD
+      description: Updates JPD configuration.
+      tags:
+      - JPDs
+      parameters:
+      - name: jpdId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: JPD ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JPDRequest'
+      responses:
+        '200':
+          description: JPD updated
+    delete:
+      operationId: removeJPD
+      summary: JFrog Remove JPD
+      description: Removes a JPD from Mission Control management.
+      tags:
+      - JPDs
+      parameters:
+      - name: jpdId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: JPD ID
+      responses:
+        '204':
+          description: JPD removed
+components:
+  schemas:
+    JPDRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        token:
+          type: string
+          description: Admin access token for the JPD
+        location:
+          type: object
+          properties:
+            city_name:
+              type: string
+            country_code:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+      required:
+      - name
+      - url
+      - token
+    JPD:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        location:
+          type: object
+          properties:
+            city_name:
+              type: string
+            country_code:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+        status:
+          type: string
+          enum:
+          - online
+          - offline
+          - unavailable
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              service_type:
+                type: string
+              version:
+                type: string
+              status:
+                type: string
+        created:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

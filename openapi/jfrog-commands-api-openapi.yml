@@ -1,0 +1,147 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens Commands API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Commands
+  description: Remote command execution on devices
+paths:
+  /projects/{projectId}/commands:
+    post:
+      operationId: executeCommand
+      summary: JFrog Execute Remote Command
+      description: Executes a command on specified devices.
+      tags:
+      - Commands
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommandRequest'
+      responses:
+        '200':
+          description: Command execution initiated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  command_id:
+                    type: string
+                  status:
+                    type: string
+  /projects/{projectId}/commands/{commandId}:
+    get:
+      operationId: getCommandStatus
+      summary: JFrog Get Command Status
+      description: Returns the status and results of a remote command execution.
+      tags:
+      - Commands
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Project ID
+      - name: commandId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Command ID
+      responses:
+        '200':
+          description: Command status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  command_id:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - pending
+                    - running
+                    - completed
+                    - failed
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        device_id:
+                          type: string
+                        status:
+                          type: string
+                        output:
+                          type: string
+                        exit_code:
+                          type: integer
+components:
+  schemas:
+    CommandRequest:
+      type: object
+      properties:
+        command:
+          type: string
+          description: The command to execute
+        device_ids:
+          type: array
+          items:
+            type: string
+        group_ids:
+          type: array
+          items:
+            type: string
+        timeout_seconds:
+          type: integer
+          default: 30
+      required:
+      - command
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api

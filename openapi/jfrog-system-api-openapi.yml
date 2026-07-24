@@ -1,0 +1,193 @@
+openapi: 3.1.0
+info:
+  title: JFrog Access REST Access Tokens System API
+  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  version: 2.x
+  contact:
+    name: JFrog
+    url: https://jfrog.com
+  license:
+    name: Proprietary
+    url: https://jfrog.com/terms-of-service/
+  termsOfService: https://jfrog.com/terms-of-service/
+servers:
+- url: https://{server}.jfrog.io/access
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: System
+  description: Access service system information
+paths:
+  /api/v1/system/ping:
+    get:
+      operationId: systemPing
+      summary: JFrog System Ping
+      description: Returns a simple health check response indicating the Access service is operational.
+      tags:
+      - System
+      responses:
+        '200':
+          description: Access service is accessible
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+  /api/v1/system/version:
+    get:
+      operationId: getSystemVersion
+      summary: JFrog Get System Version
+      description: Returns the Access service version and revision information.
+      tags:
+      - System
+      responses:
+        '200':
+          description: Version information retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  revision:
+                    type: string
+  /v1/system/ping:
+    get:
+      operationId: systemPing
+      summary: JFrog System Ping
+      description: Returns a simple health check response.
+      tags:
+      - System
+      responses:
+        '200':
+          description: Distribution is accessible
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+  /v1/system/version:
+    get:
+      operationId: getSystemVersion
+      summary: JFrog Get System Version
+      description: Returns Mission Control version information.
+      tags:
+      - System
+      responses:
+        '200':
+          description: Version info retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  revision:
+                    type: string
+  /v1/system/info:
+    get:
+      operationId: getSystemInfo
+      summary: JFrog Get System Info
+      description: Returns Pipelines system information and version.
+      tags:
+      - System
+      responses:
+        '200':
+          description: System info retrieved
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  serviceId:
+                    type: string
+  /router/api/v1/system/ping:
+    get:
+      operationId: routerPing
+      summary: JFrog Platform Router Ping
+      description: Returns a simple health check from the JFrog Platform router.
+      tags:
+      - System
+      responses:
+        '200':
+          description: Platform is accessible
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+  /router/api/v1/system/health:
+    get:
+      operationId: getSystemHealth
+      summary: JFrog Get System Health
+      description: Returns health status of all JFrog services.
+      tags:
+      - System
+      responses:
+        '200':
+          description: System health retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemHealth'
+components:
+  schemas:
+    SystemHealth:
+      type: object
+      properties:
+        router:
+          type: object
+          properties:
+            node_id:
+              type: string
+            state:
+              type: string
+            message:
+              type: string
+        services:
+          type: array
+          items:
+            type: object
+            properties:
+              service_id:
+                type: string
+              node_id:
+                type: string
+              state:
+                type: string
+                enum:
+                - HEALTHY
+                - DEGRADED
+                - UNHEALTHY
+              message:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Access token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic username/password authentication
+externalDocs:
+  description: JFrog Access REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
