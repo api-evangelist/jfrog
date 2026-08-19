@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens System & Configuration API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System & Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog System Health Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/system/ping"
+          },
+          "docs": "Returns a simple status response indicating whether Artifactory is accessible."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Version Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/system/version"
+          },
+          "docs": "Returns version and build information for the Artifactory instance."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/system/configuration"
+          },
+          "docs": "Returns the full system configuration as an XML descriptor."
+        },
+        {
+          "info": {
+            "name": "JFrog Update System Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{server}.jfrog.io/access/api/system/configuration"
+          },
+          "docs": "Applies a partial update to the system configuration using a YAML payload."
+        },
+        {
+          "info": {
+            "name": "JFrog Get License Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/system/licenses"
+          },
+          "docs": "Returns the installed license details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

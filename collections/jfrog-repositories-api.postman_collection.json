@@ -1,0 +1,921 @@
+{
+  "item": [
+    {
+      "id": "8674f72a-6d0d-4545-a63b-258dfc8c1e9b",
+      "name": "Repositories",
+      "description": {
+        "content": "Create, read, update, and delete repositories",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a702ea7-8f49-45b1-99a8-1a939b47770e",
+          "name": "JFrog List All Repositories",
+          "request": {
+            "name": "JFrog List All Repositories",
+            "description": {
+              "content": "Returns a list of all repositories with minimal information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repositories"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by repository type"
+                },
+                {
+                  "disabled": false,
+                  "key": "packageType",
+                  "value": "<string>",
+                  "description": "Filter by package type (e.g., maven, npm, docker)"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1dae38ca-a115-44a6-aff0-cecbcd0ecc34",
+              "name": "Repository list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "packageType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"key\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"http://GJzLjlzOGcgEaPQbGeriHoSMFSzXPGTyH.eaXSMx-3m7LMuNEIcmAbc.9yLhNQbMRLEa9d+YlGQ6PCmkhbMNVj4Y52j\",\n    \"packageType\": \"string\"\n  },\n  {\n    \"key\": \"string\",\n    \"description\": \"string\",\n    \"type\": \"string\",\n    \"url\": \"https://NKfJwWtxLEGmFPiPZcfX.hgshxMHu4RzC0TP,PPwydbvfSlAdRnMCi8mfMJJJfRTl5qtU4vReYGU,d-1Nxs4Rhf3LG98v\",\n    \"packageType\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78ed6154-1940-4259-ac47-6e021293ed35",
+          "name": "JFrog Get Repository Configuration",
+          "request": {
+            "name": "JFrog Get Repository Configuration",
+            "description": {
+              "content": "Returns the full configuration for a specific repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repositories",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c830800-bebe-4c22-9fdf-e278e2c7c037",
+              "name": "Repository configuration retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key\": \"string\",\n  \"rclass\": \"virtual\",\n  \"packageType\": \"string\",\n  \"description\": \"string\",\n  \"notes\": \"string\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"string\",\n  \"repoLayoutRef\": \"string\",\n  \"handleReleases\": true,\n  \"handleSnapshots\": true,\n  \"maxUniqueSnapshots\": 1803,\n  \"suppressPomConsistencyChecks\": false,\n  \"blackedOut\": true,\n  \"propertySets\": [\n    \"string\",\n    \"string\"\n  ],\n  \"xrayIndex\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03d22ff1-7461-474d-a86d-3b9bc68e33c1",
+              "name": "Repository not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0363d4d-ed90-4b86-8100-dd28506a4505",
+          "name": "JFrog Create Repository",
+          "request": {
+            "name": "JFrog Create Repository",
+            "description": {
+              "content": "Creates a new repository with the specified configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repositories",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"rclass\": \"<string>\",\n  \"packageType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"<string>\",\n  \"repoLayoutRef\": \"<string>\",\n  \"handleReleases\": \"<boolean>\",\n  \"handleSnapshots\": \"<boolean>\",\n  \"maxUniqueSnapshots\": \"<integer>\",\n  \"suppressPomConsistencyChecks\": \"<boolean>\",\n  \"blackedOut\": \"<boolean>\",\n  \"propertySets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"xrayIndex\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d338fe4-89a6-4b88-8a96-0b9ef5704443",
+              "name": "Repository created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"rclass\": \"<string>\",\n  \"packageType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"<string>\",\n  \"repoLayoutRef\": \"<string>\",\n  \"handleReleases\": \"<boolean>\",\n  \"handleSnapshots\": \"<boolean>\",\n  \"maxUniqueSnapshots\": \"<integer>\",\n  \"suppressPomConsistencyChecks\": \"<boolean>\",\n  \"blackedOut\": \"<boolean>\",\n  \"propertySets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"xrayIndex\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "38c08a7a-73d6-4f18-98ad-6bc179d1c797",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"rclass\": \"<string>\",\n  \"packageType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"<string>\",\n  \"repoLayoutRef\": \"<string>\",\n  \"handleReleases\": \"<boolean>\",\n  \"handleSnapshots\": \"<boolean>\",\n  \"maxUniqueSnapshots\": \"<integer>\",\n  \"suppressPomConsistencyChecks\": \"<boolean>\",\n  \"blackedOut\": \"<boolean>\",\n  \"propertySets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"xrayIndex\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4c7e6fc3-a30b-4633-8b1d-106811762758",
+              "name": "Repository already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"rclass\": \"<string>\",\n  \"packageType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"<string>\",\n  \"repoLayoutRef\": \"<string>\",\n  \"handleReleases\": \"<boolean>\",\n  \"handleSnapshots\": \"<boolean>\",\n  \"maxUniqueSnapshots\": \"<integer>\",\n  \"suppressPomConsistencyChecks\": \"<boolean>\",\n  \"blackedOut\": \"<boolean>\",\n  \"propertySets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"xrayIndex\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a507390b-ec02-41d4-8d61-7ff91c4701aa",
+          "name": "JFrog Update Repository Configuration",
+          "request": {
+            "name": "JFrog Update Repository Configuration",
+            "description": {
+              "content": "Updates configuration of an existing repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repositories",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key\": \"<string>\",\n  \"rclass\": \"<string>\",\n  \"packageType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"<string>\",\n  \"repoLayoutRef\": \"<string>\",\n  \"handleReleases\": \"<boolean>\",\n  \"handleSnapshots\": \"<boolean>\",\n  \"maxUniqueSnapshots\": \"<integer>\",\n  \"suppressPomConsistencyChecks\": \"<boolean>\",\n  \"blackedOut\": \"<boolean>\",\n  \"propertySets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"xrayIndex\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef67c5be-e74d-46e0-9723-34449ac1f3ca",
+              "name": "Repository updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"rclass\": \"<string>\",\n  \"packageType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"<string>\",\n  \"repoLayoutRef\": \"<string>\",\n  \"handleReleases\": \"<boolean>\",\n  \"handleSnapshots\": \"<boolean>\",\n  \"maxUniqueSnapshots\": \"<integer>\",\n  \"suppressPomConsistencyChecks\": \"<boolean>\",\n  \"blackedOut\": \"<boolean>\",\n  \"propertySets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"xrayIndex\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d68a26b-183f-47d3-ac93-5b1d6bb62a3b",
+              "name": "Repository not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key\": \"<string>\",\n  \"rclass\": \"<string>\",\n  \"packageType\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"includesPattern\": \"**/*\",\n  \"excludesPattern\": \"<string>\",\n  \"repoLayoutRef\": \"<string>\",\n  \"handleReleases\": \"<boolean>\",\n  \"handleSnapshots\": \"<boolean>\",\n  \"maxUniqueSnapshots\": \"<integer>\",\n  \"suppressPomConsistencyChecks\": \"<boolean>\",\n  \"blackedOut\": \"<boolean>\",\n  \"propertySets\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"xrayIndex\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f992430-95ff-42e3-b9f5-7c16681a3269",
+          "name": "JFrog Delete Repository",
+          "request": {
+            "name": "JFrog Delete Repository",
+            "description": {
+              "content": "Removes a repository configuration and optionally deletes its content.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "repositories",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7207c79-4909-4880-a3a6-2bfbacfb6346",
+              "name": "Repository deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c8a86304-002a-49d0-8bac-a58cf2f42c5f",
+              "name": "Repository not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "repositories",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "512ae5ca-1239-49bf-aa5b-4bab30466804",
+    "name": "JFrog Access REST Access Tokens Repositories API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

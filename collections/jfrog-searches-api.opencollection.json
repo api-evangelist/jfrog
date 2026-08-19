@@ -1,0 +1,165 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Searches API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Searches",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Execute AQL Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/search/aql"
+          },
+          "docs": "Executes an Artifactory Query Language (AQL) search query."
+        },
+        {
+          "info": {
+            "name": "JFrog GAVC Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/search/gavc",
+            "params": [
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Group ID"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Artifact ID"
+              },
+              {
+                "name": "v",
+                "value": "",
+                "type": "query",
+                "description": "Version"
+              },
+              {
+                "name": "c",
+                "value": "",
+                "type": "query",
+                "description": "Classifier"
+              },
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories to search"
+              }
+            ]
+          },
+          "docs": "Search for artifacts by Maven coordinates (GroupId, ArtifactId, Version, Classifier)."
+        },
+        {
+          "info": {
+            "name": "JFrog Property Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/search/prop",
+            "params": [
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories to search"
+              }
+            ]
+          },
+          "docs": "Search for artifacts by property values."
+        },
+        {
+          "info": {
+            "name": "JFrog Checksum Search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/search/checksum",
+            "params": [
+              {
+                "name": "sha1",
+                "value": "",
+                "type": "query",
+                "description": "SHA1 checksum to search for"
+              },
+              {
+                "name": "sha256",
+                "value": "",
+                "type": "query",
+                "description": "SHA256 checksum to search for"
+              },
+              {
+                "name": "md5",
+                "value": "",
+                "type": "query",
+                "description": "MD5 checksum to search for"
+              },
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories to search"
+              }
+            ]
+          },
+          "docs": "Search for artifacts by their checksum values."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Latest Artifact Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/search/latestVersion",
+            "params": [
+              {
+                "name": "g",
+                "value": "",
+                "type": "query",
+                "description": "Group ID"
+              },
+              {
+                "name": "a",
+                "value": "",
+                "type": "query",
+                "description": "Artifact ID"
+              },
+              {
+                "name": "repos",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of repositories"
+              }
+            ]
+          },
+          "docs": "Returns the latest version of an artifact by group and artifact ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

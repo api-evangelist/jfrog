@@ -1,0 +1,187 @@
+# JFrog Connect Documentation
+
+## Get to Know
+
+- [JFrog Connect Overview](https://docs.connect.jfrog.io/overview/readme.md): JFrog Connect overview and user documentation
+- [Architecture Overview](https://docs.connect.jfrog.io/overview/readme/architecture.md): JFrog Connect was designed by and for developers of edge devices in a wide range of industries.
+- [Connect Agent](https://docs.connect.jfrog.io/overview/readme/architecture/agent.md): JFrog Connect Agent is a lightweight software service that keeps your devices connected 24/7. When you register a device with JFrog Connect, the Connect Agent is installed on the device.
+- [Connect & JFrog Platform](https://docs.connect.jfrog.io/overview/readme/architecture/connect-and-jfrog-platform.md): JFrog Platform integration with Connect makes edge devices first-class citizens in a DevOps pipeline, ensuring speed, reliability, and security of software updates with device management at scale.
+- [Plan Your Update Strategy](https://docs.connect.jfrog.io/overview/readme/plan-your-update-strategy.md): Plan the big picture, your software update strategy using JFrog Connect.
+- [Software Update Objectives & Concepts](https://docs.connect.jfrog.io/overview/readme/plan-your-update-strategy/software-update-objectives-and-concepts.md): This page describes the major objectives of the JFrog Connect methodology for deploying software updates and describes key concepts for using Connect.
+- [Software Update Process & Procedures](https://docs.connect.jfrog.io/overview/readme/plan-your-update-strategy/software-update-process-and-procedures.md): This page describes the major steps in updating your edge device software. Once you are set up with JFrog Connect, updating software on your devices becomes a simple and reliable process.
+- [Create JFrog Connect Account](https://docs.connect.jfrog.io/get-started/getting-started.md): To get started with a JFrog Connect account, contact us at JFrog.
+- [Log in to JFrog Connect](https://docs.connect.jfrog.io/get-started/log-in-to-jfrog-connect.md): Two ways to log in to JFrog Connect.
+- [Network Requirements](https://docs.connect.jfrog.io/get-started/network.md): High-level overview of JFrog Connect network specifications.
+- [Register Device](https://docs.connect.jfrog.io/get-started/register-device-agent-7.0.md): Connect a single device using the wget command on your device.
+- [Register Device (Agent 6.x & lower)](https://docs.connect.jfrog.io/get-started/register-device-agent-7.0/register-linux-edge-device.md): This procedure is applicable for registering a device with Connect Agent version 6.x or lower.
+- [Device Registration Troubleshooting](https://docs.connect.jfrog.io/get-started/register-device-agent-7.0/linux-device-registration.md)
+- [What's New?](https://docs.connect.jfrog.io/releases/whats-new.md): JFrog Connect feature releases and updates.
+- [New User Interface](https://docs.connect.jfrog.io/releases/new-user-interface.md): Learn about the user interface changes in JFrog Connect.
+- [Connect Agent Release Notes](https://docs.connect.jfrog.io/releases/connect-agent-release-notes.md): Information about JFrog Connect Agent releases.
+- [Connect Server Status](https://docs.connect.jfrog.io/reference/connect-server-status.md): Check the JFrog Connect server status.
+- [Glossary](https://docs.connect.jfrog.io/reference/glossary.md): JFrog Connect glossary of terms and concepts
+- [FAQ](https://docs.connect.jfrog.io/reference/faq.md): Frequently asked questions and answers about JFrog Connect
+- [Contact Support](https://docs.connect.jfrog.io/reference/contact-support.md): Contact JFrog Support from JFrog Connect
+
+## Features
+
+- [Register Devices at Scale](https://docs.connect.jfrog.io/features-new-ui/account-management/register-linux-devices-at-scale.md): There are a few ways to register a whole fleet of devices. This page provides an overview and describes two simple methods.
+- [Freeze Image on Device](https://docs.connect.jfrog.io/features-new-ui/account-management/register-linux-devices-at-scale/freeze-image-on-device.md): When scaling to production, provisioning each device manually could be a time-consuming task. JFrog Connect enables you to register devices automatically by embedding the Connect Agent in your device.
+- [Build Image with Agent](https://docs.connect.jfrog.io/features-new-ui/account-management/register-linux-devices-at-scale/registering-yocto-image.md): This page describes how to insert the Connect Agent into an OS image build in order to deploy JFrog Connect to a large number of devices.
+- [Register & Update Device at Once](https://docs.connect.jfrog.io/features-new-ui/account-management/device-registration-and-deployment.md): Learn how to register a device and deploy an update at the same time.
+- [Organize Your Account](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet.md): JFrog Connect uses fleets and groups as a way to manage large device accounts. This is an introduction to fleets, groups, and other ways of segmenting your account into manageable subsets of devices.
+- [Create Fleet](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/create-project.md): Use Fleets to set up completely separate environments within your JFrog Connect account. This page describes how to create and configure a fleet.
+- [Move a Device](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/move-a-device.md): A quick way to move a single device from one fleet to another in JFrog Connect.
+- [Move Many Devices](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/move-a-device/move-many-devices.md): Move one or more devices from one JFrog Connect fleet to another.
+- [Create Groups](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/create-groups.md): Groups can help you segment your fleet into manageable subsets of devices. This page describes how to create a group in JFrog Connect.
+- [Add Device to Group](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/create-groups/add-device-to-group.md): Here is a quick way to add a device to a group in JFrog Connect.
+- [Add Many Devices to Group](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/create-groups/add-many-devices-to-group.md): Here is a quick way to add multiple devices or just a single device to a group in JFrog Connect.
+- [Change Group Name](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/create-groups/change-group-name.md): Change the name of a group in JFrog Connect.
+- [Delete Group](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/create-groups/delete-group.md): Delete a group in JFrog Connect.
+- [Tag Devices](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/tag-devices.md): Tags enable you to create sets of devices that belong to different JFrog Connect groups. You can then filter and perform actions on tagged devices. This page describes how to create tags.
+- [Tag a Single Device](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/tag-devices/tag-a-single-device.md): A quick way to tag a single device in JFrog Connect
+- [Remove Tags](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/tag-devices/remove-a-tag.md): Remove JFrog Connect tags from your edge devices.
+- [Remove Tags from Single Device](https://docs.connect.jfrog.io/features-new-ui/account-management/organize-your-fleet/tag-devices/remove-tags-from-single-device.md): A quick way to remove tags from a single device in JFrog Connect
+- [Fleet Overview](https://docs.connect.jfrog.io/features-new-ui/devices/fleet-overview.md): The Overview page is the dashboard for your JFrog Connect fleet. You can see top level information such as fleet stats, latest device registrations, and distribution of your fleet and deployments.
+- [Choose Your Fleet](https://docs.connect.jfrog.io/features-new-ui/devices/fleet-overview/choose-your-fleet.md): Choose the fleet where you will view data and deploy software updates.
+- [Filter Devices](https://docs.connect.jfrog.io/features-new-ui/devices/fleet-overview/filter-bar.md): JFrog Connect provides a robust filter tool so that you can view data in any slice of your fleet and perform software updates and other actions on any subset of devices that you specify.
+- [Locate Devices](https://docs.connect.jfrog.io/features-new-ui/devices/fleet-overview/map.md): JFrog Connect uses Google Maps to present device locations based on the device IP addresses. You can also set locations manually. Use the map in Connect to locate all your devices.
+- [Device Details](https://docs.connect.jfrog.io/features-new-ui/devices/view-device-details.md): See detailed information about a device and edit device details.
+- [Edit Device Details](https://docs.connect.jfrog.io/features-new-ui/devices/view-device-details/edit-device-details.md): Change some of the basic system configuration settings for a device.
+- [Artifacts on Device](https://docs.connect.jfrog.io/features-new-ui/devices/view-device-details/artifacts-on-device.md): View information about the artifacts on a device and the deployments that downloaded them to the device.
+- [Delete a Device](https://docs.connect.jfrog.io/features-new-ui/devices/view-device-details/remove-a-device.md): To remove (i.e., delete) a device from your JFrog Connect fleet, you need to uninstall the agent from the device and delete the device from the server.
+- [Block Updates](https://docs.connect.jfrog.io/features-new-ui/devices/view-device-details/block-updates-with-update-trigger.md): Prevent a device from receiving software updates.
+- [Create an Update Window](https://docs.connect.jfrog.io/features-new-ui/devices/view-device-details/block-updates-with-update-trigger/create-an-update-window.md): Create update windows on your devices by using the Connect API to block and unblock updates on the device.
+- [Update Connect Agent](https://docs.connect.jfrog.io/features-new-ui/devices/update-connect-agent.md): Update devices to the latest version of JFrog Connect Agent.
+- [Delete Many Devices](https://docs.connect.jfrog.io/features-new-ui/devices/delete-many-devices.md): Delete devices in bulk in JFrog Connect.
+- [Create Update Flow](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow.md): Update Flow is a completely customizable approach to OTA updates. An update flow consists of a set of steps enabling you to build reusable procedures to deploy updates to your devices.
+- [Step Types](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types.md): List and full description of step types you can use to build update flows in JFrog Connect.
+- [Run Command](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/run-command.md): The Run Command step type enables you to run a bash command on your client device.
+- [Run Script](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/run-script.md): The Run Script action enables you to run a bash script on your edge device.
+- [Deploy File](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/deploy-files.md): A simple way to get one or more files quickly onto your device is to use the Deploy Files step type in a JFrog Connect update flow.
+- [Deploy Docker Image](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/use-single-container.md): JFrog Connect enables you to quickly deploy a single Docker image directly to your edge devices.
+- [Get Artifactory Parameters](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/use-single-container/get-artifactory-parameters.md): Get configuration parameters for the Deploy Docker Image step type in JFrog Connect.
+- [Deploy Docker Compose](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/use-docker-compose.md): JFrog Connect integration with Docker Compose enables you to utilize Docker Compose's exceptional capabilities to deploy multiple containers to edge devices.
+- [Clone Git Repository](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/clone-git-repository.md): The Clone Git Repository step type enables you to pull your latest software version from a Git repository directly to your edge devices.
+- [Download Artifact](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/download-artifacts.md): The Download Artifact step type enables you to deploy updates to your devices by specifying a path in JFrog Artifactory to a destination path on your device.
+- [Get Artifactory Path](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/download-artifacts/get-artifactory-path.md): Get the Artifactory Path you need to configure a step in a JFrog Connect workflow.
+- [Download Release Bundle](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/download-release-bundle.md): The Download Release Bundle step type utilizes JFrog’s packaged release cycle to deploy your entire application to your edge devices.
+- [Get Artifactory Parameters for Release Bundle](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/download-release-bundle/get-artifactory-parameters-for-release-bundle.md): Get configuration parameters that you need to configure a release bundle step type in a JFrog Connect workflow.
+- [Update Image](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/update-image.md): In JFrog Connect, you can use the Update Image step type to update edge device images at scale.
+- [Install Debian Package](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/install-debian-package.md): Use JFrog Connect to install and update Debian packages on your edge devices easily and securely.
+- [Get Artifactory Parameters for Debian](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/step-types/install-debian-package/get-artifactory-parameters-for-debian.md): Get configuration parameters that you need to use an Install Debian Package step type in a JFrog Connect workflow.
+- [View Update Flows](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/view-update-flows.md): Get an overview of your update flows and launch a deployment.
+- [Update Parameters](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/use-update-parameters.md): Learn how to maximize the flexibility of your software updates. In this page, you will learn how to parameterize fields when building an update flow and fill in values when you deploy the update.
+- [On Failure & Rollback](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/on-failure-and-rollback.md): In JFrog Connect, you can define what will happen if a step fails, and if a rollback is needed, how the rollback will take place. This ensures that your devices are left in a stable and known state.
+- [Rollback on Failure](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/on-failure-and-rollback/rollback-on-failure.md): Configure the flow-level rollback action for an update flow.
+- [On Failure Policy for Step](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/on-failure-and-rollback/on-failure-policy-for-step.md): Configure the rollback behavior for an individual step in the workflow.
+- [Vulnerability Scans](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/vulnerability-scans.md): JFrog Xray integration with JFrog Connect automatically scans your update content for security vulnerabilities and displays the CVE severities in your update flows, runs, and device artifacts.
+- [Sample Use Case: Build Update Flow for Reuse](https://docs.connect.jfrog.io/features-new-ui/deployments/update-flow/build-update-flow-for-reuse.md): This page describes the detailed procedure for creating an Update Flow that delivers one or more Docker images and uses a Docker Compose YAML file.
+- [Deploy Software](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment.md): This page describes how to deploy a software update once you have created an Update Flow in JFrog Connect.
+- [Set Deployment Tag & Version](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/set-application-and-version.md): In JFrog Connect, deployment tags and their versions serve as a user-defined version control of the software updates deployed to your devices.
+- [Set Alert upon Deployment Failure](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/set-alert-upon-failure.md): You can always view the software update status in the Deployments tab. You can also receive an alert if the software update fails. This page describes how to configure an alert upon failure.
+- [Set Phased Rollout](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/set-phased-rollout.md): Configure a phased rollout for deploying software with JFrog Connect.
+- [View Deployment Progress](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/view-deployment-progress.md): Get a detailed picture of everything you need to know about a software deployment in JFrog Connect.
+- [Detailed Deployment Information](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/view-deployment-progress/detailed-deployment-information.md): Get a detailed picture of everything you need to know about a software deployment in JFrog Connect.
+- [Abort a Deployment](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/view-deployment-progress/abort-a-deployment.md): Stop the update flow for a whole deployment or for a single device only.
+- [Best Practice: Graded Deployments](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/best-practice-deploy-in-groups.md): When you deploy software to your fleet, you can maintain maximum control by deploying first on a test group and then on production groups. This page describes how to do that in JFrog Connect.
+- [Sample Use Case: Deploy Docker Images to Devices](https://docs.connect.jfrog.io/features-new-ui/deployments/update-deployment/deploy-docker-images-to-devices.md): A Deployment associates an Update Flow with a group of devices and defines the triggering that will start the software update.
+- [Remote Tools](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview.md): Use JFrog Connect’s tools for accessing, troubleshooting, and controlling your edge device.
+- [Use Terminal](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/use-terminal.md): JFrog Connect makes it easy to troubleshoot and maintain devices by using remote support tools. This page describes how to use Terminal.
+- [Terminal Troubleshooting](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/use-terminal/remote-control-embedded-linux-ssh.md): Some tips in case you are having trouble using the Terminal feature in JFrog Connect.
+- [Open Port Tunnel Session](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/remote-access.md): Use JFrog Connect’s port tunneling tool to gain access to your edge device.
+- [Access with VNC](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/remote-access/access-with-vnc.md): Use JFrog Connect to enable VNC port tunneling to access and control your edge device.
+- [Connect with SSH](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/remote-access/connect-with-ssh.md): Use JFrog Connect to enable port tunneling in SSH to access and control your edge device.
+- [Access Device Web Applications](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/remote-access/access-device-web-applications.md): Use JFrog Connect to enable port tunneling access to web applications on your edge device.
+- [Run Commands Remotely](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/control-center-remote-ssh-commands.md): With JFrog Connect, you can run a command remotely on one or multiple edge devices. View the command output and save the command to use again later.
+- [Run a Saved Command](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/control-center-remote-ssh-commands/run-a-saved-command.md): Run a saved command in JFrog Connect.
+- [Run Command as Non-Root User](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/control-center-remote-ssh-commands/running-commands-as-user.md): You can run commands remotely on your edge device as a root or non-root user. This procedure shows how to run as non-root.
+- [Create a Saved Command](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/control-center-remote-ssh-commands/create-a-saved-command.md): Create a command and save it to the list of Saved Commands in JFrog Connect.
+- [View Commands](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/control-center-remote-ssh-commands/view-commands.md): View the list of saved commands and the list of commands you have run using JFrog Connect.
+- [Edit or Delete a Command](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/control-center-remote-ssh-commands/edit-or-delete-a-command.md): Edit or delete a command from the list list of Saved Commands in JFrog Connect.
+- [Get Device Files (Fetch Files)](https://docs.connect.jfrog.io/features-new-ui/tools/remote-tools-overview/software-application-logs.md): In JFrog Connect you can easily retrieve logs or other files and folders from your IoT device.
+- [Alerts](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts.md): JFrog Connect sends alerts about your devices. For a device resource or process, you just need to configure an alert channel, such as email or webhook, and define the alert threshold.
+- [Create Channel](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts/create-channel.md): A channel is the medium, such as email or webhook to an application, over which you receive alerts in JFrog Connect. This page describes how to configure channels.
+- [Set Webhook](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts/create-channel/set-webhook.md): Webhooks enable you to send JFrog Connect device alerts to a third-party application or to an application of your own. This page describes how to configure a webhook.
+- [View Configured Channels](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts/create-channel/view-configured-channels.md): View alert channels that have been configured in JFrog Connect.
+- [Create Monitored Process](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts/create-monitored-process.md): Monitor a process and create alerts for conditions you define.
+- [View Monitored Processes](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts/create-monitored-process/view-monitored-processes.md): View monitored processes on your devices with JFrog Connect.
+- [View Configured Alerts](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts/view-configured-alerts.md): View the list of resource and device state alerts you have configured on your devices with JFrog Connect.
+- [View Triggered Alerts](https://docs.connect.jfrog.io/features-new-ui/tools/get-alerts/view-triggered-alerts.md): View the alerts that have been triggered on your devices with JFrog Connect.
+- [Monitor](https://docs.connect.jfrog.io/features-new-ui/tools/monitor.md): Continuous monitoring of your edge devices with JFrog Connect
+- [Resource Monitor](https://docs.connect.jfrog.io/features-new-ui/tools/monitor/linux-resources-monitor.md): The Resource monitor tool lets you view all of your device's resource usage in one place, in real-time.
+- [Process Monitor](https://docs.connect.jfrog.io/features-new-ui/tools/monitor/linux-processes-monitor.md): Monitoring processes whether they are running or not and while receiving alerts accordingly
+
+## Administration
+
+- [Fleet](https://docs.connect.jfrog.io/administration-new-ui/fleet-settings/manage-projects.md): In JFrog Connect's Fleet Settings, the Fleet tab enables you to view and edit the settings of the device fleets in your account.
+- [Delete Fleet](https://docs.connect.jfrog.io/administration-new-ui/fleet-settings/manage-projects/delete-project.md): Delete a fleet in JFrog Connect.
+- [Pairing Tokens](https://docs.connect.jfrog.io/administration-new-ui/fleet-settings/manage-device-project-pairing-tokens.md): Manage your pairing tokens in JFrog Connect.
+- [Create Pairing Token](https://docs.connect.jfrog.io/administration-new-ui/fleet-settings/manage-device-project-pairing-tokens/create-device-project-token.md): Create a new pairing token in JFrog Connect.
+- [Rotate Pairing Token](https://docs.connect.jfrog.io/administration-new-ui/fleet-settings/manage-device-project-pairing-tokens/rotate-device-project-token.md): To keep your security risk low in JFrog Connect, you can rotate the pairing token.
+- [Abort Pairing Token Rotation](https://docs.connect.jfrog.io/administration-new-ui/fleet-settings/manage-device-project-pairing-tokens/abort-token-rotation.md): Stop a Pairing token rotation once it has started.
+- [Revoke Pairing Token](https://docs.connect.jfrog.io/administration-new-ui/fleet-settings/manage-device-project-pairing-tokens/revoke-device-project-token.md): Once you have paired a device with a fleet in JFrog Connect, you can unpair the device by revoking the pairing token.
+- [Account](https://docs.connect.jfrog.io/administration-new-ui/general-settings/account-settings.md): This page describes how to view your JFrog Connect account settings.
+- [Change Password](https://docs.connect.jfrog.io/administration-new-ui/general-settings/account-settings/change-password.md): If you are a JFrog Connect user, you can change your Connect password using the JFrog Platform.
+- [Set MFA](https://docs.connect.jfrog.io/administration-new-ui/general-settings/account-settings/set-mfa.md): If you are a JFrog Connect user, you can use the JFrog Platform to set up multi-factor authentication.
+- [Users](https://docs.connect.jfrog.io/administration-new-ui/general-settings/user-management.md): View list of users in JFrog Connect.
+- [Create Admin User](https://docs.connect.jfrog.io/administration-new-ui/general-settings/user-management/add-user-from-jpd-artifactory.md): New users are created in the JFrog Platform.
+- [Create Non-Admin User](https://docs.connect.jfrog.io/administration-new-ui/general-settings/user-management/add-user-from-jpd-artifactory-1.md): New users are created in the JFrog Platform.
+- [Add User to Fleet](https://docs.connect.jfrog.io/administration-new-ui/general-settings/user-management/add-user-from-jpd-artifactory-1/add-user-to-a-project.md): Add users to a new or existing fleet in JFrog Connect.
+- [Edit Fleet Permissions](https://docs.connect.jfrog.io/administration-new-ui/general-settings/user-management/add-user-from-jpd-artifactory-1/add-user-to-a-project-1.md): Modify the permissions a user has in a fleet. Include or remove users from projects.
+- [Remove User from Fleet](https://docs.connect.jfrog.io/administration-new-ui/general-settings/user-management/add-user-from-jpd-artifactory-1/remove-user-from-project.md): Take a user out of a fleet in JFrog Connect.
+- [Fleet Permission Descriptions](https://docs.connect.jfrog.io/administration-new-ui/general-settings/user-management/add-user-from-jpd-artifactory-1/user-management.md): Descriptions of the fleet permissions that JFrog Connect users can have.
+- [Audit Log](https://docs.connect.jfrog.io/administration-new-ui/general-settings/audit-log.md): The audit log shows a record of user and device events throughout JFrog Connect. This page describes how you can view and filter events in the audit log.
+- [Export Audit Log](https://docs.connect.jfrog.io/administration-new-ui/general-settings/audit-log/export-audit-log.md): In JFrog Connect, you can export the audit log to a file in either CSV or JSON format.
+- [Registry](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry.md): Define registries and access scoping for fleets in JFrog Connect.
+- [Add Artifactory Access Scope](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-artifactory-access-scope.md): Add an access scoping in JFrog Connect.
+- [Edit Artifactory Scope](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-artifactory-access-scope/edit-artifactory-scope.md): Make changes to an access scope in JFrog Connect.
+- [Edit Multiple Artifactory Scopes](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-artifactory-access-scope/edit-multiple-artifactory-scopes.md): Make changes to several scopes with one click in JFrog Connect.
+- [Delete Artifactory Scope](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-artifactory-access-scope/delete-artifactory-scope.md): Delete an access scope in JFrog Connect.
+- [Delete Multiple Artifactory Scopes](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-artifactory-access-scope/delete-multiple-artifactory-scopes.md): Delete several scopes with one click in JFrog Connect.
+- [Add JFrog Registry](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-jfrog-registry.md): Add a JFrog registry to use with JFrog Connect.
+- [Edit JFrog Registry](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-jfrog-registry/edit-jfrog-registry.md): Make changes to the JFrog Registry that JFrog Connect uses.
+- [Delete JFrog Registry](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-jfrog-registry/delete-jfrog-registry.md): Delete a JFrog Registry the JFrog Connect uses.
+- [Add Private Git](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-private-git.md): Use JFrog Connect to link a Git registry to deploy updates directly from your Git to the edge devices.
+- [Delete Private Git](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-private-git/delete-private-git.md): Delete a JFrog Connect link to a private Git registry.
+- [Add Private Docker](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-private-docker.md): Use JFrog Connect to link a Docker registry and deploy updates directly from your container registry to the edge devices.
+- [Delete Private Docker](https://docs.connect.jfrog.io/administration-new-ui/general-settings/registry/add-private-docker/delete-private-docker.md): Delete a JFrog Connect link to a private (non-JFrog) Docker registry.
+- [Allow Proxy](https://docs.connect.jfrog.io/administration-new-ui/general-settings/allow-proxy.md): JFrog Connect allows edge devices that are connected to the network through a proxy to communicate with Connect servers.
+- [Allow Proxy for Remote Communication](https://docs.connect.jfrog.io/administration-new-ui/general-settings/allow-proxy/allow-proxy-for-remote-communication.md): JFrog Connect allows edge devices to use a proxy to communicate with the servers to use Remote Control and Remote Commands features.
+- [General Terms of Service](https://docs.connect.jfrog.io/administration-new-ui/terms-of-service/general-terms-of-service.md): JFROG CONNECT, Updated as of: January 9, 2022​
+
+## Developers
+
+- [Connect API Reference](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference.md): JFrog Connect REST API v2
+- [Devices](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/devices.md): JFrog Connect API requests that act on the edge device or retrieve information from one or more devices.
+- [Update Flows](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/update-flows.md): JFrog Connect API requests for creating and managing update flows.
+- [Deployments](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/deployments.md): JFrog Connect API requests that deploy software, retrieve information about deployments, or abort deployments.
+- [Device Files](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/device-files.md): JFrog Connect API request to retrieve files and folders (such as logs) from devices.
+- [Port Tunneling](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/port-tunneling.md): JFrog Connect API requests to support port tunneling.
+- [API Reference v1 (Legacy)](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview.md)
+- [Device state](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/device-state.md)
+- [Bulk device states](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/bulk-devices-state.md)
+- [Get devices details](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/devices-details.md)
+- [Change devices details](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/change-devices-details.md)
+- [Deploy Update](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/deploy-update.md)
+- [Update Trigger](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/update-trigger.md)
+- [Tags](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/device-tags.md)
+- [Apps](https://docs.connect.jfrog.io/developers/api-reference/connect-api-reference/overview/device-apps.md)
+- [Create Access Token](https://docs.connect.jfrog.io/developers/api-reference/create-access-token.md): You need an access token to use the JFrog Connect API. This page describes how to get tokens for Connect API v2.
+- [Create Access Token - New UI](https://docs.connect.jfrog.io/developers/api-reference/create-access-token-1.md): You need an access token to use the JFrog Connect API. This page describes how to get tokens for Connect API v2 and is for users with the new web UI.
+
+
+---
+
+# Agent Instructions
+This documentation is published with GitBook. GitBook is the documentation platform designed so that both humans and AI agents can read, navigate, and reason over technical content effectively. Learn more at gitbook.com.
+
+## Querying This Documentation
+If you need additional information, you can query the documentation dynamically by asking a question.
+Perform an HTTP GET request on a page URL with the `ask` query parameter:
+```
+GET https://docs.connect.jfrog.io/overview/readme.md?ask=<question>
+```
+The question should be specific, self-contained, and written in natural language.
+The response will contain a direct answer to the question and relevant excerpts and sources from the documentation.
+Use this mechanism when the answer is not explicitly present in the current page, you need clarification or additional context, or you want to retrieve related documentation sections.

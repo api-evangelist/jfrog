@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Scripts API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scripts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Scripts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/scripts"
+          },
+          "docs": "Returns a list of all available execution scripts."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v1/scripts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new execution script."
+        },
+        {
+          "info": {
+            "name": "JFrog Execute Script",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v1/scripts/:scriptName/execute",
+            "params": [
+              {
+                "name": "scriptName",
+                "value": "",
+                "type": "path",
+                "description": "Script name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a script on specified JPDs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

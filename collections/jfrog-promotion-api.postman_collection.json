@@ -1,0 +1,293 @@
+{
+  "item": [
+    {
+      "id": "b75505c4-2dd4-4600-af30-5425b717824b",
+      "name": "Promotion",
+      "description": {
+        "content": "Promote release bundles through environments",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83e55610-83d2-49ce-8626-82595d44d746",
+          "name": "JFrog Get Promotion Status",
+          "request": {
+            "name": "JFrog Get Promotion Status",
+            "description": {
+              "content": "Returns the promotion status and history for a release bundle version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "promotion",
+                "records",
+                ":name",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Release bundle name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release bundle version"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c113fbce-0471-473a-8a24-6cbbfd48123d",
+              "name": "Promotion status retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "promotion",
+                    "records",
+                    ":name",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Release bundle name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release bundle version"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"current_environment\": \"string\",\n  \"promotions\": [\n    {\n      \"status\": \"IN_PROGRESS\",\n      \"environment\": \"string\",\n      \"created\": \"2009-06-16T09:51:23.806Z\",\n      \"created_by\": \"string\"\n    },\n    {\n      \"status\": \"COMPLETED\",\n      \"environment\": \"string\",\n      \"created\": \"2019-06-23T11:16:59.890Z\",\n      \"created_by\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c70c452c-dbce-4e67-a7c6-c1ebc79be17b",
+          "name": "JFrog Promote Release Bundle",
+          "request": {
+            "name": "JFrog Promote Release Bundle",
+            "description": {
+              "content": "Promotes a release bundle to a target environment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "promotion"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"environment\": \"<string>\",\n  \"included_repository_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"overwrite_existing_artifacts\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc02fbc0-ff68-4ef1-8076-515df79f1ba9",
+              "name": "Promotion initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "promotion"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"release_bundle_name\": \"<string>\",\n  \"release_bundle_version\": \"<string>\",\n  \"environment\": \"<string>\",\n  \"included_repository_keys\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"overwrite_existing_artifacts\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"promotion_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5337b898-f150-48fe-971c-f35e86a8da87",
+    "name": "JFrog Access REST Access Tokens Promotion API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

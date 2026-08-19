@@ -1,0 +1,1468 @@
+{
+  "item": [
+    {
+      "id": "63f3437c-8f00-4048-bf05-62c20c302b6f",
+      "name": "Artifacts & Storage",
+      "description": {
+        "content": "Deploy, retrieve, copy, move, and delete artifacts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eaf06a6a-251d-47af-a54a-fddaccd92cef",
+          "name": "JFrog Get File or Folder Info",
+          "request": {
+            "name": "JFrog Get File or Folder Info",
+            "description": {
+              "content": "Returns storage information for a file or folder including size, checksums, and metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "storage",
+                ":repoKey",
+                ":itemPath"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemPath",
+                  "description": "(Required) Path to the item within the repository"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02d00b2b-5a6f-4d5f-a3a5-8c2f7b69d42b",
+              "name": "Item info retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "storage",
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path to the item within the repository"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repo\": \"string\",\n  \"path\": \"string\",\n  \"created\": \"1980-08-30T20:56:21.824Z\",\n  \"createdBy\": \"string\",\n  \"lastModified\": \"1982-04-11T15:58:07.074Z\",\n  \"modifiedBy\": \"string\",\n  \"lastUpdated\": \"1949-03-21T13:17:53.978Z\",\n  \"downloadUri\": \"http://RavFNvvGbmvWl.phyudfCSN1Q+u8Y0O.KM7MG\",\n  \"mimeType\": \"string\",\n  \"size\": \"string\",\n  \"checksums\": {\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"md5\": \"string\"\n  },\n  \"originalChecksums\": {\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"md5\": \"string\"\n  },\n  \"uri\": \"http://uIGEjOgeWxkubtMRxv.hyhR0WQ1hUGWjKdfu5q,BZeWBrC1I31RKbol8iZzrbE9nEzdLkCzm.9RXe4hkEwX8RkpTYSHQxruC\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40621f03-a285-4042-b4d8-447bde6d8615",
+              "name": "Item not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "storage",
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path to the item within the repository"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bde2006-7655-4521-8e2d-39c5cee3121f",
+          "name": "JFrog Get Repository Storage Summary",
+          "request": {
+            "name": "JFrog Get Repository Storage Summary",
+            "description": {
+              "content": "Returns storage summary for the specified repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "storage",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da2b7879-edf8-4410-8943-7cd10ba9f0e7",
+              "name": "Repository storage info retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "storage",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repo\": \"string\",\n  \"path\": \"string\",\n  \"created\": \"1985-02-05T00:14:09.912Z\",\n  \"createdBy\": \"string\",\n  \"lastModified\": \"2014-09-23T12:55:50.514Z\",\n  \"modifiedBy\": \"string\",\n  \"lastUpdated\": \"2016-06-06T12:54:11.091Z\",\n  \"children\": [\n    {\n      \"uri\": \"string\",\n      \"folder\": true\n    },\n    {\n      \"uri\": \"string\",\n      \"folder\": false\n    }\n  ],\n  \"uri\": \"http://zgihkYSFYsTaeP.zzaQdtbIkZTLHhm2yqRUf4Po3LHi2N0lyn-nw\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e6f0bb43-33cd-49d9-94f5-8f518c97cc79",
+          "name": "JFrog Get Storage Summary",
+          "request": {
+            "name": "JFrog Get Storage Summary",
+            "description": {
+              "content": "Returns storage summary information about repositories, binaries, and file store.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "storageinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26022011-c637-4a63-93b3-2748dda760ae",
+              "name": "Storage summary retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "storageinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"binariesSummary\": {\n    \"binariesCount\": \"string\",\n    \"binariesSize\": \"string\",\n    \"artifactsSize\": \"string\",\n    \"optimization\": \"string\",\n    \"itemsCount\": \"string\"\n  },\n  \"fileStoreSummary\": {\n    \"storageType\": \"string\",\n    \"storageDirectory\": \"string\",\n    \"totalSpace\": \"string\",\n    \"usedSpace\": \"string\",\n    \"freeSpace\": \"string\"\n  },\n  \"repositoriesSummaryList\": [\n    {\n      \"repoKey\": \"string\",\n      \"repoType\": \"string\",\n      \"foldersCount\": 5589,\n      \"filesCount\": 7336,\n      \"usedSpace\": \"string\",\n      \"itemsCount\": 708,\n      \"packageType\": \"string\",\n      \"percentage\": \"string\"\n    },\n    {\n      \"repoKey\": \"string\",\n      \"repoType\": \"string\",\n      \"foldersCount\": 7539,\n      \"filesCount\": 22,\n      \"usedSpace\": \"string\",\n      \"itemsCount\": 6426,\n      \"packageType\": \"string\",\n      \"percentage\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee5596ba-6041-4fcf-a9bd-6dbc22d8f87d",
+          "name": "JFrog Retrieve Artifact",
+          "request": {
+            "name": "JFrog Retrieve Artifact",
+            "description": {
+              "content": "Downloads an artifact or returns folder info from the specified repository path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":repoKey",
+                ":itemPath"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemPath",
+                  "description": "(Required) Path to the artifact"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31d09701-24a9-4cff-b304-89cd816738cb",
+              "name": "Artifact retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path to the artifact"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1a09677-5d5a-4ec4-a28b-07b168522367",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path to the artifact"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "07c2e177-759f-4faf-80c7-330ebf806de9",
+          "name": "JFrog Deploy Artifact",
+          "request": {
+            "name": "JFrog Deploy Artifact",
+            "description": {
+              "content": "Deploys an artifact to the specified repository path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":repoKey",
+                ":itemPath"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemPath",
+                  "description": "(Required) Path for the artifact"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "SHA1 checksum of the artifact",
+                "key": "X-Checksum-Sha1",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "SHA256 checksum of the artifact",
+                "key": "X-Checksum-Sha256",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "MD5 checksum of the artifact",
+                "key": "X-Checksum-Md5",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<binary>"
+            }
+          },
+          "response": [
+            {
+              "id": "11d5e4e4-dea7-4d7a-bbaf-7e4f9bae9ab0",
+              "name": "Artifact deployed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path for the artifact"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SHA1 checksum of the artifact",
+                    "key": "X-Checksum-Sha1",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SHA256 checksum of the artifact",
+                    "key": "X-Checksum-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "MD5 checksum of the artifact",
+                    "key": "X-Checksum-Md5",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repo\": \"string\",\n  \"path\": \"string\",\n  \"created\": \"2018-08-07T15:21:16.536Z\",\n  \"createdBy\": \"string\",\n  \"downloadUri\": \"https://svVIdyixedvwFMmueOXziuTlbyTLXK.lbcclpFrY.GEBAzl1IbOsHHmO0KWfzh0PWfg2awHeJv-awI-ZRl3H1KjiUpNfK3Isz\",\n  \"mimeType\": \"string\",\n  \"size\": 8718,\n  \"checksums\": {\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"md5\": \"string\"\n  },\n  \"originalChecksums\": {\n    \"sha1\": \"string\",\n    \"sha256\": \"string\",\n    \"md5\": \"string\"\n  },\n  \"uri\": \"http://zqWKBUfwgaaqxwTggqkvaIqYQsieyk.xwljsjEINzAk0FBDgJLP5gS7AH1y5+shVHkV6LoLbhUuD.1HphK3i9xiE\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5413bce9-8ead-44e7-a276-d9740a18b0ba",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path for the artifact"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SHA1 checksum of the artifact",
+                    "key": "X-Checksum-Sha1",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SHA256 checksum of the artifact",
+                    "key": "X-Checksum-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "MD5 checksum of the artifact",
+                    "key": "X-Checksum-Md5",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35d60a70-daac-4935-8682-a53d6cee32bd",
+              "name": "Conflict - artifact already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path for the artifact"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SHA1 checksum of the artifact",
+                    "key": "X-Checksum-Sha1",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "SHA256 checksum of the artifact",
+                    "key": "X-Checksum-Sha256",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "MD5 checksum of the artifact",
+                    "key": "X-Checksum-Md5",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffcf5ddb-da4f-49ea-a0dc-69a8af9a025a",
+          "name": "JFrog Delete Artifact",
+          "request": {
+            "name": "JFrog Delete Artifact",
+            "description": {
+              "content": "Deletes an artifact or folder from the specified repository path.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ":repoKey",
+                ":itemPath"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "itemPath",
+                  "description": "(Required) Path to the artifact"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0ef8e686-ab8e-463d-9358-4f56c8232bf1",
+              "name": "Artifact deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path to the artifact"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd750100-2786-4cc0-b651-676bfa490a72",
+              "name": "Artifact not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ":repoKey",
+                    ":itemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "itemPath",
+                      "description": "(Required) Path to the artifact"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b07b3af6-811f-480e-a11f-aab6b7be911c",
+          "name": "JFrog Copy Artifact",
+          "request": {
+            "name": "JFrog Copy Artifact",
+            "description": {
+              "content": "Copies an artifact or folder to a new location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "copy",
+                ":srcRepoKey",
+                ":srcItemPath"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Target path in the format repoKey/path"
+                },
+                {
+                  "disabled": false,
+                  "key": "dry",
+                  "value": "0",
+                  "description": "Dry run mode (1=dry run, 0=execute)"
+                },
+                {
+                  "disabled": false,
+                  "key": "suppressLayouts",
+                  "value": "0",
+                  "description": "Suppress cross-layout translations"
+                },
+                {
+                  "disabled": false,
+                  "key": "failFast",
+                  "value": "0",
+                  "description": "Fail on first error"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "srcRepoKey",
+                  "description": "(Required) Source repository key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "srcItemPath",
+                  "description": "(Required) Source item path"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a898bba2-1090-4c83-b59e-b1d00afd3e91",
+              "name": "Copy completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "copy",
+                    ":srcRepoKey",
+                    ":srcItemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dry",
+                      "value": "0"
+                    },
+                    {
+                      "key": "suppressLayouts",
+                      "value": "0"
+                    },
+                    {
+                      "key": "failFast",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "srcRepoKey",
+                      "description": "(Required) Source repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "srcItemPath",
+                      "description": "(Required) Source item path"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"level\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"level\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6aea7e70-8e5a-4463-a757-36ec118f3e67",
+          "name": "JFrog Move Artifact",
+          "request": {
+            "name": "JFrog Move Artifact",
+            "description": {
+              "content": "Moves an artifact or folder to a new location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "move",
+                ":srcRepoKey",
+                ":srcItemPath"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Target path in the format repoKey/path"
+                },
+                {
+                  "disabled": false,
+                  "key": "dry",
+                  "value": "0",
+                  "description": "Dry run mode"
+                },
+                {
+                  "disabled": false,
+                  "key": "suppressLayouts",
+                  "value": "0",
+                  "description": "Suppress cross-layout translations"
+                },
+                {
+                  "disabled": false,
+                  "key": "failFast",
+                  "value": "0",
+                  "description": "Fail on first error"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "srcRepoKey",
+                  "description": "(Required) Source repository key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "srcItemPath",
+                  "description": "(Required) Source item path"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da8ee6ce-b05b-454a-bd21-47d927fa2bae",
+              "name": "Move completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "move",
+                    ":srcRepoKey",
+                    ":srcItemPath"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dry",
+                      "value": "0"
+                    },
+                    {
+                      "key": "suppressLayouts",
+                      "value": "0"
+                    },
+                    {
+                      "key": "failFast",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "srcRepoKey",
+                      "description": "(Required) Source repository key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "srcItemPath",
+                      "description": "(Required) Source item path"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"messages\": [\n    {\n      \"level\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"level\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "293c18a8-14ca-48fa-abca-9372cceb85de",
+    "name": "JFrog Access REST Access Tokens Artifacts & Storage API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

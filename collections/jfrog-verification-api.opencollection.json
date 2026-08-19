@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Verification API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Verify Evidence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/evidence/:evidenceId/verify",
+            "params": [
+              {
+                "name": "evidenceId",
+                "value": "",
+                "type": "path",
+                "description": "Evidence record identifier"
+              }
+            ]
+          },
+          "docs": "Verifies the cryptographic signature of an evidence record against registered public keys. Returns the verification status and details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

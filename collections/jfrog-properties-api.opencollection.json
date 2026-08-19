@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Properties API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Properties",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get Item Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/storage/:repoKey/:itemPath?properties",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Item path"
+              }
+            ]
+          },
+          "docs": "Returns properties set on an artifact or folder."
+        },
+        {
+          "info": {
+            "name": "JFrog Set Item Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/storage/:repoKey/:itemPath?properties",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Item path"
+              },
+              {
+                "name": "properties",
+                "value": "",
+                "type": "query",
+                "description": "Properties in format: key1=value1;key2=value2"
+              },
+              {
+                "name": "recursive",
+                "value": "",
+                "type": "query",
+                "description": "Apply recursively to sub-paths"
+              }
+            ]
+          },
+          "docs": "Sets properties on an artifact or folder."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Item Properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/storage/:repoKey/:itemPath?properties",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Item path"
+              },
+              {
+                "name": "properties",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of property keys to remove"
+              }
+            ]
+          },
+          "docs": "Removes properties from an artifact or folder."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

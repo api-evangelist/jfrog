@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens System API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog System Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v1/system/ping"
+          },
+          "docs": "Returns a simple health check response indicating the Access service is operational."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v1/system/version"
+          },
+          "docs": "Returns the Access service version and revision information."
+        },
+        {
+          "info": {
+            "name": "JFrog System Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/system/ping"
+          },
+          "docs": "Returns a simple health check response."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/system/version"
+          },
+          "docs": "Returns Mission Control version information."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/system/info"
+          },
+          "docs": "Returns Pipelines system information and version."
+        },
+        {
+          "info": {
+            "name": "JFrog Platform Router Ping",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/router/api/v1/system/ping"
+          },
+          "docs": "Returns a simple health check from the JFrog Platform router."
+        },
+        {
+          "info": {
+            "name": "JFrog Get System Health",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/router/api/v1/system/health"
+          },
+          "docs": "Returns health status of all JFrog services."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

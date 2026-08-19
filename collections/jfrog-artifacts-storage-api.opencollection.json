@@ -1,0 +1,266 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Artifacts & Storage API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artifacts & Storage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Get File or Folder Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/storage/:repoKey/:itemPath",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path to the item within the repository"
+              }
+            ]
+          },
+          "docs": "Returns storage information for a file or folder including size, checksums, and metadata."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Repository Storage Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/storage/:repoKey",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              }
+            ]
+          },
+          "docs": "Returns storage summary for the specified repository."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Storage Summary",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/storageinfo"
+          },
+          "docs": "Returns storage summary information about repositories, binaries, and file store."
+        },
+        {
+          "info": {
+            "name": "JFrog Retrieve Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/:repoKey/:itemPath",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path to the artifact"
+              }
+            ]
+          },
+          "docs": "Downloads an artifact or returns folder info from the specified repository path."
+        },
+        {
+          "info": {
+            "name": "JFrog Deploy Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/:repoKey/:itemPath",
+            "headers": [
+              {
+                "name": "X-Checksum-Sha1",
+                "value": ""
+              },
+              {
+                "name": "X-Checksum-Sha256",
+                "value": ""
+              },
+              {
+                "name": "X-Checksum-Md5",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path for the artifact"
+              }
+            ]
+          },
+          "docs": "Deploys an artifact to the specified repository path."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/:repoKey/:itemPath",
+            "params": [
+              {
+                "name": "repoKey",
+                "value": "",
+                "type": "path",
+                "description": "Repository key"
+              },
+              {
+                "name": "itemPath",
+                "value": "",
+                "type": "path",
+                "description": "Path to the artifact"
+              }
+            ]
+          },
+          "docs": "Deletes an artifact or folder from the specified repository path."
+        },
+        {
+          "info": {
+            "name": "JFrog Copy Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/copy/:srcRepoKey/:srcItemPath",
+            "params": [
+              {
+                "name": "srcRepoKey",
+                "value": "",
+                "type": "path",
+                "description": "Source repository key"
+              },
+              {
+                "name": "srcItemPath",
+                "value": "",
+                "type": "path",
+                "description": "Source item path"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Target path in the format repoKey/path"
+              },
+              {
+                "name": "dry",
+                "value": "",
+                "type": "query",
+                "description": "Dry run mode (1=dry run, 0=execute)"
+              },
+              {
+                "name": "suppressLayouts",
+                "value": "",
+                "type": "query",
+                "description": "Suppress cross-layout translations"
+              },
+              {
+                "name": "failFast",
+                "value": "",
+                "type": "query",
+                "description": "Fail on first error"
+              }
+            ]
+          },
+          "docs": "Copies an artifact or folder to a new location."
+        },
+        {
+          "info": {
+            "name": "JFrog Move Artifact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/move/:srcRepoKey/:srcItemPath",
+            "params": [
+              {
+                "name": "srcRepoKey",
+                "value": "",
+                "type": "path",
+                "description": "Source repository key"
+              },
+              {
+                "name": "srcItemPath",
+                "value": "",
+                "type": "path",
+                "description": "Source item path"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Target path in the format repoKey/path"
+              },
+              {
+                "name": "dry",
+                "value": "",
+                "type": "query",
+                "description": "Dry run mode"
+              },
+              {
+                "name": "suppressLayouts",
+                "value": "",
+                "type": "query",
+                "description": "Suppress cross-layout translations"
+              },
+              {
+                "name": "failFast",
+                "value": "",
+                "type": "query",
+                "description": "Fail on first error"
+              }
+            ]
+          },
+          "docs": "Moves an artifact or folder to a new location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

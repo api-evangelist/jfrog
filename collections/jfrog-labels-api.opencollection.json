@@ -1,0 +1,157 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Labels API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Labels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Labels",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/labels"
+          },
+          "docs": "Returns a list of all custom labels configured in the Catalog. Labels can be attached to packages for organizational and policy purposes."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/labels",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new custom label that can be applied to packages in the Catalog. Requires administrator permissions."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/labels/:labelName",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific label."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/labels/:labelName",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing label configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Label",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/labels/:labelName",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ]
+          },
+          "docs": "Removes a label from the Catalog and detaches it from all packages."
+        },
+        {
+          "info": {
+            "name": "JFrog Apply Label to Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/labels/:labelName/packages",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Applies a label to one or more packages."
+        },
+        {
+          "info": {
+            "name": "JFrog Remove Label from Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/labels/:labelName/packages",
+            "params": [
+              {
+                "name": "labelName",
+                "value": "",
+                "type": "path",
+                "description": "Label name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes a label from one or more packages."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

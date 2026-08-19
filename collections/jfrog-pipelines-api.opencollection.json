@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Pipelines API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipelines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Pipelines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/pipelines",
+            "params": [
+              {
+                "name": "pipelineSourceIds",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of pipeline source IDs to filter by"
+              },
+              {
+                "name": "names",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated pipeline names filter"
+              }
+            ]
+          },
+          "docs": "Returns a list of all pipelines."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Pipeline",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/pipelines/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific pipeline."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

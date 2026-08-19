@@ -1,0 +1,276 @@
+{
+  "item": [
+    {
+      "id": "dce3c275-c94d-476a-86fe-7822d414706c",
+      "name": "Pipelines",
+      "description": {
+        "content": "Pipeline definitions and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc1af047-c56d-4603-9461-d5d6093f73e7",
+          "name": "JFrog List Pipelines",
+          "request": {
+            "name": "JFrog List Pipelines",
+            "description": {
+              "content": "Returns a list of all pipelines.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "pipelines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pipelineSourceIds",
+                  "value": "<string>",
+                  "description": "Comma-separated list of pipeline source IDs to filter by"
+                },
+                {
+                  "disabled": false,
+                  "key": "names",
+                  "value": "<string>",
+                  "description": "Comma-separated pipeline names filter"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "164f7f72-9c07-4c03-aebe-c9bdb7468f8b",
+              "name": "Pipelines list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pipelineSourceIds",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "names",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5060,\n    \"name\": \"string\",\n    \"pipelineSourceId\": 3621,\n    \"projectId\": 92,\n    \"latestRunId\": 7854,\n    \"latestCompletedRunId\": 8777,\n    \"createdAt\": \"2001-08-16T01:31:57.189Z\",\n    \"updatedAt\": \"1958-01-18T15:57:42.205Z\"\n  },\n  {\n    \"id\": 341,\n    \"name\": \"string\",\n    \"pipelineSourceId\": 311,\n    \"projectId\": 4973,\n    \"latestRunId\": 4875,\n    \"latestCompletedRunId\": 3432,\n    \"createdAt\": \"1980-04-12T04:24:45.605Z\",\n    \"updatedAt\": \"2009-04-21T06:04:40.363Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8deccc0f-cfa8-49e5-a055-bf2c4e61530d",
+          "name": "JFrog Get Pipeline",
+          "request": {
+            "name": "JFrog Get Pipeline",
+            "description": {
+              "content": "Returns details for a specific pipeline.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "pipelines",
+                ":pipelineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "pipelineId",
+                  "description": "(Required) Pipeline ID"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "093c87d6-56a5-4b29-ae0a-b8c7b4a45ee6",
+              "name": "Pipeline details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "pipelines",
+                    ":pipelineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "pipelineId",
+                      "description": "(Required) Pipeline ID"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2262,\n  \"name\": \"string\",\n  \"pipelineSourceId\": 5244,\n  \"projectId\": 2128,\n  \"latestRunId\": 8647,\n  \"latestCompletedRunId\": 5878,\n  \"createdAt\": \"2014-12-17T05:27:10.966Z\",\n  \"updatedAt\": \"1987-08-11T00:25:07.315Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5b99f7d8-f245-4ae6-bab3-5660160a5f08",
+    "name": "JFrog Access REST Access Tokens Pipelines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

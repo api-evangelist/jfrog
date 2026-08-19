@@ -1,0 +1,710 @@
+{
+  "item": [
+    {
+      "id": "b2d156d1-53ec-4d1d-ac39-a7a22d13196a",
+      "name": "Packages",
+      "description": {
+        "content": "Package metadata search and retrieval",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c8a49fd9-d522-4ea4-bc0d-59cf652bbc7a",
+          "name": "JFrog Search Packages",
+          "request": {
+            "name": "JFrog Search Packages",
+            "description": {
+              "content": "Searches for packages across the catalog using various filter criteria including name, type, version, and labels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"package_type\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_vulnerabilities\": \"<boolean>\",\n  \"min_severity\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8296fff5-b08b-48a4-880b-98399d08deea",
+              "name": "Search results retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"package_type\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_vulnerabilities\": \"<boolean>\",\n  \"min_severity\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"packages\": [\n    {\n      \"package_type\": \"string\",\n      \"package_name\": \"string\",\n      \"latest_version\": \"string\",\n      \"versions_count\": 5558,\n      \"vulnerabilities_count\": 7659,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"license\": \"string\"\n    },\n    {\n      \"package_type\": \"string\",\n      \"package_name\": \"string\",\n      \"latest_version\": \"string\",\n      \"versions_count\": 8446,\n      \"vulnerabilities_count\": 9287,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ],\n      \"license\": \"string\"\n    }\n  ],\n  \"total_count\": 4523\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f07af50f-a8f9-40f8-ad12-a612f9e98b89",
+              "name": "Invalid search criteria",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"package_type\": \"<string>\",\n  \"labels\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"has_vulnerabilities\": \"<boolean>\",\n  \"min_severity\": \"<string>\",\n  \"limit\": 25,\n  \"offset\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39027283-d10c-4d88-a24f-76cfa9887a3a",
+          "name": "JFrog Get Package Details",
+          "request": {
+            "name": "JFrog Get Package Details",
+            "description": {
+              "content": "Returns detailed metadata for a specific package, including versions, licenses, vulnerabilities, and custom labels.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":packageType",
+                ":packageName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageType",
+                  "description": "(Required) Package ecosystem type"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageName",
+                  "description": "(Required) Package name (URL-encoded if contains special characters)"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "63c52d3a-3e0f-4a76-90da-29b8e2729351",
+              "name": "Package details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":packageType",
+                    ":packageName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageType",
+                      "description": "(Required) Package ecosystem type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageName",
+                      "description": "(Required) Package name (URL-encoded if contains special characters)"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"package_type\": \"string\",\n  \"package_name\": \"string\",\n  \"description\": \"string\",\n  \"latest_version\": \"string\",\n  \"versions_count\": 6569,\n  \"licenses\": [\n    {\n      \"name\": \"string\",\n      \"full_name\": \"string\",\n      \"url\": \"http://xITGdRqCkWqagUHn.eyikxIPN7ww5o3E.fM5svA3zy.tIbeTObKpKKta.50kp20D\"\n    },\n    {\n      \"name\": \"string\",\n      \"full_name\": \"string\",\n      \"url\": \"https://eAEfLkOtumbooSrRbu.ibDHzPvZ27kmoDXJwXuKTs9bLyEhPsE+aYvbE7wiZ\"\n    }\n  ],\n  \"vulnerabilities_summary\": {\n    \"critical\": 5186,\n    \"high\": 7963,\n    \"medium\": 1697,\n    \"low\": 7059,\n    \"total\": 3080\n  },\n  \"labels\": [\n    \"string\",\n    \"string\"\n  ],\n  \"repository_url\": \"https://t.deoISZX1s9b\",\n  \"homepage\": \"https://XwMEAxkuoHH.elidbM.dkhQHeKTLZKP5f.Okrq1j-WOQ4aypbky2s.d2pA7Itq13X6YRhXjZ2b-k2wvIsXTOxmX5I\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1e68690-2a79-40b3-b298-f84ed7bb86ce",
+              "name": "Package not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":packageType",
+                    ":packageName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageType",
+                      "description": "(Required) Package ecosystem type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageName",
+                      "description": "(Required) Package name (URL-encoded if contains special characters)"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "70d3599a-3475-4f00-ab9c-e1b271518037",
+          "name": "JFrog Get Package Versions",
+          "request": {
+            "name": "JFrog Get Package Versions",
+            "description": {
+              "content": "Returns all known versions of a specific package with their associated metadata, vulnerability counts, and license information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":packageType",
+                ":packageName",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageType",
+                  "description": "(Required) Package ecosystem type"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageName",
+                  "description": "(Required) Package name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "934bf5af-ab51-4595-a6c7-88de971298a8",
+              "name": "Package versions retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":packageType",
+                    ":packageName",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageType",
+                      "description": "(Required) Package ecosystem type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageName",
+                      "description": "(Required) Package name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"versions\": [\n    {\n      \"version\": \"string\",\n      \"published\": \"1972-12-23T20:08:45.672Z\",\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"vulnerabilities_count\": 3607,\n      \"direct_vulnerabilities_count\": 7990,\n      \"transitive_vulnerabilities_count\": 7082,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"version\": \"string\",\n      \"published\": \"1994-03-04T11:44:26.018Z\",\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"vulnerabilities_count\": 4146,\n      \"direct_vulnerabilities_count\": 7605,\n      \"transitive_vulnerabilities_count\": 7758,\n      \"labels\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"total_count\": 6306\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53555492-1731-4af0-b50f-9dbf23d8dd66",
+          "name": "JFrog Get Version Vulnerabilities",
+          "request": {
+            "name": "JFrog Get Version Vulnerabilities",
+            "description": {
+              "content": "Returns all known CVEs affecting a specific package version, including both direct (non-transitive) and transitive vulnerabilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "packages",
+                ":packageType",
+                ":packageName",
+                "versions",
+                ":version",
+                "vulnerabilities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "severity",
+                  "value": "<string>",
+                  "description": "Filter by minimum severity"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageType",
+                  "description": "(Required) Package ecosystem type"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "packageName",
+                  "description": "(Required) Package name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Package version"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "776813c0-4f20-4eee-982d-0aaaabfe66dd",
+              "name": "Vulnerabilities retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "packages",
+                    ":packageType",
+                    ":packageName",
+                    "versions",
+                    ":version",
+                    "vulnerabilities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "severity",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageType",
+                      "description": "(Required) Package ecosystem type"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "packageName",
+                      "description": "(Required) Package name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Package version"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"string\",\n      \"severity\": \"Medium\",\n      \"cvss_v3_score\": 9248.08495299237,\n      \"summary\": \"string\",\n      \"is_transitive\": false,\n      \"fixed_versions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"published\": \"1967-12-22T03:15:13.866Z\",\n      \"jfrog_research_severity\": \"string\",\n      \"jfrog_research_summary\": \"string\"\n    },\n    {\n      \"cve\": \"string\",\n      \"severity\": \"Medium\",\n      \"cvss_v3_score\": 6665.463639058204,\n      \"summary\": \"string\",\n      \"is_transitive\": true,\n      \"fixed_versions\": [\n        \"string\",\n        \"string\"\n      ],\n      \"published\": \"1978-07-17T21:48:23.588Z\",\n      \"jfrog_research_severity\": \"string\",\n      \"jfrog_research_summary\": \"string\"\n    }\n  ],\n  \"total_count\": 7960\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6cd84546-a0a9-42df-b386-f6f5cf4716d7",
+    "name": "JFrog Access REST Access Tokens Packages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

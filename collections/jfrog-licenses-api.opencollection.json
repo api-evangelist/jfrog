@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Licenses API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List License Buckets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v3/attach_lic/buckets"
+          },
+          "docs": "Returns a list of all license buckets."
+        },
+        {
+          "info": {
+            "name": "JFrog Add License Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v3/attach_lic/buckets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new license bucket."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete License Bucket",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v3/attach_lic/buckets/:bucketId",
+            "params": [
+              {
+                "name": "bucketId",
+                "value": "",
+                "type": "path",
+                "description": "License bucket ID"
+              }
+            ]
+          },
+          "docs": "Removes a license bucket."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

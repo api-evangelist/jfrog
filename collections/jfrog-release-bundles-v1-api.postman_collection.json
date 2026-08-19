@@ -1,0 +1,876 @@
+{
+  "item": [
+    {
+      "id": "87e02397-ed8b-4cf3-bf75-5f16d30eedd4",
+      "name": "Release Bundles V1",
+      "description": {
+        "content": "Create and manage release bundles (v1)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7bb0e660-8793-4223-b804-26f0d2148164",
+          "name": "JFrog List Release Bundles",
+          "request": {
+            "name": "JFrog List Release Bundles",
+            "description": {
+              "content": "Returns a list of all release bundles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "release_bundle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4864929-3da5-44bc-beb9-9850949b9c83",
+              "name": "Release bundles list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"state\": \"string\",\n    \"created\": \"2022-07-18T15:10:43.875Z\"\n  },\n  {\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"state\": \"string\",\n    \"created\": \"1994-07-15T21:21:24.868Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0e0cb90-7226-4f96-8516-b0c6c4900724",
+          "name": "JFrog Create Release Bundle",
+          "request": {
+            "name": "JFrog Create Release Bundle",
+            "description": {
+              "content": "Creates a new release bundle with specified artifacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "release_bundle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"spec\": {\n    \"queries\": [\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dry_run\": false,\n  \"sign_immediately\": false,\n  \"description\": \"<string>\",\n  \"release_notes\": {\n    \"syntax\": \"<string>\",\n    \"content\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cedadde6-b538-4316-91b9-cafb4b57e86e",
+              "name": "Release bundle created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"spec\": {\n    \"queries\": [\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dry_run\": false,\n  \"sign_immediately\": false,\n  \"description\": \"<string>\",\n  \"release_notes\": {\n    \"syntax\": \"<string>\",\n    \"content\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"state\": \"SIGNED\",\n  \"description\": \"string\",\n  \"release_notes\": {\n    \"syntax\": \"string\",\n    \"content\": \"string\"\n  },\n  \"created\": \"1963-06-28T20:20:00.890Z\",\n  \"created_by\": \"string\",\n  \"artifacts\": [\n    {\n      \"source_repo_path\": \"string\",\n      \"target_repo_path\": \"string\",\n      \"checksum\": \"string\",\n      \"props\": [\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"source_repo_path\": \"string\",\n      \"target_repo_path\": \"string\",\n      \"checksum\": \"string\",\n      \"props\": [\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27b24719-3c24-4e9f-8adf-2b89360ce12a",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"spec\": {\n    \"queries\": [\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dry_run\": false,\n  \"sign_immediately\": false,\n  \"description\": \"<string>\",\n  \"release_notes\": {\n    \"syntax\": \"<string>\",\n    \"content\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b00c4bff-a0a4-4596-b763-dd70006010ed",
+          "name": "JFrog Get Release Bundle",
+          "request": {
+            "name": "JFrog Get Release Bundle",
+            "description": {
+              "content": "Returns details for a specific release bundle version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "release_bundle",
+                ":name",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Release bundle name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release bundle version"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dc8b8c7-0264-40f4-ac8a-d8a0ab36ebcf",
+              "name": "Release bundle details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle",
+                    ":name",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Release bundle name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release bundle version"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"version\": \"string\",\n  \"state\": \"SIGNED\",\n  \"description\": \"string\",\n  \"release_notes\": {\n    \"syntax\": \"string\",\n    \"content\": \"string\"\n  },\n  \"created\": \"1963-06-28T20:20:00.890Z\",\n  \"created_by\": \"string\",\n  \"artifacts\": [\n    {\n      \"source_repo_path\": \"string\",\n      \"target_repo_path\": \"string\",\n      \"checksum\": \"string\",\n      \"props\": [\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"source_repo_path\": \"string\",\n      \"target_repo_path\": \"string\",\n      \"checksum\": \"string\",\n      \"props\": [\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key\": \"string\",\n          \"values\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed0f0fac-22eb-4d33-bf04-ecd6ee73c428",
+              "name": "Release bundle not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle",
+                    ":name",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Release bundle name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release bundle version"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a4756d3-1a99-4e6d-a68b-79499c0e20df",
+          "name": "JFrog Update Release Bundle",
+          "request": {
+            "name": "JFrog Update Release Bundle",
+            "description": {
+              "content": "Updates an existing release bundle.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "release_bundle",
+                ":name",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Release bundle name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release bundle version"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"spec\": {\n    \"queries\": [\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dry_run\": false,\n  \"sign_immediately\": false,\n  \"description\": \"<string>\",\n  \"release_notes\": {\n    \"syntax\": \"<string>\",\n    \"content\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e773252f-308d-4e0b-93a9-18dda75d39b9",
+              "name": "Release bundle updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle",
+                    ":name",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Release bundle name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release bundle version"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"version\": \"<string>\",\n  \"spec\": {\n    \"queries\": [\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aql\": \"<string>\",\n        \"query_name\": \"<string>\",\n        \"mappings\": [\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          },\n          {\n            \"input\": \"<string>\",\n            \"output\": \"<string>\"\n          }\n        ],\n        \"added_props\": [\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          {\n            \"key\": \"<string>\",\n            \"values\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        ]\n      }\n    ]\n  },\n  \"dry_run\": false,\n  \"sign_immediately\": false,\n  \"description\": \"<string>\",\n  \"release_notes\": {\n    \"syntax\": \"<string>\",\n    \"content\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d86739a6-0c92-4c9f-9ca4-820c5a0c746c",
+          "name": "JFrog Delete Release Bundle",
+          "request": {
+            "name": "JFrog Delete Release Bundle",
+            "description": {
+              "content": "Deletes a release bundle version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "release_bundle",
+                ":name",
+                ":version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Release bundle name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release bundle version"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b42083c5-15d1-487c-8a98-8628222add6c",
+              "name": "Release bundle deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle",
+                    ":name",
+                    ":version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Release bundle name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release bundle version"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "828a8fd4-37c8-4056-82fe-9e2387393479",
+          "name": "JFrog Sign Release Bundle",
+          "request": {
+            "name": "JFrog Sign Release Bundle",
+            "description": {
+              "content": "Signs a release bundle, making it immutable and ready for distribution.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "release_bundle",
+                ":name",
+                ":version",
+                "sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) Release bundle name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "version",
+                  "description": "(Required) Release bundle version"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c3a4f59e-9fbe-4beb-9ac1-9132c5ba0bfd",
+              "name": "Release bundle signed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "release_bundle",
+                    ":name",
+                    ":version",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) Release bundle name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "version",
+                      "description": "(Required) Release bundle version"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2a7c890-6a57-4cae-ba70-d0ca869dba98",
+    "name": "JFrog Access REST Access Tokens Release Bundles V1 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

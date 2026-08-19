@@ -1,0 +1,639 @@
+{
+  "item": [
+    {
+      "id": "c7ef9699-9a7e-459d-8e5a-38a43dae45a5",
+      "name": "Watches",
+      "description": {
+        "content": "Watch policies for monitoring artifacts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec7da94b-7e2d-427e-baa8-9f7720744c56",
+          "name": "JFrog List Watches",
+          "request": {
+            "name": "JFrog List Watches",
+            "description": {
+              "content": "Returns a list of all configured watches.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "watches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c6db7f9-e563-4d17-b9cd-1353e2c5271d",
+              "name": "Watches list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "watches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"general_data\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"active\": true\n    },\n    \"project_resources\": {\n      \"resources\": [\n        {\n          \"type\": \"build\",\n          \"name\": \"string\",\n          \"bin_mgr_id\": \"string\",\n          \"filters\": [\n            {\n              \"type\": \"path-regex\",\n              \"value\": \"string\"\n            },\n            {\n              \"type\": \"package-type\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"build\",\n          \"name\": \"string\",\n          \"bin_mgr_id\": \"string\",\n          \"filters\": [\n            {\n              \"type\": \"package-type\",\n              \"value\": \"string\"\n            },\n            {\n              \"type\": \"mime-type\",\n              \"value\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    \"assigned_policies\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"license\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"license\"\n      }\n    ]\n  },\n  {\n    \"general_data\": {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"active\": false\n    },\n    \"project_resources\": {\n      \"resources\": [\n        {\n          \"type\": \"repository\",\n          \"name\": \"string\",\n          \"bin_mgr_id\": \"string\",\n          \"filters\": [\n            {\n              \"type\": \"regex\",\n              \"value\": \"string\"\n            },\n            {\n              \"type\": \"path-regex\",\n              \"value\": \"string\"\n            }\n          ]\n        },\n        {\n          \"type\": \"build\",\n          \"name\": \"string\",\n          \"bin_mgr_id\": \"string\",\n          \"filters\": [\n            {\n              \"type\": \"path-regex\",\n              \"value\": \"string\"\n            },\n            {\n              \"type\": \"package-type\",\n              \"value\": \"string\"\n            }\n          ]\n        }\n      ]\n    },\n    \"assigned_policies\": [\n      {\n        \"name\": \"string\",\n        \"type\": \"license\"\n      },\n      {\n        \"name\": \"string\",\n        \"type\": \"operational_risk\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8ae060f-fe5e-4f98-aafa-16c90e3c9e59",
+          "name": "JFrog Create Watch",
+          "request": {
+            "name": "JFrog Create Watch",
+            "description": {
+              "content": "Creates a new watch for monitoring artifacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "watches"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ef28865-feea-4a83-9881-a5f87ea40a64",
+              "name": "Watch created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "watches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1697c9f-04f5-46bb-9317-89548e8057b5",
+              "name": "Invalid watch configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "watches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0dc74358-a8b8-4e97-8b08-917dbeecd2f0",
+          "name": "JFrog Get Watch",
+          "request": {
+            "name": "JFrog Get Watch",
+            "description": {
+              "content": "Returns configuration for a specific watch.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "watches",
+                ":watchName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "watchName",
+                  "description": "(Required) Watch name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80478f90-0de3-4269-beab-408bbe8fca59",
+              "name": "Watch details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "watches",
+                    ":watchName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "watchName",
+                      "description": "(Required) Watch name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"general_data\": {\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"active\": false\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"build\",\n        \"name\": \"string\",\n        \"bin_mgr_id\": \"string\",\n        \"filters\": [\n          {\n            \"type\": \"regex\",\n            \"value\": \"string\"\n          },\n          {\n            \"type\": \"path-regex\",\n            \"value\": \"string\"\n          }\n        ]\n      },\n      {\n        \"type\": \"build\",\n        \"name\": \"string\",\n        \"bin_mgr_id\": \"string\",\n        \"filters\": [\n          {\n            \"type\": \"path-regex\",\n            \"value\": \"string\"\n          },\n          {\n            \"type\": \"mime-type\",\n            \"value\": \"string\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"string\",\n      \"type\": \"operational_risk\"\n    },\n    {\n      \"name\": \"string\",\n      \"type\": \"license\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4f312691-8f4a-4806-8bde-b6be82367f39",
+          "name": "JFrog Update Watch",
+          "request": {
+            "name": "JFrog Update Watch",
+            "description": {
+              "content": "Updates an existing watch configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "watches",
+                ":watchName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "watchName",
+                  "description": "(Required) Watch name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d59fa592-096f-4f86-a7b1-08ed66097ed4",
+              "name": "Watch updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "watches",
+                    ":watchName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "watchName",
+                      "description": "(Required) Watch name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"general_data\": {\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"active\": \"<boolean>\"\n  },\n  \"project_resources\": {\n    \"resources\": [\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"<string>\",\n        \"name\": \"<string>\",\n        \"bin_mgr_id\": \"<string>\",\n        \"filters\": [\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"type\": \"<string>\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    ]\n  },\n  \"assigned_policies\": [\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b24434f6-833a-402d-aa78-3d10956f936c",
+          "name": "JFrog Delete Watch",
+          "request": {
+            "name": "JFrog Delete Watch",
+            "description": {
+              "content": "Removes a watch configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "watches",
+                ":watchName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "watchName",
+                  "description": "(Required) Watch name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57a22762-4b9f-47cb-b3b3-3319d8d580ee",
+              "name": "Watch deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "watches",
+                    ":watchName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "watchName",
+                      "description": "(Required) Watch name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e4d8f941-fc3a-45c7-93ca-c35d5e818d08",
+    "name": "JFrog Access REST Access Tokens Watches API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

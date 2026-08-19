@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "7ee5ba90-0736-47f0-8b6a-a05b436010e3",
+      "name": "Components",
+      "description": {
+        "content": "Component details and vulnerability information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b20a904-fa7f-48ed-873a-dc60c23fc304",
+          "name": "JFrog Get Component Details",
+          "request": {
+            "name": "JFrog Get Component Details",
+            "description": {
+              "content": "Returns vulnerability and license information for specified components.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "component"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"component_details\": [\n    {\n      \"component_id\": \"<string>\"\n    },\n    {\n      \"component_id\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "932c0695-5d22-46df-bafe-1a5078e5630f",
+              "name": "Component details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "component"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"component_details\": [\n    {\n      \"component_id\": \"npm://lodash:4.17.21\"\n    },\n    {\n      \"component_id\": \"npm://lodash:4.17.21\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"component_id\": \"string\",\n    \"component_name\": \"string\",\n    \"package_type\": \"string\",\n    \"version\": \"string\",\n    \"licenses\": [\n      {\n        \"name\": \"string\",\n        \"full_name\": \"string\",\n        \"more_info_url\": [\n          \"https://kGP.dxhnKc2GAmmvmUmCPNefAuBgP6DT\",\n          \"http://UcAPhMeQlzsAhiJrseuSljAHWLjfEiub.fdevg6QYzPw1-H\"\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"full_name\": \"string\",\n        \"more_info_url\": [\n          \"http://lvCZaOKHNnzmQEsC.weaxtCJJKJp4f7ScOwPmFcUx7Tx4h7TGTqoxH\",\n          \"http://xmNEHFTcMGrj.ntzafu5EtHhY\"\n        ]\n      }\n    ],\n    \"vulnerabilities\": [\n      {\n        \"cve\": \"string\",\n        \"severity\": \"Medium\",\n        \"cvss_v2_score\": \"string\",\n        \"cvss_v3_score\": \"string\",\n        \"summary\": \"string\",\n        \"description\": \"string\",\n        \"fixed_versions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"references\": [\n          \"http://SEllfG.hggYcB5e0lkQWhMHWr3H505W2OfQPJFQUWd65RPoLUHzw8\",\n          \"http://HpcOpdVuifQ.qvzzdx4MAkpcOOABsvlx\"\n        ],\n        \"published\": \"1964-05-31T01:35:06.026Z\"\n      },\n      {\n        \"cve\": \"string\",\n        \"severity\": \"Low\",\n        \"cvss_v2_score\": \"string\",\n        \"cvss_v3_score\": \"string\",\n        \"summary\": \"string\",\n        \"description\": \"string\",\n        \"fixed_versions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"references\": [\n          \"https://nCjRB.qhaes8lMr.UamEx9gIWuINiMHnuIq6oogcom\",\n          \"http://kGGwDljM.nlqjoPDwThmOXGmalPjSoKwTNGEes55\"\n        ],\n        \"published\": \"2014-02-09T22:58:48.013Z\"\n      }\n    ]\n  },\n  {\n    \"component_id\": \"string\",\n    \"component_name\": \"string\",\n    \"package_type\": \"string\",\n    \"version\": \"string\",\n    \"licenses\": [\n      {\n        \"name\": \"string\",\n        \"full_name\": \"string\",\n        \"more_info_url\": [\n          \"https://bJrPITNdnpKWCvSjoU.oarHgcnc1BiwDeECHfK9vGrpj-jogCcYECAm7xF6MPoiqvHHrVh9imYoSixpBzAKVzZYG3pcS,nYG\",\n          \"http://gSLronSPaPdLEjJ.fglPCKaibdwkw4hFBYUu1.oXfo2yU6Y29\"\n        ]\n      },\n      {\n        \"name\": \"string\",\n        \"full_name\": \"string\",\n        \"more_info_url\": [\n          \"https://Eus.dzf1\",\n          \"http://xRVhUeNUeFCsVWuPfNlcDawWt.mdLOoP9hWhmOd73o8D64SvOcjyDRtzdJSTJgpbDBrMeS\"\n        ]\n      }\n    ],\n    \"vulnerabilities\": [\n      {\n        \"cve\": \"string\",\n        \"severity\": \"Medium\",\n        \"cvss_v2_score\": \"string\",\n        \"cvss_v3_score\": \"string\",\n        \"summary\": \"string\",\n        \"description\": \"string\",\n        \"fixed_versions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"references\": [\n          \"http://rVLWXGdgDlXBEXccc.lpR8OIow9YOoh\",\n          \"https://qBAZjjiIhSbvFgYahEObtuBYLemXfi.ewiprc4kvmv.yLJMJRfx.GnTjyi5djzqhd..M3nyBqHa9ThaSyn\"\n        ],\n        \"published\": \"1957-08-27T05:27:55.258Z\"\n      },\n      {\n        \"cve\": \"string\",\n        \"severity\": \"High\",\n        \"cvss_v2_score\": \"string\",\n        \"cvss_v3_score\": \"string\",\n        \"summary\": \"string\",\n        \"description\": \"string\",\n        \"fixed_versions\": [\n          \"string\",\n          \"string\"\n        ],\n        \"references\": [\n          \"https://mNZsZqKSdeQddf.bucnIcJwDQ\",\n          \"https://vQYPSVtfciUghArWBSOZXprt.loxzLikvJEXHixTxHTO9itR+MCI-ggnLz3b\"\n        ],\n        \"published\": \"1976-07-04T23:00:10.872Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "39a3ecdc-5e0c-4a67-9671-47fce2b70ca5",
+    "name": "JFrog Access REST Access Tokens Components API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

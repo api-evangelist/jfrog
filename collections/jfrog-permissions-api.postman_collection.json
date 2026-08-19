@@ -1,0 +1,1436 @@
+{
+  "item": [
+    {
+      "id": "4744e7d6-e029-46df-9f77-ec08b231a9a3",
+      "name": "Permissions",
+      "description": {
+        "content": "Permission target management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3fbbfd94-3a0d-48c7-8992-77635d067812",
+          "name": "JFrog List Permissions",
+          "request": {
+            "name": "JFrog List Permissions",
+            "description": {
+              "content": "Returns a list of all permission targets configured in the platform.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "271775c3-27a4-4b65-bd5d-05c0ff9301fb",
+              "name": "Permissions list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissions\": [\n    {\n      \"name\": \"string\",\n      \"resources\": {\n        \"repository\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_1\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_1\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"releaseBundle\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"resources\": {\n        \"repository\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_1\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_1\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"releaseBundle\": {\n          \"key_0\": {}\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27579ac5-d3ed-4e00-beb5-2ffa2f8e52b9",
+          "name": "JFrog Create Permission",
+          "request": {
+            "name": "JFrog Create Permission",
+            "description": {
+              "content": "Creates a new permission target defining access control rules for repositories, builds, and release bundles.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "484d4981-ce4e-40b6-8700-45b7ed35464f",
+              "name": "Permission created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f8803949-572e-427e-9c5c-db624afe5597",
+              "name": "Invalid permission configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61e6f376-cb8c-4b85-acd9-d6fa506aa710",
+              "name": "Permission already exists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b98c9e0-d945-4a0c-ba51-aa36bf07001e",
+          "name": "JFrog Get Permission",
+          "request": {
+            "name": "JFrog Get Permission",
+            "description": {
+              "content": "Returns the full configuration of a specific permission target.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab2790d4-9f75-4585-8d6c-1e98199348ad",
+              "name": "Permission details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"exclude_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"delete\",\n              \"managedXrayMeta\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_1\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_2\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_3\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"exclude_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"annotate\",\n              \"delete\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"exclude_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"annotate\",\n              \"managedXrayMeta\"\n            ],\n            \"key_1\": [\n              \"distribute\",\n              \"read\"\n            ],\n            \"key_2\": [\n              \"write\",\n              \"annotate\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_1\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"exclude_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_1\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_1\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_2\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_3\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d8eaa34-e638-453c-875a-8449790c9f31",
+              "name": "Permission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d7bce77e-5994-44a3-887a-a35c791799f2",
+          "name": "JFrog Update Permission",
+          "request": {
+            "name": "JFrog Update Permission",
+            "description": {
+              "content": "Replaces the full configuration of an existing permission target.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "62154872-aa99-433d-a280-95040b0eb4a3",
+              "name": "Permission updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fad5066c-4657-499f-bfea-ad08b0a6fab2",
+              "name": "Permission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_2\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"releaseBundle\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a09536a4-f9f3-4c5d-b778-12d213c8ffbc",
+          "name": "JFrog Delete Permission",
+          "request": {
+            "name": "JFrog Delete Permission",
+            "description": {
+              "content": "Removes a permission target and all its access control rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bf013f9-8562-4d8a-ad37-cf8d05dd8f77",
+              "name": "Permission deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4852dfc8-9e76-4c55-9def-c4bd52debd22",
+              "name": "Permission not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1dad3c8e-b888-424f-918e-7e7e76209c2d",
+          "name": "JFrog List Permissions",
+          "request": {
+            "name": "JFrog List Permissions",
+            "description": {
+              "content": "Returns a list of all permission configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fca80c69-c629-4e00-a159-c92b17c05820",
+              "name": "Permissions list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"permissions\": [\n    {\n      \"name\": \"string\",\n      \"resources\": {\n        \"repository\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_1\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_3\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"resources\": {\n        \"repository\": {\n          \"key_0\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_3\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_1\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_3\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_2\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          },\n          \"key_3\": {\n            \"include_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"exclude_patterns\": [\n              \"string\",\n              \"string\"\n            ],\n            \"actions\": {\n              \"users\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_2\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              },\n              \"groups\": {\n                \"key_0\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                \"key_1\": [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              }\n            }\n          }\n        },\n        \"build\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7c1c218-de4e-44ba-b91f-c5942343fd38",
+          "name": "JFrog Create Permission",
+          "request": {
+            "name": "JFrog Create Permission",
+            "description": {
+              "content": "Creates a new permission configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f9b98ea-634d-4946-a54e-424fdf3d6f65",
+              "name": "Permission created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a127cc60-152c-4e61-baef-090aeb58c78c",
+          "name": "JFrog Get Permission",
+          "request": {
+            "name": "JFrog Get Permission",
+            "description": {
+              "content": "Returns details for a specific permission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39b1fb16-525e-420e-b53e-797b7b167da4",
+              "name": "Permission details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"exclude_patterns\": [\n          \"string\",\n          \"string\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"string\",\n              \"string\"\n            ],\n            \"key_1\": [\n              \"string\",\n              \"string\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": {},\n      \"key_1\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af46da80-f9ff-4fa4-a7f8-b2e19a51a2bb",
+          "name": "JFrog Update Permission",
+          "request": {
+            "name": "JFrog Update Permission",
+            "description": {
+              "content": "Updates a permission configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_3\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1365942-d3cf-4597-8493-422bedbbbfe2",
+              "name": "Permission updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"resources\": {\n    \"repository\": {\n      \"key_0\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_2\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      },\n      \"key_1\": {\n        \"include_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"exclude_patterns\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"actions\": {\n          \"users\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"groups\": {\n            \"key_0\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"key_1\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          }\n        }\n      }\n    },\n    \"build\": {\n      \"key_0\": \"<object>\",\n      \"key_1\": \"<object>\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea190427-17e5-44fe-997d-d737b4e397c9",
+          "name": "JFrog Delete Permission",
+          "request": {
+            "name": "JFrog Delete Permission",
+            "description": {
+              "content": "Deletes a permission configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "access",
+                "api",
+                "v2",
+                "permissions",
+                ":permissionName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "permissionName",
+                  "description": "(Required) Permission name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b44eb001-c6b0-4aa1-b1a1-9a055d433c5c",
+              "name": "Permission deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "access",
+                    "api",
+                    "v2",
+                    "permissions",
+                    ":permissionName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "permissionName",
+                      "description": "(Required) Permission name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ae5a799c-79b5-4451-a3a5-c29e64a64534",
+    "name": "JFrog Access REST Access Tokens Permissions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

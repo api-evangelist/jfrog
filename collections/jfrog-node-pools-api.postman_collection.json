@@ -1,0 +1,461 @@
+{
+  "item": [
+    {
+      "id": "825d9482-fcfe-4de7-8d32-210c8326ca4f",
+      "name": "Node Pools",
+      "description": {
+        "content": "Build node pool management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6324ad9-f07c-4e98-8a01-b8bea2bc1c2e",
+          "name": "JFrog List Node Pools",
+          "request": {
+            "name": "JFrog List Node Pools",
+            "description": {
+              "content": "Returns a list of all build node pools.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "nodePools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d150dfd-1331-43f8-bbc5-30e08938e140",
+              "name": "Node pools list",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nodePools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 8152,\n    \"name\": \"string\",\n    \"projectId\": 2191,\n    \"numberOfNodes\": 1950,\n    \"isOnDemand\": false,\n    \"architecture\": \"string\",\n    \"operatingSystem\": \"string\",\n    \"createdAt\": \"1957-01-05T01:05:01.511Z\",\n    \"updatedAt\": \"1977-01-20T22:36:41.457Z\"\n  },\n  {\n    \"id\": 1362,\n    \"name\": \"string\",\n    \"projectId\": 536,\n    \"numberOfNodes\": 6106,\n    \"isOnDemand\": true,\n    \"architecture\": \"string\",\n    \"operatingSystem\": \"string\",\n    \"createdAt\": \"1950-03-17T06:38:50.127Z\",\n    \"updatedAt\": \"1950-04-17T16:55:36.290Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbf4ff0e-5aa6-4770-abf5-e44c1fea2e5f",
+          "name": "JFrog Create Node Pool",
+          "request": {
+            "name": "JFrog Create Node Pool",
+            "description": {
+              "content": "Creates a new build node pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "nodePools"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"projectId\": \"<integer>\",\n  \"numberOfNodes\": \"<integer>\",\n  \"isOnDemand\": \"<boolean>\",\n  \"architecture\": \"<string>\",\n  \"operatingSystem\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5e94a21a-313b-4d0b-a591-86d09aeed0b7",
+              "name": "Node pool created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nodePools"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"projectId\": \"<integer>\",\n  \"numberOfNodes\": \"<integer>\",\n  \"isOnDemand\": \"<boolean>\",\n  \"architecture\": \"<string>\",\n  \"operatingSystem\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d005fb40-9829-4bc5-8699-62d543676e1f",
+          "name": "JFrog Get Node Pool",
+          "request": {
+            "name": "JFrog Get Node Pool",
+            "description": {
+              "content": "Returns details for a specific node pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "nodePools",
+                ":nodePoolId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "nodePoolId",
+                  "description": "(Required) Node pool ID"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c90bac2a-d987-4327-9f27-65dfebc0ead9",
+              "name": "Node pool details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nodePools",
+                    ":nodePoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "nodePoolId",
+                      "description": "(Required) Node pool ID"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9740,\n  \"name\": \"string\",\n  \"projectId\": 5276,\n  \"numberOfNodes\": 5937,\n  \"isOnDemand\": true,\n  \"architecture\": \"string\",\n  \"operatingSystem\": \"string\",\n  \"createdAt\": \"1985-06-12T12:00:21.745Z\",\n  \"updatedAt\": \"2010-06-10T07:01:38.107Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b427954-09e7-4bdc-a96d-08c32ee2f6f7",
+          "name": "JFrog Delete Node Pool",
+          "request": {
+            "name": "JFrog Delete Node Pool",
+            "description": {
+              "content": "Deletes a node pool.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "nodePools",
+                ":nodePoolId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "nodePoolId",
+                  "description": "(Required) Node pool ID"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9468ed20-9e1f-4c0c-a0aa-0e5a48c2912e",
+              "name": "Node pool deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "nodePools",
+                    ":nodePoolId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "nodePoolId",
+                      "description": "(Required) Node pool ID"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21de65dc-35c3-4ec9-a7bb-239b67548e12",
+    "name": "JFrog Access REST Access Tokens Node Pools API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

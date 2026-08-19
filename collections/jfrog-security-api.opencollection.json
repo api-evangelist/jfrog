@@ -1,0 +1,272 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Security API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/security/users"
+          },
+          "docs": "Returns a list of all users."
+        },
+        {
+          "info": {
+            "name": "JFrog Get User Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/security/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific user."
+        },
+        {
+          "info": {
+            "name": "JFrog Create or Replace User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/security/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new user or replaces an existing user."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete User",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/security/users/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "",
+                "type": "path",
+                "description": "Username"
+              }
+            ]
+          },
+          "docs": "Removes a user."
+        },
+        {
+          "info": {
+            "name": "JFrog List Groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/security/groups"
+          },
+          "docs": "Returns a list of all groups."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Group Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/security/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific group."
+        },
+        {
+          "info": {
+            "name": "JFrog Create or Replace Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/security/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new group or replaces an existing group."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Group",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/security/groups/:groupName",
+            "params": [
+              {
+                "name": "groupName",
+                "value": "",
+                "type": "path",
+                "description": "Group name"
+              }
+            ]
+          },
+          "docs": "Removes a group."
+        },
+        {
+          "info": {
+            "name": "JFrog List Permission Targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/security/permissions"
+          },
+          "docs": "Returns a list of all permission targets."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Permission Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/security/permissions/:permissionTargetName",
+            "params": [
+              {
+                "name": "permissionTargetName",
+                "value": "",
+                "type": "path",
+                "description": "Permission target name"
+              }
+            ]
+          },
+          "docs": "Returns configuration details for a specific permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Create or Replace Permission Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/security/permissions/:permissionTargetName",
+            "params": [
+              {
+                "name": "permissionTargetName",
+                "value": "",
+                "type": "path",
+                "description": "Permission target name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new or replaces an existing permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Permission Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/security/permissions/:permissionTargetName",
+            "params": [
+              {
+                "name": "permissionTargetName",
+                "value": "",
+                "type": "path",
+                "description": "Permission target name"
+              }
+            ]
+          },
+          "docs": "Removes a permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Access Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/security/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "username",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                },
+                {
+                  "name": "expires_in",
+                  "value": ""
+                },
+                {
+                  "name": "refreshable",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Creates a new access token for authentication."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

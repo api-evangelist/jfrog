@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Webhooks API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/event/api/v1/subscriptions"
+          },
+          "docs": "Returns a list of all configured webhooks."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/event/api/v1/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new webhook subscription."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/event/api/v1/subscriptions/:webhookKey",
+            "params": [
+              {
+                "name": "webhookKey",
+                "value": "",
+                "type": "path",
+                "description": "Webhook key"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific webhook."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/event/api/v1/subscriptions/:webhookKey",
+            "params": [
+              {
+                "name": "webhookKey",
+                "value": "",
+                "type": "path",
+                "description": "Webhook key"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a webhook configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/event/api/v1/subscriptions/:webhookKey",
+            "params": [
+              {
+                "name": "webhookKey",
+                "value": "",
+                "type": "path",
+                "description": "Webhook key"
+              }
+            ]
+          },
+          "docs": "Deletes a webhook subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

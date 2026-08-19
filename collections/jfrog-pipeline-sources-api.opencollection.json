@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Pipeline Sources API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipeline Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Pipeline Sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/pipelineSources"
+          },
+          "docs": "Returns a list of all pipeline source configurations."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Pipeline Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v1/pipelineSources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new pipeline source pointing to a repository with pipeline definitions."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Pipeline Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/pipelineSources/:pipelineSourceId",
+            "params": [
+              {
+                "name": "pipelineSourceId",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline source ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific pipeline source."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Pipeline Source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v1/pipelineSources/:pipelineSourceId",
+            "params": [
+              {
+                "name": "pipelineSourceId",
+                "value": "",
+                "type": "path",
+                "description": "Pipeline source ID"
+              }
+            ]
+          },
+          "docs": "Deletes a pipeline source configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

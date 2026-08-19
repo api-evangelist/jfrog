@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "172f93e0-9631-413e-be8a-de15abadae95",
+      "name": "Audit",
+      "description": {
+        "content": "Curation audit and activity logs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed5ccadd-553f-4d90-aada-02e5ff407f4f",
+          "name": "JFrog Get Curation Audit Log",
+          "request": {
+            "name": "JFrog Get Curation Audit Log",
+            "description": {
+              "content": "Returns the curation audit log showing blocked and allowed packages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "audit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<dateTime>",
+                  "description": "Start date for the audit log query"
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<dateTime>",
+                  "description": "End date for the audit log query"
+                },
+                {
+                  "disabled": false,
+                  "key": "package_type",
+                  "value": "<string>",
+                  "description": "Filter by package type (npm, maven, pypi, etc.)"
+                },
+                {
+                  "disabled": false,
+                  "key": "policy_name",
+                  "value": "<string>",
+                  "description": "Filter by policy name"
+                },
+                {
+                  "disabled": false,
+                  "key": "action_taken",
+                  "value": "<string>",
+                  "description": "Filter by action taken"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9c2aa4b-79ed-4444-9497-3544f48c965c",
+              "name": "Audit log retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "package_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "policy_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "action_taken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_count\": 8792,\n  \"audit_entries\": [\n    {\n      \"timestamp\": \"2013-05-07T22:29:41.459Z\",\n      \"package_name\": \"string\",\n      \"package_version\": \"string\",\n      \"package_type\": \"string\",\n      \"repository\": \"string\",\n      \"policy_name\": \"string\",\n      \"action_taken\": \"warned\",\n      \"reason\": \"string\",\n      \"requesting_user\": \"string\"\n    },\n    {\n      \"timestamp\": \"1998-02-14T02:33:09.851Z\",\n      \"package_name\": \"string\",\n      \"package_version\": \"string\",\n      \"package_type\": \"string\",\n      \"repository\": \"string\",\n      \"policy_name\": \"string\",\n      \"action_taken\": \"warned\",\n      \"reason\": \"string\",\n      \"requesting_user\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3c80ff7d-97ff-4914-8047-efd839e601f8",
+    "name": "JFrog Access REST Access Tokens Audit API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

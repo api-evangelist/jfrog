@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Ignore Rules API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ignore Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Ignore Rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/ignore_rules"
+          },
+          "docs": "Returns all ignore rules configured in Xray."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Ignore Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v1/ignore_rules",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ignore rule for a specific vulnerability or license."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Ignore Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/ignore_rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Ignore rule ID"
+              }
+            ]
+          },
+          "docs": "Returns a specific ignore rule."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Ignore Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v1/ignore_rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Ignore rule ID"
+              }
+            ]
+          },
+          "docs": "Deletes an ignore rule."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

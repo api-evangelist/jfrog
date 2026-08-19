@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Release Bundles V2 API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Release Bundles V2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog Create Release Bundle v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v2/release_bundle",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new release bundle version 2 from specified artifacts."
+        },
+        {
+          "info": {
+            "name": "JFrog List Release Bundles v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v2/release_bundle/records",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by release bundle name"
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results"
+              }
+            ]
+          },
+          "docs": "Returns a list of all release bundle v2 records."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Release Bundle v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v2/release_bundle/records/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific release bundle version."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Release Bundle v2",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v2/release_bundle/records/:name/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Release bundle version"
+              }
+            ]
+          },
+          "docs": "Deletes a release bundle version."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

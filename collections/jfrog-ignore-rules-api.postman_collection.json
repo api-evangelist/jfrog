@@ -1,0 +1,469 @@
+{
+  "item": [
+    {
+      "id": "4af0bd1d-56d6-4a0e-acef-8f5d64057ba0",
+      "name": "Ignore Rules",
+      "description": {
+        "content": "Rules for ignoring specific vulnerabilities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1af1c60-5f31-4cb4-ad6b-1aa292a176e7",
+          "name": "JFrog List Ignore Rules",
+          "request": {
+            "name": "JFrog List Ignore Rules",
+            "description": {
+              "content": "Returns all ignore rules configured in Xray.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ignore_rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be63b8ce-7a68-48ff-8495-cd459a449bd1",
+              "name": "Ignore rules retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ignore_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"notes\": \"string\",\n      \"expiration_date\": \"2009-04-21T02:42:04.382Z\",\n      \"vulnerabilities\": [\n        {\n          \"cve\": \"string\"\n        },\n        {\n          \"cve\": \"string\"\n        }\n      ],\n      \"cves\": [\n        {\n          \"cve\": \"string\"\n        },\n        {\n          \"cve\": \"string\"\n        }\n      ],\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"watches\": [\n        \"string\",\n        \"string\"\n      ],\n      \"policies\": [\n        \"string\",\n        \"string\"\n      ],\n      \"component\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"artifact\": {\n        \"name\": \"string\",\n        \"version\": \"string\",\n        \"path\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"notes\": \"string\",\n      \"expiration_date\": \"1973-03-16T01:03:25.214Z\",\n      \"vulnerabilities\": [\n        {\n          \"cve\": \"string\"\n        },\n        {\n          \"cve\": \"string\"\n        }\n      ],\n      \"cves\": [\n        {\n          \"cve\": \"string\"\n        },\n        {\n          \"cve\": \"string\"\n        }\n      ],\n      \"licenses\": [\n        \"string\",\n        \"string\"\n      ],\n      \"watches\": [\n        \"string\",\n        \"string\"\n      ],\n      \"policies\": [\n        \"string\",\n        \"string\"\n      ],\n      \"component\": {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      \"artifact\": {\n        \"name\": \"string\",\n        \"version\": \"string\",\n        \"path\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75295b6f-b79c-413b-847e-b960ea1480d1",
+          "name": "JFrog Create Ignore Rule",
+          "request": {
+            "name": "JFrog Create Ignore Rule",
+            "description": {
+              "content": "Creates a new ignore rule for a specific vulnerability or license.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ignore_rules"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"expiration_date\": \"<dateTime>\",\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"cves\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"watches\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"component\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"artifact\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"path\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "45b7181e-b685-4521-8a0b-602b089e9cb5",
+              "name": "Ignore rule created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ignore_rules"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"notes\": \"<string>\",\n  \"expiration_date\": \"<dateTime>\",\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"cves\": [\n    {\n      \"cve\": \"<string>\"\n    },\n    {\n      \"cve\": \"<string>\"\n    }\n  ],\n  \"licenses\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"watches\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"component\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\"\n  },\n  \"artifact\": {\n    \"name\": \"<string>\",\n    \"version\": \"<string>\",\n    \"path\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "271f1704-1217-4c31-af0a-dc117f54cf6f",
+          "name": "JFrog Get Ignore Rule",
+          "request": {
+            "name": "JFrog Get Ignore Rule",
+            "description": {
+              "content": "Returns a specific ignore rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ignore_rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Ignore rule ID"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27a619a2-ec13-41a7-91be-d262b482bcd4",
+              "name": "Ignore rule retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ignore_rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Ignore rule ID"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"notes\": \"string\",\n  \"expiration_date\": \"2008-08-08T09:25:43.865Z\",\n  \"vulnerabilities\": [\n    {\n      \"cve\": \"string\"\n    },\n    {\n      \"cve\": \"string\"\n    }\n  ],\n  \"cves\": [\n    {\n      \"cve\": \"string\"\n    },\n    {\n      \"cve\": \"string\"\n    }\n  ],\n  \"licenses\": [\n    \"string\",\n    \"string\"\n  ],\n  \"watches\": [\n    \"string\",\n    \"string\"\n  ],\n  \"policies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"component\": {\n    \"name\": \"string\",\n    \"version\": \"string\"\n  },\n  \"artifact\": {\n    \"name\": \"string\",\n    \"version\": \"string\",\n    \"path\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "132f62f1-996d-4323-8347-733543c58db3",
+          "name": "JFrog Delete Ignore Rule",
+          "request": {
+            "name": "JFrog Delete Ignore Rule",
+            "description": {
+              "content": "Deletes an ignore rule.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "ignore_rules",
+                ":ruleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ruleId",
+                  "description": "(Required) Ignore rule ID"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65759639-927d-4d34-8d1b-bef7130af136",
+              "name": "Ignore rule deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "ignore_rules",
+                    ":ruleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ruleId",
+                      "description": "(Required) Ignore rule ID"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "571333f5-1300-4431-8379-d8f7a25efe2b",
+    "name": "JFrog Access REST Access Tokens Ignore Rules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

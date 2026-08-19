@@ -1,0 +1,477 @@
+{
+  "item": [
+    {
+      "id": "2bb9bd90-e732-4af4-99c5-8db0a1406b12",
+      "name": "Replication",
+      "description": {
+        "content": "Push and pull replication configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a0ff16d2-42d7-4224-8b4a-eae822e26a18",
+          "name": "JFrog List All Replications",
+          "request": {
+            "name": "JFrog List All Replications",
+            "description": {
+              "content": "Returns a list of all replication configurations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "replications"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aceb8ddf-801b-403d-9e2f-9cfce8563c90",
+              "name": "Replication list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "replications"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"repoKey\": \"string\",\n    \"url\": \"https://LGxdwpVwHAkNpvH.vsDNGxC-SqBvpS7RS6yYGkxX8ojMX1pXgYmuTWT3RFcXQ\",\n    \"socketTimeoutMillis\": 1502,\n    \"username\": \"string\",\n    \"password\": \"string\",\n    \"enableEventReplication\": false,\n    \"enabled\": true,\n    \"cronExp\": \"string\",\n    \"syncDeletes\": false,\n    \"syncProperties\": false,\n    \"syncStatistics\": true,\n    \"pathPrefix\": \"string\"\n  },\n  {\n    \"repoKey\": \"string\",\n    \"url\": \"https://zFXYogJzkubgUXdkeMbuN.rutzfEzJA-XIgBgQ25oIyeD7V,U2d8swfDP,UNgGB,cUnsEUeCdmBCgBJ6VaczrPuPk3A\",\n    \"socketTimeoutMillis\": 6881,\n    \"username\": \"string\",\n    \"password\": \"string\",\n    \"enableEventReplication\": false,\n    \"enabled\": false,\n    \"cronExp\": \"string\",\n    \"syncDeletes\": false,\n    \"syncProperties\": true,\n    \"syncStatistics\": false,\n    \"pathPrefix\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0053349f-a930-40e2-98e8-3fc3a77648dc",
+          "name": "JFrog Get Replication Configuration",
+          "request": {
+            "name": "JFrog Get Replication Configuration",
+            "description": {
+              "content": "Returns replication configuration for a specific repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "replications",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0b22074-b705-411e-b5d3-caf6ddc71b94",
+              "name": "Replication config retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "replications",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"repoKey\": \"string\",\n  \"url\": \"http://cfsazAaFV.yxhjMBbQqLF1vKj\",\n  \"socketTimeoutMillis\": 6965,\n  \"username\": \"string\",\n  \"password\": \"string\",\n  \"enableEventReplication\": false,\n  \"enabled\": true,\n  \"cronExp\": \"string\",\n  \"syncDeletes\": true,\n  \"syncProperties\": true,\n  \"syncStatistics\": false,\n  \"pathPrefix\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8ee75e25-0b41-493c-bb27-2e59257d07be",
+          "name": "JFrog Create or Replace Replication",
+          "request": {
+            "name": "JFrog Create or Replace Replication",
+            "description": {
+              "content": "Creates or replaces a replication configuration for a repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "replications",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repoKey\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"socketTimeoutMillis\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"enableEventReplication\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"cronExp\": \"<string>\",\n  \"syncDeletes\": \"<boolean>\",\n  \"syncProperties\": \"<boolean>\",\n  \"syncStatistics\": \"<boolean>\",\n  \"pathPrefix\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5473b278-f0d9-42a4-994c-b9d5f2f854ea",
+              "name": "Replication config created/replaced",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "replications",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"repoKey\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"socketTimeoutMillis\": \"<integer>\",\n  \"username\": \"<string>\",\n  \"password\": \"<string>\",\n  \"enableEventReplication\": \"<boolean>\",\n  \"enabled\": \"<boolean>\",\n  \"cronExp\": \"<string>\",\n  \"syncDeletes\": \"<boolean>\",\n  \"syncProperties\": \"<boolean>\",\n  \"syncStatistics\": \"<boolean>\",\n  \"pathPrefix\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fa38d621-c7c4-4eaa-b1be-e73505679f54",
+          "name": "JFrog Delete Replication",
+          "request": {
+            "name": "JFrog Delete Replication",
+            "description": {
+              "content": "Removes a replication configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "replications",
+                ":repoKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "repoKey",
+                  "description": "(Required) Repository key"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5533a8c9-e682-45ac-91a7-1440f380b7b1",
+              "name": "Replication config deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "replications",
+                    ":repoKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "repoKey",
+                      "description": "(Required) Repository key"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "109cba50-0aa6-4e4c-8a74-07b2465aaad2",
+    "name": "JFrog Access REST Access Tokens Replication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1291 @@
+{
+  "item": [
+    {
+      "id": "89eb4d6c-5280-4bc8-be1b-0e250f18c0cb",
+      "name": "Policies",
+      "description": {
+        "content": "Curation policy management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0a30728a-d025-47f2-a5b1-a17bb2e73e97",
+          "name": "JFrog List Curation Policies",
+          "request": {
+            "name": "JFrog List Curation Policies",
+            "description": {
+              "content": "Returns a list of all curation policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "876b6ac4-0776-412a-ae6a-7fd82ef45174",
+              "name": "Policies list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policies\": [\n    {\n      \"policy_name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": true,\n      \"policy_type\": \"block_packages_without_license\",\n      \"repositories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"conditions\": {\n        \"min_severity\": \"Critical\",\n        \"max_age_days\": 1553,\n        \"banned_package_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"banned_licenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"approved_packages\": [\n          {\n            \"name\": \"string\",\n            \"version\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"version\": \"string\"\n          }\n        ]\n      },\n      \"actions\": {\n        \"block\": true,\n        \"notify\": false,\n        \"notify_emails\": [\n          \"ilb@OqqXOWZJhuEJVD.nz\",\n          \"aMZZ7@CKmvtrQPxOXDBDuQocd.bvj\"\n        ],\n        \"custom_message\": \"string\"\n      },\n      \"created\": \"2020-08-17T14:59:15.256Z\",\n      \"modified\": \"1957-07-18T13:40:43.412Z\"\n    },\n    {\n      \"policy_name\": \"string\",\n      \"description\": \"string\",\n      \"enabled\": false,\n      \"policy_type\": \"block_malicious_packages\",\n      \"repositories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"package_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"conditions\": {\n        \"min_severity\": \"Critical\",\n        \"max_age_days\": 7792,\n        \"banned_package_names\": [\n          \"string\",\n          \"string\"\n        ],\n        \"banned_licenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"approved_packages\": [\n          {\n            \"name\": \"string\",\n            \"version\": \"string\"\n          },\n          {\n            \"name\": \"string\",\n            \"version\": \"string\"\n          }\n        ]\n      },\n      \"actions\": {\n        \"block\": false,\n        \"notify\": false,\n        \"notify_emails\": [\n          \"Fdhy@dSIcvKwbw.pwf\",\n          \"bpsYVtcb-1@opplSbfhHVUtncNpJDD.aiw\"\n        ],\n        \"custom_message\": \"string\"\n      },\n      \"created\": \"1965-08-25T03:37:58.042Z\",\n      \"modified\": \"1950-10-01T14:27:20.886Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "136e9eca-aade-4eb8-aa93-5bad87ba22e5",
+          "name": "JFrog Create Curation Policy",
+          "request": {
+            "name": "JFrog Create Curation Policy",
+            "description": {
+              "content": "Creates a new curation policy for blocking or allowing packages.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": \"<object>\",\n  \"actions\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a745b857-91c1-4d6e-8d27-839a1d88d953",
+              "name": "Policy created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": \"<object>\",\n  \"actions\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_name\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": true,\n  \"policy_type\": \"custom\",\n  \"repositories\": [\n    \"string\",\n    \"string\"\n  ],\n  \"package_types\": [\n    \"string\",\n    \"string\"\n  ],\n  \"conditions\": {\n    \"min_severity\": \"Critical\",\n    \"max_age_days\": 3962,\n    \"banned_package_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"banned_licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"approved_packages\": [\n      {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"block\": false,\n    \"notify\": true,\n    \"notify_emails\": [\n      \"SH-cHvpRh6@VZTpZXOnxzJbLgSSHVvCcUrTrFAMQKa.howo\",\n      \"Tqr1HC@tvuWSNOYOjrUmEQHutXhabUoxQoeD.mg\"\n    ],\n    \"custom_message\": \"string\"\n  },\n  \"created\": \"1986-06-10T05:55:51.629Z\",\n  \"modified\": \"1948-11-17T07:14:31.977Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "959ee293-dd24-4b4a-8859-2770ac9b98c1",
+              "name": "Invalid policy configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": \"<object>\",\n  \"actions\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75ef9bfa-026d-44b3-b992-d7510922af19",
+          "name": "JFrog Get Curation Policy",
+          "request": {
+            "name": "JFrog Get Curation Policy",
+            "description": {
+              "content": "Returns details for a specific curation policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "policies",
+                ":policyName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyName",
+                  "description": "(Required) Policy name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2adfa36-0e3c-454a-9b4d-e9b35bd8dc75",
+              "name": "Policy details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "policies",
+                    ":policyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyName",
+                      "description": "(Required) Policy name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"policy_name\": \"string\",\n  \"description\": \"string\",\n  \"enabled\": true,\n  \"policy_type\": \"custom\",\n  \"repositories\": [\n    \"string\",\n    \"string\"\n  ],\n  \"package_types\": [\n    \"string\",\n    \"string\"\n  ],\n  \"conditions\": {\n    \"min_severity\": \"Critical\",\n    \"max_age_days\": 3962,\n    \"banned_package_names\": [\n      \"string\",\n      \"string\"\n    ],\n    \"banned_licenses\": [\n      \"string\",\n      \"string\"\n    ],\n    \"approved_packages\": [\n      {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      },\n      {\n        \"name\": \"string\",\n        \"version\": \"string\"\n      }\n    ]\n  },\n  \"actions\": {\n    \"block\": false,\n    \"notify\": true,\n    \"notify_emails\": [\n      \"SH-cHvpRh6@VZTpZXOnxzJbLgSSHVvCcUrTrFAMQKa.howo\",\n      \"Tqr1HC@tvuWSNOYOjrUmEQHutXhabUoxQoeD.mg\"\n    ],\n    \"custom_message\": \"string\"\n  },\n  \"created\": \"1986-06-10T05:55:51.629Z\",\n  \"modified\": \"1948-11-17T07:14:31.977Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60b36f2c-a784-4a55-9782-f05aa4f3730a",
+              "name": "Policy not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "policies",
+                    ":policyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyName",
+                      "description": "(Required) Policy name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f781e5d-a2c0-4bc8-a4b9-434728fdd390",
+          "name": "JFrog Update Curation Policy",
+          "request": {
+            "name": "JFrog Update Curation Policy",
+            "description": {
+              "content": "Updates an existing curation policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "policies",
+                ":policyName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyName",
+                  "description": "(Required) Policy name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": \"<object>\",\n  \"actions\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec4358bd-8508-4b0f-8157-6952d018eaa2",
+              "name": "Policy updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "policies",
+                    ":policyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyName",
+                      "description": "(Required) Policy name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"policy_name\": \"<string>\",\n  \"policy_type\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enabled\": \"<boolean>\",\n  \"repositories\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"package_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"conditions\": \"<object>\",\n  \"actions\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5ca17be-3192-4617-b69f-1b91f2f2c9eb",
+          "name": "JFrog Delete Curation Policy",
+          "request": {
+            "name": "JFrog Delete Curation Policy",
+            "description": {
+              "content": "Deletes a curation policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "policies",
+                ":policyName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyName",
+                  "description": "(Required) Policy name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34eef1ee-ec40-425c-aed8-82544615bb2d",
+              "name": "Policy deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "policies",
+                    ":policyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyName",
+                      "description": "(Required) Policy name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f73b97b1-f965-4780-854b-fd203ca0f59e",
+          "name": "JFrog List Policies",
+          "request": {
+            "name": "JFrog List Policies",
+            "description": {
+              "content": "Returns a list of all security and license policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9dfa84c-dcf3-42d2-adc6-754e4d3bae1f",
+              "name": "Policies list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"type\": \"security\",\n    \"rules\": [\n      {\n        \"name\": \"string\",\n        \"priority\": 6316,\n        \"criteria\": {\n          \"min_severity\": \"Critical\",\n          \"cvss_range\": {\n            \"from\": 344.5418907989395,\n            \"to\": 5808.872229142783\n          },\n          \"allow_unknown\": false,\n          \"banned_licenses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowed_licenses\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mails\": [\n            \"string\",\n            \"string\"\n          ],\n          \"block_download\": {\n            \"unscanned\": false,\n            \"active\": false\n          },\n          \"block_release_bundle_distribution\": false,\n          \"fail_build\": false,\n          \"notify_deployer\": false,\n          \"notify_watch_recipients\": false,\n          \"create_ticket_enabled\": false\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"priority\": 5229,\n        \"criteria\": {\n          \"min_severity\": \"Critical\",\n          \"cvss_range\": {\n            \"from\": 5756.016848787864,\n            \"to\": 4333.648123167679\n          },\n          \"allow_unknown\": true,\n          \"banned_licenses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowed_licenses\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mails\": [\n            \"string\",\n            \"string\"\n          ],\n          \"block_download\": {\n            \"unscanned\": true,\n            \"active\": false\n          },\n          \"block_release_bundle_distribution\": false,\n          \"fail_build\": true,\n          \"notify_deployer\": true,\n          \"notify_watch_recipients\": true,\n          \"create_ticket_enabled\": true\n        }\n      }\n    ],\n    \"description\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"type\": \"operational_risk\",\n    \"rules\": [\n      {\n        \"name\": \"string\",\n        \"priority\": 7013,\n        \"criteria\": {\n          \"min_severity\": \"Low\",\n          \"cvss_range\": {\n            \"from\": 2239.1733419481075,\n            \"to\": 4793.914801586211\n          },\n          \"allow_unknown\": true,\n          \"banned_licenses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowed_licenses\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mails\": [\n            \"string\",\n            \"string\"\n          ],\n          \"block_download\": {\n            \"unscanned\": true,\n            \"active\": false\n          },\n          \"block_release_bundle_distribution\": true,\n          \"fail_build\": true,\n          \"notify_deployer\": false,\n          \"notify_watch_recipients\": true,\n          \"create_ticket_enabled\": true\n        }\n      },\n      {\n        \"name\": \"string\",\n        \"priority\": 1562,\n        \"criteria\": {\n          \"min_severity\": \"Medium\",\n          \"cvss_range\": {\n            \"from\": 7918.328694833586,\n            \"to\": 7984.002466037884\n          },\n          \"allow_unknown\": false,\n          \"banned_licenses\": [\n            \"string\",\n            \"string\"\n          ],\n          \"allowed_licenses\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        \"actions\": {\n          \"webhooks\": [\n            \"string\",\n            \"string\"\n          ],\n          \"mails\": [\n            \"string\",\n            \"string\"\n          ],\n          \"block_download\": {\n            \"unscanned\": true,\n            \"active\": true\n          },\n          \"block_release_bundle_distribution\": false,\n          \"fail_build\": false,\n          \"notify_deployer\": false,\n          \"notify_watch_recipients\": false,\n          \"create_ticket_enabled\": true\n        }\n      }\n    ],\n    \"description\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa6da951-524f-4ed6-8893-f9f3f426e2f0",
+          "name": "JFrog Create Policy",
+          "request": {
+            "name": "JFrog Create Policy",
+            "description": {
+              "content": "Creates a new security or license compliance policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e9d0dac9-7cb7-4f1b-8f5c-7202fd41e98c",
+              "name": "Policy created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c0e06191-e606-412a-bd97-8e537f2fc27d",
+              "name": "Invalid policy configuration",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57e54b85-37c7-4aaa-bf87-e54a380b1414",
+          "name": "JFrog Get Policy",
+          "request": {
+            "name": "JFrog Get Policy",
+            "description": {
+              "content": "Returns details of a specific policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "policies",
+                ":policyName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyName",
+                  "description": "(Required) Policy name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2fe982e-c5ba-44e1-9b91-aa512da4c6bb",
+              "name": "Policy details retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "policies",
+                    ":policyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyName",
+                      "description": "(Required) Policy name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"type\": \"license\",\n  \"rules\": [\n    {\n      \"name\": \"string\",\n      \"priority\": 4511,\n      \"criteria\": {\n        \"min_severity\": \"High\",\n        \"cvss_range\": {\n          \"from\": 6605.19293318226,\n          \"to\": 1715.2081234180528\n        },\n        \"allow_unknown\": true,\n        \"banned_licenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"allowed_licenses\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"string\",\n          \"string\"\n        ],\n        \"mails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"block_download\": {\n          \"unscanned\": false,\n          \"active\": true\n        },\n        \"block_release_bundle_distribution\": true,\n        \"fail_build\": true,\n        \"notify_deployer\": true,\n        \"notify_watch_recipients\": false,\n        \"create_ticket_enabled\": true\n      }\n    },\n    {\n      \"name\": \"string\",\n      \"priority\": 2022,\n      \"criteria\": {\n        \"min_severity\": \"Critical\",\n        \"cvss_range\": {\n          \"from\": 2137.195089959757,\n          \"to\": 4209.653744953275\n        },\n        \"allow_unknown\": false,\n        \"banned_licenses\": [\n          \"string\",\n          \"string\"\n        ],\n        \"allowed_licenses\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"string\",\n          \"string\"\n        ],\n        \"mails\": [\n          \"string\",\n          \"string\"\n        ],\n        \"block_download\": {\n          \"unscanned\": false,\n          \"active\": true\n        },\n        \"block_release_bundle_distribution\": true,\n        \"fail_build\": true,\n        \"notify_deployer\": true,\n        \"notify_watch_recipients\": false,\n        \"create_ticket_enabled\": false\n      }\n    }\n  ],\n  \"description\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2bc3a553-adc4-4762-8fdd-beb8c9d14d00",
+          "name": "JFrog Update Policy",
+          "request": {
+            "name": "JFrog Update Policy",
+            "description": {
+              "content": "Updates an existing policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "policies",
+                ":policyName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyName",
+                  "description": "(Required) Policy name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11080b46-507a-4b7d-8144-930ab0f7f054",
+              "name": "Policy updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "policies",
+                    ":policyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyName",
+                      "description": "(Required) Policy name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"<string>\",\n  \"rules\": [\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    },\n    {\n      \"name\": \"<string>\",\n      \"priority\": \"<integer>\",\n      \"criteria\": {\n        \"min_severity\": \"<string>\",\n        \"cvss_range\": {\n          \"from\": \"<number>\",\n          \"to\": \"<number>\"\n        },\n        \"allow_unknown\": \"<boolean>\",\n        \"banned_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_licenses\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"actions\": {\n        \"webhooks\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"mails\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"block_download\": {\n          \"unscanned\": \"<boolean>\",\n          \"active\": \"<boolean>\"\n        },\n        \"block_release_bundle_distribution\": \"<boolean>\",\n        \"fail_build\": \"<boolean>\",\n        \"notify_deployer\": \"<boolean>\",\n        \"notify_watch_recipients\": \"<boolean>\",\n        \"create_ticket_enabled\": \"<boolean>\"\n      }\n    }\n  ],\n  \"description\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d8c1fc5-1d0b-4f0b-b09f-0ea66820e7d8",
+          "name": "JFrog Delete Policy",
+          "request": {
+            "name": "JFrog Delete Policy",
+            "description": {
+              "content": "Removes a policy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "policies",
+                ":policyName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "policyName",
+                  "description": "(Required) Policy name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3947d81-459a-4b06-b585-7e9904934b50",
+              "name": "Policy deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "policies",
+                    ":policyName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "policyName",
+                      "description": "(Required) Policy name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "82cdd424-91b1-4a51-8b74-ac01f777a1d9",
+    "name": "JFrog Access REST Access Tokens Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

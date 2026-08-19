@@ -1,0 +1,165 @@
+{
+  "item": [
+    {
+      "id": "e11678e0-2e83-4d1b-be84-dca1cbdf70d1",
+      "name": "Violations",
+      "description": {
+        "content": "Policy violations management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0d0f4cc-c00c-4422-a633-3596d543991b",
+          "name": "JFrog Get Violations",
+          "request": {
+            "name": "JFrog Get Violations",
+            "description": {
+              "content": "Returns violations based on specified filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "violations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"type\": \"<string>\",\n    \"watch_name\": \"<string>\",\n    \"min_severity\": \"<string>\",\n    \"created_from\": \"<dateTime>\"\n  },\n  \"pagination\": {\n    \"order_by\": \"<string>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f987000-c4b4-4a7e-8c68-d2531499f454",
+              "name": "Violations retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "violations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"type\": \"<string>\",\n    \"watch_name\": \"<string>\",\n    \"min_severity\": \"<string>\",\n    \"created_from\": \"<dateTime>\"\n  },\n  \"pagination\": {\n    \"order_by\": \"<string>\",\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_violations\": 5340,\n  \"violations\": [\n    {\n      \"violation_type\": \"string\",\n      \"severity\": \"string\",\n      \"watch_name\": \"string\",\n      \"description\": \"string\",\n      \"matched_policies\": [\n        {\n          \"policy\": \"string\",\n          \"rule\": \"string\"\n        },\n        {\n          \"policy\": \"string\",\n          \"rule\": \"string\"\n        }\n      ],\n      \"created\": \"1974-11-26T00:45:03.869Z\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    },\n    {\n      \"violation_type\": \"string\",\n      \"severity\": \"string\",\n      \"watch_name\": \"string\",\n      \"description\": \"string\",\n      \"matched_policies\": [\n        {\n          \"policy\": \"string\",\n          \"rule\": \"string\"\n        },\n        {\n          \"policy\": \"string\",\n          \"rule\": \"string\"\n        }\n      ],\n      \"created\": \"2006-01-08T22:55:10.747Z\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "beeadcbc-b359-4410-85e5-18720269c310",
+    "name": "JFrog Access REST Access Tokens Violations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

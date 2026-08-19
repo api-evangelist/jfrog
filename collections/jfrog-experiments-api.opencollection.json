@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Experiments API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Experiments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Experiments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/experiments",
+            "params": [
+              {
+                "name": "model_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by model ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of all ML experiments."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v1/experiments",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ML experiment."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/experiments/:experimentId",
+            "params": [
+              {
+                "name": "experimentId",
+                "value": "",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific experiment."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Experiment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v1/experiments/:experimentId",
+            "params": [
+              {
+                "name": "experimentId",
+                "value": "",
+                "type": "path",
+                "description": "Experiment ID"
+              }
+            ]
+          },
+          "docs": "Deletes an experiment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

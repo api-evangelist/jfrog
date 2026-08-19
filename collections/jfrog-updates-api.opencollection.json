@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Updates API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Updates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Updates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/projects/:projectId/updates",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by update status"
+              }
+            ]
+          },
+          "docs": "Returns a list of all OTA update deployments."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/projects/:projectId/updates",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new OTA software update deployment."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/projects/:projectId/updates/:updateId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "updateId",
+                "value": "",
+                "type": "path",
+                "description": "Update ID"
+              }
+            ]
+          },
+          "docs": "Returns details and status for a specific update."
+        },
+        {
+          "info": {
+            "name": "JFrog Cancel Update",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/projects/:projectId/updates/:updateId/cancel",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Project ID"
+              },
+              {
+                "name": "updateId",
+                "value": "",
+                "type": "path",
+                "description": "Update ID"
+              }
+            ]
+          },
+          "docs": "Cancels a pending or in-progress update."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

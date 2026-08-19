@@ -1,0 +1,521 @@
+{
+  "item": [
+    {
+      "id": "98c719ce-8730-41a0-a007-b2956945279d",
+      "name": "Builds",
+      "description": {
+        "content": "Build information and promotion",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1caf2f01-7f23-45ce-9928-0127c16f4ea0",
+          "name": "JFrog List All Builds",
+          "request": {
+            "name": "JFrog List All Builds",
+            "description": {
+              "content": "Returns a list of all builds stored in Artifactory.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "build"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "387fe37c-fb52-426d-befc-297e4b00f77f",
+              "name": "Builds list retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"builds\": [\n    {\n      \"uri\": \"string\",\n      \"lastStarted\": \"2004-04-12T20:55:20.353Z\"\n    },\n    {\n      \"uri\": \"string\",\n      \"lastStarted\": \"2023-06-25T10:21:45.906Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bd5a0c36-7546-43a6-af07-5d9fcc2d91ef",
+          "name": "JFrog Get Build Runs",
+          "request": {
+            "name": "JFrog Get Build Runs",
+            "description": {
+              "content": "Returns all runs for a specific build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "build",
+                ":buildName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "buildName",
+                  "description": "(Required) Build name"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b7feb9fd-486b-4f8b-8900-28b77ea7df25",
+              "name": "Build runs retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "build",
+                    ":buildName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "buildName",
+                      "description": "(Required) Build name"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"uri\": \"string\",\n  \"buildsNumbers\": [\n    {\n      \"uri\": \"string\",\n      \"started\": \"1996-04-26T02:33:51.248Z\"\n    },\n    {\n      \"uri\": \"string\",\n      \"started\": \"2020-07-18T12:24:51.884Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f6eb9cc-45fa-4667-9757-13302efaccf9",
+          "name": "JFrog Get Build Information",
+          "request": {
+            "name": "JFrog Get Build Information",
+            "description": {
+              "content": "Returns full build information for a specific build run.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "build",
+                ":buildName",
+                ":buildNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "buildName",
+                  "description": "(Required) Build name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "buildNumber",
+                  "description": "(Required) Build number"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af6c7e83-fced-4d1c-9184-aee1d1403531",
+              "name": "Build info retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "build",
+                    ":buildName",
+                    ":buildNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "buildName",
+                      "description": "(Required) Build name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "buildNumber",
+                      "description": "(Required) Build number"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"buildInfo\": {\n    \"version\": \"string\",\n    \"name\": \"string\",\n    \"number\": \"string\",\n    \"type\": \"string\",\n    \"buildAgent\": {\n      \"name\": \"string\",\n      \"version\": \"string\"\n    },\n    \"agent\": {\n      \"name\": \"string\",\n      \"version\": \"string\"\n    },\n    \"started\": \"2001-07-18T01:22:16.281Z\",\n    \"durationMillis\": 2416,\n    \"modules\": [\n      {\n        \"id\": \"string\",\n        \"artifacts\": [\n          {\n            \"type\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\",\n            \"md5\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\",\n            \"md5\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"artifacts\": [\n          {\n            \"type\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\",\n            \"md5\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"type\": \"string\",\n            \"sha1\": \"string\",\n            \"sha256\": \"string\",\n            \"md5\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f833f516-7030-4f92-8ccf-b7600ec4b388",
+          "name": "JFrog Promote Build",
+          "request": {
+            "name": "JFrog Promote Build",
+            "description": {
+              "content": "Promotes a build by moving or copying artifacts to a target repository.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "build",
+                "promote",
+                ":buildName",
+                ":buildNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "buildName",
+                  "description": "(Required) Build name"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "buildNumber",
+                  "description": "(Required) Build number"
+                },
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetRepo\": \"<string>\",\n  \"status\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"ciUser\": \"<string>\",\n  \"timestamp\": \"<string>\",\n  \"properties\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_1\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"key_2\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"sourceRepo\": \"<string>\",\n  \"copy\": \"<boolean>\",\n  \"artifacts\": \"<boolean>\",\n  \"dependencies\": \"<boolean>\",\n  \"failFast\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2a6433e9-0dd4-4b97-8805-8aa71ffbc1f2",
+              "name": "Build promoted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "build",
+                    "promote",
+                    ":buildName",
+                    ":buildNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "buildName",
+                      "description": "(Required) Build name"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "buildNumber",
+                      "description": "(Required) Build number"
+                    },
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targetRepo\": \"<string>\",\n  \"status\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"ciUser\": \"<string>\",\n  \"timestamp\": \"<string>\",\n  \"properties\": {\n    \"key_0\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"sourceRepo\": \"<string>\",\n  \"copy\": \"<boolean>\",\n  \"artifacts\": \"<boolean>\",\n  \"dependencies\": \"<boolean>\",\n  \"failFast\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "90c86067-4fea-41bb-8f59-028ceaa9dd93",
+    "name": "JFrog Access REST Access Tokens Builds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}

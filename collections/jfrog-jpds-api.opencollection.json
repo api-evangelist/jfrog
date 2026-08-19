@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens JPDs API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JPDs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List JPDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v3/jpds"
+          },
+          "docs": "Returns a list of all managed JFrog Platform Deployments."
+        },
+        {
+          "info": {
+            "name": "JFrog Add JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v3/jpds",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new JFrog Platform Deployment to Mission Control."
+        },
+        {
+          "info": {
+            "name": "JFrog Get JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v3/jpds/:jpdId",
+            "params": [
+              {
+                "name": "jpdId",
+                "value": "",
+                "type": "path",
+                "description": "JPD ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific JPD."
+        },
+        {
+          "info": {
+            "name": "JFrog Update JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/v3/jpds/:jpdId",
+            "params": [
+              {
+                "name": "jpdId",
+                "value": "",
+                "type": "path",
+                "description": "JPD ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates JPD configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Remove JPD",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v3/jpds/:jpdId",
+            "params": [
+              {
+                "name": "jpdId",
+                "value": "",
+                "type": "path",
+                "description": "JPD ID"
+              }
+            ]
+          },
+          "docs": "Removes a JPD from Mission Control management."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

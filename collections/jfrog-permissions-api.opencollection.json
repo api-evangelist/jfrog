@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Permissions API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions"
+          },
+          "docs": "Returns a list of all permission targets configured in the platform."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new permission target defining access control rules for repositories, builds, and release bundles."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ]
+          },
+          "docs": "Returns the full configuration of a specific permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replaces the full configuration of an existing permission target."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ]
+          },
+          "docs": "Removes a permission target and all its access control rules."
+        },
+        {
+          "info": {
+            "name": "JFrog List Permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/access/api/v2/permissions"
+          },
+          "docs": "Returns a list of all permission configurations."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/access/api/v2/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new permission configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific permission."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a permission configuration."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/access/api/v2/permissions/:permissionName",
+            "params": [
+              {
+                "name": "permissionName",
+                "value": "",
+                "type": "path",
+                "description": "Permission name"
+              }
+            ]
+          },
+          "docs": "Deletes a permission configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

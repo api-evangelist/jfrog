@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Node Pools API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Node Pools",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Node Pools",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/nodePools"
+          },
+          "docs": "Returns a list of all build node pools."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v1/nodePools",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new build node pool."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/nodePools/:nodePoolId",
+            "params": [
+              {
+                "name": "nodePoolId",
+                "value": "",
+                "type": "path",
+                "description": "Node pool ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific node pool."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Node Pool",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v1/nodePools/:nodePoolId",
+            "params": [
+              {
+                "name": "nodePoolId",
+                "value": "",
+                "type": "path",
+                "description": "Node pool ID"
+              }
+            ]
+          },
+          "docs": "Deletes a node pool."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

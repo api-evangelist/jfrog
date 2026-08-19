@@ -1,0 +1,198 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "JFrog Access REST Access Tokens Policies API",
+    "version": "2.x"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JFrog List Curation Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/policies"
+          },
+          "docs": "Returns a list of all curation policies."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v1/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new curation policy for blocking or allowing packages."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v1/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific curation policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/v1/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing curation policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Curation Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v1/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Deletes a curation policy."
+        },
+        {
+          "info": {
+            "name": "JFrog List Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v2/policies"
+          },
+          "docs": "Returns a list of all security and license policies."
+        },
+        {
+          "info": {
+            "name": "JFrog Create Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{server}.jfrog.io/access/v2/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new security or license compliance policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Get Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{server}.jfrog.io/access/v2/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Returns details of a specific policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Update Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{server}.jfrog.io/access/v2/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing policy."
+        },
+        {
+          "info": {
+            "name": "JFrog Delete Policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{server}.jfrog.io/access/v2/policies/:policyName",
+            "params": [
+              {
+                "name": "policyName",
+                "value": "",
+                "type": "path",
+                "description": "Policy name"
+              }
+            ]
+          },
+          "docs": "Removes a policy."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

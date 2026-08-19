@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "d6703e24-f1df-446a-b76e-17b89c2b73fe",
+      "name": "Summary",
+      "description": {
+        "content": "Artifact and build vulnerability summaries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8abade1-1b5b-416c-a197-d6b23f4654b8",
+          "name": "JFrog Get Artifact Summary",
+          "request": {
+            "name": "JFrog Get Artifact Summary",
+            "description": {
+              "content": "Returns a summary of security issues and license information for specified artifacts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "summary",
+                "artifact"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "271c0af5-6874-474f-ad97-38101b6b5e2c",
+              "name": "Artifact summary retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "summary",
+                    "artifact"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"paths\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"artifacts\": [\n    {\n      \"general\": {\n        \"name\": \"string\",\n        \"path\": \"string\",\n        \"sha256\": \"string\",\n        \"component_id\": \"string\"\n      },\n      \"issues\": [\n        {\n          \"issue_id\": \"string\",\n          \"severity\": \"Medium\",\n          \"summary\": \"string\",\n          \"description\": \"string\",\n          \"issue_type\": \"string\",\n          \"provider\": \"string\",\n          \"cves\": [\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            },\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            }\n          ],\n          \"created\": \"2002-03-18T11:54:53.004Z\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            }\n          ]\n        },\n        {\n          \"issue_id\": \"string\",\n          \"severity\": \"Low\",\n          \"summary\": \"string\",\n          \"description\": \"string\",\n          \"issue_type\": \"string\",\n          \"provider\": \"string\",\n          \"cves\": [\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            },\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            }\n          ],\n          \"created\": \"2012-10-27T01:02:00.332Z\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"licenses\": [\n        {\n          \"name\": \"string\",\n          \"full_name\": \"string\",\n          \"components\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"full_name\": \"string\",\n          \"components\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"general\": {\n        \"name\": \"string\",\n        \"path\": \"string\",\n        \"sha256\": \"string\",\n        \"component_id\": \"string\"\n      },\n      \"issues\": [\n        {\n          \"issue_id\": \"string\",\n          \"severity\": \"Critical\",\n          \"summary\": \"string\",\n          \"description\": \"string\",\n          \"issue_type\": \"string\",\n          \"provider\": \"string\",\n          \"cves\": [\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            },\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            }\n          ],\n          \"created\": \"1975-12-20T15:05:45.060Z\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            }\n          ]\n        },\n        {\n          \"issue_id\": \"string\",\n          \"severity\": \"Medium\",\n          \"summary\": \"string\",\n          \"description\": \"string\",\n          \"issue_type\": \"string\",\n          \"provider\": \"string\",\n          \"cves\": [\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            },\n            {\n              \"cve\": \"string\",\n              \"cvss_v2_score\": \"string\",\n              \"cvss_v3_score\": \"string\"\n            }\n          ],\n          \"created\": \"1972-08-23T21:25:48.102Z\",\n          \"impacted_artifacts\": [\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            },\n            {\n              \"name\": \"string\",\n              \"display_name\": \"string\",\n              \"path\": \"string\",\n              \"sha256\": \"string\"\n            }\n          ]\n        }\n      ],\n      \"licenses\": [\n        {\n          \"name\": \"string\",\n          \"full_name\": \"string\",\n          \"components\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"name\": \"string\",\n          \"full_name\": \"string\",\n          \"components\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "564dc12c-a380-44e4-81c2-43e3cbe2c9bd",
+          "name": "JFrog Get Build Summary",
+          "request": {
+            "name": "JFrog Get Build Summary",
+            "description": {
+              "content": "Returns a summary of security issues for specified build.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "summary",
+                "build"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your JFrog server name",
+                  "type": "any",
+                  "value": "{{server}}",
+                  "key": "server"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"build_name\": \"<string>\",\n  \"build_number\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "314958ab-726d-45c6-a3a9-c82ae4d61bb0",
+              "name": "Build summary retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "summary",
+                    "build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your JFrog server name",
+                      "type": "any",
+                      "value": "{{server}}",
+                      "key": "server"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"build_name\": \"<string>\",\n  \"build_number\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"build\": {\n    \"build_name\": \"string\",\n    \"build_number\": \"string\"\n  },\n  \"issues\": [\n    {\n      \"issue_id\": \"string\",\n      \"severity\": \"Medium\",\n      \"summary\": \"string\",\n      \"description\": \"string\",\n      \"issue_type\": \"string\",\n      \"provider\": \"string\",\n      \"cves\": [\n        {\n          \"cve\": \"string\",\n          \"cvss_v2_score\": \"string\",\n          \"cvss_v3_score\": \"string\"\n        },\n        {\n          \"cve\": \"string\",\n          \"cvss_v2_score\": \"string\",\n          \"cvss_v3_score\": \"string\"\n        }\n      ],\n      \"created\": \"2006-11-20T16:55:54.866Z\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\",\n          \"sha256\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\",\n          \"sha256\": \"string\"\n        }\n      ]\n    },\n    {\n      \"issue_id\": \"string\",\n      \"severity\": \"Critical\",\n      \"summary\": \"string\",\n      \"description\": \"string\",\n      \"issue_type\": \"string\",\n      \"provider\": \"string\",\n      \"cves\": [\n        {\n          \"cve\": \"string\",\n          \"cvss_v2_score\": \"string\",\n          \"cvss_v3_score\": \"string\"\n        },\n        {\n          \"cve\": \"string\",\n          \"cvss_v2_score\": \"string\",\n          \"cvss_v3_score\": \"string\"\n        }\n      ],\n      \"created\": \"2004-08-20T19:26:37.860Z\",\n      \"impacted_artifacts\": [\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\",\n          \"sha256\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"display_name\": \"string\",\n          \"path\": \"string\",\n          \"sha256\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your JFrog server name",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "myserver",
+      "key": "server"
+    },
+    {
+      "type": "string",
+      "value": "https://{{server}}.jfrog.io/access",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "24ea7ec6-0562-4a12-bd24-d4865debe359",
+    "name": "JFrog Access REST Access Tokens Summary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.\n\nContact Support:\n Name: JFrog",
+      "type": "text/plain"
+    }
+  }
+}
