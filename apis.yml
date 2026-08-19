@@ -11,7 +11,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 name: JFrog
 description: >-
   JFrog provides universal DevOps solutions for software supply chain automation and security, offering a unified
