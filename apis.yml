@@ -468,6 +468,8 @@ apis:
   humanURL: https://jfrog.com/artifactory/
   baseURL: https://myserver.jfrog.io/artifactory/api
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -1044,6 +1046,8 @@ apis:
   humanURL: https://jfrog.com/artifactory/
   baseURL: https://myserver.jfrog.io/artifactory/api
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -1188,6 +1192,8 @@ apis:
   humanURL: https://jfrog.com/artifactory/
   baseURL: https://myserver.jfrog.io/artifactory/api
   tags:
+  - Integration
+  tags_raw:
   - Integrations
   properties:
   - type: OpenAPI
@@ -2052,6 +2058,8 @@ apis:
   humanURL: https://jfrog.com/artifactory/
   baseURL: https://myserver.jfrog.io/artifactory/api
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -3420,6 +3428,8 @@ apis:
   humanURL: https://jfrog.com/artifactory/
   baseURL: https://myserver.jfrog.io/artifactory/api
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -3708,6 +3718,8 @@ apis:
   humanURL: https://jfrog.com/artifactory/
   baseURL: https://myserver.jfrog.io/artifactory/api
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
