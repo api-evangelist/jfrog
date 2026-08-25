@@ -5,7 +5,7 @@
       "source": "https://jfrog.com/blog/feed/",
       "feed_url": "https://jfrog.com/blog/feed/",
       "title": "",
-      "saved": 4,
+      "saved": 0,
       "method": "feed"
     },
     {
@@ -13,18 +13,16 @@
       "feed_url": "https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     },
     {
       "source": "https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens",
       "feed_url": "https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens",
       "title": "",
       "saved": 0,
-      "method": "none",
-      "error": "parse_failed"
+      "method": "none"
     }
   ],
-  "post_count": 56,
-  "fetched": "2026-08-15T12:11:08Z"
+  "post_count": 59,
+  "fetched": "2026-08-22T20:20:02Z"
 }
