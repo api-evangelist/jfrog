@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
+- name: executionApi
+  url: ../openapi/jfrog-execution-api-openapi.yml
+  type: openapi
 - name: workersApi
-  url: ../openapi/jfrog-workers-openapi.yml
+  url: ../openapi/jfrog-workers-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: deploy-and-test-worker

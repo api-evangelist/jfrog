@@ -10,8 +10,8 @@ info:
     be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: pipelinesApi
-  url: ../openapi/jfrog-pipelines-openapi.yml
+- name: runsApi
+  url: ../openapi/jfrog-runs-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: trigger-and-monitor-pipeline

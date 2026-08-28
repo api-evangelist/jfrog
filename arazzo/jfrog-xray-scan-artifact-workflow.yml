@@ -10,8 +10,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: xrayApi
-  url: ../openapi/jfrog-xray-openapi.yml
+- name: scanningApi
+  url: ../openapi/jfrog-scanning-api-openapi.yml
+  type: openapi
+- name: summaryApi
+  url: ../openapi/jfrog-summary-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: scan-artifact

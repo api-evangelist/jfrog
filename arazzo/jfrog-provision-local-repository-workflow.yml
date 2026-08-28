@@ -10,8 +10,8 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: artifactoryApi
-  url: ../openapi/jfrog-artifactory-openapi.yml
+- name: repositoriesApi
+  url: ../openapi/jfrog-repositories-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: provision-local-repository

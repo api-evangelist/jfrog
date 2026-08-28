@@ -11,11 +11,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: xrayApi
-  url: ../openapi/jfrog-xray-openapi.yml
+- name: componentsApi
+  url: ../openapi/jfrog-components-api-openapi.yml
   type: openapi
-- name: catalogApi
-  url: ../openapi/jfrog-catalog-openapi.yml
+- name: packagesApi
+  url: ../openapi/jfrog-packages-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: component-license-check
@@ -47,7 +47,7 @@ workflows:
   - stepId: componentDetails
     description: >-
       Read vulnerability and license information for the component from Xray.
-    operationId: $sourceDescriptions.xrayApi.getComponentDetails
+    operationId: $sourceDescriptions.componentsApi.getComponentDetails
     requestBody:
       contentType: application/json
       payload:
@@ -61,7 +61,7 @@ workflows:
     description: >-
       Fetch the same package version's known vulnerabilities from the JFrog
       Catalog for an independent cross-reference.
-    operationId: $sourceDescriptions.catalogApi.getVersionVulnerabilities
+    operationId: $sourceDescriptions.packagesApi.getVersionVulnerabilities
     parameters:
     - name: packageType
       in: path

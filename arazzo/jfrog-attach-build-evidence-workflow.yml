@@ -11,7 +11,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: evidenceApi
-  url: ../openapi/jfrog-evidence-openapi.yml
+  url: ../openapi/jfrog-evidence-api-openapi.yml
+  type: openapi
+- name: verificationApi
+  url: ../openapi/jfrog-verification-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: attach-build-evidence

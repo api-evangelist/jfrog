@@ -11,7 +11,10 @@ info:
   version: 1.0.0
 sourceDescriptions:
 - name: distributionApi
-  url: ../openapi/jfrog-distribution-openapi.yml
+  url: ../openapi/jfrog-distribution-api-openapi.yml
+  type: openapi
+- name: releaseBundlesV1Api
+  url: ../openapi/jfrog-release-bundles-v1-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: distribute-release-bundle

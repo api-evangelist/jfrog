@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: artifactoryApi
-  url: ../openapi/jfrog-artifactory-openapi.yml
+- name: replicationApi
+  url: ../openapi/jfrog-replication-api-openapi.yml
+  type: openapi
+- name: repositoriesApi
+  url: ../openapi/jfrog-repositories-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: configure-repository-replication

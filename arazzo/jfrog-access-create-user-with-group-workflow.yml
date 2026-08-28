@@ -9,8 +9,14 @@ info:
     can be read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: accessApi
-  url: ../openapi/jfrog-access-openapi.yml
+- name: groupsApi
+  url: ../openapi/jfrog-groups-api-openapi.yml
+  type: openapi
+- name: securityApi
+  url: ../openapi/jfrog-security-api-openapi.yml
+  type: openapi
+- name: usersApi
+  url: ../openapi/jfrog-users-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-user-with-group

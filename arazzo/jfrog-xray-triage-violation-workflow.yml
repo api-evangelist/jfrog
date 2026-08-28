@@ -11,8 +11,11 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: xrayApi
-  url: ../openapi/jfrog-xray-openapi.yml
+- name: ignoreRulesApi
+  url: ../openapi/jfrog-ignore-rules-api-openapi.yml
+  type: openapi
+- name: violationsApi
+  url: ../openapi/jfrog-violations-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: triage-violation

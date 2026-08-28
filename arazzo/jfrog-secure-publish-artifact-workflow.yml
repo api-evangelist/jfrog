@@ -12,11 +12,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: artifactoryApi
-  url: ../openapi/jfrog-artifactory-openapi.yml
+- name: artifactsStorageApi
+  url: ../openapi/jfrog-artifacts-storage-api-openapi.yml
   type: openapi
-- name: xrayApi
-  url: ../openapi/jfrog-xray-openapi.yml
+- name: scanningApi
+  url: ../openapi/jfrog-scanning-api-openapi.yml
+  type: openapi
+- name: summaryApi
+  url: ../openapi/jfrog-summary-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: secure-publish-artifact
@@ -48,7 +51,7 @@ workflows:
   - stepId: deploy
     description: >-
       Deploy the artifact to the target repository path.
-    operationId: $sourceDescriptions.artifactoryApi.deployArtifact
+    operationId: $sourceDescriptions.artifactsStorageApi.deployArtifact
     parameters:
     - name: repoKey
       in: path
@@ -67,7 +70,7 @@ workflows:
   - stepId: scan
     description: >-
       Trigger an Xray scan for the deployed artifact's component.
-    operationId: $sourceDescriptions.xrayApi.scanArtifact
+    operationId: $sourceDescriptions.scanningApi.scanArtifact
     requestBody:
       contentType: application/json
       payload:
@@ -80,7 +83,7 @@ workflows:
     description: >-
       Read the artifact summary to capture the security issues and licenses for
       the freshly published artifact.
-    operationId: $sourceDescriptions.xrayApi.getArtifactSummary
+    operationId: $sourceDescriptions.summaryApi.getArtifactSummary
     requestBody:
       contentType: application/json
       payload:

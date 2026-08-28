@@ -10,8 +10,11 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: xrayApi
-  url: ../openapi/jfrog-xray-openapi.yml
+- name: policiesApi
+  url: ../openapi/jfrog-policies-api-openapi.yml
+  type: openapi
+- name: watchesApi
+  url: ../openapi/jfrog-watches-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: policy-and-watch

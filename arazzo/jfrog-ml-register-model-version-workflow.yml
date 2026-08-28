@@ -10,8 +10,11 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: mlApi
-  url: ../openapi/jfrog-ml-openapi.yml
+- name: modelVersionsApi
+  url: ../openapi/jfrog-model-versions-api-openapi.yml
+  type: openapi
+- name: modelsApi
+  url: ../openapi/jfrog-models-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: register-model-version

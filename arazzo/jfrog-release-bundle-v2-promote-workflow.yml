@@ -10,8 +10,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: releaseLifecycleApi
-  url: ../openapi/jfrog-release-lifecycle-openapi.yml
+- name: promotionApi
+  url: ../openapi/jfrog-promotion-api-openapi.yml
+  type: openapi
+- name: releaseBundlesV1Api
+  url: ../openapi/jfrog-release-bundles-v1-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: promote-release-bundle-v2

@@ -10,8 +10,8 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: platformApi
-  url: ../openapi/jfrog-platform-openapi.yml
+- name: webhooksApi
+  url: ../openapi/jfrog-webhooks-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: register-webhook

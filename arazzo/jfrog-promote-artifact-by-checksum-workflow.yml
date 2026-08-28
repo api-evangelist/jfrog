@@ -11,8 +11,11 @@ info:
     read and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: artifactoryApi
-  url: ../openapi/jfrog-artifactory-openapi.yml
+- name: artifactsStorageApi
+  url: ../openapi/jfrog-artifacts-storage-api-openapi.yml
+  type: openapi
+- name: searchesApi
+  url: ../openapi/jfrog-searches-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: promote-artifact-by-checksum
