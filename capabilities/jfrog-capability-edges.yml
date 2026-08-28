@@ -1,0 +1,132 @@
+slug: jfrog
+provider: JFrog
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 12
+edges:
+- tag: Permissions
+  spec_file: jfrog-permissions-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: 'POST /api/v2/permissions createPermission; spec: "managing users, groups, permissions ...
+    role-based access control"'
+  reason: Permission/RBAC administration is unambiguously identity and access management.
+- tag: Security
+  spec_file: jfrog-security-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.9
+  evidence: GET /api/security/users listUsers; PUT /api/security/groups/{groupName} createOrReplaceGroup;
+    'JFrog Create or Replace Permission Target'
+  reason: Operations manage users, groups and permission targets — role-based access control administration,
+    which is Identity & Access Management.
+- tag: Groups
+  spec_file: jfrog-groups-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: '"JFrog Create Group" / schemas Group, PlatformGroup; spec: "JFrog Access handles identity
+    management, role-based access control, federated identity"'
+  reason: Group CRUD within an identity and RBAC service is squarely identity & access management, not
+    an HR or organisational capability.
+- tag: Users
+  spec_file: jfrog-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.85
+  evidence: 'POST /api/v2/users createUser ''JFrog Create User''; schemas: PlatformUser, UpdateUserRequest'
+  reason: Full CRUD lifecycle over platform user accounts under the Access identity service — user provisioning
+    and administration, i.e. Identity & Access Management.
+- tag: Runs
+  spec_file: jfrog-runs-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: GET /v1/runs  listRuns  JFrog List Pipeline Runs; POST /v1/pipelines/{pipelineId}/trigger  triggerPipeline
+  reason: Triggering, listing and cancelling pipeline runs is execution of build/CI pipelines, squarely
+    Continuous Integration Management.
+- tag: Builds
+  spec_file: jfrog-builds-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.75
+  evidence: GET /api/build  listBuilds  JFrog List All Builds; POST /api/build/promote/{buildName}/{buildNumber}  promoteBuild
+  reason: Operations list builds, retrieve build runs/build-info and promote builds — CI build and artefact
+    metadata management, matching Continuous Integration Management (build pipelines, artefact production).
+    Some overlap with release engineering (promotion) hence not higher.
+- tag: Pipelines
+  spec_file: jfrog-pipelines-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.75
+  evidence: GET /v1/pipelines  listPipelines  JFrog List Pipelines
+  reason: Operations list and retrieve CI/CD pipeline definitions in JFrog Pipelines, which is build-pipeline
+    management rather than any business-domain pipeline; maps to Continuous Integration Management. Title's
+    'Access Tokens' framing is the unreliable concatenated field.
+- tag: Release Bundles V1
+  spec_file: jfrog-release-bundles-v1-api-openapi.yml
+  capability_id: BC-4210.30
+  capability_id_l1: BC-4210
+  capability_name: Release Engineering Management
+  confidence: 0.75
+  evidence: POST /v1/release_bundle  createReleaseBundle; POST /v1/release_bundle/{name}/{version}/sign  signReleaseBundle
+  reason: Creating, versioning and signing immutable release bundles is release engineering discipline
+    (versioning and release artefact management) for software delivery.
+- tag: Release Bundles V2
+  spec_file: jfrog-release-bundles-v2-api-openapi.yml
+  capability_id: BC-4210.30
+  capability_id_l1: BC-4210
+  capability_name: Release Engineering Management
+  confidence: 0.75
+  evidence: POST /v2/release_bundle  createReleaseBundle  JFrog Create Release Bundle v2
+  reason: 'Same surface as V1: lifecycle of versioned release bundles, i.e. release engineering for software
+    releases.'
+- tag: Scanning
+  spec_file: jfrog-scanning-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.75
+  evidence: POST /v1/scanArtifact  scanArtifact  JFrog Scan Artifact; POST /v2/ci/scan  scanBuild
+  reason: On-demand security scanning of builds and artifacts for vulnerabilities (JFrog Xray) realises
+    vulnerability scanning and remediation capability.
+- tag: Access Tokens
+  spec_file: jfrog-access-tokens-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: '"JFrog Create Access Token", "JFrog Revoke Access Token"; "JFrog Access handles identity
+    management, role-based access control, federated identity, and scoped token creation for authentication
+    and authorization"'
+  reason: Operations issue, inspect and revoke scoped access tokens for platform identities, which is
+    identity and access management. Some chance this is better read as developer credential management,
+    hence not higher.
+- tag: Reports
+  spec_file: jfrog-reports-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.7
+  evidence: POST /v1/report/vulnerabilities  generateVulnerabilityReport  JFrog Generate Vulnerability
+    Report
+  reason: The only generating operation produces vulnerability reports over scanned artifacts, which supports
+    vulnerability management reporting; remaining ops are report status/delete plumbing.
