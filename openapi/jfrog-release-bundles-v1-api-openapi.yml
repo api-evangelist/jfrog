@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Release Bundles V1 API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  title: JFrog Distribution REST Release Bundles V1 API
+  description: API for distributing release binaries to multiple remote locations. JFrog Distribution enables the creation of release bundles that are signed and distributed to Edge nodes, ensuring reliable and traceable software delivery across geographically distributed locations.
   version: 2.x
   contact:
     name: JFrog
@@ -11,13 +11,13 @@ info:
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
 servers:
-- url: https://{server}.jfrog.io/access
+- url: https://{server}.jfrog.io/distribution/api
   description: JFrog Cloud
   variables:
     server:
       default: myserver
       description: Your JFrog server name
-- url: https://{host}/access
+- url: https://{host}/distribution/api
   description: Self-hosted JFrog instance
   variables:
     host:
@@ -303,5 +303,5 @@ components:
       scheme: basic
       description: Basic username/password authentication
 externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+  description: JFrog Distribution REST API Documentation
+  url: https://www.jfrog.com/confluence/display/JFROG/Distribution+REST+API

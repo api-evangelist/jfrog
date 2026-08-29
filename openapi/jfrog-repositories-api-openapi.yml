@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Repositories API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
-  version: 2.x
+  title: JFrog Artifactory REST Repositories API
+  description: REST API for managing artifacts, repositories, security, and system configuration in JFrog Artifactory. Artifactory is a universal binary repository manager that integrates with all major CI/CD and DevOps tools to provide an end-to-end automated solution for tracking artifacts from development to production.
+  version: 7.x
   contact:
     name: JFrog
     url: https://jfrog.com
@@ -11,13 +11,13 @@ info:
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
 servers:
-- url: https://{server}.jfrog.io/access
+- url: https://{server}.jfrog.io/artifactory
   description: JFrog Cloud
   variables:
     server:
       default: myserver
       description: Your JFrog server name
-- url: https://{host}/access
+- url: https://{host}/artifactory
   description: Self-hosted JFrog instance
   variables:
     host:
@@ -25,6 +25,7 @@ servers:
       description: Your self-hosted JFrog server host
 security:
 - bearerAuth: []
+- apiKeyAuth: []
 - basicAuth: []
 tags:
 - name: Repositories
@@ -220,10 +221,15 @@ components:
       type: http
       scheme: bearer
       description: Access token authentication
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-JFrog-Art-Api
+      description: API key authentication
     basicAuth:
       type: http
       scheme: basic
       description: Basic username/password authentication
 externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+  description: JFrog Artifactory REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis

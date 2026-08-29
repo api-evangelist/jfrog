@@ -1,8 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Evidence API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
-  version: 2.x
+  title: Jfrog Evidence API
   contact:
     name: JFrog
     url: https://jfrog.com
@@ -10,22 +8,33 @@ info:
     name: Proprietary
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
+  version: '1.0'
+  description: 'Operations tagged Evidence across 2 of this provider''s published API definitions: jfrog-evidence-openapi.yml, jfrog-release-lifecycle-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://{server}.jfrog.io/access
+- url: https://{server}.jfrog.io/evidence/api
   description: JFrog Cloud
   variables:
     server:
       default: myserver
       description: Your JFrog server name
-- url: https://{host}/access
+- url: https://{host}/evidence/api
   description: Self-hosted JFrog instance
   variables:
     host:
       default: localhost:8082
       description: Your self-hosted JFrog server host
-security:
-- bearerAuth: []
-- basicAuth: []
+- url: https://{server}.jfrog.io/lifecycle/api
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/lifecycle/api
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
 tags:
 - name: Evidence
   description: Create and manage evidence attestations
@@ -56,6 +65,21 @@ paths:
           description: Unauthorized - access token required (basic auth not supported)
         '404':
           description: Subject not found
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/evidence/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/evidence/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v1/evidence/search:
     post:
       operationId: searchEvidence
@@ -85,6 +109,21 @@ paths:
                     type: integer
         '400':
           description: Invalid search criteria
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/evidence/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/evidence/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v1/evidence/{evidenceId}:
     get:
       operationId: getEvidence
@@ -108,6 +147,8 @@ paths:
                 $ref: '#/components/schemas/Evidence'
         '404':
           description: Evidence not found
+      security:
+      - bearerAuth: []
     delete:
       operationId: deleteEvidence
       summary: JFrog Delete Evidence
@@ -126,6 +167,21 @@ paths:
           description: Evidence deleted
         '404':
           description: Evidence not found
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/evidence/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/evidence/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v1/evidence/subject/artifact:
     get:
       operationId: getArtifactEvidence
@@ -159,6 +215,21 @@ paths:
                       $ref: '#/components/schemas/Evidence'
         '404':
           description: Artifact not found
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/evidence/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/evidence/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v1/evidence/subject/build:
     get:
       operationId: getBuildEvidence
@@ -198,6 +269,21 @@ paths:
                       $ref: '#/components/schemas/Evidence'
         '404':
           description: Build not found
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/evidence/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/evidence/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v1/evidence/subject/release-bundle:
     get:
       operationId: getReleaseBundleEvidence
@@ -237,6 +323,21 @@ paths:
                       $ref: '#/components/schemas/Evidence'
         '404':
           description: Release bundle not found
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/evidence/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/evidence/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v1/evidence/subject/package:
     get:
       operationId: getPackageEvidence
@@ -277,6 +378,21 @@ paths:
                       $ref: '#/components/schemas/Evidence'
         '404':
           description: Package not found
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/evidence/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/evidence/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v2/evidence:
     post:
       operationId: createEvidence
@@ -297,6 +413,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Evidence_2'
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/lifecycle/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/lifecycle/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v2/evidence/{name}/{version}:
     get:
       operationId: getEvidence
@@ -329,6 +461,22 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Evidence_2'
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/lifecycle/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/lifecycle/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
 components:
   schemas:
     EvidenceSearchRequest:
@@ -357,6 +505,52 @@ components:
           default: 25
         offset:
           type: integer
+    Evidence:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique evidence record identifier
+        subject_type:
+          type: string
+          enum:
+          - artifact
+          - build
+          - package
+          - release_bundle
+        subject:
+          type: object
+          additionalProperties: true
+          description: Subject identification details
+        predicate_type:
+          type: string
+          format: uri
+          description: URI of the predicate type
+        predicate:
+          type: object
+          additionalProperties: true
+          description: Evidence predicate content
+        dsse_envelope_path:
+          type: string
+          description: Path to the DSSE envelope file in Artifactory
+        signature_algorithm:
+          type: string
+          description: Cryptographic algorithm used for signing
+          enum:
+          - ECDSA
+          - RSA
+          - ED25519
+        key_alias:
+          type: string
+          description: Alias of the signing key
+        verified:
+          type: boolean
+          description: Whether the evidence signature has been verified
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
     CreateEvidenceRequest:
       type: object
       properties:
@@ -419,6 +613,28 @@ components:
       required:
       - subject_type
       - subject
+    Evidence_2:
+      type: object
+      properties:
+        id:
+          type: string
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+        evidence_type:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        dsse_file_path:
+          type: string
     EvidenceRequest:
       type: object
       properties:
@@ -444,83 +660,15 @@ components:
       required:
       - release_bundle_name
       - release_bundle_version
-    Evidence_2:
-      type: object
-      properties:
-        id:
-          type: string
-        release_bundle_name:
-          type: string
-        release_bundle_version:
-          type: string
-        environment:
-          type: string
-        evidence_type:
-          type: string
-        description:
-          type: string
-        created:
-          type: string
-          format: date-time
-        created_by:
-          type: string
-        dsse_file_path:
-          type: string
-    Evidence:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique evidence record identifier
-        subject_type:
-          type: string
-          enum:
-          - artifact
-          - build
-          - package
-          - release_bundle
-        subject:
-          type: object
-          additionalProperties: true
-          description: Subject identification details
-        predicate_type:
-          type: string
-          format: uri
-          description: URI of the predicate type
-        predicate:
-          type: object
-          additionalProperties: true
-          description: Evidence predicate content
-        dsse_envelope_path:
-          type: string
-          description: Path to the DSSE envelope file in Artifactory
-        signature_algorithm:
-          type: string
-          description: Cryptographic algorithm used for signing
-          enum:
-          - ECDSA
-          - RSA
-          - ED25519
-        key_alias:
-          type: string
-          description: Alias of the signing key
-        verified:
-          type: boolean
-          description: Whether the evidence signature has been verified
-        created:
-          type: string
-          format: date-time
-        created_by:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: Access token authentication
+      description: Access token authentication. Note that basic authentication (username and password) is not supported for the Evidence API.
     basicAuth:
       type: http
       scheme: basic
       description: Basic username/password authentication
-externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+x-refined-from:
+- jfrog-evidence-openapi.yml
+- jfrog-release-lifecycle-openapi.yml

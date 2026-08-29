@@ -1,7 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Users API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  title: Jfrog Users API
   version: 2.x
   contact:
     name: JFrog
@@ -10,6 +9,7 @@ info:
     name: Proprietary
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
+  description: 'Operations tagged Users across 2 of this provider''s published API definitions: jfrog-access-openapi.yml, jfrog-platform-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{server}.jfrog.io/access
   description: JFrog Cloud
@@ -18,6 +18,18 @@ servers:
       default: myserver
       description: Your JFrog server name
 - url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+- url: https://{server}.jfrog.io
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}
   description: Self-hosted JFrog instance
   variables:
     host:
@@ -92,6 +104,19 @@ paths:
           description: Invalid user configuration
         '409':
           description: User already exists
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /api/v2/users/{username}:
     get:
       operationId: getUser
@@ -157,6 +182,19 @@ paths:
           description: User deleted
         '404':
           description: User not found
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /access/api/v2/users:
     get:
       operationId: listUsers
@@ -195,6 +233,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlatformUser'
+    servers:
+    - url: https://{server}.jfrog.io
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /access/api/v2/users/{username}:
     get:
       operationId: getUser
@@ -254,8 +305,60 @@ paths:
       responses:
         '204':
           description: User deleted
+    servers:
+    - url: https://{server}.jfrog.io
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
 components:
   schemas:
+    User:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        admin:
+          type: boolean
+          description: Whether the user has admin privileges
+        profile_updatable:
+          type: boolean
+          description: Whether the user can update their own profile
+        disable_ui_access:
+          type: boolean
+          description: Whether UI access is disabled for this user
+        internal_password_disabled:
+          type: boolean
+          description: Whether internal password authentication is disabled
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        groups:
+          type: array
+          items:
+            type: string
+          description: Groups the user belongs to
+        realm:
+          type: string
+          description: Authentication realm (internal, ldap, saml, etc.)
+        last_logged_in:
+          type: string
+          format: date-time
+        created:
+          type: string
+          format: date-time
     UpdateUserRequest:
       type: object
       properties:
@@ -306,27 +409,18 @@ components:
       - username
       - email
       - password
-    PlatformUser:
+    UpdateUserRequest_2:
       type: object
       properties:
-        username:
-          type: string
         email:
           type: string
           format: email
+        password:
+          type: string
         admin:
           type: boolean
         profile_updatable:
           type: boolean
-        disable_ui_access:
-          type: boolean
-        internal_password_disabled:
-          type: boolean
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
         groups:
           type: array
           items:
@@ -353,23 +447,7 @@ components:
       - username
       - email
       - password
-    UpdateUserRequest_2:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-        admin:
-          type: boolean
-        profile_updatable:
-          type: boolean
-        groups:
-          type: array
-          items:
-            type: string
-    User:
+    PlatformUser:
       type: object
       properties:
         username:
@@ -379,16 +457,12 @@ components:
           format: email
         admin:
           type: boolean
-          description: Whether the user has admin privileges
         profile_updatable:
           type: boolean
-          description: Whether the user can update their own profile
         disable_ui_access:
           type: boolean
-          description: Whether UI access is disabled for this user
         internal_password_disabled:
           type: boolean
-          description: Whether internal password authentication is disabled
         status:
           type: string
           enum:
@@ -398,16 +472,6 @@ components:
           type: array
           items:
             type: string
-          description: Groups the user belongs to
-        realm:
-          type: string
-          description: Authentication realm (internal, ldap, saml, etc.)
-        last_logged_in:
-          type: string
-          format: date-time
-        created:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http
@@ -417,6 +481,6 @@ components:
       type: http
       scheme: basic
       description: Basic username/password authentication
-externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+x-refined-from:
+- jfrog-access-openapi.yml
+- jfrog-platform-openapi.yml

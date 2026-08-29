@@ -1,7 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Projects API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  title: Jfrog Projects API
   version: 2.x
   contact:
     name: JFrog
@@ -10,6 +9,7 @@ info:
     name: Proprietary
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
+  description: 'Operations tagged Projects across 3 of this provider''s published API definitions: jfrog-access-openapi.yml, jfrog-connect-openapi.yml, jfrog-platform-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{server}.jfrog.io/access
   description: JFrog Cloud
@@ -23,9 +23,20 @@ servers:
     host:
       default: localhost:8082
       description: Your self-hosted JFrog server host
-security:
-- bearerAuth: []
-- basicAuth: []
+- url: https://api.connect.jfrog.io/v2
+  description: JFrog Connect Cloud
+- url: https://{server}.jfrog.io
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
 tags:
 - name: Projects
   description: Project administration
@@ -46,6 +57,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Project'
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     post:
       operationId: createProject
       summary: JFrog Create Project
@@ -69,6 +83,22 @@ paths:
           description: Invalid project configuration
         '409':
           description: Project key already exists
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /api/v1/projects/{projectKey}:
     get:
       operationId: getProject
@@ -92,6 +122,9 @@ paths:
                 $ref: '#/components/schemas/Project'
         '404':
           description: Project not found
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     put:
       operationId: updateProject
       summary: JFrog Update Project
@@ -116,6 +149,9 @@ paths:
           description: Project updated
         '404':
           description: Project not found
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     delete:
       operationId: deleteProject
       summary: JFrog Delete Project
@@ -134,6 +170,22 @@ paths:
           description: Project deleted
         '404':
           description: Project not found
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /api/v1/projects/{projectKey}/users/{username}:
     put:
       operationId: addUserToProject
@@ -171,6 +223,9 @@ paths:
           description: User added to project
         '404':
           description: Project or user not found
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     delete:
       operationId: removeUserFromProject
       summary: JFrog Remove User from Project
@@ -195,6 +250,22 @@ paths:
           description: User removed from project
         '404':
           description: Project or user not found
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /api/v1/projects/{projectKey}/groups/{groupName}:
     put:
       operationId: addGroupToProject
@@ -229,6 +300,9 @@ paths:
       responses:
         '200':
           description: Group added to project
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     delete:
       operationId: removeGroupFromProject
       summary: JFrog Remove Group from Project
@@ -251,6 +325,22 @@ paths:
       responses:
         '204':
           description: Group removed from project
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /projects:
     get:
       operationId: listProjects
@@ -270,6 +360,8 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Project_2'
+      security:
+      - apiKeyAuth: []
     post:
       operationId: createProject
       summary: JFrog Create Project
@@ -289,6 +381,11 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project_2'
+      security:
+      - apiKeyAuth: []
+    servers:
+    - url: https://api.connect.jfrog.io/v2
+      description: JFrog Connect Cloud
   /projects/{projectId}:
     get:
       operationId: getProject
@@ -310,6 +407,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project_2'
+      security:
+      - apiKeyAuth: []
     delete:
       operationId: deleteProject
       summary: JFrog Delete Project
@@ -326,6 +425,11 @@ paths:
       responses:
         '204':
           description: Project deleted
+      security:
+      - apiKeyAuth: []
+    servers:
+    - url: https://api.connect.jfrog.io/v2
+      description: JFrog Connect Cloud
   /access/api/v1/projects:
     get:
       operationId: listProjects
@@ -342,6 +446,9 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Project_3'
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     post:
       operationId: createProject
       summary: JFrog Create Project
@@ -361,6 +468,22 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project_3'
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /access/api/v1/projects/{projectKey}:
     get:
       operationId: getProject
@@ -382,6 +505,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Project_3'
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     put:
       operationId: updateProject
       summary: JFrog Update Project
@@ -404,6 +530,9 @@ paths:
       responses:
         '200':
           description: Project updated
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     delete:
       operationId: deleteProject
       summary: JFrog Delete Project
@@ -420,6 +549,22 @@ paths:
       responses:
         '204':
           description: Project deleted
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /access/api/v1/projects/{projectKey}/users/{username}:
     put:
       operationId: addUserToProject
@@ -454,6 +599,9 @@ paths:
       responses:
         '200':
           description: User added to project
+      security:
+      - bearerAuth: []
+      - basicAuth: []
     delete:
       operationId: removeUserFromProject
       summary: JFrog Remove User from Project
@@ -476,6 +624,22 @@ paths:
       responses:
         '204':
           description: User removed from project
+      security:
+      - bearerAuth: []
+      - basicAuth: []
+    servers:
+    - url: https://{server}.jfrog.io
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
 components:
   schemas:
     Project:
@@ -538,15 +702,6 @@ components:
       required:
       - project_key
       - display_name
-    ProjectRequest_2:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-      required:
-      - name
     Project_2:
       type: object
       properties:
@@ -563,6 +718,15 @@ components:
         created_at:
           type: string
           format: date-time
+    ProjectRequest_2:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+      - name
     Project_3:
       type: object
       properties:
@@ -602,6 +766,12 @@ components:
       type: http
       scheme: basic
       description: Basic username/password authentication
-externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key authentication using Bearer token format
+x-refined-from:
+- jfrog-access-openapi.yml
+- jfrog-connect-openapi.yml
+- jfrog-platform-openapi.yml

@@ -1,7 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Groups API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  title: Jfrog Groups API
   version: 2.x
   contact:
     name: JFrog
@@ -10,6 +9,7 @@ info:
     name: Proprietary
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
+  description: 'Operations tagged Groups across 2 of this provider''s published API definitions: jfrog-access-openapi.yml, jfrog-platform-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://{server}.jfrog.io/access
   description: JFrog Cloud
@@ -18,6 +18,18 @@ servers:
       default: myserver
       description: Your JFrog server name
 - url: https://{host}/access
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+- url: https://{server}.jfrog.io
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}
   description: Self-hosted JFrog instance
   variables:
     host:
@@ -68,6 +80,19 @@ paths:
           description: Invalid group configuration
         '409':
           description: Group already exists
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /api/v2/groups/{groupName}:
     get:
       operationId: getGroup
@@ -133,6 +158,19 @@ paths:
           description: Group deleted
         '404':
           description: Group not found
+    servers:
+    - url: https://{server}.jfrog.io/access
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/access
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /access/api/v2/groups:
     get:
       operationId: listGroups
@@ -167,6 +205,19 @@ paths:
       responses:
         '201':
           description: Group created
+    servers:
+    - url: https://{server}.jfrog.io
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /access/api/v2/groups/{groupName}:
     get:
       operationId: getGroup
@@ -226,29 +277,21 @@ paths:
       responses:
         '204':
           description: Group deleted
+    servers:
+    - url: https://{server}.jfrog.io
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
 components:
   schemas:
-    PlatformGroup:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        auto_join:
-          type: boolean
-        admin_privileges:
-          type: boolean
-        realm:
-          type: string
-        external_id:
-          type: string
-        members:
-          type: array
-          items:
-            type: string
-      required:
-      - name
     Group:
       type: object
       properties:
@@ -276,6 +319,27 @@ components:
           description: List of usernames in the group
       required:
       - name
+    PlatformGroup:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        auto_join:
+          type: boolean
+        admin_privileges:
+          type: boolean
+        realm:
+          type: string
+        external_id:
+          type: string
+        members:
+          type: array
+          items:
+            type: string
+      required:
+      - name
   securitySchemes:
     bearerAuth:
       type: http
@@ -285,6 +349,6 @@ components:
       type: http
       scheme: basic
       description: Basic username/password authentication
-externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+x-refined-from:
+- jfrog-access-openapi.yml
+- jfrog-platform-openapi.yml

@@ -1,8 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Policies API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
-  version: 2.x
+  title: Jfrog Policies API
   contact:
     name: JFrog
     url: https://jfrog.com
@@ -10,14 +8,28 @@ info:
     name: Proprietary
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
+  version: '1.0'
+  description: 'Operations tagged Policies across 2 of this provider''s published API definitions: jfrog-curation-openapi.yml, jfrog-xray-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://{server}.jfrog.io/access
+- url: https://{server}.jfrog.io/curation/api
   description: JFrog Cloud
   variables:
     server:
       default: myserver
       description: Your JFrog server name
-- url: https://{host}/access
+- url: https://{host}/curation/api
+  description: Self-hosted JFrog instance
+  variables:
+    host:
+      default: localhost:8082
+      description: Your self-hosted JFrog server host
+- url: https://{server}.jfrog.io/xray/api
+  description: JFrog Cloud
+  variables:
+    server:
+      default: myserver
+      description: Your JFrog server name
+- url: https://{host}/xray/api
   description: Self-hosted JFrog instance
   variables:
     host:
@@ -70,6 +82,19 @@ paths:
                 $ref: '#/components/schemas/CurationPolicy'
         '400':
           description: Invalid policy configuration
+    servers:
+    - url: https://{server}.jfrog.io/curation/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/curation/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v1/policies/{policyName}:
     get:
       operationId: getPolicy
@@ -131,6 +156,19 @@ paths:
       responses:
         '204':
           description: Policy deleted
+    servers:
+    - url: https://{server}.jfrog.io/curation/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/curation/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v2/policies:
     get:
       operationId: listPolicies
@@ -164,6 +202,19 @@ paths:
           description: Policy created
         '400':
           description: Invalid policy configuration
+    servers:
+    - url: https://{server}.jfrog.io/xray/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/xray/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
   /v2/policies/{policyName}:
     get:
       operationId: getPolicy
@@ -223,6 +274,19 @@ paths:
       responses:
         '200':
           description: Policy deleted
+    servers:
+    - url: https://{server}.jfrog.io/xray/api
+      description: JFrog Cloud
+      variables:
+        server:
+          default: myserver
+          description: Your JFrog server name
+    - url: https://{host}/xray/api
+      description: Self-hosted JFrog instance
+      variables:
+        host:
+          default: localhost:8082
+          description: Your self-hosted JFrog server host
 components:
   schemas:
     CurationPolicy:
@@ -417,6 +481,6 @@ components:
       type: http
       scheme: basic
       description: Basic username/password authentication
-externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+x-refined-from:
+- jfrog-curation-openapi.yml
+- jfrog-xray-openapi.yml

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Webhooks API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
+  title: JFrog Platform REST Webhooks API
+  description: Unified API for JFrog Platform services and administration. Provides centralized access management, project administration, and system configuration across all JFrog services.
   version: 2.x
   contact:
     name: JFrog
@@ -11,13 +11,13 @@ info:
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
 servers:
-- url: https://{server}.jfrog.io/access
+- url: https://{server}.jfrog.io
   description: JFrog Cloud
   variables:
     server:
       default: myserver
       description: Your JFrog server name
-- url: https://{host}/access
+- url: https://{host}
   description: Self-hosted JFrog instance
   variables:
     host:
@@ -212,5 +212,5 @@ components:
       scheme: basic
       description: Basic username/password authentication
 externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+  description: JFrog Platform REST API Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-jfrog-platform-rest-apis

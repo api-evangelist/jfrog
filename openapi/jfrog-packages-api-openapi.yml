@@ -1,8 +1,8 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: JFrog Access REST Access Tokens Packages API
-  description: API for managing users, groups, permissions, projects, and access tokens across the JFrog Platform. JFrog Access handles identity management, role-based access control, federated identity, and scoped token creation for authentication and authorization across all JFrog services.
-  version: 2.x
+  title: JFrog Catalog REST Packages API
+  description: API for querying and managing package metadata, searching for packages and CVEs, and managing custom labels for software components. JFrog Catalog provides a unified view of all packages across the JFrog Platform with enriched security and metadata information, primarily accessed through a GraphQL-based interface.
+  version: 1.x
   contact:
     name: JFrog
     url: https://jfrog.com
@@ -11,13 +11,13 @@ info:
     url: https://jfrog.com/terms-of-service/
   termsOfService: https://jfrog.com/terms-of-service/
 servers:
-- url: https://{server}.jfrog.io/access
+- url: https://{server}.jfrog.io/catalog/api/v1
   description: JFrog Cloud
   variables:
     server:
       default: myserver
       description: Your JFrog server name
-- url: https://{host}/access
+- url: https://{host}/catalog/api/v1
   description: Self-hosted JFrog instance
   variables:
     host:
@@ -215,30 +215,6 @@ components:
             type: string
         license:
           type: string
-    PackageVersion:
-      type: object
-      properties:
-        version:
-          type: string
-        published:
-          type: string
-          format: date-time
-        licenses:
-          type: array
-          items:
-            type: string
-        vulnerabilities_count:
-          type: integer
-        direct_vulnerabilities_count:
-          type: integer
-          description: Non-transitive vulnerabilities affecting this version
-        transitive_vulnerabilities_count:
-          type: integer
-          description: Transitive vulnerabilities from dependencies
-        labels:
-          type: array
-          items:
-            type: string
     PackageSearchRequest:
       type: object
       properties:
@@ -269,39 +245,15 @@ components:
           default: 25
         offset:
           type: integer
-    CatalogVulnerability:
+    PackageSearchResponse:
       type: object
       properties:
-        cve:
-          type: string
-          description: CVE identifier
-        severity:
-          type: string
-          enum:
-          - Low
-          - Medium
-          - High
-          - Critical
-        cvss_v3_score:
-          type: number
-        summary:
-          type: string
-        is_transitive:
-          type: boolean
-          description: Whether this is a transitive vulnerability from a dependency
-        fixed_versions:
+        packages:
           type: array
           items:
-            type: string
-        published:
-          type: string
-          format: date-time
-        jfrog_research_severity:
-          type: string
-          description: JFrog Security Research team severity assessment
-        jfrog_research_summary:
-          type: string
-          description: JFrog Security Research enrichment summary
+            $ref: '#/components/schemas/PackageSummary'
+        total_count:
+          type: integer
     PackageDetail:
       type: object
       properties:
@@ -350,15 +302,63 @@ components:
         homepage:
           type: string
           format: uri
-    PackageSearchResponse:
+    CatalogVulnerability:
       type: object
       properties:
-        packages:
+        cve:
+          type: string
+          description: CVE identifier
+        severity:
+          type: string
+          enum:
+          - Low
+          - Medium
+          - High
+          - Critical
+        cvss_v3_score:
+          type: number
+        summary:
+          type: string
+        is_transitive:
+          type: boolean
+          description: Whether this is a transitive vulnerability from a dependency
+        fixed_versions:
           type: array
           items:
-            $ref: '#/components/schemas/PackageSummary'
-        total_count:
+            type: string
+        published:
+          type: string
+          format: date-time
+        jfrog_research_severity:
+          type: string
+          description: JFrog Security Research team severity assessment
+        jfrog_research_summary:
+          type: string
+          description: JFrog Security Research enrichment summary
+    PackageVersion:
+      type: object
+      properties:
+        version:
+          type: string
+        published:
+          type: string
+          format: date-time
+        licenses:
+          type: array
+          items:
+            type: string
+        vulnerabilities_count:
           type: integer
+        direct_vulnerabilities_count:
+          type: integer
+          description: Non-transitive vulnerabilities affecting this version
+        transitive_vulnerabilities_count:
+          type: integer
+          description: Transitive vulnerabilities from dependencies
+        labels:
+          type: array
+          items:
+            type: string
   securitySchemes:
     bearerAuth:
       type: http
@@ -369,5 +369,5 @@ components:
       scheme: basic
       description: Basic username/password authentication
 externalDocs:
-  description: JFrog Access REST API Documentation
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+  description: JFrog Catalog Documentation
+  url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
