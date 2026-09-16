@@ -3,10 +3,7 @@
   "feeds": [
     {
       "source": "https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis",
-      "feed_url": "https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "HTTPError"
     },
     {
       "source": "https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens",
@@ -17,7 +14,7 @@
     }
   ],
   "post_count": 65,
-  "fetched": "2026-09-06T19:17:18Z",
+  "fetched": "2026-09-13T13:00:00Z",
   "feed_nature": "vendor-blog",
   "feed_nature_basis": "path_blog",
   "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
