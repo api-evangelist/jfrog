@@ -982,78 +982,6 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
-- aid: jfrog:jfrog-graphql-api
-  name: JFrog GraphQL API
-  description: GraphQL query interface for package and CVE data
-  humanURL: https://jfrog.com/artifactory/
-  baseURL: https://myserver.jfrog.io/artifactory/api
-  tags:
-  - GraphQL
-  properties:
-  - type: OpenAPI
-    url: openapi/jfrog-graphql-api-openapi.yml
-  - type: Documentation
-    url: https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API
-  - type: Authentication
-    url: https://www.jfrog.com/confluence/display/JFROG/Access+Tokens
-  - type: GettingStarted
-    url: https://jfrog.com/help/r/jfrog-artifactory-documentation/use-the-rest-api
-  - type: Reference
-    url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis
-  - type: Blog
-    url: https://jfrog.com/blog/agent-skills-new-ai-packages/
-  - type: GraphQL
-    url: graphql/jfrog-graphql.md
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-api-v2
-  - type: Authentication
-    url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
-  - type: Documentation
-    url: https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API
-  - type: Reference
-    url: https://jfrog.com/help/r/xray-rest-apis
-  - type: GettingStarted
-    url: https://jfrog.com/help/r/xray-rest-apis/introduction-to-the-xray-rest-apis
-  - type: Documentation
-    url: https://www.jfrog.com/confluence/display/JFROG/Distribution+REST+API
-  - type: Reference
-    url: https://jfrog.com/help/r/jfrog-rest-apis/distribution-rest-apis
-  - type: Documentation
-    url: https://www.jfrog.com/confluence/display/JFROG/Pipelines+REST+API
-  - type: GettingStarted
-    url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-pipelines-rest-apis
-  - type: Reference
-    url: https://jfrog.com/help/r/jfrog-rest-apis/pipelines-rest-apis
-  - type: Documentation
-    url: https://www.jfrog.com/confluence/display/JFROG/JFrog+Platform+REST+API
-  - type: GettingStarted
-    url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-jfrog-platform-rest-apis
-  - type: Reference
-    url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-platform-rest-apis
-  - type: Documentation
-    url: >-
-      https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
-  - type: GettingStarted
-    url: >-
-      https://jfrog.com/help/r/jfrog-platform-administration-documentation/introduction-to-access-tokens
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-curation-rest-apis
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-rest-apis/mission-control-rest-apis
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-rest-apis/release-lifecycle-management
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-rest-apis/workers-rest-apis
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-ml-documentation/jfrog-ml-rest-api
-  - type: Documentation
-    url: https://docs.connect.jfrog.io/rest-api-v2/connect-api-reference
-  - type: Authentication
-    url: https://docs.connect.jfrog.io/developers
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
-  - type: Documentation
-    url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
 - aid: jfrog:jfrog-groups-api
   name: JFrog Groups API
   description: User group management
@@ -3810,6 +3738,78 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/jfrog-workers-api-openapi.yml
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API
+  - type: Authentication
+    url: https://www.jfrog.com/confluence/display/JFROG/Access+Tokens
+  - type: GettingStarted
+    url: https://jfrog.com/help/r/jfrog-artifactory-documentation/use-the-rest-api
+  - type: Reference
+    url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-apis
+  - type: Blog
+    url: https://jfrog.com/blog/agent-skills-new-ai-packages/
+  - type: GraphQL
+    url: graphql/jfrog-graphql.md
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-rest-apis/artifactory-rest-api-v2
+  - type: Authentication
+    url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Xray+REST+API
+  - type: Reference
+    url: https://jfrog.com/help/r/xray-rest-apis
+  - type: GettingStarted
+    url: https://jfrog.com/help/r/xray-rest-apis/introduction-to-the-xray-rest-apis
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Distribution+REST+API
+  - type: Reference
+    url: https://jfrog.com/help/r/jfrog-rest-apis/distribution-rest-apis
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/Pipelines+REST+API
+  - type: GettingStarted
+    url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-pipelines-rest-apis
+  - type: Reference
+    url: https://jfrog.com/help/r/jfrog-rest-apis/pipelines-rest-apis
+  - type: Documentation
+    url: https://www.jfrog.com/confluence/display/JFROG/JFrog+Platform+REST+API
+  - type: GettingStarted
+    url: https://jfrog.com/help/r/jfrog-rest-apis/introduction-to-the-jfrog-platform-rest-apis
+  - type: Reference
+    url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-platform-rest-apis
+  - type: Documentation
+    url: >-
+      https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-token-rest-api
+  - type: GettingStarted
+    url: >-
+      https://jfrog.com/help/r/jfrog-platform-administration-documentation/introduction-to-access-tokens
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-curation-rest-apis
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-rest-apis/mission-control-rest-apis
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-rest-apis/release-lifecycle-management
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-rest-apis/workers-rest-apis
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-ml-documentation/jfrog-ml-rest-api
+  - type: Documentation
+    url: https://docs.connect.jfrog.io/rest-api-v2/connect-api-reference
+  - type: Authentication
+    url: https://docs.connect.jfrog.io/developers
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
+  - type: Documentation
+    url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+- aid: jfrog:jfrog-graph-ql-api
+  name: JFrog Graph QL API
+  description: GraphQL query interface for package and CVE data
+  humanURL: https://jfrog.com/artifactory/
+  baseURL: https://myserver.jfrog.io/artifactory/api
+  tags:
+  - Graph QL
+  properties:
+  - type: OpenAPI
+    url: openapi/jfrog-graph-ql-api-openapi.yml
   - type: Documentation
     url: https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API
   - type: Authentication
