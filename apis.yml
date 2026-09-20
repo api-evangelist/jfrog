@@ -3875,6 +3875,8 @@ apis:
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
 common:
+- type: RateLimits
+  url: rate-limits/jfrog-rate-limits.yml
 - type: Plans
   url: plans/jfrog-plans-pricing.yml
 - type: CapabilityMap

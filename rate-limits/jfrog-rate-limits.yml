@@ -1,65 +1,35 @@
-specification: API Commons Rate Limits
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
-provider: JFrog
-providerId: jfrog
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: true
-tags:
-  - Rate Limiting
-  - DevOps
-  - Artifactory
-  - Container Registry
-  - Software Supply Chain
-description: JFrog Cloud applies per-instance / per-tenant fair-use throttling on the Artifactory,
-  Xray, Distribution, Pipelines, and Curation REST APIs; numeric request-per-second limits are not
-  published at the platform level. Self-managed Artifactory has no provider-side rate limit and is
-  bounded by the customer's hardware. Public download endpoints (e.g., the JFrog public registry mirror)
-  enforce anonymous and authenticated download caps to protect shared bandwidth.
+# Rate limits transcribed from the provider's own documentation — see provenance. Quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://docs.jfrog.com/artifactory/docs/aql-performance
 sources:
-  - https://jfrog.com/help/r/jfrog-rest-apis/rate-limits
-  - https://jfrog.com/help/r/jfrog-platform-administration-documentation/jfrog-subscriptions
-  - https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
-headers:
-  retryAfter: Retry-After
-responseCodes:
-  throttled: 429
-  serviceUnavailable: 503
+- https://docs.jfrog.com/artifactory/docs/aql-performance
+provenance:
+  tool: planning/api-economics/harvest_ratelimits.py
+  run: 20260920T133210
+  grounding: every limit_text was found verbatim in the fetched page text
+published: true
+note: Page documents AQL concurrency rate limiting (default 3 parallel calls, 429 after a 10000 ms pending
+  timeout), result set cap of 500,000 for SaaS, 6,000-character query string cap (HTTP 400), and timeout
+  defaults (HTTP 408). No rate-limit headers documented.
+limit_count: 3
 limits:
-  - name: JFrog Cloud — REST API (per tenant)
-    scope: account
-    metric: varies
-    limit: per-tenant fair use (raise via support)
-    notes: Cloud tenants share rate-limit pools sized to their subscription tier (Pro, Enterprise X,
-      Enterprise+). Sustained throughput beyond fair-use returns 429.
-  - name: JFrog Self-Managed
-    scope: server
-    metric: varies
-    limit: bounded by self-hosted capacity
-    notes: No platform-imposed rate limit on self-managed deployments; throughput is governed by your
-      hardware and database.
-  - name: Public mirror — anonymous download
-    scope: IP
-    metric: requests_per_hour
-    limit: 'see public registry policy'
-    notes: Anonymous pulls from JFrog-hosted public mirrors (e.g., jfrog.io public registries) are
-      throttled per IP to prevent abuse; authenticate to lift.
-policies:
-  - name: Backoff
-    description: Honor Retry-After on 429 / 503 responses; back off exponentially with jitter.
-  - name: Tier scaling
-    description: Pro tenants share lower fair-use ceilings than Enterprise X; raise via support if
-      sustained 429s appear.
-  - name: Authenticate
-    description: Authenticate to public registry endpoints to receive higher per-token limits than
-      anonymous IP-bound caps.
-  - name: Self-hosted vs SaaS
-    description: Self-managed installations have no provider rate limit; SaaS tenants are subject to
-      JFrog's gateway throttling.
-maintainers:
-  - FN: API Evangelist
-    email: info@apievangelist.com
+- name: AQL concurrent query limit
+  limit_text: Maximum number of AQL/search API calls that can run in parallel.
+  limit: 3
+  scope: endpoint
+  plan: self-managed
+  endpoint: search/AQL API
+- name: AQL result set limit (SaaS)
+  limit_text: a fixed value of 500,000 is set as the default maximal result set size to limit the search/AQL
+    API call response
+  limit: 500000
+  scope: endpoint
+  plan: Artifactory SaaS
+  endpoint: search/AQL API
+- name: AQL query string size limit
+  limit_text: The default maximum is 6,000 characters.
+  limit: 6000
+  scope: endpoint
+  endpoint: POST /artifactory/api/search/aql
+exceeded_status: 429
