@@ -27,7 +27,7 @@ security:
 - bearerAuth: []
 - basicAuth: []
 tags:
-- name: GraphQL
+- name: Graph QL
   description: GraphQL query interface for package and CVE data
 paths:
   /custom/graphql:
@@ -36,7 +36,7 @@ paths:
       summary: JFrog Execute GraphQL Query
       description: Executes a GraphQL query against the JFrog Catalog. Supports querying packages, package versions, CVE information, license data, and custom labels. This is the primary interface for interacting with the Catalog service.
       tags:
-      - GraphQL
+      - Graph QL
       requestBody:
         required: true
         content:

@@ -128,28 +128,36 @@ paths:
           description: Token not found
 components:
   schemas:
-    TokenResponse:
+    TokenInfo:
       type: object
       properties:
         token_id:
           type: string
-        access_token:
+          description: Unique token identifier
+        subject:
           type: string
-          description: The access token value (JWT)
-        refresh_token:
-          type: string
-          description: Refresh token (if requested)
-        expires_in:
+          description: Token subject (user or service)
+        expiry:
           type: integer
-          description: Token lifetime in seconds
+          description: Token expiry timestamp (epoch seconds)
+        issued_at:
+          type: integer
+          description: Token issuance timestamp (epoch seconds)
+        issuer:
+          type: string
+          description: Token issuer service identifier
+        description:
+          type: string
+          description: Human-readable token description
+        refreshable:
+          type: boolean
+          description: Whether the token can be refreshed
         scope:
           type: string
-        token_type:
+          description: Token scope defining permissions
+        audience:
           type: string
-          example: Bearer
-        reference_token:
-          type: string
-          description: Reference token (if requested)
+          description: Token audience
     CreateTokenRequest:
       type: object
       properties:
@@ -181,36 +189,28 @@ components:
           description: Project key to scope the token to a specific project
       required:
       - scope
-    TokenInfo:
+    TokenResponse:
       type: object
       properties:
         token_id:
           type: string
-          description: Unique token identifier
-        subject:
+        access_token:
           type: string
-          description: Token subject (user or service)
-        expiry:
+          description: The access token value (JWT)
+        refresh_token:
+          type: string
+          description: Refresh token (if requested)
+        expires_in:
           type: integer
-          description: Token expiry timestamp (epoch seconds)
-        issued_at:
-          type: integer
-          description: Token issuance timestamp (epoch seconds)
-        issuer:
-          type: string
-          description: Token issuer service identifier
-        description:
-          type: string
-          description: Human-readable token description
-        refreshable:
-          type: boolean
-          description: Whether the token can be refreshed
+          description: Token lifetime in seconds
         scope:
           type: string
-          description: Token scope defining permissions
-        audience:
+        token_type:
           type: string
-          description: Token audience
+          example: Bearer
+        reference_token:
+          type: string
+          description: Reference token (if requested)
   securitySchemes:
     bearerAuth:
       type: http

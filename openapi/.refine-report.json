@@ -71,7 +71,9 @@
     "jfrog-violations-api-openapi.yml",
     "jfrog-watches-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -97,7 +99,9 @@
     "tag 'Users' spans 2 source specs (jfrog-access-openapi.yml, jfrog-platform-openapi.yml): per-path servers applied",
     "tag 'Policies' spans 2 source specs (jfrog-curation-openapi.yml, jfrog-xray-openapi.yml): per-path servers applied",
     "tag 'Distribution' spans 2 source specs (jfrog-distribution-openapi.yml, jfrog-release-lifecycle-openapi.yml): per-path servers applied",
-    "tag 'Evidence' spans 2 source specs (jfrog-evidence-openapi.yml, jfrog-release-lifecycle-openapi.yml): per-path servers applied"
+    "tag 'Evidence' spans 2 source specs (jfrog-evidence-openapi.yml, jfrog-release-lifecycle-openapi.yml): per-path servers applied",
+    "superseded outputs removed: jfrog-graph-ql-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 53 total)"
   ],
   "skipped": [
     "jfrog-access-tokens-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -113,7 +117,7 @@
     "jfrog-evidence-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "jfrog-execution-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "jfrog-experiments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "jfrog-graphql-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "jfrog-graph-ql-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "jfrog-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "jfrog-ignore-rules-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "jfrog-integrations-api-openapi.yml: previously refined output, superseded by openapi/_original/",

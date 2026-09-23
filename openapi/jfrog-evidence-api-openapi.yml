@@ -613,28 +613,6 @@ components:
       required:
       - subject_type
       - subject
-    Evidence_2:
-      type: object
-      properties:
-        id:
-          type: string
-        release_bundle_name:
-          type: string
-        release_bundle_version:
-          type: string
-        environment:
-          type: string
-        evidence_type:
-          type: string
-        description:
-          type: string
-        created:
-          type: string
-          format: date-time
-        created_by:
-          type: string
-        dsse_file_path:
-          type: string
     EvidenceRequest:
       type: object
       properties:
@@ -660,6 +638,28 @@ components:
       required:
       - release_bundle_name
       - release_bundle_version
+    Evidence_2:
+      type: object
+      properties:
+        id:
+          type: string
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+        evidence_type:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        dsse_file_path:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

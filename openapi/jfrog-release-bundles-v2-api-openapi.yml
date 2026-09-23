@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: JFrog Release Lifecycle Management REST Release Bundles V2 API
+  title: JFrog Release Lifecycle Management REST Release Bundles V2…
   description: API for managing release bundles, promotion workflows, and evidence collection throughout the software release lifecycle from development to production. Provides capabilities for creating immutable release bundles, promoting them through environments, and collecting attestation evidence.
   version: 2.x
   contact:
@@ -139,64 +139,6 @@ paths:
           description: Release bundle deleted
 components:
   schemas:
-    ReleaseBundleV2Request:
-      type: object
-      properties:
-        release_bundle_name:
-          type: string
-        release_bundle_version:
-          type: string
-        skip_docker_manifest_resolution:
-          type: boolean
-          default: false
-        source_type:
-          type: string
-          enum:
-          - artifacts
-          - builds
-          - release_bundles
-          - aql
-        source:
-          type: object
-          properties:
-            artifacts:
-              type: array
-              items:
-                type: object
-                properties:
-                  path:
-                    type: string
-                  sha256:
-                    type: string
-            builds:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  number:
-                    type: string
-                  project:
-                    type: string
-            release_bundles:
-              type: array
-              items:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  version:
-                    type: string
-                  project_key:
-                    type: string
-            aql:
-              type: string
-      required:
-      - release_bundle_name
-      - release_bundle_version
-      - source_type
-      - source
     ReleaseBundleV2Summary:
       type: object
       properties:
@@ -259,6 +201,64 @@ components:
                 format: date-time
               promoted_by:
                 type: string
+    ReleaseBundleV2Request:
+      type: object
+      properties:
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        skip_docker_manifest_resolution:
+          type: boolean
+          default: false
+        source_type:
+          type: string
+          enum:
+          - artifacts
+          - builds
+          - release_bundles
+          - aql
+        source:
+          type: object
+          properties:
+            artifacts:
+              type: array
+              items:
+                type: object
+                properties:
+                  path:
+                    type: string
+                  sha256:
+                    type: string
+            builds:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  number:
+                    type: string
+                  project:
+                    type: string
+            release_bundles:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  version:
+                    type: string
+                  project_key:
+                    type: string
+            aql:
+              type: string
+      required:
+      - release_bundle_name
+      - release_bundle_version
+      - source_type
+      - source
   securitySchemes:
     bearerAuth:
       type: http

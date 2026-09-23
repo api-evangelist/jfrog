@@ -127,6 +127,32 @@ paths:
           description: Model version deleted
 components:
   schemas:
+    ModelVersionRequest:
+      type: object
+      properties:
+        version:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - draft
+          - staging
+          - production
+          - archived
+        artifact_path:
+          type: string
+        metrics:
+          type: object
+          additionalProperties:
+            type: number
+        parameters:
+          type: object
+          additionalProperties:
+            type: string
+      required:
+      - version
     ModelVersion:
       type: object
       properties:
@@ -163,32 +189,6 @@ components:
           format: date-time
         created_by:
           type: string
-    ModelVersionRequest:
-      type: object
-      properties:
-        version:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - draft
-          - staging
-          - production
-          - archived
-        artifact_path:
-          type: string
-        metrics:
-          type: object
-          additionalProperties:
-            type: number
-        parameters:
-          type: object
-          additionalProperties:
-            type: string
-      required:
-      - version
   securitySchemes:
     bearerAuth:
       type: http

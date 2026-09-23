@@ -196,64 +196,30 @@ paths:
                     type: integer
 components:
   schemas:
-    PackageSummary:
+    PackageVersion:
       type: object
       properties:
-        package_type:
+        version:
           type: string
-        package_name:
+        published:
           type: string
-        latest_version:
-          type: string
-        versions_count:
-          type: integer
+          format: date-time
+        licenses:
+          type: array
+          items:
+            type: string
         vulnerabilities_count:
           type: integer
+        direct_vulnerabilities_count:
+          type: integer
+          description: Non-transitive vulnerabilities affecting this version
+        transitive_vulnerabilities_count:
+          type: integer
+          description: Transitive vulnerabilities from dependencies
         labels:
           type: array
           items:
             type: string
-        license:
-          type: string
-    PackageSearchRequest:
-      type: object
-      properties:
-        query:
-          type: string
-          description: Text search query for package name
-        package_type:
-          type: string
-          description: Filter by package type
-        labels:
-          type: array
-          items:
-            type: string
-          description: Filter by applied labels
-        has_vulnerabilities:
-          type: boolean
-          description: Filter packages with known vulnerabilities
-        min_severity:
-          type: string
-          enum:
-          - Low
-          - Medium
-          - High
-          - Critical
-          description: Minimum vulnerability severity filter
-        limit:
-          type: integer
-          default: 25
-        offset:
-          type: integer
-    PackageSearchResponse:
-      type: object
-      properties:
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/PackageSummary'
-        total_count:
-          type: integer
     PackageDetail:
       type: object
       properties:
@@ -302,6 +268,34 @@ components:
         homepage:
           type: string
           format: uri
+    PackageSummary:
+      type: object
+      properties:
+        package_type:
+          type: string
+        package_name:
+          type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        vulnerabilities_count:
+          type: integer
+        labels:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
+    PackageSearchResponse:
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+        total_count:
+          type: integer
     CatalogVulnerability:
       type: object
       properties:
@@ -335,30 +329,36 @@ components:
         jfrog_research_summary:
           type: string
           description: JFrog Security Research enrichment summary
-    PackageVersion:
+    PackageSearchRequest:
       type: object
       properties:
-        version:
+        query:
           type: string
-        published:
+          description: Text search query for package name
+        package_type:
           type: string
-          format: date-time
-        licenses:
-          type: array
-          items:
-            type: string
-        vulnerabilities_count:
-          type: integer
-        direct_vulnerabilities_count:
-          type: integer
-          description: Non-transitive vulnerabilities affecting this version
-        transitive_vulnerabilities_count:
-          type: integer
-          description: Transitive vulnerabilities from dependencies
+          description: Filter by package type
         labels:
           type: array
           items:
             type: string
+          description: Filter by applied labels
+        has_vulnerabilities:
+          type: boolean
+          description: Filter packages with known vulnerabilities
+        min_severity:
+          type: string
+          enum:
+          - Low
+          - Medium
+          - High
+          - Critical
+          description: Minimum vulnerability severity filter
+        limit:
+          type: integer
+          default: 25
+        offset:
+          type: integer
   securitySchemes:
     bearerAuth:
       type: http

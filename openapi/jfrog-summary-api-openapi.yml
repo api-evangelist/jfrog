@@ -88,42 +88,6 @@ paths:
                 $ref: '#/components/schemas/BuildSummary'
 components:
   schemas:
-    ArtifactSummary:
-      type: object
-      properties:
-        artifacts:
-          type: array
-          items:
-            type: object
-            properties:
-              general:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  path:
-                    type: string
-                  sha256:
-                    type: string
-                  component_id:
-                    type: string
-              issues:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Issue'
-              licenses:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    full_name:
-                      type: string
-                    components:
-                      type: array
-                      items:
-                        type: string
     Issue:
       type: object
       properties:
@@ -171,6 +135,42 @@ components:
                 type: string
               sha256:
                 type: string
+    ArtifactSummary:
+      type: object
+      properties:
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              general:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  path:
+                    type: string
+                  sha256:
+                    type: string
+                  component_id:
+                    type: string
+              issues:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Issue'
+              licenses:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    full_name:
+                      type: string
+                    components:
+                      type: array
+                      items:
+                        type: string
     BuildSummary:
       type: object
       properties:

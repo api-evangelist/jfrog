@@ -107,23 +107,24 @@ paths:
           description: Token revoked
 components:
   schemas:
-    TokenResponse:
+    TokenInfo:
       type: object
       properties:
         token_id:
           type: string
-        access_token:
+        subject:
           type: string
-        refresh_token:
-          type: string
-        expires_in:
+        expiry:
           type: integer
+        issued_at:
+          type: integer
+        issuer:
+          type: string
+        description:
+          type: string
+        refreshable:
+          type: boolean
         scope:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        reference_token:
           type: string
     CreateTokenRequest:
       type: object
@@ -145,24 +146,23 @@ components:
           type: boolean
       required:
       - scope
-    TokenInfo:
+    TokenResponse:
       type: object
       properties:
         token_id:
           type: string
-        subject:
+        access_token:
           type: string
-        expiry:
+        refresh_token:
+          type: string
+        expires_in:
           type: integer
-        issued_at:
-          type: integer
-        issuer:
-          type: string
-        description:
-          type: string
-        refreshable:
-          type: boolean
         scope:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        reference_token:
           type: string
   securitySchemes:
     bearerAuth:

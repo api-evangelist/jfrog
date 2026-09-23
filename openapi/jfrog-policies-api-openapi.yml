@@ -289,6 +289,32 @@ paths:
           description: Your self-hosted JFrog server host
 components:
   schemas:
+    CurationPolicyRequest:
+      type: object
+      properties:
+        policy_name:
+          type: string
+        description:
+          type: string
+        enabled:
+          type: boolean
+        policy_type:
+          type: string
+        repositories:
+          type: array
+          items:
+            type: string
+        package_types:
+          type: array
+          items:
+            type: string
+        conditions:
+          type: object
+        actions:
+          type: object
+      required:
+      - policy_name
+      - policy_type
     CurationPolicy:
       type: object
       properties:
@@ -365,32 +391,6 @@ components:
         modified:
           type: string
           format: date-time
-    CurationPolicyRequest:
-      type: object
-      properties:
-        policy_name:
-          type: string
-        description:
-          type: string
-        enabled:
-          type: boolean
-        policy_type:
-          type: string
-        repositories:
-          type: array
-          items:
-            type: string
-        package_types:
-          type: array
-          items:
-            type: string
-        conditions:
-          type: object
-        actions:
-          type: object
-      required:
-      - policy_name
-      - policy_type
     Policy:
       type: object
       properties:
