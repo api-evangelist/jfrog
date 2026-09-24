@@ -1,1 +1,0 @@
-# JFrog GraphQL API
