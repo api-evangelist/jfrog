@@ -104,6 +104,25 @@ paths:
           description: Pipeline source deleted
 components:
   schemas:
+    PipelineSourceRequest:
+      type: object
+      properties:
+        projectId:
+          type: integer
+        name:
+          type: string
+        repositoryFullName:
+          type: string
+        branch:
+          type: string
+        fileFilter:
+          type: string
+        integrationId:
+          type: integer
+      required:
+      - repositoryFullName
+      - branch
+      - integrationId
     PipelineSource:
       type: object
       properties:
@@ -127,25 +146,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    PipelineSourceRequest:
-      type: object
-      properties:
-        projectId:
-          type: integer
-        name:
-          type: string
-        repositoryFullName:
-          type: string
-        branch:
-          type: string
-        fileFilter:
-          type: string
-        integrationId:
-          type: integer
-      required:
-      - repositoryFullName
-      - branch
-      - integrationId
   securitySchemes:
     bearerAuth:
       type: http

@@ -173,7 +173,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v2/groups:
     get:
-      operationId: listGroups
+      operationId: getAccessApiV2Groups
       summary: JFrog List Groups
       description: Returns a list of all platform groups.
       tags:
@@ -190,8 +190,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/PlatformGroup'
+      x-operation-id-source: normalized
+      x-operation-id-original: listGroups
     post:
-      operationId: createGroup
+      operationId: postAccessApiV2Groups
       summary: JFrog Create Group
       description: Creates a new platform group.
       tags:
@@ -205,6 +207,8 @@ paths:
       responses:
         '201':
           description: Group created
+      x-operation-id-source: normalized
+      x-operation-id-original: createGroup
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud
@@ -220,7 +224,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v2/groups/{groupName}:
     get:
-      operationId: getGroup
+      operationId: getAccessApiV2GroupsByGroupName
       summary: JFrog Get Group
       description: Returns details for a specific group.
       tags:
@@ -239,8 +243,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlatformGroup'
+      x-operation-id-source: normalized
+      x-operation-id-original: getGroup
     patch:
-      operationId: updateGroup
+      operationId: patchAccessApiV2GroupsByGroupName
       summary: JFrog Update Group
       description: Updates group details.
       tags:
@@ -261,8 +267,10 @@ paths:
       responses:
         '200':
           description: Group updated
+      x-operation-id-source: normalized
+      x-operation-id-original: updateGroup
     delete:
-      operationId: deleteGroup
+      operationId: deleteAccessApiV2GroupsByGroupName
       summary: JFrog Delete Group
       description: Deletes a group.
       tags:
@@ -277,6 +285,8 @@ paths:
       responses:
         '204':
           description: Group deleted
+      x-operation-id-source: normalized
+      x-operation-id-original: deleteGroup
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud

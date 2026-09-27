@@ -395,7 +395,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v2/evidence:
     post:
-      operationId: createEvidence
+      operationId: postV2Evidence
       summary: JFrog Create Evidence
       description: Creates a new evidence record attached to a release bundle.
       tags:
@@ -416,6 +416,8 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: createEvidence
     servers:
     - url: https://{server}.jfrog.io/lifecycle/api
       description: JFrog Cloud
@@ -431,7 +433,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v2/evidence/{name}/{version}:
     get:
-      operationId: getEvidence
+      operationId: getV2EvidenceByNameByVersion
       summary: JFrog Get Evidence
       description: Returns all evidence records for a release bundle version.
       tags:
@@ -464,6 +466,8 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getEvidence
     servers:
     - url: https://{server}.jfrog.io/lifecycle/api
       description: JFrog Cloud
@@ -505,52 +509,6 @@ components:
           default: 25
         offset:
           type: integer
-    Evidence:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique evidence record identifier
-        subject_type:
-          type: string
-          enum:
-          - artifact
-          - build
-          - package
-          - release_bundle
-        subject:
-          type: object
-          additionalProperties: true
-          description: Subject identification details
-        predicate_type:
-          type: string
-          format: uri
-          description: URI of the predicate type
-        predicate:
-          type: object
-          additionalProperties: true
-          description: Evidence predicate content
-        dsse_envelope_path:
-          type: string
-          description: Path to the DSSE envelope file in Artifactory
-        signature_algorithm:
-          type: string
-          description: Cryptographic algorithm used for signing
-          enum:
-          - ECDSA
-          - RSA
-          - ED25519
-        key_alias:
-          type: string
-          description: Alias of the signing key
-        verified:
-          type: boolean
-          description: Whether the evidence signature has been verified
-        created:
-          type: string
-          format: date-time
-        created_by:
-          type: string
     CreateEvidenceRequest:
       type: object
       properties:
@@ -613,6 +571,52 @@ components:
       required:
       - subject_type
       - subject
+    Evidence:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique evidence record identifier
+        subject_type:
+          type: string
+          enum:
+          - artifact
+          - build
+          - package
+          - release_bundle
+        subject:
+          type: object
+          additionalProperties: true
+          description: Subject identification details
+        predicate_type:
+          type: string
+          format: uri
+          description: URI of the predicate type
+        predicate:
+          type: object
+          additionalProperties: true
+          description: Evidence predicate content
+        dsse_envelope_path:
+          type: string
+          description: Path to the DSSE envelope file in Artifactory
+        signature_algorithm:
+          type: string
+          description: Cryptographic algorithm used for signing
+          enum:
+          - ECDSA
+          - RSA
+          - ED25519
+        key_alias:
+          type: string
+          description: Alias of the signing key
+        verified:
+          type: boolean
+          description: Whether the evidence signature has been verified
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
     EvidenceRequest:
       type: object
       properties:

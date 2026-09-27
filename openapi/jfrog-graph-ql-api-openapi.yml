@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: JFrog Catalog REST Graph QL API
+  title: JFrog Catalog REST GraphQL API
   description: API for querying and managing package metadata, searching for packages and CVEs, and managing custom labels for software components. JFrog Catalog provides a unified view of all packages across the JFrog Platform with enriched security and metadata information, primarily accessed through a GraphQL-based interface.
   version: 1.x
   contact:

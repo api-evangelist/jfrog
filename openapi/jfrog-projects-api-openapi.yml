@@ -343,7 +343,7 @@ paths:
           description: Your self-hosted JFrog server host
   /projects:
     get:
-      operationId: listProjects
+      operationId: getProjects
       summary: JFrog List Projects
       description: Returns a list of all projects in the account.
       tags:
@@ -362,8 +362,10 @@ paths:
                       $ref: '#/components/schemas/Project_2'
       security:
       - apiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: listProjects
     post:
-      operationId: createProject
+      operationId: postProjects
       summary: JFrog Create Project
       description: Creates a new project for organizing devices.
       tags:
@@ -383,12 +385,14 @@ paths:
                 $ref: '#/components/schemas/Project_2'
       security:
       - apiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: createProject
     servers:
     - url: https://api.connect.jfrog.io/v2
       description: JFrog Connect Cloud
   /projects/{projectId}:
     get:
-      operationId: getProject
+      operationId: getProjectsByProjectId
       summary: JFrog Get Project
       description: Returns details for a specific project.
       tags:
@@ -409,8 +413,10 @@ paths:
                 $ref: '#/components/schemas/Project_2'
       security:
       - apiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getProject
     delete:
-      operationId: deleteProject
+      operationId: deleteProjectsByProjectId
       summary: JFrog Delete Project
       description: Deletes a project.
       tags:
@@ -427,12 +433,14 @@ paths:
           description: Project deleted
       security:
       - apiKeyAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: deleteProject
     servers:
     - url: https://api.connect.jfrog.io/v2
       description: JFrog Connect Cloud
   /access/api/v1/projects:
     get:
-      operationId: listProjects
+      operationId: getAccessApiV1Projects
       summary: JFrog List Projects
       description: Returns a list of all projects.
       tags:
@@ -449,8 +457,10 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: listProjects
     post:
-      operationId: createProject
+      operationId: postAccessApiV1Projects
       summary: JFrog Create Project
       description: Creates a new project.
       tags:
@@ -471,6 +481,8 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: createProject
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud
@@ -486,7 +498,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v1/projects/{projectKey}:
     get:
-      operationId: getProject
+      operationId: getAccessApiV1ProjectsByProjectKey
       summary: JFrog Get Project
       description: Returns details for a specific project.
       tags:
@@ -508,8 +520,10 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getProject
     put:
-      operationId: updateProject
+      operationId: putAccessApiV1ProjectsByProjectKey
       summary: JFrog Update Project
       description: Updates project configuration.
       tags:
@@ -533,8 +547,10 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: updateProject
     delete:
-      operationId: deleteProject
+      operationId: deleteAccessApiV1ProjectsByProjectKey
       summary: JFrog Delete Project
       description: Deletes a project.
       tags:
@@ -552,6 +568,8 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: deleteProject
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud
@@ -567,7 +585,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v1/projects/{projectKey}/users/{username}:
     put:
-      operationId: addUserToProject
+      operationId: putAccessApiV1ProjectsByProjectKeyUsersByUsername
       summary: JFrog Add User to Project
       description: Adds a user to a project with specified roles.
       tags:
@@ -602,8 +620,10 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: addUserToProject
     delete:
-      operationId: removeUserFromProject
+      operationId: deleteAccessApiV1ProjectsByProjectKeyUsersByUsername
       summary: JFrog Remove User from Project
       description: Removes a user from a project.
       tags:
@@ -627,6 +647,8 @@ paths:
       security:
       - bearerAuth: []
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: removeUserFromProject
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud
@@ -642,6 +664,34 @@ paths:
           description: Your self-hosted JFrog server host
 components:
   schemas:
+    ProjectRequest:
+      type: object
+      properties:
+        project_key:
+          type: string
+          maxLength: 32
+        display_name:
+          type: string
+        description:
+          type: string
+        admin_privileges:
+          type: object
+          properties:
+            manage_members:
+              type: boolean
+            manage_resources:
+              type: boolean
+            manage_security_assets:
+              type: boolean
+            index_resources:
+              type: boolean
+            allow_ignore_rules:
+              type: boolean
+        max_storage_in_gibibytes:
+          type: integer
+      required:
+      - project_key
+      - display_name
     Project:
       type: object
       properties:
@@ -674,34 +724,15 @@ components:
           type: integer
         storage_quota_email_notification:
           type: boolean
-    ProjectRequest:
+    ProjectRequest_2:
       type: object
       properties:
-        project_key:
-          type: string
-          maxLength: 32
-        display_name:
+        name:
           type: string
         description:
           type: string
-        admin_privileges:
-          type: object
-          properties:
-            manage_members:
-              type: boolean
-            manage_resources:
-              type: boolean
-            manage_security_assets:
-              type: boolean
-            index_resources:
-              type: boolean
-            allow_ignore_rules:
-              type: boolean
-        max_storage_in_gibibytes:
-          type: integer
       required:
-      - project_key
-      - display_name
+      - name
     Project_2:
       type: object
       properties:
@@ -718,15 +749,6 @@ components:
         created_at:
           type: string
           format: date-time
-    ProjectRequest_2:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-      required:
-      - name
     Project_3:
       type: object
       properties:

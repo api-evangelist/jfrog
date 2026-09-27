@@ -313,6 +313,81 @@ components:
           example: Bearer
         refresh_token:
           type: string
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profileUpdatable:
+          type: boolean
+        disableUIAccess:
+          type: boolean
+        internalPasswordDisabled:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - email
+      - password
+    GroupSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+    Group:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        autoJoin:
+          type: boolean
+        adminPrivileges:
+          type: boolean
+        realm:
+          type: string
+        realmAttributes:
+          type: string
+        userNames:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+    UserSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+        realm:
+          type: string
+        status:
+          type: string
+    PermissionTargetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
     PermissionTarget:
       type: object
       properties:
@@ -370,81 +445,6 @@ components:
                     type: array
                     items:
                       type: string
-    PermissionTargetSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        uri:
-          type: string
-          format: uri
-    UserSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        uri:
-          type: string
-          format: uri
-        realm:
-          type: string
-        status:
-          type: string
-    Group:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        autoJoin:
-          type: boolean
-        adminPrivileges:
-          type: boolean
-        realm:
-          type: string
-        realmAttributes:
-          type: string
-        userNames:
-          type: array
-          items:
-            type: string
-      required:
-      - name
-    User:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-        admin:
-          type: boolean
-        profileUpdatable:
-          type: boolean
-        disableUIAccess:
-          type: boolean
-        internalPasswordDisabled:
-          type: boolean
-        groups:
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - email
-      - password
-    GroupSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        uri:
-          type: string
-          format: uri
   securitySchemes:
     bearerAuth:
       type: http

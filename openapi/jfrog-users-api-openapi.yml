@@ -197,7 +197,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v2/users:
     get:
-      operationId: listUsers
+      operationId: getAccessApiV2Users
       summary: JFrog List Users
       description: Returns a list of all platform users.
       tags:
@@ -214,8 +214,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/PlatformUser'
+      x-operation-id-source: normalized
+      x-operation-id-original: listUsers
     post:
-      operationId: createUser
+      operationId: postAccessApiV2Users
       summary: JFrog Create User
       description: Creates a new platform user.
       tags:
@@ -233,6 +235,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlatformUser'
+      x-operation-id-source: normalized
+      x-operation-id-original: createUser
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud
@@ -248,7 +252,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v2/users/{username}:
     get:
-      operationId: getUser
+      operationId: getAccessApiV2UsersByUsername
       summary: JFrog Get User
       description: Returns details for a specific user.
       tags:
@@ -267,8 +271,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlatformUser'
+      x-operation-id-source: normalized
+      x-operation-id-original: getUser
     patch:
-      operationId: updateUser
+      operationId: patchAccessApiV2UsersByUsername
       summary: JFrog Update User
       description: Updates user details.
       tags:
@@ -289,8 +295,10 @@ paths:
       responses:
         '200':
           description: User updated
+      x-operation-id-source: normalized
+      x-operation-id-original: updateUser
     delete:
-      operationId: deleteUser
+      operationId: deleteAccessApiV2UsersByUsername
       summary: JFrog Delete User
       description: Deletes a user.
       tags:
@@ -305,6 +313,8 @@ paths:
       responses:
         '204':
           description: User deleted
+      x-operation-id-source: normalized
+      x-operation-id-original: deleteUser
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud
@@ -320,33 +330,6 @@ paths:
           description: Your self-hosted JFrog server host
 components:
   schemas:
-    CreateUserRequest:
-      type: object
-      properties:
-        username:
-          type: string
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-        admin:
-          type: boolean
-          default: false
-        profile_updatable:
-          type: boolean
-          default: true
-        disable_ui_access:
-          type: boolean
-          default: false
-        groups:
-          type: array
-          items:
-            type: string
-      required:
-      - username
-      - email
-      - password
     UpdateUserRequest:
       type: object
       properties:
@@ -409,7 +392,7 @@ components:
         created:
           type: string
           format: date-time
-    CreateUserRequest_2:
+    CreateUserRequest:
       type: object
       properties:
         username:
@@ -421,8 +404,13 @@ components:
           type: string
         admin:
           type: boolean
+          default: false
         profile_updatable:
           type: boolean
+          default: true
+        disable_ui_access:
+          type: boolean
+          default: false
         groups:
           type: array
           items:
@@ -447,6 +435,28 @@ components:
           type: array
           items:
             type: string
+    CreateUserRequest_2:
+      type: object
+      properties:
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - username
+      - email
+      - password
     PlatformUser:
       type: object
       properties:

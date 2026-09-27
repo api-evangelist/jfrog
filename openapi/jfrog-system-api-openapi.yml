@@ -152,7 +152,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v1/system/ping:
     get:
-      operationId: systemPing
+      operationId: getV1SystemPing
       summary: JFrog System Ping
       description: Returns a simple health check response.
       tags:
@@ -167,6 +167,8 @@ paths:
                 properties:
                   status:
                     type: string
+      x-operation-id-source: normalized
+      x-operation-id-original: systemPing
     servers:
     - url: https://{server}.jfrog.io/distribution/api
       description: JFrog Cloud
@@ -182,7 +184,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v1/system/version:
     get:
-      operationId: getSystemVersion
+      operationId: getV1SystemVersion
       summary: JFrog Get System Version
       description: Returns Mission Control version information.
       tags:
@@ -199,6 +201,8 @@ paths:
                     type: string
                   revision:
                     type: string
+      x-operation-id-source: normalized
+      x-operation-id-original: getSystemVersion
     servers:
     - url: https://{server}.jfrog.io/mc/api
       description: JFrog Cloud

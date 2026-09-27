@@ -193,7 +193,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v2/release_bundle/distribute/{name}/{version}:
     post:
-      operationId: distributeReleaseBundle
+      operationId: postV2ReleaseBundleDistributeByNameByVersion
       summary: JFrog Distribute Release Bundle v2
       description: Distributes a release bundle to specified edge nodes.
       tags:
@@ -220,6 +220,8 @@ paths:
       responses:
         '200':
           description: Distribution initiated
+      x-operation-id-source: normalized
+      x-operation-id-original: distributeReleaseBundle
     servers:
     - url: https://{server}.jfrog.io/lifecycle/api
       description: JFrog Cloud
@@ -235,7 +237,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v2/release_bundle/distribute/{name}/{version}/status:
     get:
-      operationId: getDistributionStatus
+      operationId: getV2ReleaseBundleDistributeByNameByVersionStatus
       summary: JFrog Get Distribution Status
       description: Returns distribution status for a release bundle.
       tags:
@@ -272,6 +274,8 @@ paths:
                           type: string
                         status:
                           type: string
+      x-operation-id-source: normalized
+      x-operation-id-original: getDistributionStatus
     servers:
     - url: https://{server}.jfrog.io/lifecycle/api
       description: JFrog Cloud

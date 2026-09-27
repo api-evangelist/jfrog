@@ -171,7 +171,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v2/policies:
     get:
-      operationId: listPolicies
+      operationId: getV2Policies
       summary: JFrog List Policies
       description: Returns a list of all security and license policies.
       tags:
@@ -185,8 +185,10 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Policy'
+      x-operation-id-source: normalized
+      x-operation-id-original: listPolicies
     post:
-      operationId: createPolicy
+      operationId: postV2Policies
       summary: JFrog Create Policy
       description: Creates a new security or license compliance policy.
       tags:
@@ -202,6 +204,8 @@ paths:
           description: Policy created
         '400':
           description: Invalid policy configuration
+      x-operation-id-source: normalized
+      x-operation-id-original: createPolicy
     servers:
     - url: https://{server}.jfrog.io/xray/api
       description: JFrog Cloud
@@ -217,7 +221,7 @@ paths:
           description: Your self-hosted JFrog server host
   /v2/policies/{policyName}:
     get:
-      operationId: getPolicy
+      operationId: getV2PoliciesByPolicyName
       summary: JFrog Get Policy
       description: Returns details of a specific policy.
       tags:
@@ -236,8 +240,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Policy'
+      x-operation-id-source: normalized
+      x-operation-id-original: getPolicy
     put:
-      operationId: updatePolicy
+      operationId: putV2PoliciesByPolicyName
       summary: JFrog Update Policy
       description: Updates an existing policy.
       tags:
@@ -258,8 +264,10 @@ paths:
       responses:
         '200':
           description: Policy updated
+      x-operation-id-source: normalized
+      x-operation-id-original: updatePolicy
     delete:
-      operationId: deletePolicy
+      operationId: deleteV2PoliciesByPolicyName
       summary: JFrog Delete Policy
       description: Removes a policy.
       tags:
@@ -274,6 +282,8 @@ paths:
       responses:
         '200':
           description: Policy deleted
+      x-operation-id-source: normalized
+      x-operation-id-original: deletePolicy
     servers:
     - url: https://{server}.jfrog.io/xray/api
       description: JFrog Cloud

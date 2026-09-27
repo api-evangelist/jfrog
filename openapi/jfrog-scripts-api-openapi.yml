@@ -104,6 +104,18 @@ paths:
                     type: string
 components:
   schemas:
+    ScriptRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        content:
+          type: string
+      required:
+      - name
+      - content
     Script:
       type: object
       properties:
@@ -119,18 +131,6 @@ components:
         modified:
           type: string
           format: date-time
-    ScriptRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        content:
-          type: string
-      required:
-      - name
-      - content
   securitySchemes:
     bearerAuth:
       type: http

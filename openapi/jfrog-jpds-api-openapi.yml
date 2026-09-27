@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: JFrog Mission Control REST JP Ds API
+  title: JFrog Mission Control REST JPDs API
   description: API for centralized management and monitoring of multiple JFrog Platform instances, including Artifactory servers, configurations, and cross-instance operations. Mission Control provides a single pane of glass for managing geographically distributed JFrog deployments.
   version: 4.x
   contact:
@@ -126,6 +126,32 @@ paths:
           description: JPD removed
 components:
   schemas:
+    JPDRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        token:
+          type: string
+          description: Admin access token for the JPD
+        location:
+          type: object
+          properties:
+            city_name:
+              type: string
+            country_code:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+      required:
+      - name
+      - url
+      - token
     JPD:
       type: object
       properties:
@@ -167,32 +193,6 @@ components:
         created:
           type: string
           format: date-time
-    JPDRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-          format: uri
-        token:
-          type: string
-          description: Admin access token for the JPD
-        location:
-          type: object
-          properties:
-            city_name:
-              type: string
-            country_code:
-              type: string
-            latitude:
-              type: number
-            longitude:
-              type: number
-      required:
-      - name
-      - url
-      - token
   securitySchemes:
     bearerAuth:
       type: http

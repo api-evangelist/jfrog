@@ -173,7 +173,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v2/permissions:
     get:
-      operationId: listPermissions
+      operationId: getAccessApiV2Permissions
       summary: JFrog List Permissions
       description: Returns a list of all permission configurations.
       tags:
@@ -190,8 +190,10 @@ paths:
                     type: array
                     items:
                       $ref: '#/components/schemas/Permission_2'
+      x-operation-id-source: normalized
+      x-operation-id-original: listPermissions
     post:
-      operationId: createPermission
+      operationId: postAccessApiV2Permissions
       summary: JFrog Create Permission
       description: Creates a new permission configuration.
       tags:
@@ -205,6 +207,8 @@ paths:
       responses:
         '201':
           description: Permission created
+      x-operation-id-source: normalized
+      x-operation-id-original: createPermission
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud
@@ -220,7 +224,7 @@ paths:
           description: Your self-hosted JFrog server host
   /access/api/v2/permissions/{permissionName}:
     get:
-      operationId: getPermission
+      operationId: getAccessApiV2PermissionsByPermissionName
       summary: JFrog Get Permission
       description: Returns details for a specific permission.
       tags:
@@ -239,8 +243,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Permission_2'
+      x-operation-id-source: normalized
+      x-operation-id-original: getPermission
     put:
-      operationId: updatePermission
+      operationId: putAccessApiV2PermissionsByPermissionName
       summary: JFrog Update Permission
       description: Updates a permission configuration.
       tags:
@@ -261,8 +267,10 @@ paths:
       responses:
         '200':
           description: Permission updated
+      x-operation-id-source: normalized
+      x-operation-id-original: updatePermission
     delete:
-      operationId: deletePermission
+      operationId: deleteAccessApiV2PermissionsByPermissionName
       summary: JFrog Delete Permission
       description: Deletes a permission configuration.
       tags:
@@ -277,6 +285,8 @@ paths:
       responses:
         '204':
           description: Permission deleted
+      x-operation-id-source: normalized
+      x-operation-id-original: deletePermission
     servers:
     - url: https://{server}.jfrog.io
       description: JFrog Cloud

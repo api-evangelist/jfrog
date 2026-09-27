@@ -196,30 +196,6 @@ paths:
                     type: integer
 components:
   schemas:
-    PackageVersion:
-      type: object
-      properties:
-        version:
-          type: string
-        published:
-          type: string
-          format: date-time
-        licenses:
-          type: array
-          items:
-            type: string
-        vulnerabilities_count:
-          type: integer
-        direct_vulnerabilities_count:
-          type: integer
-          description: Non-transitive vulnerabilities affecting this version
-        transitive_vulnerabilities_count:
-          type: integer
-          description: Transitive vulnerabilities from dependencies
-        labels:
-          type: array
-          items:
-            type: string
     PackageDetail:
       type: object
       properties:
@@ -268,25 +244,6 @@ components:
         homepage:
           type: string
           format: uri
-    PackageSummary:
-      type: object
-      properties:
-        package_type:
-          type: string
-        package_name:
-          type: string
-        latest_version:
-          type: string
-        versions_count:
-          type: integer
-        vulnerabilities_count:
-          type: integer
-        labels:
-          type: array
-          items:
-            type: string
-        license:
-          type: string
     PackageSearchResponse:
       type: object
       properties:
@@ -329,6 +286,49 @@ components:
         jfrog_research_summary:
           type: string
           description: JFrog Security Research enrichment summary
+    PackageSummary:
+      type: object
+      properties:
+        package_type:
+          type: string
+        package_name:
+          type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        vulnerabilities_count:
+          type: integer
+        labels:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
+    PackageVersion:
+      type: object
+      properties:
+        version:
+          type: string
+        published:
+          type: string
+          format: date-time
+        licenses:
+          type: array
+          items:
+            type: string
+        vulnerabilities_count:
+          type: integer
+        direct_vulnerabilities_count:
+          type: integer
+          description: Non-transitive vulnerabilities affecting this version
+        transitive_vulnerabilities_count:
+          type: integer
+          description: Transitive vulnerabilities from dependencies
+        labels:
+          type: array
+          items:
+            type: string
     PackageSearchRequest:
       type: object
       properties:
