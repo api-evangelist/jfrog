@@ -100,23 +100,6 @@ paths:
           description: Node pool deleted
 components:
   schemas:
-    NodePoolRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        projectId:
-          type: integer
-        numberOfNodes:
-          type: integer
-        isOnDemand:
-          type: boolean
-        architecture:
-          type: string
-        operatingSystem:
-          type: string
-      required:
-      - name
     NodePool:
       type: object
       properties:
@@ -140,6 +123,23 @@ components:
         updatedAt:
           type: string
           format: date-time
+    NodePoolRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        projectId:
+          type: integer
+        numberOfNodes:
+          type: integer
+        isOnDemand:
+          type: boolean
+        architecture:
+          type: string
+        operatingSystem:
+          type: string
+      required:
+      - name
   securitySchemes:
     bearerAuth:
       type: http

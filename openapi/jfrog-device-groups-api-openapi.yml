@@ -118,6 +118,19 @@ paths:
           description: Device group deleted
 components:
   schemas:
+    DeviceGroupRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        device_ids:
+          type: array
+          items:
+            type: string
+      required:
+      - name
     DeviceGroup:
       type: object
       properties:
@@ -132,19 +145,6 @@ components:
         created_at:
           type: string
           format: date-time
-    DeviceGroupRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        device_ids:
-          type: array
-          items:
-            type: string
-      required:
-      - name
   securitySchemes:
     apiKeyAuth:
       type: apiKey

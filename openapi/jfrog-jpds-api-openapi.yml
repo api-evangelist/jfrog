@@ -126,32 +126,6 @@ paths:
           description: JPD removed
 components:
   schemas:
-    JPDRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-          format: uri
-        token:
-          type: string
-          description: Admin access token for the JPD
-        location:
-          type: object
-          properties:
-            city_name:
-              type: string
-            country_code:
-              type: string
-            latitude:
-              type: number
-            longitude:
-              type: number
-      required:
-      - name
-      - url
-      - token
     JPD:
       type: object
       properties:
@@ -193,6 +167,32 @@ components:
         created:
           type: string
           format: date-time
+    JPDRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        token:
+          type: string
+          description: Admin access token for the JPD
+        location:
+          type: object
+          properties:
+            city_name:
+              type: string
+            country_code:
+              type: string
+            latitude:
+              type: number
+            longitude:
+              type: number
+      required:
+      - name
+      - url
+      - token
   securitySchemes:
     bearerAuth:
       type: http

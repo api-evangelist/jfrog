@@ -196,115 +196,6 @@ paths:
                     type: integer
 components:
   schemas:
-    PackageDetail:
-      type: object
-      properties:
-        package_type:
-          type: string
-        package_name:
-          type: string
-        description:
-          type: string
-        latest_version:
-          type: string
-        versions_count:
-          type: integer
-        licenses:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              full_name:
-                type: string
-              url:
-                type: string
-                format: uri
-        vulnerabilities_summary:
-          type: object
-          properties:
-            critical:
-              type: integer
-            high:
-              type: integer
-            medium:
-              type: integer
-            low:
-              type: integer
-            total:
-              type: integer
-        labels:
-          type: array
-          items:
-            type: string
-        repository_url:
-          type: string
-          format: uri
-        homepage:
-          type: string
-          format: uri
-    PackageSearchResponse:
-      type: object
-      properties:
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/PackageSummary'
-        total_count:
-          type: integer
-    CatalogVulnerability:
-      type: object
-      properties:
-        cve:
-          type: string
-          description: CVE identifier
-        severity:
-          type: string
-          enum:
-          - Low
-          - Medium
-          - High
-          - Critical
-        cvss_v3_score:
-          type: number
-        summary:
-          type: string
-        is_transitive:
-          type: boolean
-          description: Whether this is a transitive vulnerability from a dependency
-        fixed_versions:
-          type: array
-          items:
-            type: string
-        published:
-          type: string
-          format: date-time
-        jfrog_research_severity:
-          type: string
-          description: JFrog Security Research team severity assessment
-        jfrog_research_summary:
-          type: string
-          description: JFrog Security Research enrichment summary
-    PackageSummary:
-      type: object
-      properties:
-        package_type:
-          type: string
-        package_name:
-          type: string
-        latest_version:
-          type: string
-        versions_count:
-          type: integer
-        vulnerabilities_count:
-          type: integer
-        labels:
-          type: array
-          items:
-            type: string
-        license:
-          type: string
     PackageVersion:
       type: object
       properties:
@@ -359,6 +250,115 @@ components:
           default: 25
         offset:
           type: integer
+    CatalogVulnerability:
+      type: object
+      properties:
+        cve:
+          type: string
+          description: CVE identifier
+        severity:
+          type: string
+          enum:
+          - Low
+          - Medium
+          - High
+          - Critical
+        cvss_v3_score:
+          type: number
+        summary:
+          type: string
+        is_transitive:
+          type: boolean
+          description: Whether this is a transitive vulnerability from a dependency
+        fixed_versions:
+          type: array
+          items:
+            type: string
+        published:
+          type: string
+          format: date-time
+        jfrog_research_severity:
+          type: string
+          description: JFrog Security Research team severity assessment
+        jfrog_research_summary:
+          type: string
+          description: JFrog Security Research enrichment summary
+    PackageSearchResponse:
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+        total_count:
+          type: integer
+    PackageDetail:
+      type: object
+      properties:
+        package_type:
+          type: string
+        package_name:
+          type: string
+        description:
+          type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        licenses:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              full_name:
+                type: string
+              url:
+                type: string
+                format: uri
+        vulnerabilities_summary:
+          type: object
+          properties:
+            critical:
+              type: integer
+            high:
+              type: integer
+            medium:
+              type: integer
+            low:
+              type: integer
+            total:
+              type: integer
+        labels:
+          type: array
+          items:
+            type: string
+        repository_url:
+          type: string
+          format: uri
+        homepage:
+          type: string
+          format: uri
+    PackageSummary:
+      type: object
+      properties:
+        package_type:
+          type: string
+        package_name:
+          type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        vulnerabilities_count:
+          type: integer
+        labels:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -122,25 +122,6 @@ paths:
           description: Integration deleted
 components:
   schemas:
-    Integration:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        masterIntegrationId:
-          type: integer
-        masterIntegrationName:
-          type: string
-        projectId:
-          type: integer
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
     IntegrationRequest:
       type: object
       properties:
@@ -164,6 +145,25 @@ components:
       required:
       - name
       - masterIntegrationName
+    Integration:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        masterIntegrationId:
+          type: integer
+        masterIntegrationName:
+          type: string
+        projectId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

@@ -339,14 +339,6 @@ components:
       - name
       - email
       - password
-    GroupSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        uri:
-          type: string
-          format: uri
     Group:
       type: object
       properties:
@@ -368,26 +360,6 @@ components:
             type: string
       required:
       - name
-    UserSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        uri:
-          type: string
-          format: uri
-        realm:
-          type: string
-        status:
-          type: string
-    PermissionTargetSummary:
-      type: object
-      properties:
-        name:
-          type: string
-        uri:
-          type: string
-          format: uri
     PermissionTarget:
       type: object
       properties:
@@ -445,6 +417,34 @@ components:
                     type: array
                     items:
                       type: string
+    GroupSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+    UserSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+        realm:
+          type: string
+        status:
+          type: string
+    PermissionTargetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
   securitySchemes:
     bearerAuth:
       type: http

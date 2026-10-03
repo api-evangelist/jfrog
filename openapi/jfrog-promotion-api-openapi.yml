@@ -84,6 +84,27 @@ paths:
                     type: string
 components:
   schemas:
+    PromotionRequest:
+      type: object
+      properties:
+        release_bundle_name:
+          type: string
+        release_bundle_version:
+          type: string
+        environment:
+          type: string
+          description: Target environment name (e.g., DEV, STAGING, PROD)
+        included_repository_keys:
+          type: array
+          items:
+            type: string
+        overwrite_existing_artifacts:
+          type: boolean
+          default: false
+      required:
+      - release_bundle_name
+      - release_bundle_version
+      - environment
     PromotionStatus:
       type: object
       properties:
@@ -111,27 +132,6 @@ components:
                 format: date-time
               created_by:
                 type: string
-    PromotionRequest:
-      type: object
-      properties:
-        release_bundle_name:
-          type: string
-        release_bundle_version:
-          type: string
-        environment:
-          type: string
-          description: Target environment name (e.g., DEV, STAGING, PROD)
-        included_repository_keys:
-          type: array
-          items:
-            type: string
-        overwrite_existing_artifacts:
-          type: boolean
-          default: false
-      required:
-      - release_bundle_name
-      - release_bundle_version
-      - environment
   securitySchemes:
     bearerAuth:
       type: http

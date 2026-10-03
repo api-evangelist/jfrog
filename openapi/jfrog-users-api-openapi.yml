@@ -330,9 +330,11 @@ paths:
           description: Your self-hosted JFrog server host
 components:
   schemas:
-    UpdateUserRequest:
+    CreateUserRequest:
       type: object
       properties:
+        username:
+          type: string
         email:
           type: string
           format: email
@@ -340,19 +342,21 @@ components:
           type: string
         admin:
           type: boolean
+          default: false
         profile_updatable:
           type: boolean
+          default: true
         disable_ui_access:
           type: boolean
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
+          default: false
         groups:
           type: array
           items:
             type: string
+      required:
+      - username
+      - email
+      - password
     User:
       type: object
       properties:
@@ -392,7 +396,30 @@ components:
         created:
           type: string
           format: date-time
-    CreateUserRequest:
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        disable_ui_access:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        groups:
+          type: array
+          items:
+            type: string
+    PlatformUser:
       type: object
       properties:
         username:
@@ -400,37 +427,19 @@ components:
         email:
           type: string
           format: email
-        password:
-          type: string
         admin:
           type: boolean
-          default: false
         profile_updatable:
           type: boolean
-          default: true
         disable_ui_access:
           type: boolean
-          default: false
-        groups:
-          type: array
-          items:
-            type: string
-      required:
-      - username
-      - email
-      - password
-    UpdateUserRequest_2:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-        admin:
+        internal_password_disabled:
           type: boolean
-        profile_updatable:
-          type: boolean
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
         groups:
           type: array
           items:
@@ -457,27 +466,18 @@ components:
       - username
       - email
       - password
-    PlatformUser:
+    UpdateUserRequest_2:
       type: object
       properties:
-        username:
-          type: string
         email:
           type: string
           format: email
+        password:
+          type: string
         admin:
           type: boolean
         profile_updatable:
           type: boolean
-        disable_ui_access:
-          type: boolean
-        internal_password_disabled:
-          type: boolean
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
         groups:
           type: array
           items:
