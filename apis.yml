@@ -3702,6 +3702,8 @@ apis:
   humanURL: https://jfrog.com/artifactory/
   baseURL: https://myserver.jfrog.io/artifactory/api
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
