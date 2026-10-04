@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-pipeline-source-schema.json",
+  "title": "PipelineSource",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-pipeline-sources-api-openapi.yml#/components/schemas/PipelineSource",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "projectId": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "repositoryFullName": {
+      "type": "string"
+    },
+    "branch": {
+      "type": "string"
+    },
+    "fileFilter": {
+      "type": "string"
+    },
+    "integrationId": {
+      "type": "integer"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

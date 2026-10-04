@@ -1,0 +1,54 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/jfrog-access-tokens-api-openapi.yml
+- openapi/jfrog-artifacts-storage-api-openapi.yml
+- openapi/jfrog-audit-api-openapi.yml
+- openapi/jfrog-builds-api-openapi.yml
+- openapi/jfrog-commands-api-openapi.yml
+- openapi/jfrog-components-api-openapi.yml
+- openapi/jfrog-deployments-api-openapi.yml
+- openapi/jfrog-device-groups-api-openapi.yml
+- openapi/jfrog-devices-api-openapi.yml
+- openapi/jfrog-distribution-api-openapi.yml
+- openapi/jfrog-evidence-api-openapi.yml
+- openapi/jfrog-execution-api-openapi.yml
+format: custom
+envelope:
+  media_type: null
+  schema: null
+coverage:
+  operations: 257
+  statuses_declared: 5
+problems:
+- status: 400
+  title: Bad Request
+  description: Invalid search criteria
+  operations: 17
+  media_types: []
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 4
+  media_types: []
+  schema: null
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  operations: 1
+  media_types: []
+  schema: null
+- status: 404
+  title: Not Found
+  description: User not found
+  operations: 39
+  media_types: []
+  schema: null
+- status: 409
+  title: Conflict
+  description: Conflict - artifact already exists
+  operations: 7
+  media_types: []
+  schema: null

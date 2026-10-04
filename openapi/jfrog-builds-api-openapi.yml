@@ -194,19 +194,6 @@ components:
               started:
                 type: string
                 format: date-time
-    BuildsList:
-      type: object
-      properties:
-        builds:
-          type: array
-          items:
-            type: object
-            properties:
-              uri:
-                type: string
-              lastStarted:
-                type: string
-                format: date-time
     BuildPromotion:
       type: object
       properties:
@@ -238,6 +225,19 @@ components:
           type: boolean
       required:
       - targetRepo
+    BuildsList:
+      type: object
+      properties:
+        builds:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+              lastStarted:
+                type: string
+                format: date-time
   securitySchemes:
     bearerAuth:
       type: http

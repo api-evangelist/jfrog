@@ -181,17 +181,6 @@ paths:
                 type: string
 components:
   schemas:
-    SearchResult:
-      type: object
-      properties:
-        results:
-          type: array
-          items:
-            type: object
-            properties:
-              uri:
-                type: string
-                format: uri
     AqlSearchResult:
       type: object
       properties:
@@ -225,6 +214,17 @@ components:
               type: integer
             total:
               type: integer
+    SearchResult:
+      type: object
+      properties:
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              uri:
+                type: string
+                format: uri
   securitySchemes:
     bearerAuth:
       type: http

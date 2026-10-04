@@ -88,20 +88,42 @@ paths:
                 $ref: '#/components/schemas/BuildSummary'
 components:
   schemas:
-    BuildSummary:
+    ArtifactSummary:
       type: object
       properties:
-        build:
-          type: object
-          properties:
-            build_name:
-              type: string
-            build_number:
-              type: string
-        issues:
+        artifacts:
           type: array
           items:
-            $ref: '#/components/schemas/Issue'
+            type: object
+            properties:
+              general:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  path:
+                    type: string
+                  sha256:
+                    type: string
+                  component_id:
+                    type: string
+              issues:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Issue'
+              licenses:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    full_name:
+                      type: string
+                    components:
+                      type: array
+                      items:
+                        type: string
     Issue:
       type: object
       properties:
@@ -149,42 +171,20 @@ components:
                 type: string
               sha256:
                 type: string
-    ArtifactSummary:
+    BuildSummary:
       type: object
       properties:
-        artifacts:
+        build:
+          type: object
+          properties:
+            build_name:
+              type: string
+            build_number:
+              type: string
+        issues:
           type: array
           items:
-            type: object
-            properties:
-              general:
-                type: object
-                properties:
-                  name:
-                    type: string
-                  path:
-                    type: string
-                  sha256:
-                    type: string
-                  component_id:
-                    type: string
-              issues:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Issue'
-              licenses:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    name:
-                      type: string
-                    full_name:
-                      type: string
-                    components:
-                      type: array
-                      items:
-                        type: string
+            $ref: '#/components/schemas/Issue'
   securitySchemes:
     bearerAuth:
       type: http

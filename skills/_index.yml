@@ -1,0 +1,41 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/jfrog-artifacts-storage-api-openapi.yml
+skills:
+- file: skills/jfrog-deploy-and-verify-artifact.md
+  name: jfrog-deploy-and-verify-artifact
+  api: openapi/jfrog-artifacts-storage-api-openapi.yml
+  operations:
+  - deployArtifact
+  - getStorageInfo
+- file: skills/jfrog-repositories-create-and-configure.md
+  name: jfrog-repositories-create-and-configure
+  api: openapi/jfrog-repositories-api-openapi.yml
+  operations:
+  - createRepository
+  - updateRepository
+  - getRepository
+- file: skills/jfrog-promote-build.md
+  name: jfrog-promote-build
+  api: openapi/jfrog-builds-api-openapi.yml
+  operations:
+  - listBuilds
+  - getBuildRuns
+  - getBuildInfo
+  - promoteBuild
+- file: skills/jfrog-create-and-sign-release-bundle.md
+  name: jfrog-create-and-sign-release-bundle
+  api: openapi/jfrog-release-bundles-v1-api-openapi.yml
+  operations:
+  - createReleaseBundle
+  - signReleaseBundle
+- file: skills/jfrog-manage-webhooks.md
+  name: jfrog-manage-webhooks
+  api: openapi/jfrog-webhooks-api-openapi.yml
+  operations:
+  - createWebhook
+  - listWebhooks
+  - getWebhook
+  - updateWebhook
+  - deleteWebhook

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-package-version-schema.json",
+  "title": "PackageVersion",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-packages-api-openapi.yml#/components/schemas/PackageVersion",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "licenses": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "vulnerabilities_count": {
+      "type": "integer"
+    },
+    "direct_vulnerabilities_count": {
+      "type": "integer",
+      "description": "Non-transitive vulnerabilities affecting this version"
+    },
+    "transitive_vulnerabilities_count": {
+      "type": "integer",
+      "description": "Transitive vulnerabilities from dependencies"
+    },
+    "labels": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

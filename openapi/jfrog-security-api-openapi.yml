@@ -299,46 +299,6 @@ paths:
                 $ref: '#/components/schemas/AccessToken'
 components:
   schemas:
-    AccessToken:
-      type: object
-      properties:
-        access_token:
-          type: string
-        expires_in:
-          type: integer
-        scope:
-          type: string
-        token_type:
-          type: string
-          example: Bearer
-        refresh_token:
-          type: string
-    User:
-      type: object
-      properties:
-        name:
-          type: string
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-        admin:
-          type: boolean
-        profileUpdatable:
-          type: boolean
-        disableUIAccess:
-          type: boolean
-        internalPasswordDisabled:
-          type: boolean
-        groups:
-          type: array
-          items:
-            type: string
-      required:
-      - name
-      - email
-      - password
     Group:
       type: object
       properties:
@@ -360,6 +320,28 @@ components:
             type: string
       required:
       - name
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+        expires_in:
+          type: integer
+        scope:
+          type: string
+        token_type:
+          type: string
+          example: Bearer
+        refresh_token:
+          type: string
+    PermissionTargetSummary:
+      type: object
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
     PermissionTarget:
       type: object
       properties:
@@ -437,14 +419,32 @@ components:
           type: string
         status:
           type: string
-    PermissionTargetSummary:
+    User:
       type: object
       properties:
         name:
           type: string
-        uri:
+        email:
           type: string
-          format: uri
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profileUpdatable:
+          type: boolean
+        disableUIAccess:
+          type: boolean
+        internalPasswordDisabled:
+          type: boolean
+        groups:
+          type: array
+          items:
+            type: string
+      required:
+      - name
+      - email
+      - password
   securitySchemes:
     bearerAuth:
       type: http

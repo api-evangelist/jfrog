@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-graph-qlresponse-schema.json",
+  "title": "GraphQLResponse",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-graph-ql-api-openapi.yml#/components/schemas/GraphQLResponse",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "Query result data"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "locations": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "line": {
+                  "type": "integer"
+                },
+                "column": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "path": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

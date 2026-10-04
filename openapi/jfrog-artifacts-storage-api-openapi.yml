@@ -323,18 +323,15 @@ paths:
                 $ref: '#/components/schemas/MoveOrCopyResponse'
 components:
   schemas:
-    MoveOrCopyResponse:
+    Checksums:
       type: object
       properties:
-        messages:
-          type: array
-          items:
-            type: object
-            properties:
-              level:
-                type: string
-              message:
-                type: string
+        sha1:
+          type: string
+        sha256:
+          type: string
+        md5:
+          type: string
     FolderInfo:
       type: object
       properties:
@@ -367,49 +364,6 @@ components:
         uri:
           type: string
           format: uri
-    FileInfo:
-      type: object
-      properties:
-        repo:
-          type: string
-        path:
-          type: string
-        created:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        lastModified:
-          type: string
-          format: date-time
-        modifiedBy:
-          type: string
-        lastUpdated:
-          type: string
-          format: date-time
-        downloadUri:
-          type: string
-          format: uri
-        mimeType:
-          type: string
-        size:
-          type: string
-        checksums:
-          $ref: '#/components/schemas/Checksums'
-        originalChecksums:
-          $ref: '#/components/schemas/Checksums'
-        uri:
-          type: string
-          format: uri
-    Checksums:
-      type: object
-      properties:
-        sha1:
-          type: string
-        sha256:
-          type: string
-        md5:
-          type: string
     StorageSummary:
       type: object
       properties:
@@ -460,6 +414,40 @@ components:
                 type: string
               percentage:
                 type: string
+    FileInfo:
+      type: object
+      properties:
+        repo:
+          type: string
+        path:
+          type: string
+        created:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        lastModified:
+          type: string
+          format: date-time
+        modifiedBy:
+          type: string
+        lastUpdated:
+          type: string
+          format: date-time
+        downloadUri:
+          type: string
+          format: uri
+        mimeType:
+          type: string
+        size:
+          type: string
+        checksums:
+          $ref: '#/components/schemas/Checksums'
+        originalChecksums:
+          $ref: '#/components/schemas/Checksums'
+        uri:
+          type: string
+          format: uri
     DeployResponse:
       type: object
       properties:
@@ -486,6 +474,18 @@ components:
         uri:
           type: string
           format: uri
+    MoveOrCopyResponse:
+      type: object
+      properties:
+        messages:
+          type: array
+          items:
+            type: object
+            properties:
+              level:
+                type: string
+              message:
+                type: string
   securitySchemes:
     bearerAuth:
       type: http

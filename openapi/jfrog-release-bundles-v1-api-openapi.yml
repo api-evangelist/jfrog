@@ -181,56 +181,6 @@ paths:
           description: Release bundle signed
 components:
   schemas:
-    ReleaseBundle:
-      type: object
-      properties:
-        name:
-          type: string
-        version:
-          type: string
-        state:
-          type: string
-          enum:
-          - OPEN
-          - SIGNED
-          - STORED
-          - READY_FOR_DISTRIBUTION
-        description:
-          type: string
-        release_notes:
-          type: object
-          properties:
-            syntax:
-              type: string
-            content:
-              type: string
-        created:
-          type: string
-          format: date-time
-        created_by:
-          type: string
-        artifacts:
-          type: array
-          items:
-            type: object
-            properties:
-              source_repo_path:
-                type: string
-              target_repo_path:
-                type: string
-              checksum:
-                type: string
-              props:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    key:
-                      type: string
-                    values:
-                      type: array
-                      items:
-                        type: string
     ReleaseBundleRequest:
       type: object
       properties:
@@ -293,6 +243,56 @@ components:
       - name
       - version
       - spec
+    ReleaseBundle:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+        state:
+          type: string
+          enum:
+          - OPEN
+          - SIGNED
+          - STORED
+          - READY_FOR_DISTRIBUTION
+        description:
+          type: string
+        release_notes:
+          type: object
+          properties:
+            syntax:
+              type: string
+            content:
+              type: string
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              source_repo_path:
+                type: string
+              target_repo_path:
+                type: string
+              checksum:
+                type: string
+              props:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                    values:
+                      type: array
+                      items:
+                        type: string
   securitySchemes:
     bearerAuth:
       type: http

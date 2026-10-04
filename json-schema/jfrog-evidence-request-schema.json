@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-evidence-request-schema.json",
+  "title": "EvidenceRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-evidence-api-openapi.yml#/components/schemas/EvidenceRequest",
+  "type": "object",
+  "properties": {
+    "release_bundle_name": {
+      "type": "string"
+    },
+    "release_bundle_version": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "evidence_type": {
+      "type": "string",
+      "enum": [
+        "test_results",
+        "approval",
+        "scan_results",
+        "build_info",
+        "custom"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "dsse_file_path": {
+      "type": "string",
+      "description": "Path to a DSSE signed envelope file in Artifactory"
+    }
+  },
+  "required": [
+    "release_bundle_name",
+    "release_bundle_version"
+  ]
+}

@@ -139,7 +139,7 @@ paths:
           description: Release bundle deleted
 components:
   schemas:
-    ReleaseBundleV2Summary:
+    ReleaseBundleV2:
       type: object
       properties:
         name:
@@ -148,13 +148,43 @@ components:
           type: string
         status:
           type: string
+          enum:
+          - CREATED
+          - SIGNED
+          - PROMOTED
+          - DISTRIBUTED
         created:
           type: string
           format: date-time
-        artifacts_count:
-          type: integer
+        created_by:
+          type: string
+        source_type:
+          type: string
+        artifacts:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+              sha256:
+                type: string
+              size:
+                type: integer
         current_environment:
           type: string
+        promotion_history:
+          type: array
+          items:
+            type: object
+            properties:
+              environment:
+                type: string
+              promoted_at:
+                type: string
+                format: date-time
+              promoted_by:
+                type: string
     ReleaseBundleV2Request:
       type: object
       properties:
@@ -213,7 +243,7 @@ components:
       - release_bundle_version
       - source_type
       - source
-    ReleaseBundleV2:
+    ReleaseBundleV2Summary:
       type: object
       properties:
         name:
@@ -222,43 +252,13 @@ components:
           type: string
         status:
           type: string
-          enum:
-          - CREATED
-          - SIGNED
-          - PROMOTED
-          - DISTRIBUTED
         created:
           type: string
           format: date-time
-        created_by:
-          type: string
-        source_type:
-          type: string
-        artifacts:
-          type: array
-          items:
-            type: object
-            properties:
-              path:
-                type: string
-              sha256:
-                type: string
-              size:
-                type: integer
+        artifacts_count:
+          type: integer
         current_environment:
           type: string
-        promotion_history:
-          type: array
-          items:
-            type: object
-            properties:
-              environment:
-                type: string
-              promoted_at:
-                type: string
-                format: date-time
-              promoted_by:
-                type: string
   securitySchemes:
     bearerAuth:
       type: http

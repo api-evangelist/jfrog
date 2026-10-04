@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-build-promotion-schema.json",
+  "title": "BuildPromotion",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-builds-api-openapi.yml#/components/schemas/BuildPromotion",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "ciUser": {
+      "type": "string"
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceRepo": {
+      "type": "string"
+    },
+    "targetRepo": {
+      "type": "string"
+    },
+    "copy": {
+      "type": "boolean"
+    },
+    "artifacts": {
+      "type": "boolean"
+    },
+    "dependencies": {
+      "type": "boolean"
+    },
+    "failFast": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "targetRepo"
+  ]
+}

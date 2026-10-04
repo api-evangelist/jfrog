@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://jfrog.com/pricing/
+name: JFrog API Plans
 sources:
 - https://jfrog.com/pricing/
 provenance:

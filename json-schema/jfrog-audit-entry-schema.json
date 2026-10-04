@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-audit-entry-schema.json",
+  "title": "AuditEntry",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-audit-api-openapi.yml#/components/schemas/AuditEntry",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "package_name": {
+      "type": "string"
+    },
+    "package_version": {
+      "type": "string"
+    },
+    "package_type": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "string"
+    },
+    "policy_name": {
+      "type": "string"
+    },
+    "action_taken": {
+      "type": "string",
+      "enum": [
+        "blocked",
+        "allowed",
+        "warned"
+      ]
+    },
+    "reason": {
+      "type": "string"
+    },
+    "requesting_user": {
+      "type": "string"
+    }
+  }
+}

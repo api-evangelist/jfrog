@@ -1,0 +1,18 @@
+generated: '2026-10-04'
+method: searched
+source: "https://github.com/jfrog/jfrog-client-go"
+packages:
+  - name: jfrog-client-go
+    registry: github
+    url: https://github.com/jfrog/jfrog-client-go
+    language: go
+    official: true
+    version: null
+    note: "Repository exists; latest version not determined via go.mod"
+  - name: jfrog-cli
+    registry: github
+    url: https://github.com/jfrog/jfrog-cli
+    language: go
+    official: true
+    version: null
+    note: "CLI repository; version not extracted"

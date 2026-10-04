@@ -483,6 +483,52 @@ paths:
           description: Your self-hosted JFrog server host
 components:
   schemas:
+    Evidence:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique evidence record identifier
+        subject_type:
+          type: string
+          enum:
+          - artifact
+          - build
+          - package
+          - release_bundle
+        subject:
+          type: object
+          additionalProperties: true
+          description: Subject identification details
+        predicate_type:
+          type: string
+          format: uri
+          description: URI of the predicate type
+        predicate:
+          type: object
+          additionalProperties: true
+          description: Evidence predicate content
+        dsse_envelope_path:
+          type: string
+          description: Path to the DSSE envelope file in Artifactory
+        signature_algorithm:
+          type: string
+          description: Cryptographic algorithm used for signing
+          enum:
+          - ECDSA
+          - RSA
+          - ED25519
+        key_alias:
+          type: string
+          description: Alias of the signing key
+        verified:
+          type: boolean
+          description: Whether the evidence signature has been verified
+        created:
+          type: string
+          format: date-time
+        created_by:
+          type: string
     EvidenceSearchRequest:
       type: object
       properties:
@@ -571,51 +617,27 @@ components:
       required:
       - subject_type
       - subject
-    Evidence:
+    Evidence_2:
       type: object
       properties:
         id:
           type: string
-          description: Unique evidence record identifier
-        subject_type:
+        release_bundle_name:
           type: string
-          enum:
-          - artifact
-          - build
-          - package
-          - release_bundle
-        subject:
-          type: object
-          additionalProperties: true
-          description: Subject identification details
-        predicate_type:
+        release_bundle_version:
           type: string
-          format: uri
-          description: URI of the predicate type
-        predicate:
-          type: object
-          additionalProperties: true
-          description: Evidence predicate content
-        dsse_envelope_path:
+        environment:
           type: string
-          description: Path to the DSSE envelope file in Artifactory
-        signature_algorithm:
+        evidence_type:
           type: string
-          description: Cryptographic algorithm used for signing
-          enum:
-          - ECDSA
-          - RSA
-          - ED25519
-        key_alias:
+        description:
           type: string
-          description: Alias of the signing key
-        verified:
-          type: boolean
-          description: Whether the evidence signature has been verified
         created:
           type: string
           format: date-time
         created_by:
+          type: string
+        dsse_file_path:
           type: string
     EvidenceRequest:
       type: object
@@ -642,28 +664,6 @@ components:
       required:
       - release_bundle_name
       - release_bundle_version
-    Evidence_2:
-      type: object
-      properties:
-        id:
-          type: string
-        release_bundle_name:
-          type: string
-        release_bundle_version:
-          type: string
-        environment:
-          type: string
-        evidence_type:
-          type: string
-        description:
-          type: string
-        created:
-          type: string
-          format: date-time
-        created_by:
-          type: string
-        dsse_file_path:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

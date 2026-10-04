@@ -59,7 +59,7 @@ workflows:
   - stepId: createGroup
     description: >-
       Create a group in the Access service for the new user.
-    operationId: createGroup
+    operationId: postAccessApiV2Groups
     requestBody:
       contentType: application/json
       payload:
@@ -74,7 +74,7 @@ workflows:
   - stepId: createUser
     description: >-
       Create a user assigned to the newly created group.
-    operationId: createUser
+    operationId: postAccessApiV2Users
     requestBody:
       contentType: application/json
       payload:
@@ -92,7 +92,7 @@ workflows:
   - stepId: confirmUser
     description: >-
       Read the user back to confirm it exists and belongs to the group.
-    operationId: getUser
+    operationId: getAccessApiV2UsersByUsername
     parameters:
     - name: username
       in: path

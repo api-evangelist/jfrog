@@ -26,9 +26,8 @@ accessModel:
   method: derived
 specificationVersion: '0.23'
 name: JFrog
-description: >-
-  JFrog provides universal DevOps solutions for software supply chain automation and security, offering a unified
-  platform for managing binaries, securing the software supply chain, and automating DevOps workflows.
+description: JFrog provides universal DevOps solutions for software supply chain automation and security, offering a unified platform for managing
+  binaries, securing the software supply chain, and automating DevOps workflows.
 image: https://jfrog.com/brand/jfrog-logo.png
 url: https://jfrog.com
 tags:
@@ -43,6 +42,219 @@ tags:
 - Software Supply Chain
 created: '2024'
 modified: '2026-05-19'
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
+common:
+- type: FinOps
+  url: finops/jfrog-finops.yml
+- type: Spectral
+  url: rules/jfrog-rules.yml
+- type: Spectral
+  url: rules/jfrog-jsonschema-spectral-rules.yml
+- type: JSONLD
+  url: json-ld/jfrog-context.jsonld
+- type: Vocabulary
+  url: vocabulary/jfrog-vocabulary.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DataModel
+  url: data-model/jfrog-data-model.yml
+- type: ChangeLog
+  url: changelog/jfrog-changelog.yml
+- type: Security
+  url: security/jfrog-vulnerability-disclosure.yml
+- type: ErrorCatalog
+  url: errors/jfrog-problem-types.yml
+- type: Conformance
+  url: conformance/jfrog-conformance.yml
+- type: LLMsTxt
+  url: llms/jfrog-llms.txt
+- type: SecurityTxt
+  url: well-known/jfrog-status-security.txt
+- type: SecurityTxt
+  url: well-known/jfrog-security.txt
+- type: WellKnown
+  url: well-known/jfrog-well-known.yml
+- type: Hosts
+  url: hosts/jfrog-hosts.yml
+- type: Vendors
+  url: vendors/jfrog-vendors.yml
+- type: Packages
+  url: packages/jfrog-packages.yml
+- type: RateLimits
+  url: rate-limits/jfrog-rate-limits.yml
+- type: Plans
+  url: plans/jfrog-plans-pricing.yml
+- type: CapabilityMap
+  url: capabilities/jfrog-capability-edges.yml
+  name: JFrog Business Capability Map
+- type: AgenticAccess
+  url: agentic-access/jfrog-agentic-access.yml
+- type: VulnerabilityDisclosure
+  url: security/jfrog-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/jfrog-domain-security.yml
+- type: Authentication
+  url: authentication/jfrog-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/jfrog/overview
+- type: Arazzo
+  url: arazzo/jfrog-access-create-user-with-group-workflow.yml
+  name: JFrog Access Create User With Group
+- type: Arazzo
+  url: arazzo/jfrog-access-provision-project-workflow.yml
+  name: JFrog Access Provision Project
+- type: Arazzo
+  url: arazzo/jfrog-attach-build-evidence-workflow.yml
+  name: JFrog Attach Build Evidence
+- type: Arazzo
+  url: arazzo/jfrog-cleanup-stale-artifacts-workflow.yml
+  name: JFrog Cleanup Stale Artifacts
+- type: Arazzo
+  url: arazzo/jfrog-configure-repository-replication-workflow.yml
+  name: JFrog Configure Repository Replication
+- type: Arazzo
+  url: arazzo/jfrog-curation-policy-setup-workflow.yml
+  name: JFrog Curation Policy Setup
+- type: Arazzo
+  url: arazzo/jfrog-deploy-and-verify-artifact-workflow.yml
+  name: JFrog Deploy and Verify Artifact
+- type: Arazzo
+  url: arazzo/jfrog-distribution-release-bundle-workflow.yml
+  name: JFrog Distribution Release Bundle
+- type: Arazzo
+  url: arazzo/jfrog-grant-repository-permission-workflow.yml
+  name: JFrog Grant Repository Permission
+- type: Arazzo
+  url: arazzo/jfrog-ml-register-model-version-workflow.yml
+  name: JFrog ML Register Model Version
+- type: Arazzo
+  url: arazzo/jfrog-pipelines-trigger-and-monitor-workflow.yml
+  name: JFrog Pipelines Trigger and Monitor
+- type: Arazzo
+  url: arazzo/jfrog-platform-register-webhook-workflow.yml
+  name: JFrog Platform Register Webhook
+- type: Arazzo
+  url: arazzo/jfrog-platform-rotate-access-token-workflow.yml
+  name: JFrog Platform Rotate Access Token
+- type: Arazzo
+  url: arazzo/jfrog-promote-artifact-by-checksum-workflow.yml
+  name: JFrog Promote Artifact by Checksum
+- type: Arazzo
+  url: arazzo/jfrog-promote-build-workflow.yml
+  name: JFrog Promote Build
+- type: Arazzo
+  url: arazzo/jfrog-provision-local-repository-workflow.yml
+  name: JFrog Provision Local Repository
+- type: Arazzo
+  url: arazzo/jfrog-release-bundle-v2-promote-workflow.yml
+  name: JFrog Release Bundle v2 Promote
+- type: Arazzo
+  url: arazzo/jfrog-secure-publish-artifact-workflow.yml
+  name: JFrog Secure Publish Artifact
+- type: Arazzo
+  url: arazzo/jfrog-worker-deploy-and-test-workflow.yml
+  name: JFrog Worker Deploy and Test
+- type: Arazzo
+  url: arazzo/jfrog-xray-component-license-check-workflow.yml
+  name: JFrog Xray Component License Check
+- type: Arazzo
+  url: arazzo/jfrog-xray-policy-and-watch-workflow.yml
+  name: JFrog Xray Policy and Watch
+- type: Arazzo
+  url: arazzo/jfrog-xray-scan-artifact-workflow.yml
+  name: JFrog Xray Scan Artifact
+- type: Arazzo
+  url: arazzo/jfrog-xray-scan-build-workflow.yml
+  name: JFrog Xray Scan Build
+- type: Arazzo
+  url: arazzo/jfrog-xray-triage-violation-workflow.yml
+  name: JFrog Xray Triage Violation
+- type: Arazzo
+  url: arazzo/jfrog-xray-vulnerability-report-workflow.yml
+  name: JFrog Xray Vulnerability Report
+- type: Documentation
+  url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-rest-apis
+- type: GettingStarted
+  url: https://jfrog.com/artifactory/getting-started/
+- type: Authentication
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
+- type: Blog
+  url: https://jfrog.com/blog/
+- type: StatusPage
+  url: https://status.jfrog.io/
+- type: Support
+  url: https://jfrog.com/support/
+- type: PrivacyPolicy
+  url: https://jfrog.com/privacy-policy/
+- type: GitHubOrganization
+  url: https://github.com/jfrog
+- type: Community
+  url: https://jfrog.com/community/
+- type: Website
+  url: https://jfrog.com/
+- type: Login
+  url: https://my.jfrog.com/login/
+- type: Signup
+  url: https://jfrog.com/start-free/
+- type: Pricing
+  url: https://jfrog.com/pricing/
+- type: CLI
+  url: https://jfrog.com/getcli/
+- type: SDKs
+  url: https://github.com/jfrog/jfrog-client-go
+- type: Java SDK
+  url: https://github.com/jfrog/artifactory-client-java
+- type: JavaScript SDK
+  url: https://github.com/jfrog/jfrog-client-js
+- type: Academy
+  url: https://academy.jfrog.com/
+- type: Webhooks
+  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/webhooks
+- type: Terraform Provider
+  url: https://registry.terraform.io/providers/jfrog/platform/latest/docs
+- type: StackOverflow
+  url: https://stackoverflow.com/questions/tagged/jfrog
+- type: PostmanCollection
+  url: https://www.postman.com/api-evangelist/jfrog/documentation/zgmorin/jfrog-rest-api
+- type: LinkedIn
+  url: https://www.linkedin.com/company/jfrog-ltd
+- type: JSONLDContext
+  url: json-ld/jfrog-context.jsonld
+- type: JSON Schema - Artifact
+  url: json-schema/jfrog-artifact-schema.json
+- type: JSON Schema - Repository
+  url: json-schema/jfrog-repository-schema.json
+- type: JSON Schema - Build Info
+  url: json-schema/jfrog-build-info-schema.json
+- type: JSON Schema - Release Bundle
+  url: json-schema/jfrog-release-bundle-schema.json
+- type: JSON Schema - Security Vulnerability
+  url: json-schema/jfrog-security-vulnerability-schema.json
+- type: JSON Schema - User
+  url: json-schema/jfrog-user-schema.json
+- type: JSON Schema - Permission
+  url: json-schema/jfrog-permission-schema.json
+- type: JSON Schema - Pipeline
+  url: json-schema/jfrog-pipeline-schema.json
+- type: JSON Schema - Worker
+  url: json-schema/jfrog-worker-schema.json
+- type: JSON Schema - Curation Policy
+  url: json-schema/jfrog-curation-policy-schema.json
+- type: JSON Schema - Evidence
+  url: json-schema/jfrog-evidence-schema.json
+- type: Integrations
+  url: https://jfrog.com/integrations/
+- name: MCP Server
+  url: https://github.com/jfrog/mcp-jfrog
+  type: MCPServer
+- name: Agent Skills
+  url: https://github.com/jfrog/jfrog-skills
+  type: AgentSkills
+- type: LlmsText
+  url: https://docs.connect.jfrog.io/llms.txt
 apis:
 - aid: jfrog:jfrog-access-tokens-api
   name: JFrog Access Tokens API
@@ -114,6 +326,12 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-create-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-token-response-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-token-info-schema.json
 - aid: jfrog:jfrog-artifacts-storage-api
   name: JFrog Artifacts & Storage API
   description: Deploy, retrieve, copy, move, and delete artifacts
@@ -184,6 +402,16 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-storage-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-file-info-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-folder-info-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-deploy-response-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-move-or-copy-response-schema.json
 - aid: jfrog:jfrog-audit-api
   name: JFrog Audit API
   description: Curation audit and activity logs
@@ -254,6 +482,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-audit-entry-schema.json
 - aid: jfrog:jfrog-builds-api
   name: JFrog Builds API
   description: Build information and promotion
@@ -324,6 +554,14 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-build-info-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-build-promotion-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-build-runs-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-builds-list-schema.json
 - aid: jfrog:jfrog-commands-api
   name: JFrog Commands API
   description: Remote command execution on devices
@@ -394,6 +632,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-command-request-schema.json
 - aid: jfrog:jfrog-components-api
   name: JFrog Components API
   description: Component details and vulnerability information
@@ -464,6 +704,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-component-detail-schema.json
 - aid: jfrog:jfrog-deployments-api
   name: JFrog Deployments API
   description: Model deployment and serving
@@ -536,6 +778,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-deployment-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-deployment-request-schema.json
 - aid: jfrog:jfrog-device-groups-api
   name: JFrog Device Groups API
   description: Logical grouping of devices
@@ -606,6 +852,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-device-group-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-device-group-request-schema.json
 - aid: jfrog:jfrog-devices-api
   name: JFrog Devices API
   description: Device management and monitoring
@@ -676,6 +926,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-device-schema.json
 - aid: jfrog:jfrog-distribution-api
   name: JFrog Distribution API
   description: Distribute release bundles to edge nodes
@@ -746,6 +998,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-distribution-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-distribute-request-schema.json
 - aid: jfrog:jfrog-evidence-api
   name: JFrog Evidence API
   description: Create and manage evidence attestations
@@ -816,6 +1072,16 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-create-evidence-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-evidence-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-evidence-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-evidence-search-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-evidence-2-schema.json
 - aid: jfrog:jfrog-execution-api
   name: JFrog Execution API
   description: Worker testing and execution
@@ -956,6 +1222,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-experiment-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-experiment-request-schema.json
 - aid: jfrog:jfrog-groups-api
   name: JFrog Groups API
   description: User group management
@@ -1028,6 +1298,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-group-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-platform-group-schema.json
 - aid: jfrog:jfrog-ignore-rules-api
   name: JFrog Ignore Rules API
   description: Rules for ignoring specific vulnerabilities
@@ -1098,6 +1372,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-ignore-rule-schema.json
 - aid: jfrog:jfrog-integrations-api
   name: JFrog Integrations API
   description: External service integrations
@@ -1170,6 +1446,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-integration-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-integration-schema.json
 - aid: jfrog:jfrog-jpds-api
   name: JFrog JPDs API
   description: JFrog Platform Deployment management
@@ -1240,6 +1520,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-jpd-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-jpdrequest-schema.json
 - aid: jfrog:jfrog-labels-api
   name: JFrog Labels API
   description: Custom label management for packages
@@ -1310,6 +1594,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-label-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-label-request-schema.json
 - aid: jfrog:jfrog-licenses-api
   name: JFrog Licenses API
   description: License management across instances
@@ -1380,6 +1668,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-license-bucket-schema.json
 - aid: jfrog:jfrog-model-versions-api
   name: JFrog Model Versions API
   description: Model version management
@@ -1450,6 +1740,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-model-version-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-model-version-request-schema.json
 - aid: jfrog:jfrog-models-api
   name: JFrog Models API
   description: ML model registry and management
@@ -1520,6 +1814,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-model-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-model-request-schema.json
 - aid: jfrog:jfrog-node-pools-api
   name: JFrog Node Pools API
   description: Build node pool management
@@ -1590,6 +1888,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-node-pool-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-node-pool-request-schema.json
 - aid: jfrog:jfrog-packages-api
   name: JFrog Packages API
   description: Package metadata search and retrieval
@@ -1660,6 +1962,16 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-package-detail-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-catalog-vulnerability-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-package-search-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-package-version-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-package-search-response-schema.json
 - aid: jfrog:jfrog-permissions-api
   name: JFrog Permissions API
   description: Permission target management
@@ -1730,6 +2042,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-permission-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-permission-2-schema.json
 - aid: jfrog:jfrog-pipeline-sources-api
   name: JFrog Pipeline Sources API
   description: Manage pipeline source configurations
@@ -1800,6 +2116,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-pipeline-source-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-pipeline-source-request-schema.json
 - aid: jfrog:jfrog-pipelines-api
   name: JFrog Pipelines API
   description: Pipeline definitions and management
@@ -1870,6 +2190,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-pipeline-schema.json
 - aid: jfrog:jfrog-policies-api
   name: JFrog Policies API
   description: Curation policy management
@@ -1940,6 +2262,12 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-curation-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-policy-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-curation-policy-request-schema.json
 - aid: jfrog:jfrog-projects-api
   name: JFrog Projects API
   description: Project administration
@@ -2012,6 +2340,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-project-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-project-3-schema.json
 - aid: jfrog:jfrog-promotion-api
   name: JFrog Promotion API
   description: Promote release bundles through environments
@@ -2082,6 +2414,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-promotion-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-promotion-status-schema.json
 - aid: jfrog:jfrog-properties-api
   name: JFrog Properties API
   description: Set, update, and delete artifact properties
@@ -2152,6 +2488,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-item-properties-schema.json
 - aid: jfrog:jfrog-release-bundles-v1-api
   name: JFrog Release Bundles V1 API
   description: Create and manage release bundles (v1)
@@ -2222,6 +2560,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-release-bundle-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-release-bundle-schema.json
 - aid: jfrog:jfrog-release-bundles-v2-api
   name: JFrog Release Bundles V2 API
   description: Create and manage release bundles v2
@@ -2292,6 +2634,12 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-release-bundle-v2-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-release-bundle-v2-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-release-bundle-v2-summary-schema.json
 - aid: jfrog:jfrog-replication-api
   name: JFrog Replication API
   description: Push and pull replication configuration
@@ -2362,6 +2710,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-replication-config-schema.json
 - aid: jfrog:jfrog-reports-api
   name: JFrog Reports API
   description: Vulnerability and compliance reports
@@ -2502,6 +2852,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-repository-configuration-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-repository-list-item-schema.json
 - aid: jfrog:jfrog-runs-api
   name: JFrog Runs API
   description: Pipeline run execution and monitoring
@@ -2572,6 +2926,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-run-schema.json
 - aid: jfrog:jfrog-scanning-api
   name: JFrog Scanning API
   description: On-demand scanning operations
@@ -2712,6 +3068,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-script-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-script-request-schema.json
 - aid: jfrog:jfrog-searches-api
   name: JFrog Searches API
   description: Search for artifacts using various criteria
@@ -2782,6 +3142,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-aql-search-result-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-search-result-schema.json
 - aid: jfrog:jfrog-security-api
   name: JFrog Security API
   description: Users, groups, permissions, and access tokens
@@ -2852,6 +3216,18 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-permission-target-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-user-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-group-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-access-token-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-user-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-group-summary-schema.json
 - aid: jfrog:jfrog-steps-api
   name: JFrog Steps API
   description: Pipeline step execution details
@@ -2922,6 +3298,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-step-schema.json
 - aid: jfrog:jfrog-summary-api
   name: JFrog Summary API
   description: Artifact and build vulnerability summaries
@@ -2992,6 +3370,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-artifact-summary-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-build-summary-schema.json
 - aid: jfrog:jfrog-system-api
   name: JFrog System API
   description: Access service system information
@@ -3062,6 +3444,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-system-health-schema.json
 - aid: jfrog:jfrog-system-configuration-api
   name: JFrog System & Configuration API
   description: System health, configuration, and version information
@@ -3132,6 +3516,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-system-version-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-license-info-schema.json
 - aid: jfrog:jfrog-tokens-api
   name: JFrog Tokens API
   description: Access token creation, management, and revocation
@@ -3202,6 +3590,12 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-create-token-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-token-info-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-token-response-schema.json
 - aid: jfrog:jfrog-updates-api
   name: JFrog Updates API
   description: OTA software update deployments
@@ -3272,6 +3666,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-update-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-update-schema.json
 - aid: jfrog:jfrog-users-api
   name: JFrog Users API
   description: Platform user management
@@ -3344,6 +3742,18 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-user-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-create-user-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-platform-user-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-update-user-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-create-user-request-2-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-update-user-request-2-schema.json
 - aid: jfrog:jfrog-verification-api
   name: JFrog Verification API
   description: Verify evidence and retrieve verification status
@@ -3414,6 +3824,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-verification-result-schema.json
 - aid: jfrog:jfrog-violations-api
   name: JFrog Violations API
   description: Policy violations management
@@ -3484,6 +3896,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-violations-response-schema.json
 - aid: jfrog:jfrog-watches-api
   name: JFrog Watches API
   description: Watch policies for monitoring artifacts
@@ -3554,6 +3968,8 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-watch-schema.json
 - aid: jfrog:jfrog-webhooks-api
   name: JFrog Webhooks API
   description: Webhook configuration
@@ -3626,6 +4042,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-webhook-request-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-webhook-schema.json
 - aid: jfrog:jfrog-workers-api
   name: JFrog Workers API
   description: Worker lifecycle management
@@ -3696,6 +4116,10 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
+  - type: JSONSchema
+    url: json-schema/jfrog-worker-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-worker-request-schema.json
 - aid: jfrog:jfrog-graph-ql-api
   name: JFrog Graph QL API
   description: GraphQL query interface for package and CVE data
@@ -3766,193 +4190,16 @@ apis:
     url: https://jfrog.com/help/r/jfrog-security-user-guide/products/catalog
   - type: Documentation
     url: https://jfrog.com/help/r/jfrog-artifactory-documentation/create-evidence-using-rest-apis
-common:
-- type: RateLimits
-  url: rate-limits/jfrog-rate-limits.yml
-- type: Plans
-  url: plans/jfrog-plans-pricing.yml
-- type: CapabilityMap
-  url: capabilities/jfrog-capability-edges.yml
-  name: JFrog Business Capability Map
-- type: AgenticAccess
-  url: agentic-access/jfrog-agentic-access.yml
-- type: VulnerabilityDisclosure
-  url: security/jfrog-vulnerability-disclosure.yml
-- type: DomainSecurity
-  url: security/jfrog-domain-security.yml
-- type: Authentication
-  url: authentication/jfrog-authentication.yml
-- type: PostmanWorkspace
-  url: https://www.postman.com/kinlaneapi/jfrog/overview
-- type: Arazzo
-  url: arazzo/jfrog-access-create-user-with-group-workflow.yml
-  name: JFrog Access Create User With Group
-- type: Arazzo
-  url: arazzo/jfrog-access-provision-project-workflow.yml
-  name: JFrog Access Provision Project
-- type: Arazzo
-  url: arazzo/jfrog-attach-build-evidence-workflow.yml
-  name: JFrog Attach Build Evidence
-- type: Arazzo
-  url: arazzo/jfrog-cleanup-stale-artifacts-workflow.yml
-  name: JFrog Cleanup Stale Artifacts
-- type: Arazzo
-  url: arazzo/jfrog-configure-repository-replication-workflow.yml
-  name: JFrog Configure Repository Replication
-- type: Arazzo
-  url: arazzo/jfrog-curation-policy-setup-workflow.yml
-  name: JFrog Curation Policy Setup
-- type: Arazzo
-  url: arazzo/jfrog-deploy-and-verify-artifact-workflow.yml
-  name: JFrog Deploy and Verify Artifact
-- type: Arazzo
-  url: arazzo/jfrog-distribution-release-bundle-workflow.yml
-  name: JFrog Distribution Release Bundle
-- type: Arazzo
-  url: arazzo/jfrog-grant-repository-permission-workflow.yml
-  name: JFrog Grant Repository Permission
-- type: Arazzo
-  url: arazzo/jfrog-ml-register-model-version-workflow.yml
-  name: JFrog ML Register Model Version
-- type: Arazzo
-  url: arazzo/jfrog-pipelines-trigger-and-monitor-workflow.yml
-  name: JFrog Pipelines Trigger and Monitor
-- type: Arazzo
-  url: arazzo/jfrog-platform-register-webhook-workflow.yml
-  name: JFrog Platform Register Webhook
-- type: Arazzo
-  url: arazzo/jfrog-platform-rotate-access-token-workflow.yml
-  name: JFrog Platform Rotate Access Token
-- type: Arazzo
-  url: arazzo/jfrog-promote-artifact-by-checksum-workflow.yml
-  name: JFrog Promote Artifact by Checksum
-- type: Arazzo
-  url: arazzo/jfrog-promote-build-workflow.yml
-  name: JFrog Promote Build
-- type: Arazzo
-  url: arazzo/jfrog-provision-local-repository-workflow.yml
-  name: JFrog Provision Local Repository
-- type: Arazzo
-  url: arazzo/jfrog-release-bundle-v2-promote-workflow.yml
-  name: JFrog Release Bundle v2 Promote
-- type: Arazzo
-  url: arazzo/jfrog-secure-publish-artifact-workflow.yml
-  name: JFrog Secure Publish Artifact
-- type: Arazzo
-  url: arazzo/jfrog-worker-deploy-and-test-workflow.yml
-  name: JFrog Worker Deploy and Test
-- type: Arazzo
-  url: arazzo/jfrog-xray-component-license-check-workflow.yml
-  name: JFrog Xray Component License Check
-- type: Arazzo
-  url: arazzo/jfrog-xray-policy-and-watch-workflow.yml
-  name: JFrog Xray Policy and Watch
-- type: Arazzo
-  url: arazzo/jfrog-xray-scan-artifact-workflow.yml
-  name: JFrog Xray Scan Artifact
-- type: Arazzo
-  url: arazzo/jfrog-xray-scan-build-workflow.yml
-  name: JFrog Xray Scan Build
-- type: Arazzo
-  url: arazzo/jfrog-xray-triage-violation-workflow.yml
-  name: JFrog Xray Triage Violation
-- type: Arazzo
-  url: arazzo/jfrog-xray-vulnerability-report-workflow.yml
-  name: JFrog Xray Vulnerability Report
-- type: Portal
-  url: https://jfrog.com/developers/
-- type: Documentation
-  url: https://jfrog.com/help/r/jfrog-rest-apis/jfrog-rest-apis
-- type: GettingStarted
-  url: https://jfrog.com/artifactory/getting-started/
-- type: Authentication
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/access-tokens
-- type: Blog
-  url: https://jfrog.com/blog/
-- type: StatusPage
-  url: https://status.jfrog.io/
-- type: Support
-  url: https://jfrog.com/support/
-- type: TermsOfService
-  url: https://jfrog.com/terms-of-service/
-- type: PrivacyPolicy
-  url: https://jfrog.com/privacy-policy/
-- type: GitHubOrganization
-  url: https://github.com/jfrog
-- type: Community
-  url: https://jfrog.com/community/
-- type: Website
-  url: https://jfrog.com/
-- type: Login
-  url: https://my.jfrog.com/login/
-- type: Signup
-  url: https://jfrog.com/start-free/
-- type: Pricing
-  url: https://jfrog.com/pricing/
-- type: CLI
-  url: https://jfrog.com/getcli/
-- type: ChangeLog
-  url: https://jfrog.com/help/r/jfrog-release-information/jfrog-release-notes
-- type: SDKs
-  url: https://github.com/jfrog/jfrog-client-go
-- type: Java SDK
-  url: https://github.com/jfrog/artifactory-client-java
-- type: JavaScript SDK
-  url: https://github.com/jfrog/jfrog-client-js
-- type: Academy
-  url: https://academy.jfrog.com/
-- type: Webhooks
-  url: https://jfrog.com/help/r/jfrog-platform-administration-documentation/webhooks
-- type: Terraform Provider
-  url: https://registry.terraform.io/providers/jfrog/platform/latest/docs
-- type: YouTube
-  url: https://www.youtube.com/@jfrog
-- type: StackOverflow
-  url: https://stackoverflow.com/questions/tagged/jfrog
-- type: RateLimits
-  url: https://jfrog.com/help/r/jfrog-rest-apis/usage-and-rate-limits
-- type: PostmanCollection
-  url: https://www.postman.com/api-evangelist/jfrog/documentation/zgmorin/jfrog-rest-api
-- type: LinkedIn
-  url: https://www.linkedin.com/company/jfrog-ltd
-- type: JSONLDContext
-  url: json-ld/jfrog-context.jsonld
-- type: JSON Schema - Artifact
-  url: json-schema/jfrog-artifact-schema.json
-- type: JSON Schema - Repository
-  url: json-schema/jfrog-repository-schema.json
-- type: JSON Schema - Build Info
-  url: json-schema/jfrog-build-info-schema.json
-- type: JSON Schema - Release Bundle
-  url: json-schema/jfrog-release-bundle-schema.json
-- type: JSON Schema - Security Vulnerability
-  url: json-schema/jfrog-security-vulnerability-schema.json
-- type: JSON Schema - User
-  url: json-schema/jfrog-user-schema.json
-- type: JSON Schema - Permission
-  url: json-schema/jfrog-permission-schema.json
-- type: JSON Schema - Pipeline
-  url: json-schema/jfrog-pipeline-schema.json
-- type: JSON Schema - Worker
-  url: json-schema/jfrog-worker-schema.json
-- type: JSON Schema - Curation Policy
-  url: json-schema/jfrog-curation-policy-schema.json
-- type: JSON Schema - Evidence
-  url: json-schema/jfrog-evidence-schema.json
-- type: Integrations
-  url: https://jfrog.com/integrations/
-- name: MCP Server
-  url: https://github.com/jfrog/mcp-jfrog
-  type: MCPServer
-- name: Agent Skills
-  url: https://github.com/jfrog/jfrog-skills
-  type: AgentSkills
-- type: LlmsText
-  url: https://docs.connect.jfrog.io/llms.txt
+  - type: JSONSchema
+    url: json-schema/jfrog-graph-qlresponse-schema.json
+  - type: JSONSchema
+    url: json-schema/jfrog-graph-qlrequest-schema.json
 integrations:
 - name: Docker
 - name: Maven
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
-  url: https://apievangelist.com
+x-enrichment:
+  date: '2026-10-04'
+  status: enriched
+  artifacts_added: 98
+  pass: modular-v1
+  engine: identity=local,contract=local,surfaces=local,docs=local,regulatory=local

@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-component-detail-schema.json",
+  "title": "ComponentDetail",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-components-api-openapi.yml#/components/schemas/ComponentDetail",
+  "type": "object",
+  "properties": {
+    "component_id": {
+      "type": "string"
+    },
+    "component_name": {
+      "type": "string"
+    },
+    "package_type": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "licenses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "full_name": {
+            "type": "string"
+          },
+          "more_info_url": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri"
+            }
+          }
+        }
+      }
+    },
+    "vulnerabilities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Vulnerability"
+      }
+    }
+  },
+  "$defs": {
+    "Vulnerability": {
+      "type": "object",
+      "properties": {
+        "cve": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "Low",
+            "Medium",
+            "High",
+            "Critical"
+          ]
+        },
+        "cvss_v2_score": {
+          "type": "string"
+        },
+        "cvss_v3_score": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "fixed_versions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "references": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "published": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  }
+}

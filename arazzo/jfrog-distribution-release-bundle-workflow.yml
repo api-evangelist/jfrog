@@ -94,7 +94,7 @@ workflows:
   - stepId: distribute
     description: >-
       Distribute the signed release bundle to the target edge node site.
-    operationId: distributeReleaseBundle
+    operationId: postV2ReleaseBundleDistributeByNameByVersion
     parameters:
     - name: name
       in: path
@@ -117,7 +117,7 @@ workflows:
     description: >-
       Poll the distribution status. While it is still in progress, loop back and
       check again; otherwise finish.
-    operationId: getDistributionStatus
+    operationId: getV2ReleaseBundleDistributeByNameByVersionStatus
     parameters:
     - name: name
       in: path

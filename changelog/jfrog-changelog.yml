@@ -1,0 +1,59 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://docs.jfrog.com/installation/docs/migration/llms.txt
+sources:
+- https://docs.jfrog.com/installation/docs/migration/llms.txt
+- https://docs.jfrog.com/releases/docs/deprecations/llms.txt
+- https://docs.connect.jfrog.io/releases/whats-new
+- https://docs.connect.jfrog.io/releases/connect-agent-release-notes
+entries:
+- breaking: false
+  highlights:
+  - Bug Fixes and Enhancements
+  - Improved how the application saves files to prevent corruption of data.
+  - The changes relate to application data only, and not to user data.
+  date: '2025-09-21'
+- breaking: false
+  highlights:
+  - Bug Fixes and Enhancements
+  - Fixes and support for features that will be released by end-of-year for JFrog Connect Enterprise customers.
+  date: '2025-08-31'
+- breaking: false
+  highlights:
+  - Bug Fixes and Enhancements
+  - Stability improvements in Remote Tools
+  date: '2025-07-08'
+- breaking: false
+  highlights:
+  - Bug Fixes and Enhancements
+  - Connect Agent responsiveness upgrade
+  date: '2025-05-15'
+- breaking: false
+  highlights:
+  - Features and Enhancements
+  - Connect Agent sends the device’s system information to the server when the device is initialized.
+  - The information listed below is now sent and visible in the Technical Details of the Device Details panel in the web UI.
+  date: '2025-04-03'
+- breaking: false
+  highlights:
+  - Features and Enhancements
+  - Supports a new authentication mechanism that uses JSON Web Tokens (JWT).
+  - Uses a project-device pairing token (a JWT) to support secure interactions between a Connect project and the Connect Agent on a device.
+  date: '2024-11-12'
+- breaking: false
+  highlights:
+  - Features and Enhancements
+  - Connect Agent now supports ARM v6 architecture.
+  date: '2024-08-04'
+- breaking: false
+  highlights:
+  - This is a patch to Connect Agent version 6.0.
+  - When this is installed, the version in the Connect web UI will appear as Connect Agent version 6.0.
+  - Enhancement for better performance on ARM 64 bit systems.
+  - Wider support of ARM 64 bit on Linux based systems, specifically on Raspberry Pi OS.
+  date: '2024-03-27'
+current_version: '8.1'
+note: Versioning scheme follows major.minor format (e.g., 8.1). Recent entries limited to the latest 8 entries available in the provided release
+  notes.
+docs: https://docs.jfrog.com/installation/docs/migration/llms.txt
