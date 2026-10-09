@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-command-request-schema.json",
+  "title": "CommandRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-commands-api-openapi.yml#/components/schemas/CommandRequest",
+  "type": "object",
+  "properties": {
+    "command": {
+      "type": "string",
+      "description": "The command to execute"
+    },
+    "device_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "group_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "timeout_seconds": {
+      "type": "integer",
+      "default": 30
+    }
+  },
+  "required": [
+    "command"
+  ]
+}

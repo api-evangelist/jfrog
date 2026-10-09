@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-package-search-response-schema.json",
+  "title": "PackageSearchResponse",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-packages-api-openapi.yml#/components/schemas/PackageSearchResponse",
+  "type": "object",
+  "properties": {
+    "packages": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/PackageSummary"
+      }
+    },
+    "total_count": {
+      "type": "integer"
+    }
+  },
+  "$defs": {
+    "PackageSummary": {
+      "type": "object",
+      "properties": {
+        "package_type": {
+          "type": "string"
+        },
+        "package_name": {
+          "type": "string"
+        },
+        "latest_version": {
+          "type": "string"
+        },
+        "versions_count": {
+          "type": "integer"
+        },
+        "vulnerabilities_count": {
+          "type": "integer"
+        },
+        "labels": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "license": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

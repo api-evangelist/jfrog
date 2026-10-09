@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-graph-qlrequest-schema.json",
+  "title": "GraphQLRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-graph-ql-api-openapi.yml#/components/schemas/GraphQLRequest",
+  "type": "object",
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "GraphQL query string"
+    },
+    "variables": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "GraphQL query variables"
+    },
+    "operationName": {
+      "type": "string",
+      "description": "Named operation to execute when query contains multiple operations"
+    }
+  },
+  "required": [
+    "query"
+  ]
+}

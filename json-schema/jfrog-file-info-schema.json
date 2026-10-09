@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-file-info-schema.json",
+  "title": "FileInfo",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-artifacts-storage-api-openapi.yml#/components/schemas/FileInfo",
+  "type": "object",
+  "properties": {
+    "repo": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifiedBy": {
+      "type": "string"
+    },
+    "lastUpdated": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "downloadUri": {
+      "type": "string",
+      "format": "uri"
+    },
+    "mimeType": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "checksums": {
+      "$ref": "#/$defs/Checksums"
+    },
+    "originalChecksums": {
+      "$ref": "#/$defs/Checksums"
+    },
+    "uri": {
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "$defs": {
+    "Checksums": {
+      "type": "object",
+      "properties": {
+        "sha1": {
+          "type": "string"
+        },
+        "sha256": {
+          "type": "string"
+        },
+        "md5": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

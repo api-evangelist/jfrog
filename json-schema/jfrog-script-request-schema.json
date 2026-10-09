@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-script-request-schema.json",
+  "title": "ScriptRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-scripts-api-openapi.yml#/components/schemas/ScriptRequest",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "content"
+  ]
+}

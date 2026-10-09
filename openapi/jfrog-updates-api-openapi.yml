@@ -134,55 +134,6 @@ paths:
           description: Update cancelled
 components:
   schemas:
-    Update:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - in_progress
-          - completed
-          - failed
-          - cancelled
-        update_type:
-          type: string
-          enum:
-          - file
-          - script
-          - package
-          - docker_compose
-        target_devices:
-          type: array
-          items:
-            type: string
-        target_groups:
-          type: array
-          items:
-            type: string
-        progress:
-          type: object
-          properties:
-            total_devices:
-              type: integer
-            completed:
-              type: integer
-            failed:
-              type: integer
-            pending:
-              type: integer
-        created_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
     UpdateRequest:
       type: object
       properties:
@@ -233,6 +184,55 @@ components:
       required:
       - name
       - update_type
+    Update:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - in_progress
+          - completed
+          - failed
+          - cancelled
+        update_type:
+          type: string
+          enum:
+          - file
+          - script
+          - package
+          - docker_compose
+        target_devices:
+          type: array
+          items:
+            type: string
+        target_groups:
+          type: array
+          items:
+            type: string
+        progress:
+          type: object
+          properties:
+            total_devices:
+              type: integer
+            completed:
+              type: integer
+            failed:
+              type: integer
+            pending:
+              type: integer
+        created_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
   securitySchemes:
     apiKeyAuth:
       type: apiKey

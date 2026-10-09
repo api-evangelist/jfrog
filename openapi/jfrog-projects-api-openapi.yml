@@ -664,34 +664,6 @@ paths:
           description: Your self-hosted JFrog server host
 components:
   schemas:
-    ProjectRequest:
-      type: object
-      properties:
-        project_key:
-          type: string
-          maxLength: 32
-        display_name:
-          type: string
-        description:
-          type: string
-        admin_privileges:
-          type: object
-          properties:
-            manage_members:
-              type: boolean
-            manage_resources:
-              type: boolean
-            manage_security_assets:
-              type: boolean
-            index_resources:
-              type: boolean
-            allow_ignore_rules:
-              type: boolean
-        max_storage_in_gibibytes:
-          type: integer
-      required:
-      - project_key
-      - display_name
     Project:
       type: object
       properties:
@@ -724,15 +696,34 @@ components:
           type: integer
         storage_quota_email_notification:
           type: boolean
-    ProjectRequest_2:
+    ProjectRequest:
       type: object
       properties:
-        name:
+        project_key:
+          type: string
+          maxLength: 32
+        display_name:
           type: string
         description:
           type: string
+        admin_privileges:
+          type: object
+          properties:
+            manage_members:
+              type: boolean
+            manage_resources:
+              type: boolean
+            manage_security_assets:
+              type: boolean
+            index_resources:
+              type: boolean
+            allow_ignore_rules:
+              type: boolean
+        max_storage_in_gibibytes:
+          type: integer
       required:
-      - name
+      - project_key
+      - display_name
     Project_2:
       type: object
       properties:
@@ -749,6 +740,15 @@ components:
         created_at:
           type: string
           format: date-time
+    ProjectRequest_2:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+      required:
+      - name
     Project_3:
       type: object
       properties:

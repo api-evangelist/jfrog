@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-system-version-schema.json",
+  "title": "SystemVersion",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-system-configuration-api-openapi.yml#/components/schemas/SystemVersion",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "revision": {
+      "type": "string"
+    },
+    "addons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "license": {
+      "type": "string"
+    }
+  }
+}

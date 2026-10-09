@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-evidence-2-schema.json",
+  "title": "Evidence_2",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-evidence-api-openapi.yml#/components/schemas/Evidence_2",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "release_bundle_name": {
+      "type": "string"
+    },
+    "release_bundle_version": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string"
+    },
+    "evidence_type": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    },
+    "dsse_file_path": {
+      "type": "string"
+    }
+  }
+}

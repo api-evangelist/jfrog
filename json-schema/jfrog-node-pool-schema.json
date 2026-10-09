@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-node-pool-schema.json",
+  "title": "NodePool",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-node-pools-api-openapi.yml#/components/schemas/NodePool",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "projectId": {
+      "type": "integer"
+    },
+    "numberOfNodes": {
+      "type": "integer"
+    },
+    "isOnDemand": {
+      "type": "boolean"
+    },
+    "architecture": {
+      "type": "string"
+    },
+    "operatingSystem": {
+      "type": "string"
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

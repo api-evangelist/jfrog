@@ -330,6 +330,29 @@ paths:
           description: Your self-hosted JFrog server host
 components:
   schemas:
+    UpdateUserRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+        admin:
+          type: boolean
+        profile_updatable:
+          type: boolean
+        disable_ui_access:
+          type: boolean
+        status:
+          type: string
+          enum:
+          - enabled
+          - disabled
+        groups:
+          type: array
+          items:
+            type: string
     CreateUserRequest:
       type: object
       properties:
@@ -396,7 +419,7 @@ components:
         created:
           type: string
           format: date-time
-    UpdateUserRequest:
+    UpdateUserRequest_2:
       type: object
       properties:
         email:
@@ -408,13 +431,6 @@ components:
           type: boolean
         profile_updatable:
           type: boolean
-        disable_ui_access:
-          type: boolean
-        status:
-          type: string
-          enum:
-          - enabled
-          - disabled
         groups:
           type: array
           items:
@@ -466,22 +482,6 @@ components:
       - username
       - email
       - password
-    UpdateUserRequest_2:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-        password:
-          type: string
-        admin:
-          type: boolean
-        profile_updatable:
-          type: boolean
-        groups:
-          type: array
-          items:
-            type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -216,17 +216,6 @@ paths:
           description: Label removed from packages
 components:
   schemas:
-    LabelRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        color:
-          type: string
-      required:
-      - name
     Label:
       type: object
       properties:
@@ -246,6 +235,17 @@ components:
         packages_count:
           type: integer
           description: Number of packages with this label applied
+    LabelRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        color:
+          type: string
+      required:
+      - name
   securitySchemes:
     bearerAuth:
       type: http

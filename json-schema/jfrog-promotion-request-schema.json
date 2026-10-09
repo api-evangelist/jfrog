@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-promotion-request-schema.json",
+  "title": "PromotionRequest",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-promotion-api-openapi.yml#/components/schemas/PromotionRequest",
+  "type": "object",
+  "properties": {
+    "release_bundle_name": {
+      "type": "string"
+    },
+    "release_bundle_version": {
+      "type": "string"
+    },
+    "environment": {
+      "type": "string",
+      "description": "Target environment name (e.g., DEV, STAGING, PROD)"
+    },
+    "included_repository_keys": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "overwrite_existing_artifacts": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "release_bundle_name",
+    "release_bundle_version",
+    "environment"
+  ]
+}

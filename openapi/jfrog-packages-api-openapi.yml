@@ -220,6 +220,15 @@ components:
           type: array
           items:
             type: string
+    PackageSearchResponse:
+      type: object
+      properties:
+        packages:
+          type: array
+          items:
+            $ref: '#/components/schemas/PackageSummary'
+        total_count:
+          type: integer
     PackageSearchRequest:
       type: object
       properties:
@@ -250,6 +259,25 @@ components:
           default: 25
         offset:
           type: integer
+    PackageSummary:
+      type: object
+      properties:
+        package_type:
+          type: string
+        package_name:
+          type: string
+        latest_version:
+          type: string
+        versions_count:
+          type: integer
+        vulnerabilities_count:
+          type: integer
+        labels:
+          type: array
+          items:
+            type: string
+        license:
+          type: string
     CatalogVulnerability:
       type: object
       properties:
@@ -283,15 +311,6 @@ components:
         jfrog_research_summary:
           type: string
           description: JFrog Security Research enrichment summary
-    PackageSearchResponse:
-      type: object
-      properties:
-        packages:
-          type: array
-          items:
-            $ref: '#/components/schemas/PackageSummary'
-        total_count:
-          type: integer
     PackageDetail:
       type: object
       properties:
@@ -340,25 +359,6 @@ components:
         homepage:
           type: string
           format: uri
-    PackageSummary:
-      type: object
-      properties:
-        package_type:
-          type: string
-        package_name:
-          type: string
-        latest_version:
-          type: string
-        versions_count:
-          type: integer
-        vulnerabilities_count:
-          type: integer
-        labels:
-          type: array
-          items:
-            type: string
-        license:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

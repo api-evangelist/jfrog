@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/jfrog/main/json-schema/jfrog-model-version-schema.json",
+  "title": "ModelVersion",
+  "x-generated": "2026-10-04",
+  "x-method": "derived",
+  "x-generator": "derive-json-schema.py",
+  "x-source": "openapi/jfrog-model-versions-api-openapi.yml#/components/schemas/ModelVersion",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "staging",
+        "production",
+        "archived"
+      ]
+    },
+    "artifact_path": {
+      "type": "string",
+      "description": "Path to the model artifact in Artifactory"
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number"
+      },
+      "description": "Key-value pairs of model metrics (accuracy, loss, etc.)"
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Hyperparameters used for training"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "created_by": {
+      "type": "string"
+    }
+  }
+}

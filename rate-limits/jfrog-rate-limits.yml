@@ -2,6 +2,7 @@
 generated: '2026-09-20'
 method: searched
 source: https://docs.jfrog.com/artifactory/docs/aql-performance
+name: JFrog API Rate Limits
 sources:
 - https://docs.jfrog.com/artifactory/docs/aql-performance
 provenance:
