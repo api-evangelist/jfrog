@@ -1,11 +1,13 @@
 generated: '2026-10-14'
 method: searched
 checked:
+- datadog/integrations/datadog-integration-edges.yml
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
 - https://marketplace.atlassian.com/
 - https://marketplace.visualstudio.com/vscode
 - https://plugins.jetbrains.com/
+- new-relic/integrations/new-relic-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (apps)
@@ -99,6 +101,42 @@ edges:
   - Verified domain
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
+- partner_name: Datadog (own)
+  partner: datadog
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/jfrog_platform_cloud
+  mirror_of: datadog/integrations/datadog-integration-edges.yml
+  apps:
+  - JFrog Platform Cloud
+  - JFrog Platform (Self-hosted)
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Log Collection
+- partner_name: New Relic (own)
+  partner: new-relic
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://newrelic.com/instant-observability/jfrog-platform-cloud
+  mirror_of: new-relic/integrations/new-relic-integration-edges.yml
+  apps:
+  - JFrog Software Supply Chain Cloud Platform
+  - JFrog Software Supply Chain Platform
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Verified
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps

@@ -63,3 +63,29 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
+- slug: jfrog-datadog-own
+  label: Datadog (own)
+  partner: datadog
+  partner_name: Datadog (own)
+  category: Log Collection
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/jfrog_platform_cloud
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: jfrog-new-relic-own
+  label: New Relic (own)
+  partner: new-relic
+  partner_name: New Relic (own)
+  category: Verified
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://newrelic.com/instant-observability/jfrog-platform-cloud
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
