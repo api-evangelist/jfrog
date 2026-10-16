@@ -2,17 +2,17 @@
 kin_checks:
   slug: jfrog
   schema_version: 0.23.0
-  scored_at: '2026-10-03'
-  run_ts: 2026-10-03T024842
+  scored_at: '2026-10-11'
+  run_ts: 2026-10-11T110117
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.23.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 153
     earned: 42
-    partial: 33
-    missed: 52
-    na: 26
+    partial: 37
+    missed: 47
+    na: 27
   checks:
   - id: newsroom_present
     status: missed
@@ -36,17 +36,7 @@ kin_checks:
     status: missed
   - id: asyncapi_present
     status: missed
-  - id: json_schema_present
-    status: missed
-  - id: json_schema_per_resource
-    status: missed
   - id: domain_standard_conformance
-    status: missed
-  - id: rules_substantial
-    status: missed
-  - id: vocabulary_published
-    status: missed
-  - id: conformance_declared
     status: missed
   - id: overlay_published
     status: missed
@@ -55,17 +45,16 @@ kin_checks:
     detail: pointer liveness 0.0
   - id: deprecation_policy
     status: missed
-  - id: security_disclosure
-    status: missed
   - id: roadmap_present
     status: missed
   - id: examples_published
+    status: missed
+  - id: portal_present
     status: missed
   - id: console_or_sandbox
     status: missed
   - id: terms_of_service
     status: missed
-    detail: pointer liveness 0.0
   - id: compliance_published
     status: missed
   - id: trust_center
@@ -74,7 +63,6 @@ kin_checks:
     status: missed
   - id: reg_terms_of_service
     status: missed
-    detail: pointer liveness 0.0
   - id: reg_compliance_published
     status: missed
   - id: reg_named_standard_conformance
@@ -107,9 +95,9 @@ kin_checks:
     status: missed
   - id: upsert_declared_conflict
     status: missed
-  - id: idempotency
+  - id: mcp_server
     status: missed
-  - id: error_semantics
+  - id: idempotency
     status: missed
   - id: well_known_catalog
     status: missed
@@ -127,9 +115,6 @@ kin_checks:
     status: missed
   - id: agentic_commerce
     status: missed
-  - id: mcp_endpoint_discoverable
-    status: partial
-    earned: 2.0
   - id: contract_present
     status: partial
     earned: 18.0
@@ -214,12 +199,27 @@ kin_checks:
     earned: 3.6
     detail: 53 of 53 openapi documents pass; credited at 90% because of their provenance
       (unknown)
+  - id: json_schema_present
+    status: partial
+    earned: 5.4
+  - id: json_schema_per_resource
+    status: partial
+    earned: 3.6
   - id: rules_present
     status: partial
     earned: 2.5
+  - id: rules_substantial
+    status: partial
+    earned: 1.25
   - id: balanced_severities
     status: partial
     earned: 0.75
+  - id: vocabulary_published
+    status: partial
+    earned: 4.5
+  - id: conformance_declared
+    status: partial
+    earned: 5.4
   - id: status_page_present
     status: partial
     earned: 3.0
@@ -243,14 +243,14 @@ kin_checks:
     status: partial
     earned: 2.4
     detail: 'grade: documented'
-  - id: mcp_server
-    status: partial
-    earned: 4.32
-    detail: 'grade: documented'
   - id: auth_clarity
     status: partial
     earned: 3.5
     detail: 'grade: bearer'
+  - id: error_semantics
+    status: partial
+    earned: 1.0
+    detail: 'grade: derived'
   - id: openapi_examples
     status: partial
     earned: 3.5
@@ -276,6 +276,7 @@ kin_checks:
   - graphql_descriptions
   - graphql_sdl_present
   - graphql_type_depth
+  - mcp_endpoint_discoverable
   - messages_with_schema
   - os_code_of_conduct
   - os_contribution_guide
