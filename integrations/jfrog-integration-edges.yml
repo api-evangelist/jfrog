@@ -12,6 +12,7 @@ checked:
 - https://spdx.dev/use/spdx-tools/
 - https://www.openchainproject.org/community-of-conformance
 - new-relic/integrations/new-relic-integration-edges.yml
+- slack/integrations/slack-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (apps)
@@ -170,6 +171,23 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-software-supply-chain.py
   first_seen: '2026-10-18'
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A02C54FAX9B-jfrog-artifactory-and-xray
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - JFrog Artifactory and Xray
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
