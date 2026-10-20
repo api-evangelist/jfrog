@@ -2,15 +2,22 @@ generated: '2026-10-14'
 method: searched
 checked:
 - datadog/integrations/datadog-integration-edges.yml
+- https://cdn.winget.microsoft.com/cache
 - https://cloudsecurityalliance.org/star/registry
 - https://cyclonedx.org/tool-center/
 - https://eucoc.cloud/en/public-register/list-of-adherent-services
+- https://formulae.brew.sh/api/cask.json
+- https://formulae.brew.sh/api/formula.json
+- https://github.com/ScoopInstaller/Extras
+- https://github.com/ScoopInstaller/Main
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
 - https://marketplace.atlassian.com/
 - https://marketplace.visualstudio.com/vscode
 - https://plugins.jetbrains.com/
+- https://pypi.org/pypi
 - https://raw.githubusercontent.com/ossf/ossf-landscape/0c5085851606608158f3adb796e5c22265ee174d/landscape.yml
+- https://registry.npmjs.org
 - https://spdx.dev/use/spdx-tools/
 - https://www.openchainproject.org/community-of-conformance
 - new-relic/integrations/new-relic-integration-edges.yml
@@ -219,6 +226,36 @@ edges:
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
+- partner_name: Homebrew
+  partner: homebrew
+  partner_match: register
+  type: register
+  direction: provider-built
+  category: official CLI (Homebrew)
+  evidence: https://formulae.brew.sh/formula/jfrog-cli
+  channel: package-registry
+  relationship: distribution-channel
+  contract_reference:
+    register: Homebrew (public package index)
+    spec_file: null
+    packages:
+    - name: jfrog-cli
+      kind: formula
+      version: 2.127.0
+      released: null
+      lapsed: false
+      page: https://formulae.brew.sh/formula/jfrog-cli
+      cli: 'formula desc: Command-line interface for JFrog products'
+      repo_leg: domain:jfrog.com
+      publisher_leg: artifact-shared-github-org:jfrog
+      matched_by: domain+name-among-holders
+    current: true
+    signal_note: 'the provider''s own command-line tool on a package manager: distribution, not an integration;
+      lapsed = no release in 24 months or deprecated / disabled by the manager'
+    detected_by: sweep-official-clis.py
+    detected: '2026-10-20'
+  detected_by: sweep-official-clis.py
   first_seen: '2026-10-20'
 source:
 - https://github.com/marketplace?type=actions
