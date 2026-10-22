@@ -31,6 +31,9 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- https://api.first.org/data/v1/teams
+- https://raw.githubusercontent.com/CVEProject/cve-website/dev/src/assets/data/CNAsList.json
+- https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (apps)
@@ -362,6 +365,47 @@ edges:
     status: 'NASDAQ: FROG'
   detected_by: sweep-vc-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: CVE Program (CVE Numbering Authorities)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.cve.org/PartnerInformation/ListofPartners/partner/JFrog
+  category: Vulnerability disclosure (CVE Numbering Authority)
+  contract_reference:
+    register: CVE Program CNA list (github.com/CVEProject/cve-website CNAsList.json @ 239d3d9b68e0)
+    standard: CVE Program CNA Operational Rules (CVE Numbering Authority)
+    spec_file: null
+    role: cve-numbering-authority
+    registered_name: JFrog
+    matched_domain: jfrog.com
+    matched_by: domain+name-among-holders
+    cna_id: CNA-2021-0039
+    cna_short_name: JFrog
+    cna_types:
+    - Vendor
+    - Researcher
+    cna_roles:
+    - CNA
+    scope: All JFrog products (supported products and end-of-life/end-of-service products); vulnerabilities in third-party
+      software discovered by JFrog that are not in another CNA’s scope; and vulnerabilities in third-party software
+      discovered by external researchers and disclosed to JFrog (includes any embedded devices and their associated
+      mobile applications) that are not in another CNA’s scope.
+    top_level_root: MITRE Corporation
+    root: n/a
+    security_advisories:
+    - https://www.jfrog.com/confluence/display/RTF/Fixed+Security+Vulnerabilities
+    disclosure_policy:
+    - https://jfrog.com/trust/report-vulnerability/
+    country: Israel
+    signal_note: listing as a CVE Numbering Authority = participation (a public commitment to assign CVE IDs and
+      publish advisories for its scope); never a count of CVEs
+    detected_by: sweep-vulnerability-disclosure-cna.py
+    detected: '2026-10-22'
+  detected_by: sweep-vulnerability-disclosure-cna.py
+  first_seen: '2026-10-22'
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
