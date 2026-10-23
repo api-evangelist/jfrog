@@ -38,6 +38,7 @@ checked:
 - https://catalog.redhat.com/api/containers/v1/repositories?page_size=100
 - https://catalog.redhat.com/api/containers/v1/vendors/label/
 - https://catalog.redhat.com/software/partners
+- ansible/integrations/ansible-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (apps)
@@ -220,128 +221,6 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-official-clis.py
   first_seen: '2026-10-20'
-- partner_name: Datadog (own)
-  partner: datadog
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://github.com/DataDog/integrations-extras/tree/master/jfrog_platform_cloud
-  mirror_of: datadog/integrations/datadog-integration-edges.yml
-  apps:
-  - JFrog Platform Cloud
-  - JFrog Platform (Self-hosted)
-  listing_count: 2
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Log Collection
-- partner_name: New Relic (own)
-  partner: new-relic
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://newrelic.com/instant-observability/jfrog-platform-cloud
-  mirror_of: new-relic/integrations/new-relic-integration-edges.yml
-  apps:
-  - JFrog Software Supply Chain Cloud Platform
-  - JFrog Software Supply Chain Platform
-  listing_count: 2
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Verified
-- partner_name: Slack (own)
-  partner: slack
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://slack.com/marketplace/A02C54FAX9B-jfrog-artifactory-and-xray
-  mirror_of: slack/integrations/slack-integration-edges.yml
-  apps:
-  - JFrog Artifactory and Xray
-  listing_count: 1
-  detected: '2026-10-18'
-  detected_by: mirror-platform-listings.py
-  category: Slack app
-- partner_name: Eclipse Foundation (open-vsx)
-  partner: eclipse
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: open-vsx
-  evidence: https://open-vsx.org/namespace/JFrog
-  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
-  apps:
-  - JFrog
-  listing_count: 1
-  detected: '2026-10-20'
-  detected_by: mirror-platform-listings.py
-  category: IDE / developer extension marketplace listing
-  badges:
-  - Verified namespace
-- partner_name: Pulumi (pulumi-registry)
-  partner: pulumi
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: pulumi-registry
-  evidence: https://www.pulumi.com/registry/packages/platform/
-  mirror_of: pulumi/integrations/pulumi-integration-edges.yml
-  apps:
-  - platform
-  listing_count: 1
-  detected: '2026-10-21'
-  detected_by: mirror-platform-listings.py
-  category: infrastructure-as-code provider registry listing
-  badges:
-  - Verified publisher (GitHub domain-verified organization)
-- partner_name: Terraform (terraform-registry)
-  partner: terraform
-  partner_match: mirror
-  mirror_match: domain+name-among-holders
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: terraform-registry
-  evidence: https://registry.terraform.io/providers/jfrog/artifactory
-  mirror_of: terraform/integrations/terraform-integration-edges.yml
-  apps:
-  - jfrog/artifactory
-  - jfrog/platform
-  - jfrog/project
-  - jfrog/xray
-  - jfrog/mission-control
-  - jfrog/myjfrog
-  - jfrog/pipeline
-  - jfrog/distribution
-  - jfrog/bridge
-  - jfrog/apptrust
-  - jfrog/unifiedpolicy
-  - jfrog/runtime
-  listing_count: 1
-  detected: '2026-10-21'
-  detected_by: mirror-platform-listings.py
-  category: infrastructure-as-code provider registry listing
-  badges:
-  - Verified publisher (Terraform partner tier)
-  - Verified publisher (GitHub domain-verified organization)
 - partner_name: Battery Ventures
   partner: battery-ventures
   partner_match: register
@@ -464,6 +343,149 @@ edges:
     detected: '2026-10-22'
   detected_by: sweep-red-hat-certified-ecosystem.py
   first_seen: '2026-10-22'
+- partner_name: Datadog (own)
+  partner: datadog
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/jfrog_platform_cloud
+  mirror_of: datadog/integrations/datadog-integration-edges.yml
+  apps:
+  - JFrog Platform Cloud
+  - JFrog Platform (Self-hosted)
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Log Collection
+- partner_name: New Relic (own)
+  partner: new-relic
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://newrelic.com/instant-observability/jfrog-platform-cloud
+  mirror_of: new-relic/integrations/new-relic-integration-edges.yml
+  apps:
+  - JFrog Software Supply Chain Cloud Platform
+  - JFrog Software Supply Chain Platform
+  listing_count: 2
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Verified
+- partner_name: Slack (own)
+  partner: slack
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://slack.com/marketplace/A02C54FAX9B-jfrog-artifactory-and-xray
+  mirror_of: slack/integrations/slack-integration-edges.yml
+  apps:
+  - JFrog Artifactory and Xray
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Slack app
+- partner_name: Eclipse Foundation (open-vsx)
+  partner: eclipse
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: open-vsx
+  evidence: https://open-vsx.org/namespace/JFrog
+  mirror_of: eclipse/integrations/eclipse-integration-edges.yml
+  apps:
+  - JFrog
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: IDE / developer extension marketplace listing
+  badges:
+  - Verified namespace
+- partner_name: Pulumi (pulumi-registry)
+  partner: pulumi
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: pulumi-registry
+  evidence: https://www.pulumi.com/registry/packages/platform/
+  mirror_of: pulumi/integrations/pulumi-integration-edges.yml
+  apps:
+  - platform
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
+- partner_name: Terraform (terraform-registry)
+  partner: terraform
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: terraform-registry
+  evidence: https://registry.terraform.io/providers/jfrog/artifactory
+  mirror_of: terraform/integrations/terraform-integration-edges.yml
+  apps:
+  - jfrog/artifactory
+  - jfrog/platform
+  - jfrog/project
+  - jfrog/xray
+  - jfrog/mission-control
+  - jfrog/myjfrog
+  - jfrog/pipeline
+  - jfrog/distribution
+  - jfrog/bridge
+  - jfrog/apptrust
+  - jfrog/unifiedpolicy
+  - jfrog/runtime
+  listing_count: 1
+  detected: '2026-10-21'
+  detected_by: mirror-platform-listings.py
+  category: infrastructure-as-code provider registry listing
+  badges:
+  - Verified publisher (Terraform partner tier)
+  - Verified publisher (GitHub domain-verified organization)
+- partner_name: Ansible (ansible-galaxy)
+  partner: ansible
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: ansible-galaxy
+  evidence: https://galaxy.ansible.com/ui/repo/published/jfrog/platform/
+  mirror_of: ansible/integrations/ansible-integration-edges.yml
+  apps:
+  - jfrog.platform
+  - jfrog.installers
+  - jfrog.ansible
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: configuration-management content listing (Ansible collection)
+  badges:
+  - Verified publisher (GitHub domain-verified organization)
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
