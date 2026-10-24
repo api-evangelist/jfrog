@@ -7,86 +7,89 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   arazzo/jfrog-access-create-user-with-group-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-access-provision-project-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-attach-build-evidence-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-cleanup-stale-artifacts-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-configure-repository-replication-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-curation-policy-setup-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-deploy-and-verify-artifact-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-distribution-release-bundle-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-grant-repository-permission-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-ml-register-model-version-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-pipelines-trigger-and-monitor-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-platform-register-webhook-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-platform-rotate-access-token-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-promote-artifact-by-checksum-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-promote-build-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-provision-local-repository-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-release-bundle-v2-promote-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-secure-publish-artifact-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-worker-deploy-and-test-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-xray-component-license-check-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-xray-policy-and-watch-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-xray-scan-artifact-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-xray-scan-build-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-xray-triage-violation-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/jfrog-xray-vulnerability-report-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   authentication/jfrog-authentication.yml:
     method: derived
     evidence: declared in the artifact
   capabilities/jfrog-capability-edges.yml:
     method: unknown
     evidence: no authorship recorded
+  changelog/jfrog-changelog.yml:
+    method: searched
+    evidence: declared in the artifact
   collections/jfrog-access-tokens-api.opencollection.json:
     method: derived
     evidence: openapi/jfrog-access-tokens-api
@@ -489,16 +492,40 @@ artifacts:
   collections/jfrog-xray.postman_collection.json:
     method: unknown
     evidence: no authorship recorded
+  conformance/jfrog-conformance.yml:
+    method: derived
+    evidence: declared in the artifact
+  data-model/jfrog-data-model.yml:
+    method: derived
+    evidence: declared in the artifact
+  errors/jfrog-problem-types.yml:
+    method: derived
+    evidence: declared in the artifact
   finops/jfrog-finops.yml:
     method: generated
     evidence: declared in the artifact
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
+  hosts/jfrog-hosts.yml:
+    method: derived
+    evidence: declared in the artifact
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
+  integrations/jfrog-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
   json-ld/jfrog-context.jsonld:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-access-token-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-accesstoken-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-aql-search-result-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-aqlsearchresult-schema.json:
@@ -507,13 +534,28 @@ artifacts:
   json-schema/jfrog-artifact-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-artifact-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-artifactsummary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-audit-entry-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-auditentry-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-build-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-build-promotion-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-build-runs-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-build-summary-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-buildinfo-schema.json:
@@ -525,10 +567,16 @@ artifacts:
   json-schema/jfrog-buildruns-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-builds-list-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-buildslist-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-buildsummary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-catalog-vulnerability-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-catalogvulnerability-schema.json:
@@ -537,10 +585,28 @@ artifacts:
   json-schema/jfrog-checksums-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-command-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-commandrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-component-detail-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-componentdetail-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-create-evidence-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-create-token-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-create-user-request-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-create-user-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-createevidencerequest-schema.json:
@@ -552,6 +618,9 @@ artifacts:
   json-schema/jfrog-createuserrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-curation-policy-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-curation-policy-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -559,6 +628,12 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-curationpolicyrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-deploy-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-deployment-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-deployment-schema.json:
@@ -570,6 +645,12 @@ artifacts:
   json-schema/jfrog-deployresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-device-group-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-device-group-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-device-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -579,13 +660,28 @@ artifacts:
   json-schema/jfrog-devicegrouprequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-distribute-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-distributerequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-distribution-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-distributionrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-evidence-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-evidence-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-evidence-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-evidence-search-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-evidencerequest-schema.json:
@@ -594,16 +690,31 @@ artifacts:
   json-schema/jfrog-evidencesearchrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-experiment-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-experiment-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-experimentrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-file-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-fileinfo-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-folder-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-folderinfo-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-graph-qlrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-graph-qlresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-graphqlrequest-schema.json:
@@ -615,10 +726,19 @@ artifacts:
   json-schema/jfrog-group-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-group-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-groupsummary-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-ignore-rule-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-ignorerule-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-integration-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-integration-schema.json:
@@ -630,6 +750,9 @@ artifacts:
   json-schema/jfrog-issue-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-item-properties-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-itemproperties-schema.json:
     method: unknown
     evidence: no authorship recorded
@@ -639,10 +762,19 @@ artifacts:
   json-schema/jfrog-jpdrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-label-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-label-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-labelrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-license-bucket-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-license-info-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-licensebucket-schema.json:
@@ -651,7 +783,16 @@ artifacts:
   json-schema/jfrog-licenseinfo-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-model-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-model-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-model-version-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-model-version-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-modelrequest-schema.json:
@@ -663,13 +804,34 @@ artifacts:
   json-schema/jfrog-modelversionrequest-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-move-or-copy-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-moveorcopyresponse-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-node-pool-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-node-pool-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-nodepool-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-nodepoolrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-package-detail-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-package-search-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-package-search-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-package-version-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-packagedetail-schema.json:
@@ -687,7 +849,13 @@ artifacts:
   json-schema/jfrog-packageversion-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-permission-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-permission-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-permission-target-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-permissiontarget-schema.json:
@@ -699,10 +867,22 @@ artifacts:
   json-schema/jfrog-pipeline-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-pipeline-source-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-pipeline-source-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-pipelinesource-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-pipelinesourcerequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-platform-group-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-platform-user-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-platformgroup-schema.json:
@@ -714,10 +894,19 @@ artifacts:
   json-schema/jfrog-policy-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-project-3-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-project-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-projectrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-promotion-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-promotion-status-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-promotionrequest-schema.json:
@@ -726,7 +915,19 @@ artifacts:
   json-schema/jfrog-promotionstatus-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-release-bundle-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-release-bundle-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-release-bundle-v2-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-release-bundle-v2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-release-bundle-v2-summary-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-releasebundle-schema.json:
@@ -744,7 +945,16 @@ artifacts:
   json-schema/jfrog-releasebundlev2summary-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-replication-config-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-replicationconfig-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-repository-configuration-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-repository-list-item-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-repository-schema.json:
@@ -759,10 +969,16 @@ artifacts:
   json-schema/jfrog-run-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-script-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-script-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-scriptrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-search-result-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-searchresult-schema.json:
@@ -774,7 +990,16 @@ artifacts:
   json-schema/jfrog-step-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-storage-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-storagesummary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-system-health-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-system-version-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-systemhealth-schema.json:
@@ -783,13 +1008,28 @@ artifacts:
   json-schema/jfrog-systemversion-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-token-info-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-token-response-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-tokeninfo-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-tokenresponse-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-update-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-update-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-update-user-request-2-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-update-user-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-updaterequest-schema.json:
@@ -801,10 +1041,19 @@ artifacts:
   json-schema/jfrog-user-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-user-summary-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-usersummary-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-verification-result-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-verificationresult-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-violations-response-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-violationsresponse-schema.json:
@@ -816,10 +1065,16 @@ artifacts:
   json-schema/jfrog-watch-schema.json:
     method: unknown
     evidence: no authorship recorded
+  json-schema/jfrog-webhook-request-schema.json:
+    method: unknown
+    evidence: no authorship recorded
   json-schema/jfrog-webhook-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-webhookrequest-schema.json:
+    method: unknown
+    evidence: no authorship recorded
+  json-schema/jfrog-worker-request-schema.json:
     method: unknown
     evidence: no authorship recorded
   json-schema/jfrog-worker-schema.json:
@@ -831,127 +1086,7 @@ artifacts:
   json-structure/jfrog-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -1035,9 +1170,30 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  llms/jfrog-llms-provenance.yml:
+    method: searched
+    evidence: 'derive-llms-provenance.py: harvested'
   llms/jfrog-llms.txt:
     method: searched
     evidence: 'derive-llms-provenance.py: harvested'
+  mcp/jfrog-mcp.yml:
+    method: derived
+    evidence: declared in the artifact
   openapi/_original/jfrog-access-openapi.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
@@ -1253,6 +1409,168 @@ artifacts:
   openapi/jfrog-workers-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/jfrog-access-tokens-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-artifacts-storage-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-audit-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-builds-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-commands-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-components-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-deployments-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-device-groups-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-devices-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-distribution-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-evidence-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-execution-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-experiments-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-graph-ql-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-groups-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-ignore-rules-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-integrations-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-jpds-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-labels-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-licenses-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-model-versions-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-models-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-node-pools-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-packages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-permissions-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-pipeline-sources-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-pipelines-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-policies-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-projects-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-promotion-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-properties-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-release-bundles-v1-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-release-bundles-v2-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-replication-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-reports-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-repositories-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-runs-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-scanning-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-scripts-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-searches-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-security-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-steps-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-summary-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-system-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-system-configuration-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-tokens-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-updates-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-users-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-verification-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-violations-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-watches-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-webhooks-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/jfrog-workers-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  packages/jfrog-packages.yml:
+    method: searched
+    evidence: declared in the artifact
   plans/jfrog-plans-pricing.yml:
     method: searched
     evidence: declared in the artifact
@@ -1307,12 +1625,48 @@ artifacts:
   rules/jfrog-jsonschema-spectral-rules.yml:
     method: generated
     evidence: declared in the artifact
+  rules/jfrog-rules.yml:
+    method: generated
+    evidence: declared in the artifact
   security/jfrog-domain-security.yml:
     method: unknown
     evidence: no authorship recorded
   security/jfrog-vulnerability-disclosure.yml:
     method: searched
     evidence: declared in the artifact
+  skills/_index.yml:
+    method: generated
+    evidence: declared in the artifact
+  skills/jfrog-create-and-sign-release-bundle.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/jfrog-deploy-and-verify-artifact.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/jfrog-manage-webhooks.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/jfrog-promote-build.md:
+    method: generated
+    evidence: declared in the artifact
+  skills/jfrog-repositories-create-and-configure.md:
+    method: generated
+    evidence: declared in the artifact
+  vendors/jfrog-vendors.yml:
+    method: unknown
+    evidence: no authorship recorded
   vocabulary/jfrog-vocabulary.yml:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/jfrog-docs-mcp-server-card.json:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/jfrog-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/jfrog-status-security.txt:
+    method: unknown
+    evidence: no authorship recorded
+  well-known/jfrog-well-known.yml:
     method: unknown
     evidence: no authorship recorded
